@@ -1,0 +1,137 @@
+<?php
+
+/* Short and sweet */
+define('WP_USE_THEMES', false);
+require_once('wp-backend/wp-blog-header.php');
+
+function page_head( $title )
+{
+    echo <<<EOL
+  <head>
+    <meta content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/ligerbots.css" />
+    <link rel="icon" href="/images/liger.ico"/>
+    <title>$title</title>
+  </head>    
+EOL;
+}
+
+function page_foot()
+{
+    echo <<<EOL
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+EOL;
+}
+
+function output_header()
+{
+    echo <<<EOL
+        <div class="row header">
+          <div class="masthead">
+            <a href="/"><img src="/images/masthead.svg"/></a>
+          </div>
+          <ul>
+            <li>
+              <a class="header-link" target="_blank" href="http://www.firstinspires.org/robotics/frc">
+                <img src="/images/FIRST.png"/>
+              </a>
+            </li>
+            <li>
+              <a class="header-link" target="_blank" href="https://www.youtube.com/channel/UCgNgdmtDs7d58dVR-80DCGA">
+                <img src="/images/youtube.png"/>
+              </a>
+            </li>
+            <li>
+              <a class="header-link" target="_blank" href="https://twitter.com/ligerbots">
+                <img src="/images/twitter.png">
+              </a>
+            </li>
+            <li>
+              <a class="header-link" target="_blank" href="https://www.facebook.com/The-LigerBots-162121450506644/">
+                <img src="/images/facebook.png">
+              </a>
+            </li>
+            <li>
+              <a class="header-link" target="_blank" href="https://www.instagram.com/ligerbots_frc2877/">
+                <img src="/images/instagram.png">
+              </a>
+            </li>
+            <li>
+              <a class="header-link" target="_blank" href="https://www.flickr.com/photos/ligerbots/">
+                <img src="/images/flickr.png">
+              </a>
+            </li>
+            <li>
+              <a class="header-link" target="_blank" href="https://www.paypal.com">
+                <img style="width:10%" src="/images/donate.png">
+              </a>
+            </li>
+          </ul>
+        </div>
+EOL;
+}
+
+function output_navbar()
+{
+    $loggedIn = is_user_logged_in();
+
+    echo '<nav class="navbar navbar-ligerbots">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle navbar-toggle-ligerbots" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar icon-bar-ligerbots"></span>
+                <span class="icon-bar icon-bar-ligerbots"></span>
+                <span class="icon-bar icon-bar-ligerbots"></span> 
+              </button>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+              <ul class="nav navbar-nav">
+                <li class="active"><a href="/">Home</a></li>
+                <li><a href="/about.php">About</a></li> 
+                <li><a href="/support.php">Support</a></li> 
+                <li><a href="/contact.php">Contact</a></li> 
+                <li class="dropdown">
+                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">Gallery<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="/gallery2016.php">2016</a></li>
+                    <li><a href="#">2015</a></li>
+                    <li><a href="#">Older</a></li> 
+                  </ul>
+                </li>
+                <li><a href="/calendar.php">Calendar</a></li> 
+              </ul>';
+
+    echo '<ul class="nav navbar-nav navbar-right">';
+    if ( ! $loggedIn ) 
+    {
+        // <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        echo '<li><a href="/login.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>';
+    }
+    else
+    {
+        echo '<li><a href="/directory.php">Directory</a></li>';
+        echo '<li><a href="/wp-backend/wp-admin/index.php">Dashboard</a></li>';
+    }
+    echo '</ul>';
+
+    echo '</div> </div> </nav>';
+}
+
+function output_footer()
+{
+    $page = get_page_by_title( 'Sponsors' );
+
+    echo '<div class="row side-margins">';
+    echo '  <div class="orange-border">';
+    // don't apply the filters. Raw html.
+    echo $page->post_content;
+    echo '  </div>';
+    echo '  <div>';
+    echo '    <p class="orange-label">Thank you to our sponsors!</p>';
+    echo '  </div>';
+    echo '</div>';
+}
+
+?>

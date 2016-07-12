@@ -1,0 +1,2 @@
+[30-Jan-2016 18:13:51 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/frc2877/public_dev2016/wp-backend/wp-content/plugins/ultimate-member/admin/core/um-admin-dragdrop.php on line 29
+[30-Jan-2016 18:13:51 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/frc2877/public_dev2016/wp-backend/wp-content/plugins/ultimate-member/admin/core/um-admin-dragdrop.php on line 113
