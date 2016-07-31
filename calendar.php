@@ -4,7 +4,7 @@
 
 <!DOCTYPE html>
 <html>
-  <?php page_head( "LigerBots" ); ?>
+  <?php page_head( "LigerBots Calendar" ); ?>
 
   <body>
     <div class="container-fluid no-side-padding">

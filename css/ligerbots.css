@@ -193,10 +193,10 @@ div .read-more{
     font-size: 120%;
     font-weight: bold;
 }
-#post1 .eventitle{
+.blue-post .eventitle{
     color: rgb(0,102,179);
 }
-#post2 .eventitle{
+.orange-post .eventitle{
     color: rgb(208,78,29);
 }
 

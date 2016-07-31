@@ -24,20 +24,20 @@
           <div class="row side-margins bottom-margin">
             <div class="col-xs-4 col-xs-offset-4">
             
-              <form role="form" action="http://dev2016.ligerbots.org/wp-backend/wp-login.php" method="post">
+              <form role="form" action="/wp-backend/wp-login.php" method="post">
                 <div class="form-group">
                   <label for="email">Email address:</label>
-		  <input type="text" class="form-control" name="log" id="user_login" value="" />
+                  <input type="text" class="form-control" name="log" id="user_login" value="" />
                 </div>
                 <div class="form-group">
                   <label for="pwd">Password:</label>
-		  <input type="password" name="pwd" id="user_pass" class="form-control" value="" />
+                  <input type="password" name="pwd" id="user_pass" class="form-control" value="" />
                 </div>
                 <div class="checkbox">
                   <label><input name="rememberme" type="checkbox" id="rememberme" value="forever" />Remember me</label>
                 </div>
-		<input type="submit" name="wp-submit" id="wp-submit" class="btn btn-default" value="Log In" />
-		<input type="hidden" name="redirect_to" value="http://dev2016.ligerbots.org/" />
+                <input type="submit" name="wp-submit" id="wp-submit" class="btn btn-default" value="Log In" />
+                <input type="hidden" name="redirect_to" value="/" />
               </form>
             </div>
           </div>

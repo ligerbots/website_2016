@@ -89,13 +89,13 @@ function output_navbar()
             <div class="collapse navbar-collapse" id="myNavbar">
               <ul class="nav navbar-nav">
                 <li class="active"><a href="/">Home</a></li>
-                <li><a href="/about.php">About</a></li> 
-                <li><a href="/support.php">Support</a></li> 
-                <li><a href="/contact.php">Contact</a></li> 
+                <li><a href="/about">About</a></li> 
+                <li><a href="/support">Support</a></li> 
+                <li><a href="/contact">Contact</a></li> 
                 <li class="dropdown">
                   <a class="dropdown-toggle" data-toggle="dropdown" href="#">Gallery<span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    <li><a href="/gallery2016.php">2016</a></li>
+                    <li><a href="/gallery2016">2016</a></li>
                     <li><a href="#">2015</a></li>
                     <li><a href="#">Older</a></li> 
                   </ul>
