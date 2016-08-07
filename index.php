@@ -30,57 +30,52 @@
 	        </div>
                 <div class="side-margins">
                   <?php
-                     setup_postdata( $post ); 
+                     my_setup_postdata( $blog );
                      the_excerpt();
                      ?>
-	          <div class="read-more bottom-margin">
+                  <div class="read-more bottom-margin">
                     <?php echo '<a href="' . get_permalink( $blog ) . '">'; ?><img src="images/read_more.png"/></a>
                   </div>
                 </div>
               </div>
-	    </div>
+            </div>
             
-	    <div class="col-md-6 bottom-margin">
+            <div class="col-md-6 bottom-margin">
               <div class="blue-border bottom-margin">
-	        <div class="blue-title">
-	          UPCOMING EVENTS
-	        </div>
-	        <div id="post2">
-                  <iframe src="https://calendar.google.com/calendar/embed?showTitle=0&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;mode=AGENDA&amp;height=500&amp;wkst=2&amp;bgcolor=%23FFFFFF&amp;src=ligerbots.com_n95omorir7fj2bg2lu5q4ef8q0%40group.calendar.google.com&amp;color=%23711616&amp;ctz=America%2FNew_York" 
-                          style="border-width:0" width="100%" height="500" frameborder="0" scrolling="no">
+                <div class="blue-title">
+                  UPCOMING EVENTS
+                </div>
+                  <iframe src="https://calendar.google.com/calendar/embed?showTitle=0&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;mode=AGENDA&amp;height=500&amp;wkst=2&amp;bgcolor=%23FFFFFF&amp;src=ligerbots.com_n95omorir7fj2bg2lu5q4ef8q0%40group.calendar.google.com&amp;color=%23711616&amp;ctz=America%2FNew_York"
+                          width="100%" height="500" frameborder="0" scrolling="no">
                   </iframe>
-	        </div>
               </div>
-	    </div>
+            </div>
           </div>
           
           <div class="row side-margins">
-	    <div class="col-md-6 bottom-margin">
-	      <div class="blue-border">
-	        <div class="blue-title">
-	          ANNOUNCEMENTS
-	        </div>
-	        <div class="blue-post side-margins" >
-	          <div class="event">
-		    <span class="eventitle">Team Dinners Needed During Build<br/>
-		      Every Friday During January</span>
-		    <p>Please sign up to make team dinners during build season. We eat together as a team on Friday nights at 6:00. Several families can do this together. Please see the
-		      signup <a href="file:///C:/Users/guymi_000/Desktop/Frontpage/test.html">here.</a>
-	          </div>
-	          <div class="event">
-		    <span class="eventitle">Carpool Drivers Needed</span>
-		    <p>Please sign up to drive carpools from North to South and back, Mondays
-		      through Saturdays during build season. Please see details on our carpool page, <a href="http://ligerbots.org">here.</a></p>
-	          </div>
-	          <div class="event">
-		    <span class="eventitle">STIMMS Signup Required</span>
-		    <p>All Students must sign up on STIMMS or theey will not be able to attend competitions. Please
-		      see details <a href="http://ligerbots.org">here.</a></p>
-	          </div>
-	          <div class="event">
-		    <span class="eventitle">No Team Meeting 12/24</span>
-		    <p>There will be no team meeting 12/24 due to Christmas. Team meetings will resume on 1/4/16.</p>
-	          </div>
+            <div class="col-md-6 bottom-margin">
+              <div class="blue-border">
+                <div class="blue-title">
+                  ANNOUNCEMENTS
+                </div>
+                <div class="blue-post side-margins" >
+                  <?php
+                     foreach ( get_announcements( 5 ) as $ann )
+                     {
+                     my_setup_postdata( $ann ); 
+                     echo '<div class="announce"><div class="announce-title">';
+                     echo '<a href="' . get_permalink( $ann ) . '">';
+                     the_title();
+                     echo "</a></div>\n";
+                     echo '<div class="announce-date">';
+                     the_date();
+                     echo "</div>\n";
+                     echo '<div class="announce-content">';
+                     the_excerpt();
+                     echo "</div>\n";
+	             echo "</div>\n";
+                     }
+                     ?>
 	        </div>
 	      </div>
 	    </div>
@@ -95,7 +90,7 @@
 	    </div>
           </div>
 
-          <div class="row side-margins">
+          <div class="row wide-side-margins">
             <div class="blue-border home-image-box">
               <img src="/images/team_photo_2015.jpg"/>
             </div>
@@ -104,7 +99,7 @@
             </div>
           </div>
 
-          <?php output_footer(); ?>
+          <?php output_footer( true ); ?>
 
         </div>
       </div>

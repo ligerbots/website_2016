@@ -57,6 +57,20 @@ p{
     border-width: 4px;
 }
 
+.blue-border iframe {
+    display: block;
+    border-width: 0;
+    padding: none;
+    width: 100%;
+}
+
+.orange-border iframe {
+    display: block !important;
+    border-width: 0;
+    padding: none;
+    width: 100%;
+}
+
 .home-image-box {
     width: 100%;
     background: black;
@@ -104,8 +118,8 @@ p{
 .header ul{
     position: absolute;
     list-style-type: none;
-    bottom: 9%;
-    left: 15%;
+    bottom: 15%;
+    left: 20%;
 }
 .header li{
     display: inline;
@@ -113,8 +127,8 @@ p{
 }
 .header{
     position: relative;
-    margin-left:0px;
-    margin-right:0px;
+    margin-left: 0px;
+    margin-right: 0px;
     background-color: rgba(255,255,255,0.6);
     background: linear-gradient(rgba(255,255,255,0.6), rgba(255,255,255,0.2)); /* Standard syntax */
 }
@@ -156,8 +170,17 @@ p{
     margin-left: 20px;
     margin-right: 20px;
 }
+.wide-side-margins {
+    margin-left: 35px;
+    margin-right: 35px;
+}
 .bottom-margin {
     margin-bottom: 20px;
+}
+
+.side-padding {
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 .blog-row p{
@@ -183,20 +206,20 @@ div .read-more{
     text-align: center;
 }
 
-.event{
+.announce{
     padding-top: 3%;
 }
-.event p{
+.announce p{
     font-size: 110%;
 }
-.eventitle{
+.announce-title{
     font-size: 120%;
     font-weight: bold;
 }
-.blue-post .eventitle{
+.blue-post .announce-title{
     color: rgb(0,102,179);
 }
-.orange-post .eventitle{
+.orange-post .announce-title{
     color: rgb(208,78,29);
 }
 
@@ -249,6 +272,14 @@ div .read-more{
 
 .blog-content{
     font-size: 130%;
+}
+
+.blog-feed{
+    font-size: 130%;
+    text-align: center;
+}
+.blog-feed img{
+    margin: 5px;
 }
 
 .blog-newer{

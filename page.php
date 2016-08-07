@@ -19,7 +19,7 @@ $isPage = is_page( $post );
      if ( $isPage ) {
          page_head( $post->post_title );
      } else {
-         page_head( "LigerBots Blog" );
+         page_head( "LigerBots Blog", true );
      }
   ?>
   
@@ -52,13 +52,17 @@ $isPage = is_page( $post );
                   the_content();
                   echo "</div>\n";
 
-                  echo '<br clear="all" />'. "\n";
+                  echo '<br clear="all" /><br>'. "\n";
                   echo '<div class="blog-newer">';
                   previous_post_link();
                   echo '</div>';
                   echo '<div class="blog-older">';
                   next_post_link();
-                  echo '</div>';
+                  echo "</div>\n";
+
+                  echo '<br clear="all"><div class="blog-feed"><a type="application/rss+xml" href="/?feed=rss">';
+                  echo '<img src="/images/feed-icon.svg" width="32px">LigerBots Blog Feed';
+                  echo "</a></div>\n";
                }
              ?>
             

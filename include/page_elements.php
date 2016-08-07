@@ -4,24 +4,27 @@
 define('WP_USE_THEMES', false);
 require_once('wp-backend/wp-blog-header.php');
 
-function page_head( $title )
+function page_head( $title, $includeRSS=false )
 {
     echo <<<EOL
   <head>
     <meta content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/ligerbots.css" />
     <link rel="icon" href="/images/liger.ico"/>
-    <title>$title</title>
-  </head>    
+
 EOL;
+    if ( $includeRSS ) echo '    <link rel="alternate" type="application/rss+xml" href="/?feed=rss" title="LigerBots Blog Feed">' . "\n";
+    echo "    <title>$title</title>\n</head>\n";
 }
 
 function page_foot()
 {
+    /* <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script> */
+    /* Not sure of compatibility of jQuery 3 with Bootstrap, but worth testing */
     echo <<<EOL
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 EOL;
 }
 
@@ -119,11 +122,14 @@ function output_navbar()
     echo '</div> </div> </nav>';
 }
 
-function output_footer()
+function output_footer( $home_page=false )
 {
     $page = get_page_by_title( 'Sponsors' );
 
-    echo '<div class="row side-margins">';
+    if ( $home_page )
+        echo '<div class="row wide-side-margins">';
+    else
+        echo '<div class="row side-margins">';
     echo '  <div class="orange-border">';
     // don't apply the filters. Raw html.
     echo $page->post_content;
