@@ -59,9 +59,10 @@
                  echo '  <td>' . esc_html( $user->last_name ) .'</td>';
                  echo '  <td>' . esc_html( $user->get( 'phone' ) ) . '</td>';
                  echo '  <td>' . esc_html( $user->user_email ) .'</td>';
+
                  $addr = join( ', ', array( $user->get( 'address' ), $user->get( 'city' ), 
-                                            join( ' ', array( $user->get( 'state' ), $user->get( 'postalcode' ) ) ) 
-                                   ) );
+                                            join( ' ', array( $user->get( 'state' ), $user->get( 'postalcode' ) ) ) ) );
+                 if ( $addr == ', ,  ' ) $addr = '';
                  echo '  <td>' . esc_html( $addr ) . '</td>';
                  echo '  <td>' . esc_html( $user->get( 'school' ) ) . '</td>';
                  echo '  <td>' . esc_html( join( ', ', $user->get( 'team_role' ) ) ) . '</td>';
