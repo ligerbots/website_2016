@@ -24,6 +24,7 @@ $isPage = is_page( $post );
   ?>
   
   <body>
+    <div id="header-ghost" ></div>
     <div class="container-fluid no-side-padding">
       <div class="col-lg-10 col-lg-offset-1 col-md-12">
 

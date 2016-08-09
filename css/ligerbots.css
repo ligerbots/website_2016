@@ -4,20 +4,53 @@ html{
 
 body{
     font-size: 16px;
-    font-family: Serif;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
     width: 100%;
     background-image: url("../images/background.jpg");
     background-size: cover;
     background-repeat: repeat-y;
 }
 
-p{
-    font-size: 120%;
-}
-
 [class*="col-md-12"] {
     padding-left: 0 !important;
     padding-right: 0 !important;
+}
+
+#header-ghost{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    padding-top: 700px;
+    background-color: rgba(255,255,255,0.6);
+    background: linear-gradient(rgba(255,255,255,1.0), rgba(255,255,255,0.0)); /* Standard syntax */
+}
+
+.header{
+    position: relative;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.header ul{
+    position: absolute;
+    list-style-type: none;
+    bottom: 15%;
+    left: 20%;
+}
+.header li{
+    display: inline;
+    padding-right: 3%;
+}
+.header-link img{
+    width:3%;
+    transition: all .1s ease-in-out; 
+}
+.header-link img:hover {
+    transform: scale(1.2);*/
+    -ms-transform: scale(1.2);*/   					            
+    -webkit-transform: scale(1.2);*/
 }
 
 .no-side-padding {
@@ -38,7 +71,7 @@ p{
     text-shadow: 4px 4px 5px rgb(63,63,63);
     font-weight: bold;
     color: white;
-    font-family: Serif;
+    font-family: 'PT Serif', serif;
     letter-spacing: 2px;
     font-size: 130%;
     text-align: center;
@@ -104,43 +137,17 @@ p{
     background-color: rgb(208,78,29);
 }
 .blue-label,.orange-label {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
     text-align: center;
     width: 20%;
     box-shadow: 5px 5px 7px rgb(117,117,117);
     margin-left: auto;
     margin-right: auto;
     color: white;
-    font-size: 19px;
+    font-size: 120%;
     margin-bottom: 20px;
     padding: 0.5%;
-}
-
-.header ul{
-    position: absolute;
-    list-style-type: none;
-    bottom: 15%;
-    left: 20%;
-}
-.header li{
-    display: inline;
-    padding-right: 3%;
-}
-.header{
-    position: relative;
-    margin-left: 0px;
-    margin-right: 0px;
-    background-color: rgba(255,255,255,0.6);
-    background: linear-gradient(rgba(255,255,255,0.6), rgba(255,255,255,0.2)); /* Standard syntax */
-}
-
-.header-link img{
-    width:3%;
-    transition: all .1s ease-in-out; 
-}
-.header-link img:hover {
-    transform: scale(1.2);*/
-    -ms-transform: scale(1.2);*/   					            
-    -webkit-transform: scale(1.2);*/
 }
 
 .page-body {
@@ -210,11 +217,12 @@ div .read-more{
     padding-top: 3%;
 }
 .announce p{
-    font-size: 110%;
+    /*font-size: 110%;*/
 }
 .announce-title{
-    font-size: 120%;
-    font-weight: bold;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    font-size: 130%;
 }
 .blue-post .announce-title{
     color: rgb(0,102,179);
@@ -236,7 +244,7 @@ div .read-more{
 .navbar a{
     font-weight: bold;
     color: white;
-    font-family: Serif;
+    font-family: 'PT Serif', serif;
     letter-spacing: 2px;
     font-size: 130%;
 }
@@ -264,14 +272,16 @@ div .read-more{
 .blog-title{
     font-size: 175%;
     font-weight: bold;
+    margin-top: 0.5em;
 }
 
 .blog-date{
     font-size: 120%;
+    margin-bottom: 0.5em;
 }
 
 .blog-content{
-    font-size: 130%;
+    /*font-size: 130%;*/
 }
 
 .blog-feed{

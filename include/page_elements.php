@@ -10,6 +10,8 @@ function page_head( $title, $includeRSS=false )
   <head>
     <meta content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:700" />
     <link rel="stylesheet" href="/css/ligerbots.css" />
     <link rel="icon" href="/images/liger.ico"/>
 
