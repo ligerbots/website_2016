@@ -97,6 +97,8 @@ function output_navbar()
                 <li><a href="/about">About</a></li> 
                 <li><a href="/support">Support</a></li> 
                 <li><a href="/contact">Contact</a></li> 
+                <li><a href="/calendar.php">Calendar</a></li> 
+                <li><a href="/fll">FLL</a></li> 
                 <li class="dropdown">
                   <a class="dropdown-toggle" data-toggle="dropdown" href="#">Gallery<span class="caret"></span></a>
                   <ul class="dropdown-menu">
@@ -105,7 +107,14 @@ function output_navbar()
                     <li><a href="#">Older</a></li> 
                   </ul>
                 </li>
-                <li><a href="/calendar.php">Calendar</a></li> 
+                <li class="dropdown">
+                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">Resources<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="/carpools.php">Carpools</a></li>
+                    <li><a href="/student-forms">Student Forms</a></li>';
+    if ( $loggedIn ) echo '<li><a href="/directory.php">Directory</a></li>';
+    echo ' </ul>
+                </li>
               </ul>';
 
     echo '<ul class="nav navbar-nav navbar-right">';
@@ -116,11 +125,16 @@ function output_navbar()
     }
     else
     {
-        echo '<li><a href="/directory.php">Directory</a></li>';
-        echo '<li><a href="/wp-backend/wp-admin/index.php">Dashboard</a></li>';
+        echo '<li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">My Account<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+        <li><a href="/wp-backend/wp-admin/index.php">Dashboard</a></li>
+        <li><a href="#">Logout</a></li>
+        </ul>
+        </li>';
     }
-    echo '</ul>';
 
+    echo '</ul>';
     echo '</div> </div> </nav>';
 }
 

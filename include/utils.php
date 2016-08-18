@@ -21,7 +21,7 @@ function get_latest_blog()
                    'post_type' => 'post',
                    'post_status' => 'publish',
                    'category' => $cat->term_id );
-	$recent_posts = wp_get_recent_posts( $args );
+    $recent_posts = wp_get_recent_posts( $args );
     return get_post( $recent_posts[0][ 'ID' ] );
 }
 
@@ -47,6 +47,35 @@ function get_announcements( $count )
         array_push( $res, $p[ 'ID' ] );
     }
     return $res;
+}
+
+// WARNING: table names seem to be case-sensitive; do not know why!!
+function fetch_carpools()
+{
+    global $wpdb;
+
+    // Formulate the query
+    // If you want to limit to 5, use the MySQL "LIMIT" operand
+    $q = $wpdb->prepare( "SELECT * FROM carpools ORDER BY id" );
+    
+    // Execute the query, return results as an array of dictionaries
+    $var = $wpdb->get_results( $q, ARRAY_A );
+    //print 'func_call: ' . $wpdb->func_call . "<br>\n";
+    //print 'last_error: ' . $wpdb->last_error . "<br>\n";
+    
+    return $var;
+}
+
+function add_carpool( $label )
+{
+    global $wpdb;
+    $wpdb->insert( 'carpools', array( 'LABEL' => $label ) );
+}
+
+function delete_carpool( $id )
+{
+    global $wpdb;
+    $wpdb->delete( 'carpools', array( 'ID' => $id ) );
 }
 
 ?>
