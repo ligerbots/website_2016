@@ -21,11 +21,11 @@
         <div class="page-body">
           <div class="row side-margins bottom-margin"> </div>
           <div class="row side-margins">
-	    <div class="col-md-6 bottom-margin">
+            <div class="col-md-6 bottom-margin">
               <div class="orange-border bottom-margin">
-	        <div class="orange-title">
-	          LIGERBOTS BLOG
-	        </div>
+                <div class="orange-title">
+                  LIGERBOTS BLOG
+                </div>
                <div id="blog-box">
                  <div class="blog-image-box">
                   <?php echo find_first_image( $blog ); ?>
@@ -76,21 +76,21 @@
                      echo '<div class="announce-content">';
                      the_excerpt();
                      echo "</div>\n";
-	             echo "</div>\n";
+                     echo "</div>\n";
                      }
                      ?>
-	        </div>
-	      </div>
-	    </div>
-	    <div class="col-md-6 bottom-margin">
-	      <div class="orange-border">
-	        <div class="orange-title">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 bottom-margin">
+              <div class="orange-border">
+                <div class="orange-title">
                   TWITTER
-	        </div>
+                </div>
                 <a id="twit-box" class="twitter-timeline" width="100%" href="https://twitter.com/LigerBots" data-widget-id="728971894213447680" data-chrome="noheader nofooter noborders">Tweets by @LigerBots</a>
                 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-	      </div>
-	    </div>
+              </div>
+            </div>
           </div>
 
           <div class="row wide-side-margins">

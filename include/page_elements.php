@@ -4,19 +4,34 @@
 define('WP_USE_THEMES', false);
 require_once('wp-backend/wp-blog-header.php');
 
-function page_head( $title, $includeRSS=false )
+function page_head( $title, $includeRSS=false, $extraCSS=NULL )
 {
     echo <<<EOL
   <head>
     <meta content="width=device-width, initial-scale=1">
+    <link rel="icon" href="/images/liger.ico"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:700" />
     <link rel="stylesheet" href="/css/ligerbots.css" />
-    <link rel="icon" href="/images/liger.ico"/>
 
 EOL;
+
+    if ( ! is_null( $extraCSS ) )
+    {
+        if ( is_string( $extraCSS ) ) 
+            echo '    <link rel="stylesheet" href="' . $extraCSS . '" />' . "\n";
+        elseif ( is_array( $extraCSS ) )
+        {
+            foreach ( $extraCSS as $c )
+            {
+                echo '    <link rel="stylesheet" href="' . $c . '" />' . "\n";
+            }
+        }
+    }
+
     if ( $includeRSS ) echo '    <link rel="alternate" type="application/rss+xml" href="/?feed=rss" title="LigerBots Blog Feed">' . "\n";
+
     echo "    <title>$title</title>\n</head>\n";
 }
 

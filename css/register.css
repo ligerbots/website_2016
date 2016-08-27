@@ -1,0 +1,90 @@
+/* bootstrap doesn't like some of the configurations of inputs and spans */
+.lb-input-group {
+  width: 100%;
+  /* hope we're not targeting IE8... */
+  display: flex;
+}
+
+.lb-input-group input.form-control {
+  flex: 1;
+  display: block;
+}
+
+.lb-input-group input.form-control:first-child {
+  margin-right: 1em;
+}
+
+.lb-input-group.address-group input.form-control:nth-child(2),
+.lb-input-group.multi-name-group input.form-control:nth-child(2) {
+  margin-right: 1em;
+}
+
+.lb-input-group span {
+  width: initial;
+}
+
+/* make each checkbox/radio button go on its own line */
+.lb-checkbox>label {
+  display: block;
+}
+
+.spacer {
+  height: 0.5em;
+}
+
+/* visual display of what's required in the form */
+.required:after {
+  content: "*";
+  color: red;
+}
+
+/* styling for the 'parent' and 'student' sections of the form */
+.form-sections {
+  position: relative;
+  overflow: hidden;
+}
+
+.form-sections .form-section {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+}
+
+.form-sections .form-section.active {
+  opacity: 1;
+  max-height: initial;
+  
+  /* add a cool animation */
+  transition: all 0.3s;
+}
+
+.roles-group {
+  display: none;
+}
+
+.roles-group.active {
+  display: block;
+}
+
+.roles-group label {
+  max-height: 2em;
+  overflow: hidden;
+  opacity: 1;
+  
+  transition: opacity 0.3s;
+}
+.roles-group label.hidden {
+  max-height: 0;
+  opacity: 0;
+  transition: none;
+}
+
+/* input-group fixes */
+.phone-group .input-group-addon {
+  border-left: 0;
+  border-right: 0;
+}
+
+.multi-input-items .lb-input-group:not(:last-child) * {
+  margin-bottom: 1em
+}
