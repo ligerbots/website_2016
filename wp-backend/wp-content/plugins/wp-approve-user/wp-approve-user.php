@@ -13,7 +13,8 @@
  */
 
 
-if ( ! get_option( 'users_can_register' ) ) {
+//if ( ! get_option( 'users_can_register' ) ) {
+if ( false ) {
 	function wpau_whitelist_users( $old, $new ) {
 		if ( $new ) {
 			$user_ids = get_users( array(

@@ -26,46 +26,46 @@ if(location.hash.length > 1) {
 $('input[name=user-type][value=student]').on('click', function(){
   setGroupActive('student')
   $('input[name=role-parent]')
-  	.prop('disabled', true)
-  	.prop('checked', false)
-    .parent().addClass('hidden')
+        .prop('disabled', true)
+        .prop('checked', false)
+        .parent().addClass('hidden')
   $('input[name=role-mentor]')
-  	.prop('disabled', true)
-  	.prop('checked', false)
-  	.parent().addClass('hidden')
+        .prop('disabled', true)
+        .prop('checked', false)
+        .parent().addClass('hidden')
   $('input[name=role-coach]')
-  	.prop('disabled', true)
-  	.prop('checked', false)
-    .parent().addClass('hidden')
+        .prop('disabled', true)
+        .prop('checked', false)
+        .parent().addClass('hidden')
   
   $('input[name=role-exec]')
-  	.prop('disabled', false)
-  	.parent().removeClass('hidden')
+        .prop('disabled', false)
+        .parent().removeClass('hidden')
   
   $('.roles-group').addClass('active')
 })
 $('input[name=user-type][value=adult]').on('click', function(){
   setGroupActive('none')
   $('input[name=role-exec]')
- 	 	.prop('disabled', true)
-    .prop('checked', false)
-  	.parent().addClass('hidden')
+        .prop('disabled', true)
+        .prop('checked', false)
+        .parent().addClass('hidden')
   
   $('input[name=role-parent]')
-  	.prop('disabled', false)
-  	.parent().removeClass('hidden')
+        .prop('disabled', false)
+        .parent().removeClass('hidden')
   $('input[name=role-mentor]')
-  	.prop('disabled', false)
- 		.parent().removeClass('hidden')
+        .prop('disabled', false)
+                .parent().removeClass('hidden')
   $('input[name=role-coach]')
-  	.prop('disabled', false)
-  	.parent().removeClass('hidden')
+        .prop('disabled', false)
+        .parent().removeClass('hidden')
   
   $('.roles-group').addClass('active')
 })
 
 $('input[name=role-parent]').on('change', function(e) {
-  if($(e.target).prop('checked')) setGroupActive('parent')
+  if ( $(e.target).prop('checked') ) setGroupActive('parent')
   else setGroupActive('none')
 })
 
@@ -103,11 +103,22 @@ $('.multi-input').each(function(i, multiInput) {
 
 // auto format with hyphens
 $('.phone-group').each(function(i, phoneGroup) {
-  $(phoneGroup).find('input.form-control').on('keyup', function() {
-      var curlen = this.value.length;
-      var curval = $(this).val();
-      if (curlen == 3 || curlen == 7 ) 
-          $(this).val( $(this).val() + "-" );
+  $(phoneGroup).find('input.form-control').on('paste blur', function() {
+    var input = this.value;
+      input = input.replace(/[^0-9]/g, "");
+      var inputlen = input.length;
+      
+      if ( inputlen >= 9 )
+      {
+          input = input.replace( /^1?([0-9]{3})([0-9]{3})([0-9]{4}).*$/, "\$1-\$2-\$3" );
+          $(this).val( input );
+      }
+      else if ( inputlen == 7 )
+      {
+          input = input.replace( /([0-9]{3})([0-9]{4}).*$/, "\$1-\$2" );
+          $(this).val( input );
+      }
+      // leave alone if does not match
   })
 })
 
