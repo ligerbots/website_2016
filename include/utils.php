@@ -123,8 +123,8 @@ function register( $post )
     }
 
     // Set new user as un-approved
-    if ( ! update_user_meta( $user_id, 'wp-approve-user', false ) )
-        return "Error setting property 'wp-approve-user'";
+    // Ignore "error" since it may already be set to false
+    update_user_meta( $user_id, 'wp-approve-user', false );
     
     $extraProp = array(
         'phone', 'address', 'city', 'state', 'postalcode', 'emergency_phone',
