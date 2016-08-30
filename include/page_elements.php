@@ -37,8 +37,6 @@ EOL;
 
 function page_foot()
 {
-    /* <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script> */
-    /* Not sure of compatibility of jQuery 3 with Bootstrap, but worth testing */
     echo <<<EOL
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -142,9 +140,12 @@ function output_navbar()
     {
         echo '<li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">My Account<span class="caret"></span></a>
-        <ul class="dropdown-menu">
-        <li><a href="/wp-backend/wp-admin/index.php">Dashboard</a></li>
-        <li><a href="#">Logout</a></li>
+        <ul class="dropdown-menu">';
+        if ( current_user_can( 'edit_posts' ) ) {
+            echo '<li><a href="/wp-backend/wp-admin/edit.php">Edit Posts</a></li>';
+        }
+        echo '<li><a href="/wp-backend/wp-admin/profile.php">My Profile</a></li>
+        <li><a href="/login.php?logout">Logout</a></li>
         </ul>
         </li>';
     }

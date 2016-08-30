@@ -67,6 +67,9 @@ body{
 .orange-title{
     background-color: rgb(208,78,29);
 }
+.orange-title a {
+    color: white !important;
+}
 .blue-title,.orange-title{
     height: 34px;
     line-height: 34px;
