@@ -122,7 +122,14 @@ $('.phone-group').each(function(i, phoneGroup) {
   })
 })
 
-// for number type inputs, maxlength seems to be ignored
+$('input[name=state]').on( 'paste blur', function() {
+    var input = this.value;
+    input = input.toLowerCase();
+    if ( /^mass(\.|achusetts)?$/.test( input ) )
+        $(this).val( 'MA' );
+})
+    
+// For number type inputs, maxlength seems to be ignored
 function limit(e) {
   var max = parseInt($(this).attr('maxlength'))
   if($(this).val().length >= max) {

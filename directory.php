@@ -1,16 +1,30 @@
 <?php
-   require_once( "include/page_elements.php" );
+require_once( "include/page_elements.php" );
 
-   /* Short and sweet */
-   define('WP_USE_THEMES', false);
-   require_once('wp-backend/wp-blog-header.php');
+/* Short and sweet */
+define('WP_USE_THEMES', false);
+require_once('wp-backend/wp-blog-header.php');
 
-   // must be logged in
-   if ( ! is_user_logged_in() )
-   {
-      header('Location: /login.php');
-      die();
-   }
+// must be logged in
+if ( ! is_user_logged_in() )
+{
+    header('Location: /login.php');
+    die();
+}
+
+// Comparison function
+function user_cmp($a, $b) {
+    $a1 = $a->last_name;
+    $b1 = $b->last_name;
+    if ( $a1 != $b1 )
+        return ( $a1 < $b1) ? -1 : 1;
+
+    $a1 = $a->first_name;
+    $b1 = $b->first_name;
+    if ( $a1 != $b1 )
+        return ( $a1 < $b1) ? -1 : 1;
+    return 0;
+}
 ?>
 
 <!DOCTYPE html>
@@ -47,28 +61,27 @@
                 </tr>
               </thead>
               <tbody>
-
+                
                 <?php 
-               $args = array(
-	          'orderby'      => 'login',
-	          'order'        => 'ASC', ); 
-               $userlist = get_users( $args ); 
-               foreach ( $userlist as $user )
-               {
-                 echo '<tr>';
-                 echo '  <td>' . esc_html( $user->first_name ) .'</td>';
-                 echo '  <td>' . esc_html( $user->last_name ) .'</td>';
-                 echo '  <td>' . esc_html( $user->get( 'phone' ) ) . '</td>';
-                 echo '  <td>' . esc_html( $user->user_email ) .'</td>';
-
-                 $addr = join( ', ', array( $user->get( 'address' ), $user->get( 'city' ), 
-                                            join( ' ', array( $user->get( 'state' ), $user->get( 'postalcode' ) ) ) ) );
-                 if ( $addr == ', ,  ' ) $addr = '';
-                 echo '  <td>' . esc_html( $addr ) . '</td>';
-                 echo '  <td>' . esc_html( $user->get( 'school' ) ) . '</td>';
-                 echo '  <td>' . esc_html( join( ', ', $user->get( 'team_role' ) ) ) . '</td>';
-                 echo '</tr>';
-               }
+                $userlist = get_users();
+                // Sort it.
+                uasort( $userlist, 'user_cmp' );
+                foreach ( $userlist as $user )
+                {
+                    echo '<tr>';
+                    echo '  <td>' . esc_html( $user->first_name ) .'</td>';
+                    echo '  <td>' . esc_html( $user->last_name ) .'</td>';
+                    echo '  <td>' . esc_html( $user->get( 'phone' ) ) . '</td>';
+                    echo '  <td>' . esc_html( $user->user_email ) .'</td>';
+                    
+                    $addr = join( ', ', array( $user->get( 'address' ), $user->get( 'city' ), 
+                                               join( ' ', array( $user->get( 'state' ), $user->get( 'postalcode' ) ) ) ) );
+                    if ( $addr == ', ,  ' ) $addr = '';
+                    echo '  <td>' . esc_html( $addr ) . '</td>';
+                    echo '  <td>' . esc_html( $user->get( 'school' ) ) . '</td>';
+                    echo '  <td>' . esc_html( join( ', ', $user->get( 'team_role' ) ) ) . '</td>';
+                    echo '</tr>';
+                }
                 ?>
               </tbody>
             </table>

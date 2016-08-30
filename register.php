@@ -47,7 +47,6 @@ if ( isset( $_POST[ 'register' ] ) ) {
               }
               ?>
 
-              <!-- <form method="post" action="https://form-echo.azurewebsites.net/" onsubmit="return(validate());"> -->
               <form method="post" <?php echo 'action="' . $_SERVER['PHP_SELF'] . '"'; ?> onsubmit="return(validate());">
 
                 <div class="form-group">
