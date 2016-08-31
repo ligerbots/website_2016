@@ -125,7 +125,10 @@ function output_navbar()
                   <ul class="dropdown-menu">
                     <li><a href="/carpools.php">Carpools</a></li>
                     <li><a href="/student-forms">Student Forms</a></li>';
-    if ( $loggedIn ) echo '<li><a href="/directory.php">Directory</a></li>';
+    if ( $loggedIn ) {
+        echo '<li><a href="/directory.php">Directory</a></li>';
+        echo '<li><a href="/facebook.php">Facebook</a></li>';
+    }        
     echo ' </ul>
                 </li>
               </ul>';
