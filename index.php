@@ -24,7 +24,7 @@
             <div class="col-md-6 bottom-margin">
               <div class="orange-border bottom-margin">
                 <div class="orange-title">
-                  <!-- CSS can't seem to set the color so do it here -->
+                  <!-- CSS cannot seem to set the color so do it here -->
                   <a style="color:white;" href="/blog_list.php">LIGERBOTS BLOG</a>
                 </div>
                <div id="blog-box">

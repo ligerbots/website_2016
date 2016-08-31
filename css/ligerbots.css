@@ -375,3 +375,27 @@ div .read-more{
     frameborder: 0;
     scrolling: no;
 }
+
+.facebook-entry
+{
+    float:left;
+    width: 180px; 
+    height:266px; 
+    font-size: small;
+}
+.facebook-entry .name
+{
+    float:left;
+}
+.facebook-entry .exec
+{
+    color: #FFFF00;
+}
+.facebook-entry .north
+{
+    color: #FFFF00;
+}
+.facebook-entry .south
+{
+    color: #FFFF00;
+}
