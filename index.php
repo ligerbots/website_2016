@@ -36,8 +36,8 @@
                      my_setup_postdata( $blog );
                      the_excerpt();
                      ?>
-                  <div class="read-more bottom-padding">
-                    <?php echo '<a href="' . get_permalink( $blog ) . '">'; ?><img src="images/read_more.png"/></a>
+                  <div class="bottom-padding text-center">
+                    <a class="btn btn-lg read-more" role="button" href="<?php echo get_permalink( $blog ); ?>">Read More</button></a>
                   </div>
                  </div>
                 </div>

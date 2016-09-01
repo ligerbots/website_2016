@@ -213,16 +213,20 @@ body{
     padding-right: 15px;
 }
 
-.read-more img{
-    display: inline-block;
-    padding-left: auto;
-    margin-right: auto;
-    width: 26%;
-}
-div .read-more{
-    /*background-color:green;*/
-    margin-left: 20px;
-    text-align: center;
+/* .read-more img{ */
+/*     display: inline-block; */
+/*     padding-left: auto; */
+/*     margin-right: auto; */
+/*     width: 26%; */
+/* } */
+.read-more {
+    /* display: inline-block; */
+    /* padding-left: auto; */
+    /* margin-right: auto; */
+    font-weight: bold;
+    color: white;
+    background-color: rgb(208,78,29);
+    border-color: rgb(208,78,29);
 }
 
 .announce-row{
