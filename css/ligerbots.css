@@ -271,14 +271,25 @@ body{
     margin-bottom: 0px;
 }
 .navbar-collapse {
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 0;
+    padding-right: 0;
 } 
 .navbar-nav > li:first-child { text-align: left; } /* alligns first element to the left border */
 .navbar-nav > li:last-child { text-align: right; } /* similar for right border */
-.navbar-nav > li:first-child > a, .navbar-nav > li:last-child > a { padding: 0; }
-.navbar-nav { display: table; width: 100%; margin: 0; }
-.navbar-nav > li { display: table-cell; text-align: center; float: none; }
+.navbar-nav > li:first-child > a { padding-left: 20px; }
+.navbar-nav > li:last-child > a { padding-right: 20px; }
+.navbar-nav {
+    display: table;
+    width: 100%;
+    margin: 0;
+    table-layout: fixed;
+}
+.navbar-nav > li {
+    display: table-cell;
+    text-align: center;
+    float: none;
+    width: 100%;
+}
 
 .navbar a{
     color: white;
