@@ -19,7 +19,7 @@
            ?>
 
         <div class="page-body">
-          <div class="row side-margins bottom-margin"> </div>
+          <div class="row side-margins bottom-margin top-shadow"> </div>
           <div class="row side-margins">
             <div class="col-md-6 bottom-margin">
               <div class="orange-border bottom-margin">
@@ -27,19 +27,20 @@
                   <!-- CSS cannot seem to set the color so do it here -->
                   <a style="color:white;" href="/blog_list.php">LIGERBOTS BLOG</a>
                 </div>
-               <div id="blog-box">
-                 <div class="blog-image-box">
-                  <?php echo find_first_image( $blog ); ?>
-                 </div>
-                <div class="side-margins">
-                  <?php
-                     my_setup_postdata( $blog );
-                     the_excerpt();
-                     ?>
-                  <div class="bottom-padding text-center">
-                    <a class="btn btn-lg read-more" role="button" href="<?php echo get_permalink( $blog ); ?>">Read More</button></a>
+                <div id="blog-box" class="blue-post">
+                  <div class="blog-image-box">
+                    <?php echo find_first_image( $blog ); ?>
                   </div>
-                 </div>
+                  <div class="side-margins">
+                    <br>
+                    <?php
+                    my_setup_postdata( $blog );
+                    the_excerpt();
+                    ?>
+                    <div class="read-more bottom-padding">
+                      <?php echo '<a href="' . get_permalink( $blog ) . '">'; ?><img src="images/read_more.png"/></a>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -95,11 +96,11 @@
           </div>
 
           <div class="row wide-side-margins">
-            <div class="blue-border brag-image-box">
+            <div class="blue-border brag-image-box in-front">
               <img src="/images/team_photo_2015.jpg"/>
             </div>
-            <div>
-              <p class="blue-label">St Louis 2015</p>
+            <div style="text-align:center;">
+              <div class="blue-label">St Louis 2015</div>
             </div>
           </div>
 
@@ -121,7 +122,7 @@
           else t.css( 'height', sh );
       }
 
-      $(window).on('load', function() {
+      $(window).on('load resize', function() {
          Resize( "#blog-box", "#cal-iframe" );
          Resize( "#twitter-widget-0", "#ann-box" );
       });

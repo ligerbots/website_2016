@@ -11,7 +11,7 @@ function page_head( $title, $includeRSS=false, $extraCSS=NULL )
     <meta content="width=device-width, initial-scale=1">
     <link rel="icon" href="/images/liger.ico"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:700" />
     <link rel="stylesheet" href="/css/ligerbots.css" />
 
@@ -129,11 +129,8 @@ function output_navbar()
         echo '<li><a href="/directory.php">Directory</a></li>';
         echo '<li><a href="/facebook.php">Facebook</a></li>';
     }        
-    echo ' </ul>
-                </li>
-              </ul>';
-
-    echo '<ul class="nav navbar-nav navbar-right">';
+    echo "   </ul>\n";
+    echo "   </li>\n";
     if ( ! $loggedIn ) 
     {
         // <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
@@ -165,11 +162,11 @@ function output_footer( $home_page=false )
         echo '<div class="row wide-side-margins">';
     else
         echo '<div class="row side-margins">';
-    echo '  <div class="orange-border">';
+    echo '  <div class="orange-border in-front">';
     // don't apply the filters. Raw html.
     echo $page->post_content;
     echo '  </div>';
-    echo '  <div>';
+    echo '  <div style="text-align: center;">';
     echo '    <p class="orange-label">Thank you to our sponsors!</p>';
     echo '  </div>';
     echo '</div>';

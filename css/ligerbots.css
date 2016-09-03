@@ -3,9 +3,11 @@ html{
 }
 
 body{
-    font-size: 12pt;
+    font-size: 11.5pt;
     font-family: 'Open Sans', sans-serif;
-    font-weight: 400;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    line-height: 18pt;
     width: 100%;
     background-image: url("../images/background.jpg");
     background-size: cover;
@@ -71,25 +73,28 @@ body{
     color: white !important;
 }
 .blue-title,.orange-title{
-    height: 34px;
-    line-height: 34px;
-    text-shadow: 4px 4px 5px rgb(63,63,63);
-    font-weight: bold;
+    box-shadow: 5px 5px 7px rgba(0,0,0,0.75);
+    height: 1.5em;
+    /* line-height: 34px; */
+    text-shadow: 4px 4px 5px rgba(0,0,0,0.75);
     color: white;
     font-family: 'PT Serif', serif;
-    letter-spacing: 2px;
-    font-size: 130%;
+    font-weight: bold;
+    letter-spacing: 0.13em;
+    font-size: 17pt;
     text-align: center;
 }
 
 .blue-border{
     border-color: rgb(0,102,179);
+    background-color: rgba(255,255,255,0.5);
 }
 .orange-border{
     border-color: rgb(208,78,29);
+    background-color: rgba(255,255,255,0.5);
 }
 .blue-border,.orange-border{
-    box-shadow: 5px 5px 7px rgb(117,117,117);
+    box-shadow: 5px 5px 7px rgba(0,0,0,0.75);
     width: 100%;
     border-style: solid;
     border-width: 4px;
@@ -143,6 +148,10 @@ body{
     width: 100%;
 } 
 
+.in-front {
+    z-index: 1;
+    position: relative;
+}
 .blue-label{
     background-color: rgb(0,102,179);
 }
@@ -152,15 +161,15 @@ body{
 .blue-label,.orange-label {
     font-family: 'Open Sans', sans-serif;
     font-weight: 700;
-    text-align: center;
-    width: 20%;
-    box-shadow: 5px 5px 7px rgb(117,117,117);
-    margin-left: auto;
-    margin-right: auto;
+    font-size: 12.5pt;
+    display: inline-block;
+    box-shadow: 5px 5px 7px rgba(0,0,0,0.75);
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
     color: white;
-    font-size: 120%;
     margin-bottom: 20px;
-    padding: 0.5%;
 }
 
 .page-body {
@@ -213,20 +222,16 @@ body{
     padding-right: 15px;
 }
 
-/* .read-more img{ */
-/*     display: inline-block; */
-/*     padding-left: auto; */
-/*     margin-right: auto; */
-/*     width: 26%; */
-/* } */
-.read-more {
-    /* display: inline-block; */
-    /* padding-left: auto; */
-    /* margin-right: auto; */
-    font-weight: bold;
-    color: white;
-    background-color: rgb(208,78,29);
-    border-color: rgb(208,78,29);
+.read-more img{
+    display: inline-block;
+    padding-left: auto;
+    margin-right: auto;
+    /* width: 26%; */
+    height: 3em;
+}
+.read-more{
+/*     margin-left: 20px; */
+    text-align: center; 
 }
 
 .announce-row{
@@ -242,7 +247,9 @@ body{
 .announce-title{
     font-family: 'Open Sans', sans-serif;
     font-weight: 700;
-    font-size: 130%;
+    font-size: 16pt;
+    line-height: 22pt;
+    letter-spacing: 0.07em;
 }
 .blue-post .announce-title{
     color: rgb(0,102,179);
@@ -256,24 +263,29 @@ body{
     border-radius: 0px;
     margin-bottom: 0px;
     min-height: 32px !important;
+    box-shadow: 5px 5px 7px rgba(0,0,0,0.75);
 }
 .navbar-toggle-ligerbots{
     border-color: white;
     border-radius: 0px;
     margin-bottom: 0px;
 }
-/* .navbar-nav > li > a { */
-/*     padding-top: 10px !important; */
-/*     padding-bottom: 10px !important; */
-/*     padding-left: 10px !important; */
-/*     padding-right: 10px !important; */
-/* } */
+.navbar-collapse {
+    padding-left: 20px;
+    padding-right: 20px;
+} 
+.navbar-nav > li:first-child { text-align: left; } /* alligns first element to the left border */
+.navbar-nav > li:last-child { text-align: right; } /* similar for right border */
+.navbar-nav > li:first-child > a, .navbar-nav > li:last-child > a { padding: 0; }
+.navbar-nav { display: table; width: 100%; margin: 0; }
+.navbar-nav > li { display: table-cell; text-align: center; float: none; }
+
 .navbar a{
-    font-weight: bold;
     color: white;
-    font-family: 'PT Serif', serif;
-    letter-spacing: 2px;
-    font-size: 130%;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    letter-spacing: 0.03em;
+    font-size: 13.5pt;
 }
 .navbar a:hover { 
     background-color: white;
