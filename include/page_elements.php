@@ -13,6 +13,7 @@ function page_head( $title, $includeRSS=false, $extraCSS=NULL )
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:700" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:700" />
     <link rel="stylesheet" href="/css/ligerbots.css" />
 
 EOL;
@@ -82,7 +83,7 @@ function output_header()
               </a>
             </li>
             <li>
-              <a class="header-link" target="_blank" href="https://www.paypal.com">
+              <a class="header-link" href="/support">
                 <img style="width:10%" src="/images/donate.png">
               </a>
             </li>
@@ -105,7 +106,7 @@ function output_navbar()
               </button>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
-              <ul class="nav navbar-nav">
+              <ul class="nav navbar-nav nav-stacked">
                 <li class="active"><a href="/">Home</a></li>
                 <li><a href="/about">About</a></li> 
                 <li><a href="/support">Support</a></li> 
@@ -162,12 +163,12 @@ function output_footer( $home_page=false )
         echo '<div class="row wide-side-margins">';
     else
         echo '<div class="row side-margins">';
-    echo '  <div class="orange-border in-front">';
+    echo '  <div class="panel panel-sponsors">';
     // don't apply the filters. Raw html.
     echo $page->post_content;
     echo '  </div>';
     echo '  <div style="text-align: center;">';
-    echo '    <p class="orange-label">Thank you to our sponsors!</p>';
+    echo '    <p class="label-orange">Thank you to our sponsors!</p>';
     echo '  </div>';
     echo '</div>';
 }

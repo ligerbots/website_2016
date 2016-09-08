@@ -25,8 +25,8 @@ $isPage = is_page( $post );
   
   <body>
     <div id="header-ghost" ></div>
-    <div class="container-fluid no-side-padding">
-      <div class="col-lg-10 col-lg-offset-1 col-md-12">
+    <div class="container no-side-padding">
+      <div class="col-xs-12 no-side-padding">
 
         <?php 
            output_header(); 
@@ -34,7 +34,7 @@ $isPage = is_page( $post );
            ?>
 
         <div class="page-body">
-          <div class="row side-margins bottom-margin">
+          <div class="row side-margins bottom-margin text-background">
             <?php
                if ( $isPage ) {
                   echo '<div class="row side-margins bottom-margin">';

@@ -26,8 +26,8 @@ if ( isset( $_POST[ 'delcarpool' ] ) ) {
 
   <body>
     <div id="header-ghost" ></div>
-    <div class="container-fluid no-side-padding">
-      <div class="col-lg-10 col-lg-offset-1 col-md-12">
+    <div class="container no-side-padding">
+      <div class="col-xs-12 no-side-padding">
 
         <?php 
         output_header(); 
