@@ -16,65 +16,67 @@ $isPage = is_page( $post );
 <!DOCTYPE html>
 <html>
   <?php
-     if ( $isPage ) {
-         page_head( $post->post_title );
-     } else {
-         page_head( "LigerBots Blog", true );
-     }
+  if ( $isPage ) {
+      page_head( $post->post_title );
+  } else {
+      page_head( "LigerBots Blog", true );
+  }
   ?>
   
   <body>
     <div id="header-ghost" ></div>
-    <div class="container no-side-padding">
+    <div class="container-fluid no-side-padding">
       <div class="col-xs-12 no-side-padding">
-
+        
         <?php 
-           output_header(); 
-           output_navbar();
-           ?>
+        output_header(); 
+        output_navbar();
+        ?>
+        
+        <div class="row page-body">
+          <div class="col-md-12 col-md-offset-0 col-sm-10 col-sm-offset-1 col-xs-12">
+            <div class="row top-spacer"> </div>
+            <div class="row bottom-margin row-margins text-background">
+              <div class="col-xs-12">
+                <?php
+                if ( $isPage ) {
+                    echo apply_filters( 'the_content', $post->post_content );
+                } else {
+                    setup_postdata( $post ); 
+                    echo '<div class="blog-title">';
+                    the_title();
+                    echo "</div>\n";
+                    echo '<div class="blog-date">';
+                    the_date();
+                    echo "</div>\n";
+                    
+                    echo '<div class="blog-content">';
+                    the_content();
+                    echo "</div>\n";
+                    
+                    echo '<br clear="all" /><br>'. "\n";
+                    echo '<div class="blog-newer">';
+                    previous_post_link();
+                    echo '</div>';
+                    echo '<div class="blog-older">';
+                    next_post_link();
+                    echo "</div>\n";
+                    
+                    echo '<br clear="all"><div class="blog-feed"><a type="application/rss+xml" href="/?feed=rss">';
+                    echo '<img src="/images/feed-icon.svg" width="32px">LigerBots Blog Feed';
+                    echo "</a></div>\n";
+                }
+                ?>
+              </div>
+            </div>
 
-        <div class="page-body">
-          <div class="row side-margins bottom-margin text-background">
-            <?php
-               if ( $isPage ) {
-                  echo '<div class="row side-margins bottom-margin">';
-                  echo apply_filters( 'the_content', $post->post_content );
-                  echo "</div>\n";
-               } else {
-                  setup_postdata( $post ); 
-                  echo '<div class="blog-title">';
-                  the_title();
-                  echo "</div>\n";
-                  echo '<div class="blog-date">';
-                  the_date();
-                  echo "</div>\n";
-               
-                  echo '<div class="blog-content">';
-                  the_content();
-                  echo "</div>\n";
-
-                  echo '<br clear="all" /><br>'. "\n";
-                  echo '<div class="blog-newer">';
-                  previous_post_link();
-                  echo '</div>';
-                  echo '<div class="blog-older">';
-                  next_post_link();
-                  echo "</div>\n";
-
-                  echo '<br clear="all"><div class="blog-feed"><a type="application/rss+xml" href="/?feed=rss">';
-                  echo '<img src="/images/feed-icon.svg" width="32px">LigerBots Blog Feed';
-                  echo "</a></div>\n";
-               }
-             ?>
+            <?php output_footer(); ?>
             
           </div>
-
-          <?php output_footer(); ?>
-        
         </div>
       </div>
     </div>
-
+    
     <?php page_foot(); ?>
   </body>
 </html>

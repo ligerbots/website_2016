@@ -33,66 +33,72 @@ function user_cmp($a, $b) {
 
   <body>
     <div id="header-ghost" ></div>
-    <div class="container no-side-padding">
+    <div class="container-fluid no-side-padding">
       <div class="col-xs-12 no-side-padding">
 
         <?php 
-           output_header(); 
-           output_navbar();
-           ?>
+        output_header(); 
+        output_navbar();
+        ?>
         
-        <div class="page-body">
-          <div class="row side-margins bottom-margin">
+        <div class="row page-body">
+          <div class="col-md-12 col-md-offset-0 col-sm-10 col-sm-offset-1 col-xs-12">
+            <div class="row top-spacer"> </div>
 
-            <center><h1>LigerBots Directory</h1>
-              The information on this page is confidential - It is only available to registered and approved users.
-            </center>
+            <div class="row bottom-margin row-margins">
+              <div class="col-xs-12">
 
-            <table class="table table-condensed table-striped">
-              <thead>
-                <tr>
-                  <th>First Name</th>
-                  <th>Last Name</th>
-                  <th>Phone Number</th>
-                  <th>Email</th>
-                  <th>Address</th>
-                  <th>School</th>
-                  <th>Role</th>
-                </tr>
-              </thead>
-              <tbody>
-                
-                <?php 
-                $userlist = get_users();
-                // Sort it.
-                uasort( $userlist, 'user_cmp' );
-                foreach ( $userlist as $user )
-                {
-                    echo '<tr>';
-                    echo '  <td>' . esc_html( $user->first_name ) .'</td>';
-                    echo '  <td>' . esc_html( $user->last_name ) .'</td>';
-                    echo '  <td>' . esc_html( $user->get( 'phone' ) ) . '</td>';
-                    echo '  <td>' . esc_html( $user->user_email ) .'</td>';
+                <center><h1>LigerBots Directory</h1>
+                  The information on this page is confidential - It is only available to registered and approved users.
+                </center>
+
+                <table class="table table-condensed table-striped">
+                  <thead>
+                    <tr>
+                      <th>First Name</th>
+                      <th>Last Name</th>
+                      <th>Phone Number</th>
+                      <th>Email</th>
+                      <th>Address</th>
+                      <th>School</th>
+                      <th>Role</th>
+                    </tr>
+                  </thead>
+                  <tbody>
                     
-                    $addr = join( ', ', array( $user->get( 'address' ), $user->get( 'city' ), 
-                                               join( ' ', array( $user->get( 'state' ), $user->get( 'postalcode' ) ) ) ) );
-                    if ( $addr == ', ,  ' ) $addr = '';
-                    echo '  <td>' . esc_html( $addr ) . '</td>';
-                    echo '  <td>' . esc_html( $user->get( 'school' ) ) . '</td>';
-                    echo '  <td>' . esc_html( join( ', ', $user->get( 'team_role' ) ) ) . '</td>';
-                    echo '</tr>';
-                }
-                ?>
-              </tbody>
-            </table>
+                    <?php 
+                    $userlist = get_users();
+                    // Sort it.
+                    uasort( $userlist, 'user_cmp' );
+                    foreach ( $userlist as $user )
+                    {
+                        echo '<tr>';
+                        echo '  <td>' . esc_html( $user->first_name ) .'</td>';
+                        echo '  <td>' . esc_html( $user->last_name ) .'</td>';
+                        echo '  <td>' . esc_html( $user->get( 'phone' ) ) . '</td>';
+                        echo '  <td>' . esc_html( $user->user_email ) .'</td>';
+                        
+                        $addr = join( ', ', array( $user->get( 'address' ), $user->get( 'city' ), 
+                                                   join( ' ', array( $user->get( 'state' ), $user->get( 'postalcode' ) ) ) ) );
+                        if ( $addr == ', ,  ' ) $addr = '';
+                        echo '  <td>' . esc_html( $addr ) . '</td>';
+                        echo '  <td>' . esc_html( $user->get( 'school' ) ) . '</td>';
+                        echo '  <td>' . esc_html( join( ', ', $user->get( 'team_role' ) ) ) . '</td>';
+                        echo '</tr>';
+                    }
+                    ?>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            
+            <?php output_footer(); ?>
+              
           </div>
-
-          <?php output_footer(); ?>
-        
         </div>
       </div>
     </div>
-
+    
     <?php page_foot(); ?>
   </body>
 </html>

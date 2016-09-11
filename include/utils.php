@@ -13,7 +13,36 @@ function my_setup_postdata( $postId )
     $post = get_post( $postId );
     setup_postdata( $postId );
 }
-    
+
+$lg_keepReadMore = FALSE;
+function custom_excerpt_more( $more ) {
+    global $lg_keepReadMore;
+    if ( $lg_keepReadMore ) return $more;
+	return '...';
+}
+add_filter( 'excerpt_more', 'custom_excerpt_more' );
+function custom_excerpt_length( $length ) {
+	return 35;
+}
+add_filter( 'excerpt_length', 'custom_excerpt_length' );
+function my_the_excerpt( $keepReadMore )
+{
+    global $lg_keepReadMore;
+    $lg_keepReadMore = $keepReadMore;
+    the_excerpt();
+}
+
+function print_filters_for( $hook = '' ) {
+    global $wp_filter;
+    if( empty( $hook ) || !isset( $wp_filter[$hook] ) )
+        return;
+
+    print '<pre>';
+    print_r( $wp_filter[$hook] );
+    print '</pre>';
+}
+//print_filters_for( 'the_content_more_link' );
+
 function get_latest_blog()
 {
     $cat = get_category_by_slug( 'blog' );

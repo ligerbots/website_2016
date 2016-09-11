@@ -52,7 +52,7 @@ function user_cmp( $a, $b ) {
   
   <body>
     <div id="header-ghost" ></div>
-    <div class="container no-side-padding">
+    <div class="container-fluid no-side-padding">
       <div class="col-xs-12 no-side-padding">
         
         <?php 
@@ -60,71 +60,76 @@ function user_cmp( $a, $b ) {
         output_navbar();
         ?>
         
-        <div class="page-body">
-          <div class="row side-margins bottom-margin">
+        <div class="row page-body">
+          <div class="col-md-12 col-md-offset-0 col-sm-10 col-sm-offset-1 col-xs-12">
+            <div class="row top-spacer"> </div>
+            <div class="row bottom-margin row-margins">
+              <div class="col-xs-12">
 
-            <?php 
-            if ( ! empty( $message ) ) echo '<div class="alert">' . $message . '</div>' . "\n";
-            ?>
-            
-            <center><h1>LigerBots Facebook</h1>
-              The information on this page is confidential - It is only available to registered and approved users.
-            </center>
-            
-            <?php
-            if ( current_user_can( 'edit_posts' ) ) {
-                echo '<br><form class="form-inline" action="' . $_SERVER['PHP_SELF'] . '" method="post" enctype="multipart/form-data">';
-                echo '<div class="form-group">';
-                echo '<label for="upload">Select multiple pictures to upload:</label>';
-                echo '<input class="form-control" type="file" id="upload" name="upload[]" multiple>';
-                echo "</div>\n";
-                echo '<button name="submit" type="submit" class="btn btn-default">Submit</button>';
-                echo "</form>\n";
-            }
+                <?php 
+                if ( ! empty( $message ) ) echo '<div class="alert">' . $message . '</div>' . "\n";
+                ?>
+                
+                <center><h1>LigerBots Facebook</h1>
+                  The information on this page is confidential - It is only available to registered and approved users.
+                </center>
+                
+                <?php
+                if ( current_user_can( 'edit_posts' ) ) {
+                    echo '<br><form class="form-inline" action="' . $_SERVER['PHP_SELF'] . '" method="post" enctype="multipart/form-data">';
+                    echo '<div class="form-group">';
+                    echo '<label for="upload">Select multiple pictures to upload:</label>';
+                    echo '<input class="form-control" type="file" id="upload" name="upload[]" multiple>';
+                    echo "</div>\n";
+                    echo '<button name="submit" type="submit" class="btn btn-default">Submit</button>';
+                    echo "</form>\n";
+                }
 
-            $userlist = get_users();
-            uasort( $userlist, 'user_cmp' );
-            $prevType = -1;
-            foreach ( $userlist as $user ) {
-                $type = acct_type( $user );
-                if ( $type != $prevType ) {
-                    if ( $prevType >= 0 ) echo '<div style="clear:left"></div>' . "\n";
-                    if ( $type == 0 )
-                        echo "<h2>Students</h2>\n";
-                    else if ( $type == 1 )
+                $userlist = get_users();
+                uasort( $userlist, 'user_cmp' );
+                $prevType = -1;
+                foreach ( $userlist as $user ) {
+                    $type = acct_type( $user );
+                    if ( $type != $prevType ) {
+                        if ( $prevType >= 0 ) echo '<div style="clear:left"></div>' . "\n";
+                        if ( $type == 0 )
+                            echo "<h2>Students</h2>\n";
+                        else if ( $type == 1 )
                         echo "<h2>Coaches and Mentors</h2>\n";
-                    else
-                        echo "<h2>Parents</h2>\n";
-                }
+                        else
+                            echo "<h2>Parents</h2>\n";
+                    }
 
-                echo('<div class="facebook-entry"><span style="text-align: center">');
-                echo('<img src="/images/facebook/' . $user->get( 'facebook_image' ) . '" width="150px" height="225px" style="border:1px solid black">');
-                echo('</span><br>');
-                
-                echo '<div class="name';
-                if ( array_search( 'Exec', $user->get( 'team_role' ) ) !== FALSE ) echo ' exec';
-                echo '">' . $user->first_name . ' ' . $user->last_name . "</div>\n";
-                
-                if ( $type == 0 ) {
-                    // Student: add school name
-                    if ( $user->get( 'School' ) == 'North' )
-                        echo( '<div class="north">North</div>' );
-                    else
-                        echo( '<div class="south">South</div>' );
+                    echo('<div class="facebook-entry"><span style="text-align: center">');
+                    echo('<img src="/images/facebook/' . $user->get( 'facebook_image' ) . '" width="150px" height="225px" style="border:1px solid black">');
+                    echo('</span><br>');
+                    
+                    echo '<div class="name';
+                    if ( array_search( 'Exec', $user->get( 'team_role' ) ) !== FALSE ) echo ' exec';
+                    echo '">' . $user->first_name . ' ' . $user->last_name . "</div>\n";
+                    
+                    if ( $type == 0 ) {
+                        // Student: add school name
+                        if ( $user->get( 'School' ) == 'North' )
+                            echo( '<div class="north">North</div>' );
+                        else
+                            echo( '<div class="south">South</div>' );
+                    }
+                    echo('</div>');
+                    
+                    $prevType = $type;
                 }
-                echo('</div>');
-                
-                $prevType = $type;
-            }
-            ?>
+                ?>
+              </div>
+            </div>
+            
+            <?php output_footer(); ?>
+            
           </div>
-
-          <?php output_footer(); ?>
-        
         </div>
       </div>
     </div>
-
+    
     <?php page_foot(); ?>
   </body>
 </html>

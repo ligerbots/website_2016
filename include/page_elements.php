@@ -49,12 +49,12 @@ function output_header()
     echo <<<EOL
         <div class="row header">
           <div class="masthead">
-            <a href="/"><img src="/images/masthead.svg"/></a>
+            <a href="/"><img id="liger-text" src="/images/masthead_text.svg"/><img id="liger-head" src="/images/liger_head.svg"/></a>
           </div>
           <ul>
             <li>
               <a class="header-link" target="_blank" href="http://www.firstinspires.org/robotics/frc">
-                <img src="/images/FIRST.png"/>
+                <img src="/images/first.svg"/>
               </a>
             </li>
             <li>
@@ -157,18 +157,17 @@ function output_navbar()
 
 function output_footer( $home_page=false )
 {
-    $page = get_page_by_title( 'Sponsors' );
+    $page = get_page_by_path( 'home-sponsors' );
 
-    if ( $home_page )
-        echo '<div class="row wide-side-margins">';
-    else
-        echo '<div class="row side-margins">';
-    echo '  <div class="panel panel-sponsors">';
+    echo '<div class="row row-margins">';
+    echo '  <div class="col-xs-12">';
+    echo '    <div class="panel panel-sponsors">';
     // don't apply the filters. Raw html.
     echo $page->post_content;
-    echo '  </div>';
-    echo '  <div style="text-align: center;">';
-    echo '    <p class="label-orange">Thank you to our sponsors!</p>';
+    echo '    </div>';
+    echo '    <div style="text-align: center;">';
+    echo '      <p class="label-orange">Thank you to our sponsors!</p>';
+    echo '    </div>';
     echo '  </div>';
     echo '</div>';
 }
