@@ -169,9 +169,9 @@ body{
     height: 10em;
     overflow: hidden;
     text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 5;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5;
 }    
 .panel-brag {
     border-color: rgb(0,102,179);
@@ -249,28 +249,8 @@ body{
     border-color: white;
     border-radius: 0px;
     float: left;
-    margin-left: 20px;
+    margin-left: 30px;
 }
-/* .navbar-collapse { */
-/*     padding-left: 0; */
-/*     padding-right: 0; */
-/* }  */
-/* .navbar-nav > li:first-child { text-align: left; } /\* alligns first element to the left border *\/ */
-/* .navbar-nav > li:last-child { text-align: right; } /\* similar for right border *\/ */
-/* .navbar-nav > li:first-child > a { padding-left: 20px; } */
-/* .navbar-nav > li:last-child > a { padding-right: 20px; } */
-/* .navbar-nav { */
-/*     display: table; */
-/*     width: 100%; */
-/*     margin: 0; */
-/*     /\* table-layout: fixed; *\/ */
-/* } */
-/* .navbar-nav > li { */
-/*     display: table-cell; */
-/*     text-align: center; */
-/*     float: none; */
-/*     /\* width: 100%; *\/ */
-/* } */
 
 .navbar a {
     color: white;
@@ -296,11 +276,22 @@ body{
 
 @media (min-width: 1101px) {
     /* justify the menu bar buttons; only needed on the non-hamburger menu */
-    .nav {
-        display: flex;
-        flex-direction: row;
+
+    /* From the web: justify within the buttons */
+    .navbar-nav > li:first-child { text-align: left; } /* aligns first element to the left border */
+    .navbar-nav > li:last-child { text-align: right; } /* similar for right border */
+    .navbar-nav {
+        display: table;
+        width: 100%;
+        margin: 0;
+        /* fixed with buttons; does not work well */
+        /* table-layout: fixed; */
+    }
+    .navbar-nav > li {
+        display: table-cell;
+        text-align: center;
         float: none;
-        justify-content: space-between;
+        /* width: 100%; */
     }
 }
 
@@ -380,7 +371,7 @@ body{
     height: 3em;
 }
 .read-more{
-/*     margin-left: 20px; */
+    /*     margin-left: 20px; */
     text-align: center; 
 }
 
