@@ -37,7 +37,7 @@ $blog = get_latest_blog();
                       my_setup_postdata( $blog );
                       my_the_excerpt( FALSE );
                       ?>
-                      <div class="read-more bottom-padding">
+                      <div class="read-more">
                         <a href="<?php echo get_permalink( $blog ); ?>"><img src="/images/read_more.svg"/></a>
                       </div>
                     </div>
@@ -121,19 +121,21 @@ $blog = get_latest_blog();
     <script>
      function Resize( id1, id2 )
      {
-         var s = $(id1);
-         var sh = s.height();
-         var t = $(id2);
-         var th = t.height();
-         if ( sh < th ) s.css( 'height', th );
-         else t.css( 'height', sh );
+         /* var obj1 = $(id1); */
+         /* var h1 = obj1.height(); */
+         /* var obj2 = $(id2); */
+         /* var h2 = obj2.height(); */
+         /* if ( h1 < h2 ) obj1.css( 'height', h2 ); */
+         /* else obj2.css( 'height', h1 ); */
+         
+         $(id2).css( 'height', $(id1).height() );
      }
 
      $(window).on('load resize', function() {
          var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
          if ( width > 990 ) {
              Resize( "#blog-panel", "#cal-panel" );
-             Resize( "#twitter-widget-0", "#ann-panel" );
+             Resize( "#ann-panel", "#twitter-widget-0" );
          }
      });
     </script>

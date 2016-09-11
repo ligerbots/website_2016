@@ -32,8 +32,6 @@ body{
 }
 
 .masthead{
-    padding-left: 15px;
-    padding-right: 15px; 
     padding-top: 15px;
     padding-bottom: 15px; 
 }
@@ -133,7 +131,7 @@ body{
     border-radius: 0px;
     text-align: center;
     height: 34.5pt;
-    padding-top: 5pt;
+    padding-top: 6pt;
 }
 
 .panel-orange > .panel-body {
@@ -336,6 +334,11 @@ body{
 
 /*--------------- Misc ---------------*/
 
+.glyphicon {
+    top: 0px;
+    font-size: 17px;
+}
+
 .side-margins {
     margin-left: 20px;
     margin-right: 20px;
@@ -363,15 +366,15 @@ body{
     padding-right: 15px;
 }
 
-.read-more img{
+.read-more img {
     display: inline-block;
     padding-left: auto;
     margin-right: auto;
     /* width: 26%; */
-    height: 3em;
+    height: 2.5em;
 }
-.read-more{
-    /*     margin-left: 20px; */
+.read-more {
+    margin-bottom: 15px;
     text-align: center; 
 }
 
