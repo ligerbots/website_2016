@@ -39,41 +39,43 @@ $posts = get_posts( $args );
         <div class="row page-body">
           <div class="col-md-12 col-md-offset-0 col-sm-10 col-sm-offset-1 col-xs-12">
             <div class="row top-spacer"> </div>
-            <div class="row side-margins bottom-margin">
-              <?php
-              foreach ($posts as $post) 
-              {
-                  setup_postdata( $post ); 
+            <div class="row bottom-margin notindex-margin text-background">
+              <div class="col-xs-12 no-side-padding">
 
-                  echo '<div class="blog-title">';
-                  the_title();
-                  echo "</div>\n";
-                  echo '<div class="blog-date">';
-                  the_date();
-                  echo "</div>\n";
-                  echo '<div class="blog-content">';
-                  the_content();
-                  echo "</div>\n";
-                  /*echo apply_filters( 'the_content', $page->post_content );*/
+                <?php
+                foreach ($posts as $post) 
+                {
+                    setup_postdata( $post ); 
 
-                  echo '<br clear="all" />'. "\n";
-              }
+                    echo '<div class="blog-title">';
+                    the_title();
+                    echo "</div>\n";
+                    echo '<div class="blog-date">';
+                    the_date();
+                    echo "</div>\n";
+                    echo '<div class="blog-content">';
+                    the_content();
+                    echo "</div>\n";
+                    /*echo apply_filters( 'the_content', $page->post_content );*/
 
-              if ( $offset > 0 ) {
-                  $newid = max( 0, $offset - $nPerPage );
-                  echo '<div class="blog-newer"><a href="/blog.php?id=' . $newid . '">Newer Posts</a></div>';
-              }
-              $newid = $offset + $nPerPage;
-              if ( $newid < $nPosts ) {
-                  echo '<div class="blog-older"><a href="/blog.php?id=' . $newid . '">Older Posts</a></div>';
-              }
-              
-              ?>
-              
+                    echo '<br clear="all" />'. "\n";
+                }
+
+                if ( $offset > 0 ) {
+                    $newid = max( 0, $offset - $nPerPage );
+                    echo '<div class="blog-newer">&laquo; <a href="/blog_list.php?id=' . $newid . '">Newer Posts</a></div>';
+                }
+                $newid = $offset + $nPerPage;
+                if ( $newid < $nPosts ) {
+                    echo '<div class="blog-older"><a href="/blog_list.php?id=' . $newid . '">Older Posts</a> &raquo;</div>';
+                }
+                
+                ?>
+                
+              </div>
             </div>
-
-            <?php output_footer(); ?>
             
+            <?php output_footer(); ?>
           </div>
         </div>
       </div>

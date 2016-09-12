@@ -44,6 +44,9 @@ $table_prefix  = 'wdprs_';
 define( 'COOKIEPATH', '/' );
 //define( 'SITECOOKIEPATH', '/' );
 
+define('AUTOSAVE_INTERVAL', 300); // seconds
+define('WP_POST_REVISIONS', 5);
+
 /**
  * For developers: WordPress debugging mode.
  *
