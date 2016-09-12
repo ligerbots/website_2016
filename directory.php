@@ -48,8 +48,11 @@ function user_cmp($a, $b) {
             <div class="row bottom-margin row-margins">
               <div class="col-xs-12">
 
-                <center><h1>LigerBots Directory</h1>
+                <center>
+                  <div class="notindex-title">LigerBots Directory</div>
+                  <br/><br/>
                   The information on this page is confidential - It is only available to registered and approved users.
+                  <br/>
                 </center>
 
                 <table class="table table-condensed table-striped">

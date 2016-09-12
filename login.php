@@ -79,6 +79,9 @@ if ( isset( $_POST[ 'login' ] ) ) {
                 <input type="submit" name="login" id="login" class="btn btn-default" value="Log In" />
                 <input type="hidden" name="redirect_to" value="<?php echo $referrer; ?>" />
               </form>
+
+              <br/>
+              Team members may register <a href="/register.php">here.</a>
             </div>
           </div>
           

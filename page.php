@@ -36,11 +36,13 @@ $isPage = is_page( $post );
         <div class="row page-body">
           <div class="col-md-12 col-md-offset-0 col-sm-10 col-sm-offset-1 col-xs-12">
             <div class="row top-spacer"> </div>
-            <div class="row bottom-margin row-margins text-background">
-              <div class="col-xs-12">
+            <div class="row bottom-margin notindex-margin text-background">
+              <div class="col-xs-12 no-side-padding">
                 <?php
                 if ( $isPage ) {
-                    echo apply_filters( 'the_content', $post->post_content );
+                    $title = strtoupper( get_the_title() );
+                    echo '<center><div class="notindex-title">' . $title . "</div></center>\n";
+                    echo $post->post_content;
                 } else {
                     setup_postdata( $post ); 
                     echo '<div class="blog-title">';

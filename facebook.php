@@ -70,8 +70,11 @@ function user_cmp( $a, $b ) {
                 if ( ! empty( $message ) ) echo '<div class="alert">' . $message . '</div>' . "\n";
                 ?>
                 
-                <center><h1>LigerBots Facebook</h1>
+                <center>
+                  <div class="notindex-title">LigerBots Facebook</div>
+                  <br/><br/>
                   The information on this page is confidential - It is only available to registered and approved users.
+                  <br/>
                 </center>
                 
                 <?php
@@ -100,22 +103,22 @@ function user_cmp( $a, $b ) {
                             echo "<h2>Parents</h2>\n";
                     }
 
-                    echo('<div class="facebook-entry"><span style="text-align: center">');
-                    echo('<img src="/images/facebook/' . $user->get( 'facebook_image' ) . '" width="150px" height="225px" style="border:1px solid black">');
-                    echo('</span><br>');
+                    echo '<div class="facebook-entry">';
+                    echo '<img src="/images/facebook/' . $user->get( 'facebook_image' ) . '">';
+                    echo "<br>\n";
                     
                     echo '<div class="name';
                     if ( array_search( 'Exec', $user->get( 'team_role' ) ) !== FALSE ) echo ' exec';
                     echo '">' . $user->first_name . ' ' . $user->last_name . "</div>\n";
-                    
+
                     if ( $type == 0 ) {
                         // Student: add school name
-                        if ( $user->get( 'School' ) == 'North' )
-                            echo( '<div class="north">North</div>' );
+                        if ( $user->get( 'school' ) == 'North' )
+                            echo '<div class="north">North</div>';
                         else
-                            echo( '<div class="south">South</div>' );
+                            echo '<div class="south">South</div>';
                     }
-                    echo('</div>');
+                    echo "</div>\n";
                     
                     $prevType = $type;
                 }

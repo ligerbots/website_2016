@@ -83,6 +83,7 @@ $blog = get_latest_blog();
                         echo "</div>\n";
                     }
                     ?>
+                    <br/>
                   </div>
                 </div>
               </div>
