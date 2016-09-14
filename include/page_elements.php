@@ -83,7 +83,7 @@ function output_header()
               </a>
             </li>
             <li>
-              <a class="header-link" href="/support">
+              <a class="header-link" href="/sponsor">
                 <img style="width:10%" src="/images/donate.png">
               </a>
             </li>
@@ -109,7 +109,13 @@ function output_navbar()
               <ul class="nav navbar-nav nav-stacked">
                 <li class="active"><a href="/">Home</a></li>
                 <li><a href="/about">About</a></li> 
-                <li><a href="/support">Support</a></li> 
+                <li class="dropdown">
+                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">Support<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="/sponsor">Become a Sponsor</a></li>
+                    <li><a href="/current-sponsors">Current Sponsors</a></li>
+                  </ul>
+                </li>
                 <li><a href="/contact">Contact</a></li> 
                 <li><a href="/calendar.php">Calendar</a></li> 
                 <li><a href="/fll">FLL</a></li> 

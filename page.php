@@ -10,6 +10,7 @@ $postid = url_to_postid( $url );
 
 $post = get_post( $postid );
 $isPage = is_page( $post );
+$includeFooter = ! ( $isPage && get_page_uri( $postid ) == "current-sponsors" );
 
 ?>
 
@@ -36,8 +37,8 @@ $isPage = is_page( $post );
         <div class="row page-body">
           <div class="col-md-12 col-md-offset-0 col-sm-10 col-sm-offset-1 col-xs-12">
             <div class="row top-spacer"> </div>
-            <div class="row bottom-margin notindex-margin text-background">
-              <div class="col-xs-12 no-side-padding">
+            <div class="row bottom-margin text-background">
+              <div class="col-md-10 col-md-offset-1 col-sm-12">
                 <?php
                 if ( $isPage ) {
                     $title = strtoupper( get_the_title() );
@@ -72,7 +73,7 @@ $isPage = is_page( $post );
               </div>
             </div>
 
-            <?php output_footer(); ?>
+            <?php if ( $includeFooter ) output_footer(); ?>
             
           </div>
         </div>
