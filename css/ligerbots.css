@@ -211,46 +211,82 @@ body{
 
 /*--------------- Sponsor bar ---------------*/
 
+/* WARNING: order of the vendor-extensions matter. 
+   Last one that matches wins. */
 .panel-sponsors {
     border-color: rgb(208,78,29);
     background-color: rgba(255,255,255,0.5);
     z-index: 1;
     position: relative;
     margin-bottom: 0;
-    padding: 10px;
+    padding: 5px;
 
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
     flex-direction: row;
+
+    -ms-flex-wrap: wrap;
     flex-wrap: wrap;
+
+    -ms-flex-line-pack: center;
+    align-content: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
 }
 
 .panel-sponsors .sponsor-row {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
     flex-direction: row;
     height: 50%;
+    margin-top: 3px;
+    margin-bottom: 3px;
 }
 
 .panel-sponsors .sponsor-column {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
     margin-left: 10px;
     margin-right: 10px;
-    width: 100px;
+    width: 110px;
 }
 
 .panel-sponsors a {
+    -ms-flex-item-align: center;
     align-self: center;
     width: 100%;
     height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
 }
 
 .panel-sponsors img {
-    object-fit: contain;
-    align-self: center;
+    /* object-fit: contain; */
+    /* align-self: center; */
+    /* height: 100%; */
     width: 100%;
-    height: 100%;
 }
 
 /*--------------- Nav bar ---------------*/
@@ -570,7 +606,6 @@ body{
 .level4-heading {
     font-family: 'Open Sans', sans-serif;
     font-weight: bold;
-    letter-spacing: 0.03em;
     font-size: 18pt;
     line-height: 26pt;
     letter-spacing: 0.04em;
@@ -580,19 +615,61 @@ body{
     margin-bottom: 14pt;
 }
 
+.image-border-blue img {
+    border-radius: 0px;
+    border-style: solid;
+    border-width: 4px;
+    box-shadow: 3.182pt 3.182pt 5pt rgba(0,0,0,0.25);
+    background-color: transparent;
+    border-color: rgb(0,102,179);
+}
+
 /*--------------- Current sponsor page ---------------*/
 
 .sponsor-heading {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
     font-size: 18pt;
+    line-height: 26pt;
+    letter-spacing: 0.04em;
     color: rgb(0,102,179);
     text-align: center;
     margin-top: 10px;
     margin-bottom: 25px;
 }
 
+/* cat icons */
+.sponsor-heading img {
+    object-fit: contain;
+    align-self: center;
+    height: 100%;
+    margin-bottom: 11.5px;
+    margin-left: 2.5em;
+    margin-right: 2.5em;
+}
+
 .sponsor-logo {
     width: 100%;
-    margin: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.sponsor-margin-bottom {
+    margin-bottom: 16pt;
+}
+.sponsor-margin-top {
+    margin-top: 23pt;
+}
+
+.donor-name {
+    list-style: none;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 16pt;
+    line-height: 28pt;
+    letter-spacing: 0.06em;
+    text-align: center;
 }
 
 .vcenter {
@@ -601,11 +678,11 @@ body{
     float: none;
 }
 
-.donor-name {
-    list-style: none;
-}
-
 .blue-rule {
-    margin: 0;
+    margin-top: 40px;
+    margin-bottom: 0;
+    margin-left: -2em;
+    margin-right: -2em;
     border-top: 5px solid rgb(0,102,179);
 }
+

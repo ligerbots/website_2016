@@ -123,15 +123,12 @@ function output_navbar()
                   <a class="dropdown-toggle" data-toggle="dropdown" href="#">Gallery<span class="caret"></span></a>
                   <ul class="dropdown-menu">
                     <li><a href="/gallery2016">2016</a></li>
-                    <li><a href="#">2015</a></li>
-                    <li><a href="#">Older</a></li> 
                   </ul>
                 </li>
                 <li class="dropdown">
                   <a class="dropdown-toggle" data-toggle="dropdown" href="#">Resources<span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    <li><a href="/carpools.php">Carpools</a></li>
-                    <li><a href="/student-forms">Student Forms</a></li>';
+                    <li><a href="/carpools.php">Carpools</a></li>';
     if ( $loggedIn ) {
         echo '<li><a href="/directory.php">Directory</a></li>';
         echo '<li><a href="/facebook.php">Facebook</a></li>';

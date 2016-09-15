@@ -39,27 +39,23 @@ if ( isset( $_POST[ 'delcarpool' ] ) ) {
             <div class="row top-spacer"> </div>
             <div class="row side-margins">
               <div class="col-xs-12">
+                <center><div class="notindex-title">Team Carpools</div></center>
+                <br/>
                 <center>
-                  <div class="notindex-title">Team Carpools</div>
-                  <br/>
-                  <h4>
-                    Monday at South, Room 9170, 6:30-9 PM<br>
-                    Thursday at North, Engineering Room, 6:30-9 PM<br>
-                    <!--
-                         Mondays-Thursdays: 6-9 PM<br>
-                         Fridays: 3-9 PM<br>
-                         Saturdays: 8:30 AM - 2:30 PM<br>
-                       -->
-                    Scroll down for more carpools
-                  </h4>
-                  <h3>
-                    <br>
-                    Student Carpool Permission form can be downloaded <a href="/images/docs/Carpool_Permission_2014.pdf" target="_blank"><b>here</b></a>.
-                    <br>
-                    Driver CORI/SORI forms and instructions can be found <a href="http://www.newton.k12.ma.us/Page/2145" target="_blank"><b>here</b></a>.
-                    <br>
-                  </h3>
+                  Monday at South, Room 9170, 6:30-9 PM<br>
+                  Thursday at North, Engineering Room, 6:30-9 PM<br>
+                  <!--
+                       Mondays-Thursdays: 6-9 PM<br>
+                       Fridays: 3-9 PM<br>
+                       Saturdays: 8:30 AM - 2:30 PM<br>
+                     -->
+                  Scroll down for more carpools
                 </center>
+                <div class="level4-heading">Student Carpool Permission form can be downloaded
+                  <a href="/images/docs/Carpool_Permission_2014.pdf" style="text-decoration:underline;" target="_blank"><b>here</b></a>.<br/>
+                  Driver CORI/SORI forms and instructions can be found
+                  <a href="http://www.newton.k12.ma.us/Page/2145" style="text-decoration:underline;" target="_blank"><b>here</b></a>.
+                </div>
 
                 <?php
                 // If the user is an editor, give them the option to add and delete carpools
@@ -86,6 +82,7 @@ if ( isset( $_POST[ 'delcarpool' ] ) ) {
                 ?>
               </div>
             </div>
+            <br/>
             
             <?php output_footer(); ?>
           </div>

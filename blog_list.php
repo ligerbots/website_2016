@@ -47,10 +47,10 @@ $posts = get_posts( $args );
                 {
                     setup_postdata( $post ); 
 
-                    echo '<div class="blog-title">';
+                    echo '<div class="level4-heading">';
                     the_title();
                     echo "</div>\n";
-                    echo '<div class="blog-date">';
+                    echo '<div class="announce-date">';
                     the_date();
                     echo "</div>\n";
                     echo '<div class="blog-content">';
