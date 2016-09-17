@@ -1,0 +1,4 @@
+# RIP those html pages
+Satisfy all
+Order deny,allow
+Deny from all

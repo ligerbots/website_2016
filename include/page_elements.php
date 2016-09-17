@@ -144,7 +144,8 @@ function output_navbar()
     {
         echo '<li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">My Account<span class="caret"></span></a>
-        <ul class="dropdown-menu">';
+        <ul class="dropdown-menu">
+        <li><a href="/attendance.php">My Attendance</a></li>';
         if ( current_user_can( 'edit_posts' ) ) {
             echo '<li><a href="/wp-backend/wp-admin/edit.php">Edit Posts</a></li>';
         }

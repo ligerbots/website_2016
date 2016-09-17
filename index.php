@@ -131,14 +131,18 @@ $blog = get_latest_blog();
          
          $(id2).css( 'height', $(id1).height() );
      }
-
-     $(window).on('load resize', function() {
+     
+     function FixHeight()
+     {
          var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
          if ( width > 990 ) {
              Resize( "#blog-panel", "#cal-panel" );
              Resize( "#ann-panel", "#twitter-widget-0" );
          }
-     });
+     }
+
+     $(window).on('load resize', FixHeight);
+     FixHeight();
     </script>
   </body>
 </html>
