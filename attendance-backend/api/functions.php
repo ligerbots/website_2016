@@ -21,7 +21,7 @@ function createEvent($user, $start, $end) {
     }
 }
 
-function createUser($wp_id) {
+function createUser($wp_id, $fname, $lname, $email) {
     global $database;
     
     // generate PIN
@@ -40,9 +40,9 @@ function createUser($wp_id) {
     
     // most are unimplemented dummy args right now
     $args = [
-    	"fname" => "",
-    	"lname" => "",
-    	"email" => "",
+    	"fname" => $fname,
+    	"lname" => $lname,
+    	"email" => $email,
     	"pin" => $pin,
     	"rfid" => "",
     	"username" => $wp_id,

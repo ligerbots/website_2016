@@ -9,7 +9,8 @@
    if($wp_id > 0) {
        $attendanceUser = new User($wp_id, USER_SELECTOR_UNAME);
        if($attendanceUser->error !== false) {
-           createUser($wp_id);
+           $wp_info = wp_get_current_user();
+           createUser($wp_id, $wp_info->first_name, $wp_info->last_name, $wp_info->user_email);
            $attendanceUser = new User($wp_id, USER_SELECTOR_UNAME);
        }
    } else {
@@ -56,6 +57,9 @@
                         $start = date("d/m/y h:i a", $evt['start']);
                         $hours = ($evt['end'] - $evt['start']) / 3600.0;
                         ?> <li><b><?=$start;?></b>: <?php printf("%.1f", $hours); ?> hours</li> <?php
+                    }
+                    if(sizeof($evts) == 0) {
+                        ?> <li>None</li> <?php
                     }
                   ?>
               </ul>
