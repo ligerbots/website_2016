@@ -102,7 +102,7 @@ body{
 
 /*--------------- Index page panels ---------------*/
 
-.panel-orange,.panel-blue,.panel-brag,.panel-sponsors {
+.panel-orange,.panel-blue,.panel-brag,.panel-sprs {
     border-radius: 0px;
     border-style: solid;
     border-width: 4px;
@@ -213,7 +213,7 @@ body{
 
 /* WARNING: order of the vendor-extensions matter. 
    Last one that matches wins. */
-.panel-sponsors {
+.panel-sprs {
     border-color: rgb(208,78,29);
     background-color: rgba(255,255,255,0.5);
     z-index: 1;
@@ -240,7 +240,7 @@ body{
     justify-content: center;
 }
 
-.panel-sponsors .sponsor-row {
+.panel-sprs .spr-row {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -253,7 +253,7 @@ body{
     margin-bottom: 3px;
 }
 
-.panel-sponsors .sponsor-column {
+.panel-sprs .spr-column {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -266,7 +266,7 @@ body{
     width: 110px;
 }
 
-.panel-sponsors a {
+.panel-sprs a {
     -ms-flex-item-align: center;
     align-self: center;
     width: 100%;
@@ -282,7 +282,7 @@ body{
     justify-content: center;
 }
 
-.panel-sponsors img {
+.panel-sprs img {
     /* object-fit: contain; */
     /* align-self: center; */
     /* height: 100%; */
@@ -626,7 +626,7 @@ body{
 
 /*--------------- Current sponsor page ---------------*/
 
-.sponsor-heading {
+.spr-heading {
     font-family: 'Open Sans', sans-serif;
     font-weight: bold;
     font-size: 18pt;
@@ -639,26 +639,26 @@ body{
 }
 
 /* cat icons */
-.sponsor-heading img {
+.spr-heading img {
     object-fit: contain;
     align-self: center;
-    height: 100%;
+    height: auto;
     margin-bottom: 11.5px;
     margin-left: 2.5em;
     margin-right: 2.5em;
 }
 
-.sponsor-logo {
+.spr-logo {
     width: 100%;
     margin-left: auto;
     margin-right: auto;
     display: block;
 }
 
-.sponsor-margin-bottom {
+.spr-margin-bottom {
     margin-bottom: 16pt;
 }
-.sponsor-margin-top {
+.spr-margin-top {
     margin-top: 23pt;
 }
 
