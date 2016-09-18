@@ -17,7 +17,7 @@ $SQL = array(
 	"HOST" => DB_HOST,
 	"USER" => DB_USER,
 	"PASS" => DB_PASSWORD,
-	"NAME" => DB_NAME
+	"NAME" => DB_ATTENDANCE_NAME
 );
 
 //Global objects
