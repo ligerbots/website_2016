@@ -20,27 +20,26 @@ if($stmt->execute() === false) {
 	error("Internal Error","SQL returned " . $stmt->error);
 }
 //Get the result
-$qresult = $stmt->get_result();
-//Get the object
-$object = $qresult->fetch_object();
+$qresult = _mysqli_get_result($stmt);
 //Check for error
-if($object == NULL) {
+if(sizeof($qresult) == 0) {
 	error("Invalid User", "No user found with that ID");
 }
+$object = $qresult[0];
 
 //Create the end result
 $result = array(
-	"id" => $object->id,
-	"fname" => $object->fname,
-	"lname" => $object->lname,
-	"email" => $object->email,
-	"pin" => $object->pin,
-	"rfid" => $object->rfid,
-	"username" => $object->username,
-	"permissions" => json_decode($object->permissions),
-	"time" => $object->time,
-	"abstime" => $object->abstime,
-	"signedin" => $object->signedin
+	"id" => $object['id'],
+	"fname" => $object['fname'],
+	"lname" => $object['lname'],
+	"email" => $object['email'],
+	"pin" => $object['pin'],
+	"rfid" => $object['rfid'],
+	"username" => $object['username'],
+	"permissions" => json_decode($object['permissions']),
+	"time" => $object['time'],
+	"abstime" => $object['abstime'],
+	"signedin" => $object['signedin']
 );
 //Return the result
 success($result);

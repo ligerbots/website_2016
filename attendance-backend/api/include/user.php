@@ -44,14 +44,20 @@ class User {
 			return;
 		}
 		//Fetch user information
-		$result = $stmt->get_result();
+		$result = _mysqli_get_result($stmt);
 		//Check if the user exists
-		if($result->num_rows == 0) {
+		if(sizeof($result) == 0) {
 			$this->error = "SQL server returned 0 results";
 			return;
 		}
 		//Fetch the user information
-		$this->udata = $result->fetch_object();
+		$udata = $result[0];
+		// convert into object that Nick's code expects
+		$object = new stdClass();
+		foreach ($udata as $key => $value) {
+    		$object->$key = $value;
+		}
+		$this->udata = $object;
 }
 
 	//Method for checking a password

@@ -12,24 +12,24 @@ if($stmt->execute() === false) {
 	error("Internal Error","SQL returned " . $stmt->error);
 }
 //Get sql result
-$result = $stmt->get_result();
+$result = _mysqli_get_result($stmt);
 //User list
 $users = [];
 //Process result
-while(($row = $result->fetch_object()) != NULL) {
+while(($row = array_shift($result)) != NULL) {
 	//Create the user object
 	$user = [];
 	//Set the user data
-	$user['id'] = $row->id;
-	$user['fname'] = $row->fname;
-	$user['lname'] = $row->lname;
-	$user['email'] = $row->email;
-	$user['pin'] = $row->pin;
-	$user['rfid'] = $row->rfid;
-	$user['username'] = $row->username;
-	$user['permissions'] = json_decode($row->permissions);
-	$user['time'] = $row->time;
-	$user['signedin'] = $row->signedin;
+	$user['id'] = $row['id'];
+	$user['fname'] = $row['fname'];
+	$user['lname'] = $row['lname'];
+	$user['email'] = $row['email'];
+	$user['pin'] = $row['pin'];
+	$user['rfid'] = $row['rfid'];
+	$user['username'] = $row['username'];
+	$user['permissions'] = json_decode($row['permissions']);
+	$user['time'] = $row['time'];
+	$user['signedin'] = $row['signedin'];
 	//Push to the list
 	array_push($users, $user);
 }

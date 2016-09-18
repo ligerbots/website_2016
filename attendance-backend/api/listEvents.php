@@ -16,22 +16,22 @@ $stmt->bind_param("iii", $start, $end, $limit);
 if($stmt->execute() === false) {
 	error("Internal Error","SQL returned " . $stmt->error);
 }
-$qresult = $stmt->get_result();
+$qresult = _mysqli_get_result($stmt);
 
 //Result
 $result = array();
 //Process result
-while(($row = $qresult->fetch_object()) != NULL) {
+while(($row = array_shift($qresult)) != NULL) {
 	//Create the event object
 	$event = [];
 	//Set the user data
-	$event['id'] = $row->id;
-	$event['user'] = $row->user;
-	$event['start'] = $row->start;
-	$event['end'] = $row->end;
-	$event['meta'] = dechex($row->meta);
-	$event['isopen'] = $row->isopen;
-	$event['name'] = $row->name;
+	$event['id'] = $row['id'];
+	$event['user'] = $row['user'];
+	$event['start'] = $row['start'];
+	$event['end'] = $row['end'];
+	$event['meta'] = dechex($row['meta']);
+	$event['isopen'] = $row['isopen'];
+	$event['name'] = $row['name'];
 	//Push to the list
 	array_push($result, $event);
 }

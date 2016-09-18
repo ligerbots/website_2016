@@ -56,7 +56,7 @@
                     foreach($evts as $i=>$evt) {
                         $start = date("d/m/y h:i a", $evt['start']);
                         $hours = ($evt['end'] - $evt['start']) / 3600.0;
-                        ?> <li><b><?=$start;?></b>: <?php printf("%.1f", $hours); ?> hours</li> <?php
+                        ?> <li><b><?=$start;?></b>: <?php printf("%.1f", $hours); ?> hour(s)</li> <?php
                     }
                     if(sizeof($evts) == 0) {
                         ?> <li>None</li> <?php

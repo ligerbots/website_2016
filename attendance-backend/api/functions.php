@@ -72,14 +72,12 @@ function getUserIdByWpId($wp_id) {
     	error("Internal Error","SQL returned " . $stmt->error);
     }
     //Get the result
-    $qresult = $stmt->get_result();
-    //Get the object
-    $object = $qresult->fetch_object();
+    $qresult = _mysqli_get_result($stmt);
     //Check for error
-    if($object == NULL) {
+    if(sizeof($qresult) == 0) {
     	error("Invalid User", "No user found with that ID");
     }
-    return $object->id;
+    return $qresult[0]['id'];
 }
 
 function getUserInfo($wp_id) {
@@ -95,27 +93,27 @@ function getUserInfo($wp_id) {
     	error("Internal Error","SQL returned " . $stmt->error);
     }
     //Get the result
-    $qresult = $stmt->get_result();
-    //Get the object
-    $object = $qresult->fetch_object();
+    $qresult = _mysqli_get_result($stmt);
     //Check for error
-    if($object == NULL) {
+    if(sizeof($qresult) == 0) {
     	error("Invalid User", "No user found with that ID");
     }
     
+    $object = $qresult[0];
+    
     //Create the end result
     $result = array(
-    	"id" => $object->id,
-    	"fname" => $object->fname,
-    	"lname" => $object->lname,
-    	"email" => $object->email,
-    	"pin" => $object->pin,
-    	"rfid" => $object->rfid,
-    	"username" => $object->username,
-    	"permissions" => json_decode($object->permissions),
-    	"time" => $object->time,
-    	"abstime" => $object->abstime,
-    	"signedin" => $object->signedin
+    	"id" => $object['id'],
+    	"fname" => $object['fname'],
+    	"lname" => $object['lname'],
+    	"email" => $object['email'],
+    	"pin" => $object['pin'],
+    	"rfid" => $object['rfid'],
+    	"username" => $object['username'],
+    	"permissions" => json_decode($object['permissions']),
+    	"time" => $object['time'],
+    	"abstime" => $object['abstime'],
+    	"signedin" => $object['signedin']
     );
     //Return the result
     return $result;
@@ -135,21 +133,21 @@ function getUsersEvents($wp_id) {
     	error("Internal Error","SQL returned " . $stmt->error);
     }
     //Get the result
-    $qresult = $stmt->get_result();
+    $qresult = _mysqli_get_result($stmt);
     //Result
     $result = array();
     //Process result
-    while(($row = $qresult->fetch_object()) != NULL) {
+    while(($row = array_shift($qresult)) != NULL) {
     	//Create the event object
     	$event = [];
     	//Set the user data
-    	$event['id'] = $row->id;
-    	$event['user'] = $row->user;
-    	$event['start'] = $row->start;
-    	$event['end'] = $row->end;
-    	$event['meta'] = dechex($row->meta);
-    	$event['isopen'] = $row->isopen;
-    	$event['name'] = $row->name;
+    	$event['id'] = $row['id'];
+    	$event['user'] = $row['user'];
+    	$event['start'] = $row['start'];
+    	$event['end'] = $row['end'];
+    	$event['meta'] = dechex($row['meta']);
+    	$event['isopen'] = $row['isopen'];
+    	$event['name'] = $row['name'];
     	//Push to the list
     	array_push($result, $event);
     }
