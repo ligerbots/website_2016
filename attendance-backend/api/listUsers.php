@@ -26,5 +26,5 @@ foreach($allWpUsers as $i=>$wpUser) {
 }
 
 //Encode and return result
-success($users);
+success($users_arr);
 ?>
