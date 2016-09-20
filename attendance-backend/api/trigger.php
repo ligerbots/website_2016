@@ -48,8 +48,8 @@ if($result !== "signedIn" && $result !== "signedOut") {
 
 //Display result
 if($result == ATTENDANCE_SIGNED_OUT) {
-	success(array("result"=>"success","state"=>"0","signed_in"=>false));
+	success(array("result"=>"success","state"=>"0","signed_in"=>false,"message"=>"Goodbye, " . $victim->udata->fname));
 } else {
-	success(array("result"=>"success","state"=>"1","signed_in"=>true));
+	success(array("result"=>"success","state"=>"1","signed_in"=>true,"message"=>"Hello, " . $victim->udata->fname));
 }
 ?>
