@@ -1,37 +1,28 @@
 <?php
+include("../../wp-backend/wp-config.php");
 //Include the API
 include("include/api.php");
 
 //Required permission
 setAccess("users.list");
 
-//Create the statement
-$stmt = $database->prepare(file_get_contents("sql/listUsers.sql"));
-//Execute the statement
-if($stmt->execute() === false) {
-	error("Internal Error","SQL returned " . $stmt->error);
-}
-//Get sql result
-$result = _mysqli_get_result($stmt);
-//User list
-$users = [];
-//Process result
-while(($row = array_shift($result)) != NULL) {
-	//Create the user object
-	$user = [];
-	//Set the user data
-	$user['id'] = $row['id'];
-	$user['fname'] = $row['fname'];
-	$user['lname'] = $row['lname'];
-	$user['email'] = $row['email'];
-	$user['pin'] = $row['pin'];
-	$user['rfid'] = $row['rfid'];
-	$user['username'] = $row['username'];
-	$user['permissions'] = json_decode($row['permissions']);
-	$user['time'] = $row['time'];
-	$user['signedin'] = $row['signedin'];
-	//Push to the list
-	array_push($users, $user);
+$allWpUsers = get_users();
+
+$users_arr = array();
+
+foreach($allWpUsers as $i=>$wpUser) {
+  $user = new User($wpUser->id, USER_SELECTOR_ID);
+  $users_arr[] = array(
+    id => $user->udata->id,
+    fname => $user->udata->fname,
+    lname => $user->udata->lname,
+    email => $user->udata->email,
+    rfid => $user->udata->rfid,
+    pin => $user->udata->pin,
+    username => $user->udata->username,
+    permissions => $user->udata->permissions,
+    signedin => $user->udata->signedin
+  );
 }
 
 //Encode and return result
