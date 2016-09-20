@@ -1,10 +1,11 @@
 <?php
+// tell the attendance API not to spam out JSON
+define("ATTENDANCE_API_INCLUDE", true);
+// then load it
 include("include/api.php");
-// make sure the api doesn't print out JSON and die() unexpectedly
-attendanceSetFromInclude();
 
 function createEvent($user, $start, $end) {
-    global $database;
+    $database = attendanceGetDatabase();
     
     //Check for error
     if($user == null || $start == null || $end == null) {
@@ -21,73 +22,21 @@ function createEvent($user, $start, $end) {
     }
 }
 
-function createUser($wp_id, $fname, $lname, $email) {
-    global $database;
+function getUserInfo($user) {
+    $database = attendanceGetDatabase();
     
-    // generate PIN
-    $found_pin = false;
-    $pin;
-    do {
-        $pin = mt_rand(1, 9999);
-        
-        //Check if the pin is unique
-        $fakeuser = new User($pin, USER_SELECTOR_PIN);
-        if($fakeuser->error !== false) {
-        	$found_pin = true;
-        }
-    } while(!$found_pin);
-    $pin = sprintf("%04d", $pin);
-    
-    // most are unimplemented dummy args right now
-    $args = [
-    	"fname" => $fname,
-    	"lname" => $lname,
-    	"email" => $email,
-    	"pin" => $pin,
-    	"rfid" => "",
-    	"username" => $wp_id,
-    	"password" => "",
-    	"permissions" => "[]"
-    ];
-
-    
-    //Create the statement
-    $stmt = $database->prepare("INSERT INTO users (fname,lname,email,pin,rfid,username,passhash,permissions) VALUES (?,?,?,?,?,?,?,?)");
-    //Bind the parameters
-    $stmt->bind_param("ssssssss", $args['fname'],$args['lname'],$args['email'],$args['pin'],$args['rfid'],$args['username'],$args['password'],$args['permissions']);
-    //Execute the query
-    if($stmt->execute() === false) {
-    	error("Internal Error","SQL returned " . $stmt->error);
+    if(!($user instanceof User)) {
+        $user = new User($user, USER_SELECTOR_ID);
     }
-}
-
-function getUserIdByWpId($wp_id) {
-    global $database;
     
-    $stmt = $database->prepare("SELECT `id` FROM `users` WHERE `username`=?");
-    //Bind the parameters
-    $stmt->bind_param("s", $wp_id);
-    //Execute the statement
-    if($stmt->execute() === false) {
-    	error("Internal Error","SQL returned " . $stmt->error);
+    if(!$user) {
+        throw new Exception("No such user");
     }
-    //Get the result
-    $qresult = _mysqli_get_result($stmt);
-    //Check for error
-    if(sizeof($qresult) == 0) {
-    	error("Invalid User", "No user found with that ID");
-    }
-    return $qresult[0]['id'];
-}
-
-function getUserInfo($wp_id) {
-    global $database;
     
-    $id = getUserIdByWpId($wp_id);
     //Create the statement
     $stmt = $database->prepare(file_get_contents(dirname(__FILE__) . "/sql/getUserInfo.sql"));
     //Bind the parameters
-    $stmt->bind_param("i",$id);
+    $stmt->bind_param("iii", $user->udata->id, $user->udata->id, $user->udata->id);
     //Execute the statement
     if($stmt->execute() === false) {
     	error("Internal Error","SQL returned " . $stmt->error);
@@ -103,14 +52,14 @@ function getUserInfo($wp_id) {
     
     //Create the end result
     $result = array(
-    	"id" => $object['id'],
-    	"fname" => $object['fname'],
-    	"lname" => $object['lname'],
-    	"email" => $object['email'],
-    	"pin" => $object['pin'],
-    	"rfid" => $object['rfid'],
-    	"username" => $object['username'],
-    	"permissions" => json_decode($object['permissions']),
+    	"id" => $user->udata->id,
+    	"fname" => $user->udata->fname,
+    	"lname" => $user->udata->lname,
+    	"email" => $user->udata->email,
+    	"pin" => $user->udata->pin,
+    	"rfid" => $user->udata->rfid,
+    	"username" => $user->udata->username,
+    	"permissions" => $user->udata->permissions,
     	"time" => $object['time'],
     	"abstime" => $object['abstime'],
     	"signedin" => $object['signedin']
@@ -119,39 +68,28 @@ function getUserInfo($wp_id) {
     return $result;
 }
 
-function getUsersEvents($wp_id) {
-    global $database;
+function getUsersEvents($user) {
+    $database = attendanceGetDatabase();
     
-    $id = getUserIdByWpId($wp_id);
+    if(!($user instanceof User)) {
+        $user = new User($user, USER_SELECTOR_ID);
+    }
+    
+    if(!$user) {
+        throw new Exception("No such user");
+    }
     
     //Create the statement
     $stmt = $database->prepare(file_get_contents(dirname(__FILE__) . "/sql/getUsersEvents.sql"));
     //Bind the parameters
-    $stmt->bind_param("i",$id);
+    $stmt->bind_param("i",$user->udata->id);
     //Execute the statement
     if($stmt->execute() === false) {
     	error("Internal Error","SQL returned " . $stmt->error);
     }
     //Get the result
     $qresult = _mysqli_get_result($stmt);
-    //Result
-    $result = array();
-    //Process result
-    while(($row = array_shift($qresult)) != NULL) {
-    	//Create the event object
-    	$event = [];
-    	//Set the user data
-    	$event['id'] = $row['id'];
-    	$event['user'] = $row['user'];
-    	$event['start'] = $row['start'];
-    	$event['end'] = $row['end'];
-    	$event['meta'] = dechex($row['meta']);
-    	$event['isopen'] = $row['isopen'];
-    	$event['name'] = $row['name'];
-    	//Push to the list
-    	array_push($result, $event);
-    }
     
-    return $result;
+    return $qresult;
 }
 ?>

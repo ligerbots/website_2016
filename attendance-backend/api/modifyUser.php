@@ -8,13 +8,8 @@ setAccess("users.modify");
 //Arguments
 $args = [
 	"id" => null,
-	"fname" => null,
-	"lname" => null,
-	"email" => null,
 	"pin" => null,
 	"rfid" => null,
-	"username" => null,
-	"password" => null,
 	"permissions" => null
 ];
 
@@ -32,16 +27,12 @@ if($args['id'] == null) {
 	error("Invalid Request", "Missing target user ID");
 }
 
-//Get the actual user
-$realuser = new User($args['id'], USER_SELECTOR_ID);
-//Check if real user
-if($realuser->error !== false) {
+$realuser;
+try {
+	//Get the actual user
+	$realuser = new User($args['id'], USER_SELECTOR_ID);
+} catch (Exception $e) {
 	error("Invalid Request", "Unknown user ID");
-}
-
-//Check if password change
-if($args['password'] != null) {
-	$realuser->setPassword($password);
 }
 
 //Check the permissions
@@ -59,33 +50,15 @@ if($args['permissions'] != null) {
 		}
 	}
 	//Update permissions
-	$stmt = $database->prepare("UPDATE users SET permissions=? WHERE id=?");
-	$stmt->bind_param("si",$args['permissions'],intval($args['id']));
-	if($stmt->execute() === false) {
-		error("Internal Error","SQL returned " . $stmt->error);
-	}
+	update_user_meta($user->udata->id, "attendance_permissions", $args['permissions']);
 }
 
 //Update other fields
-update('fname',$args['fname']);
-update('lname',$args['lname']);
-update('email',$args['email']);
-update('pin',$args['pin']);
-update('rfid',$args['rfid']);
-update('username',$args['username']);
-
-function update($field, $value) {
-	//Global database and arguments reference
-	global $database, $args;
-	//Only do the thing if the value isn't null
-	if($value != null) {
-		$stmt = $database->prepare("UPDATE users SET ".$field."=? WHERE id=?");
-		$stmt->bind_param("si",$value,$args['id']);
-		if($stmt->execute() === false) {
-			error("Internal Error","SQL returned " . $stmt->error);
-		}
-		echo("Updated " . $field . PHP_EOL);
-	}
+if($args['pin']) {
+	update_user_meta($user->udata->id, "attendance_pin", $args['pin']);
+}
+if($args['rfid']) {
+	update_user_meta($user->udata->id, "attendance_rfid", $args['rfid']);
 }
 
 //Finished

@@ -1,24 +1,25 @@
 <?php
-   require_once( "include/page_elements.php" );
-   require_once( "include/utils.php" );
-   
-   require_once( "attendance-backend/api/functions.php" );
-   
-   $wp_id = get_current_user_id();
-   $attendanceUser;
-   if($wp_id > 0) {
-       $attendanceUser = new User($wp_id, USER_SELECTOR_UNAME);
-       if($attendanceUser->error !== false) {
-           $wp_info = wp_get_current_user();
-           createUser($wp_id, $wp_info->first_name, $wp_info->last_name, $wp_info->user_email);
-           $attendanceUser = new User($wp_id, USER_SELECTOR_UNAME);
-       }
-   } else {
-       header("Location: /");
-   }
-   
-   $attendanceInfo = getUserInfo($wp_id);
-   date_default_timezone_set("America/New_York"); 
+  require_once( "include/page_elements.php" );
+  require_once( "include/utils.php" );
+  
+  require_once( "attendance-backend/api/functions.php" );
+  
+  $wp_id = get_current_user_id();
+  $attendanceUser;
+  if($wp_id > 0) {
+    try {
+      $attendanceUser = new User($wp_id, USER_SELECTOR_ID);
+    } catch(Exception $e) {
+      // uh oh
+      error_log("Exception: " . $e->getMessage());
+      die("Oh no, there was a database error :(");
+    }
+  } else {
+    header("Location: /");
+  }
+  
+  $attendanceInfo = getUserInfo($attendanceUser);
+  date_default_timezone_set("America/New_York"); 
 ?>
 
 <!DOCTYPE html>
@@ -52,11 +53,24 @@
               <p>Meetings attended:</p>
               <ul>
                   <?php 
-                    $evts = getUsersEvents($wp_id);
+                    $evts = getUsersEvents($attendanceUser);
                     foreach($evts as $i=>$evt) {
-                        $start = date("d/m/y h:i a", $evt['start']);
-                        $hours = ($evt['end'] - $evt['start']) / 3600.0;
-                        ?> <li><b><?=$start;?></b>: <?php printf("%.1f", $hours); ?> hour(s)</li> <?php
+                        ?> <li> <?php
+                        if($evt['isopen']) {
+                          $start = date("d/m/y h:i a", $evt['start']);
+                          ?><b><?=$start;?></b>: ongoing<?php
+                        } else {
+                          $start = date("d/m/y h:i a", $evt['start']);
+                          $hours = ($evt['end'] - $evt['start']) / 3600.0;
+                          ?><b><?=$start;?></b>: <?php printf("%.1f", $hours); ?> hour(s)<?php
+                        }
+                        if($evt['meta'] & CALENDAR_MODIFIED || $evt['meta'] & CALENDAR_GIVEN) {
+                          ?> (modified)<?php
+                        }
+                        if($evt['meta'] & CALENDAR_SUSPENDED) {
+                          ?> (suspended)<?php
+                        }
+                        ?> </li> <?php
                     }
                     if(sizeof($evts) == 0) {
                         ?> <li>None</li> <?php

@@ -12,67 +12,66 @@ define("CALENDAR_SUSPENDED", 0b00000001);	// Events that are suspended will not 
 define("CALENDAR_MODIFIED",	 0b00000010);	// Events that were changed from their original values
 define("CALENDAR_GIVEN",	 0b00000100);	// Events that were manually created to give a user credit
 
-//Configuration
-$SQL = array(
-	"HOST" => DB_HOST,
-	"USER" => DB_USER,
-	"PASS" => DB_PASSWORD,
-	"NAME" => DB_ATTENDANCE_NAME
-);
+if(!defined('ATTENDANCE_API_INCLUDE')) {
+	define('ATTENDANCE_API_INCLUDE', false);
+}
 
 //Global objects
-$database;
-$user = null;
-$from_include = false;
+$_attendance_database = null;
+$_attendance_user = null;
 
-//Connect to the database
-$database = new mysqli($SQL["HOST"], $SQL["USER"], $SQL["PASS"], $SQL["NAME"]);
-//Check for connection error
-if($database->connect_error) {
-	error("Failed to connect to database",$database->connect_error);
+function attendanceGetDatabase() {
+	global $_attendance_database;
+	return $_attendance_database;
 }
 
-// create db if it doesn't exist
-if ($result = $database->query("SHOW TABLES LIKE 'calendar'")) {
-    $row_cnt = $result->num_rows;
-
-    $result->close();
-    if($row_cnt <= 0) {
-        $res = $database->multi_query(file_get_contents(dirname(__FILE__) . "/../sql/attendance.sql"));
-        if($res === false) {
-        	error("Internal Error", "SQL returned " . $initDbStatement->error);
-        }
-    }
-}
-
-//Check if credentials were supplied
-if(isSet($_SERVER['PHP_AUTH_USER'])) {
-	//Get global object
-	global $user;
-	//Get the user
-	$user = new User($_SERVER['PHP_AUTH_USER'], USER_SELECTOR_UNAME);
-	//Check if the user exists
-	if($user->error) {
-		//Failure
-		generate401("Invalid Credentials1 " . $user->error);
+function attendanceInit() {
+	global $_attendance_database;
+	
+	if($_attendance_database) return;
+	
+	//Connect to the database
+	$_attendance_database = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_ATTENDANCE_NAME);
+	//Check for connection error
+	if($_attendance_database->connect_error) {
+		error("Failed to connect to database", $_attendance_database->connect_error);
 	}
-	//Check the password
-	if(!$user->checkPassword($_SERVER['PHP_AUTH_PW'])) {
-		//Invalid password
-		generate401("Invalid Credentials2");
+	
+	// create db if it doesn't exist
+	if ($result = $_attendance_database->query("SHOW TABLES LIKE 'calendar'")) {
+	    $row_cnt = $result->num_rows;
+	
+	    $result->close();
+	    if($row_cnt <= 0) {
+	        $res = $_attendance_database->multi_query(file_get_contents(dirname(__FILE__) . "/../sql/attendance.sql"));
+	        if($res === false) {
+	        	error("Internal Error", "SQL returned " . $initDbStatement->error);
+	        }
+	    }
 	}
-}
-
-function attendanceSetFromInclude() {
-	global $from_include;
-	$from_include = true;
+	
+	//Check if credentials were supplied
+	if(isSet($_SERVER['PHP_AUTH_USER'])) {
+		//Get global object
+		global $_attendance_user;
+		//Get the user
+		try {
+			$_attendance_user = new User($_SERVER['PHP_AUTH_USER'], USER_SELECTOR_UNAME);
+			
+			//Check the password
+			if(!$_attendance_user->checkPassword($_SERVER['PHP_AUTH_PW'])) {
+				//Invalid password
+				generate401("Invalid Credentials2");
+			}
+		} catch(Exception $e) {
+			generate401("Invalid Credentials1 " . $user->error);
+		}
+	}
 }
 
 //Error function
 function error($message, $detail = "") {
-	global $from_include;
-	
-	if($from_include) {
+	if(ATTENDANCE_API_INCLUDE) {
 		throw new Exception("$message\n$detail");
 	}
 	// otherwise
@@ -105,18 +104,17 @@ function success($response) {
 //Method for setting the required authentication and permission
 function setAccess($permission) {
 	//Get global object
-	global $user;
-	global $from_include;
+	global $_attendance_user;
 	
-	if($from_include) { return true; }
+	if(ATTENDANCE_API_INCLUDE) { return true; }
 	
 	//Check if the user even bothered to log in
-	if($user==null) {
+	if($_attendance_user==null) {
 		//User is not logged in
 		generate401("Authentication is required to view the requested resource");
 	} else {
 		//Check if the user has permission
-		if(!$user->checkPermission($permission)) {
+		if(!$_attendance_user->checkPermission($permission)) {
 			//User does not have permission
 			error("Access Denied","Missing required permission " . $permission);
 		}
@@ -125,8 +123,7 @@ function setAccess($permission) {
 
 //Method for generating a 401 error
 function generate401($reason = false) {
-	global $from_include;
-	if(!$from_include) {
+	if(!ATTENDANCE_API_INCLUDE) {
 		//Send headers
 		header('WWW-Authenticate: Basic realm="Ligerbots Attendance"');
 		header('HTTP/1.0 401 Unauthorized');
@@ -151,5 +148,7 @@ function _mysqli_get_result( $Statement ) {
     }
     return $RESULT;
 }
+
+attendanceInit();
 
 ?>

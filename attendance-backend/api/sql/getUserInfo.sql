@@ -1,13 +1,4 @@
 SELECT
-	-- Basic user information
-	users.id,
-	users.fname,
-	users.lname,
-	users.email,
-	users.pin,
-	users.rfid,
-	users.username,
-	users.permissions,
 	-- This gets the total time the user has been signed in
 	(
 		-- This replaces 'NULL' with '0' in the case the user has never signed in
@@ -22,7 +13,7 @@ SELECT
 					WHERE
 						calendar.end <> 0 AND
 						NOT calendar.meta & b'00000001' AND -- This excludes events that are marked as "suspended"
-						calendar.user = users.id
+						calendar.user = ?
 				)
 			-- In the event the above statement is 'NULL', this sets the value to use instead
 			,0)
@@ -40,7 +31,7 @@ SELECT
 					FROM calendar
 					WHERE
 						calendar.end <> 0 AND
-						calendar.user = users.id
+						calendar.user = ?
 				)
 			-- In the event the above statement is 'NULL', this sets the value to use instead
 			,0)
@@ -58,7 +49,7 @@ SELECT
 					WHERE
 						calendar.end = 0 AND
 						NOT calendar.meta & b'00000001' AND	-- This excludes events that are marked as "suspended"
-						calendar.user = users.id
+						calendar.user = ?
 				)
 				-- Return 1 if the statement is true (the user is signed in)
 				THEN '1'
@@ -66,5 +57,3 @@ SELECT
 				ELSE '0'
 			END
 	) AS 'signedin'
-FROM users
-WHERE id=?

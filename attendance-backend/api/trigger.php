@@ -1,4 +1,5 @@
 <?php
+include("../../wp-backend/wp-config.php");
 //Include the API
 include("include/api.php");
 
@@ -29,10 +30,11 @@ if($pin != null) {
 	$selector = USER_SELECTOR_RFID;
 }
 
-//Get the user
-$victim = new User($id, $selector);
-//Check if the user exists
-if($victim->error !== false) {
+$victim;
+try {
+	//Get the user
+	$victim = new User($id, $selector);
+} catch(Exception $e) {
 	error("Invalid User", "No user could be found with the ID provided");
 }
 
@@ -45,9 +47,9 @@ if($result !== "signedIn" && $result !== "signedOut") {
 }
 
 //Display result
-if($result == "signedOut") {
-	success(array("result"=>"success","state"=>"0"));
+if($result == ATTENDANCE_SIGNED_OUT) {
+	success(array("result"=>"success","state"=>"0","signed_in"=>false));
 } else {
-	success(array("result"=>"success","state"=>"1"));
+	success(array("result"=>"success","state"=>"1","signed_in"=>true));
 }
 ?>
