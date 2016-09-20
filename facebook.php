@@ -89,9 +89,13 @@ function user_cmp( $a, $b ) {
                 }
 
                 $userlist = get_users();
+                // Sort the users: first by student/mentor/parent, then by name
                 uasort( $userlist, 'user_cmp' );
                 $prevType = -1;
                 foreach ( $userlist as $user ) {
+                    // Don't list users who have not been approved
+                    if ( ! $user->get( 'wp-approve-user' ) ) continue;
+                    
                     $type = acct_type( $user );
                     if ( $type != $prevType ) {
                         if ( $prevType >= 0 ) echo '<div style="clear:left"></div>' . "\n";

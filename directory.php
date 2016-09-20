@@ -75,6 +75,9 @@ function user_cmp($a, $b) {
                     uasort( $userlist, 'user_cmp' );
                     foreach ( $userlist as $user )
                     {
+                        // Don't list users who have not been approved
+                        if ( ! $user->get( 'wp-approve-user' ) ) continue;
+                        
                         echo '<tr>';
                         echo '  <td>' . esc_html( $user->first_name ) .'</td>';
                         echo '  <td>' . esc_html( $user->last_name ) .'</td>';
@@ -85,7 +88,9 @@ function user_cmp($a, $b) {
                                                    join( ' ', array( $user->get( 'state' ), $user->get( 'postalcode' ) ) ) ) );
                         if ( $addr == ', ,  ' ) $addr = '';
                         echo '  <td>' . esc_html( $addr ) . '</td>';
-                        echo '  <td>' . esc_html( $user->get( 'school' ) ) . '</td>';
+                        $school =  $user->get( 'school' );
+                        if ( strtoupper($school) == 'NONE' ) $school = '';
+                        echo '  <td>' . esc_html( $school ) . '</td>';
                         echo '  <td>' . esc_html( join( ', ', $user->get( 'team_role' ) ) ) . '</td>';
                         echo '</tr>';
                     }

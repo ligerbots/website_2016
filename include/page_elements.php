@@ -165,7 +165,7 @@ function output_footer( $home_page=false )
 
     echo '<div class="row row-margins">';
     echo '  <div class="col-xs-12">';
-    echo '    <div class="panel panel-sponsors">';
+    echo '    <div class="panel panel-sprs">';
     // don't apply the filters. Raw html.
     echo $page->post_content;
     echo '    </div>';

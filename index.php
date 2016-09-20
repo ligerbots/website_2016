@@ -1,6 +1,15 @@
 <?php
 require_once( "include/page_elements.php" );
 require_once( "include/utils.php" );
+
+if ( isset( $_GET['page_id'] ) ) {
+    # redirect to page php
+    $url = "/page.php?page_id=" . $_GET['page_id'];
+    if ( isset( $_GET['preview'] ) ) $url .= "&preview=" . $_GET[ 'preview' ];
+    header( "Location: $url" );
+    die();
+}
+
 $blog = get_latest_blog();
 ?>
 
