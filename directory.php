@@ -1,5 +1,6 @@
 <?php
 require_once( "include/page_elements.php" );
+require_once( "include/directory.php" );
 
 /* Short and sweet */
 define('WP_USE_THEMES', false);
@@ -25,6 +26,16 @@ function user_cmp($a, $b) {
         return ( $a1 < $b1) ? -1 : 1;
     return 0;
 }
+
+$userlist = get_users();
+// Sort it.
+uasort( $userlist, 'user_cmp' );
+
+if ( current_user_can( 'edit_posts' ) && isset( $_POST[ 'download_users' ] ) ) {
+    download_userlist( $userlist );
+    die();
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -70,13 +81,11 @@ function user_cmp($a, $b) {
                   <tbody>
                     
                     <?php 
-                    $userlist = get_users();
-                    // Sort it.
-                    uasort( $userlist, 'user_cmp' );
                     foreach ( $userlist as $user )
                     {
                         // Don't list users who have not been approved
                         if ( ! $user->get( 'wp-approve-user' ) ) continue;
+                        if ( $user->user_login == 'attendance-pi' ) continue;
                         
                         echo '<tr>';
                         echo '  <td>' . esc_html( $user->first_name ) .'</td>';
@@ -97,6 +106,15 @@ function user_cmp($a, $b) {
                     ?>
                   </tbody>
                 </table>
+
+                <?php
+                if ( current_user_can( 'edit_posts' ) ) {
+                    echo '<form class="form-inline" action="' . $_SERVER['PHP_SELF'] . '" method="post">';
+                    echo '<button type="submit" name="download_users" class="btn btn-default">Download Userlist</button>';
+                    echo "</form>\n";
+                }
+                ?>
+                
               </div>
             </div>
             

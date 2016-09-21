@@ -231,102 +231,11 @@ function register( $post )
 
     $msg = "Thank you for registering as '$username' with the LigerBots.\n";
     $msg .= "The administrator has been notified.\n\n";
-    $msg .= "You can log in once your account has been approved.\n\n";
-    $msg .= "LigerBots Administrator web@ligerbots.org\n";
+    $msg .= "Please wait for the approval email before trying to log in.\n\n";
+    $msg .= "LigerBots Administrator\nweb@ligerbots.org\n";
     wp_mail( $email, 'LigerBots Registration', $msg );
     
     return NULL;
-}
-
-function facebookUpload( $filelist )
-{
-    $c = count( $filelist['name'] );
-    $msg = "";
-    
-    for ( $i=0; $i<$c; $i++ )
-    {
-        $fname = $filelist['name'][$i]; 
-        $tmpName = $filelist['tmp_name'][$i];
-        if ( ! is_uploaded_file( $filelist['tmp_name'][$i] ) )
-        {
-            $msg .= "Error: $fname is not an uploaded file.<br>\n";
-            continue;
-        }
-
-        $t = $filelist['type'][$i];
-        if ( ! ( preg_match( '/^image\/p?jpeg$/i', $t ) or preg_match( '/^image\/gif$/i', $t )
-        or preg_match( '/^image\/(x-)?png$/i', $t ) ) )	
-        {
-            $msg .= "Error: $fname is not an image file.<br>\n";
-            continue;
-        }
-
-        $n = $filelist[ 'name' ][$i];
-        if ( ! preg_match( '/^(.*)[ _]+(.*)\.([a-z]+)$/i', $n, $parts ) ) {
-            $msg .= "Error: $fname does not match name pattern.<br>\n";
-            continue;
-        }
-
-        $fn = $parts[1];
-        $ln = $parts[2];
-        $ext = $parts[3];
-        
-        $msg .= "Received photo $fname for $fn $ln.<br>\n";
-        $users = get_users(
-            array(
-                'meta_query' => array(
-                    array(
-                        'key' => 'first_name',
-                        'value' => $fn,
-                        'compare' => '=='
-                    ),
-                    array(
-                        'key' => 'last_name',
-                        'value' => $ln,
-                        'compare' => '=='
-                    )
-                )
-            )
-        );
-        if ( count( $users ) > 1 ) {
-            $msg .= 'Found ' . count( $users ) . " WP users.<br>\n";
-            continue;
-        }
-        if ( count( $users ) == 0 ) {
-            $msg .= "Could not find user $fn $ln.<br>\n";
-            continue;
-        }
-        $user_id = $users[0]->ID;
-        
-        $md5 = md5_file( $tmpName );
-        $newFile = "$md5.$ext";
-        $newLoc = "images/facebook/$newFile";
-        if ( ! rename( $tmpName, $newLoc ) ) {
-            $msg .= "Rename to $newLoc failed<br>\n";
-        } else {
-            if ( ! chmod( $newLoc, 0644) )
-                $msg .= "Chmod of $newLoc failed<br>\n";
-        } 
-
-        update_user_meta( $user_id, 'facebook_image', $newFile );
-        $msg .= "Set picture for $fn $ln to $newFile.<br>\n";
-    }
-    
-    return $msg;
-}
-
-/* TEMP remember this */
-function array_to_csv_download($array, $filename = "export.csv", $delimiter=";") {
-    header('Content-Type: application/csv');
-    header('Content-Disposition: attachment; filename="'.$filename.'";');
-
-    // open the "output" stream
-    // see http://www.php.net/manual/en/wrappers.php.php#refsect2-wrappers.php-unknown-unknown-unknown-descriptioq
-    $f = fopen('php://output', 'w');
-
-    foreach ($array as $line) {
-        fputcsv($f, $line, $delimiter);
-    }
 }
 
 ?>

@@ -1,6 +1,6 @@
 <?php
 require_once( "include/page_elements.php" );
-require_once( "include/utils.php" );
+require_once( "include/directory.php" );
 
 /* Short and sweet */
 define('WP_USE_THEMES', false);
@@ -95,6 +95,7 @@ function user_cmp( $a, $b ) {
                 foreach ( $userlist as $user ) {
                     // Don't list users who have not been approved
                     if ( ! $user->get( 'wp-approve-user' ) ) continue;
+                    if ( $user->user_login == 'attendance-pi' ) continue;
                     
                     $type = acct_type( $user );
                     if ( $type != $prevType ) {
