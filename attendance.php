@@ -27,6 +27,10 @@
   <?php page_head( "LigerBots Attendance" ); ?>
 
   <body>
+    <style>
+      .suspended { color: red; }
+      .modified { color: blue; }
+    </style>
     <div id="header-ghost" ></div>
     <div class="container-fluid no-side-padding">
       <div class="col-xs-12 no-side-padding">
@@ -55,7 +59,15 @@
                   <?php 
                     $evts = getUsersEvents($attendanceUser);
                     foreach($evts as $i=>$evt) {
-                        ?> <li> <?php
+                        $elClass = "";
+                        if($evt['meta'] & CALENDAR_MODIFIED || $evt['meta'] & CALENDAR_GIVEN) {
+                          $elClass = "modified";
+                        }
+                        if($evt['meta'] & CALENDAR_SUSPENDED) {
+                          $elClass = "suspended";
+                        }
+                        
+                        ?> <li class="<?=$elClass;?>"> <?php
                         if($evt['isopen']) {
                           $start = date("d/m/y h:i a", $evt['start']);
                           ?><b><?=$start;?></b>: ongoing<?php
