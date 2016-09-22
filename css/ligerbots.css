@@ -211,17 +211,25 @@ body{
 /* WARNING: order of the vendor-extensions matter. 
    Last one that matches wins. */
 .panel-sprs {
+    border-radius: 0px;
+    border-style: solid;
+    border-width: 4px;
+    box-shadow: 3.182pt 3.182pt 5pt rgba(0,0,0,0.25);
+    background-color: transparent;
+    
     border-color: rgb(208,78,29);
     background-color: rgba(255,255,255,0.5);
     z-index: 1;
     position: relative;
     margin-bottom: 0;
     padding: 5px;
+}
 
+.panel-sprs .spr-row {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-
+    
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
     -ms-flex-direction: row;
@@ -237,53 +245,14 @@ body{
     justify-content: center;
 }
 
-.panel-sprs .spr-row {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: row;
-    flex-direction: row;
-    height: 50%;
-    margin-top: 3px;
-    margin-bottom: 3px;
-}
-
 .panel-sprs .spr-column {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    margin-left: 10px;
-    margin-right: 10px;
-    width: 110px;
-}
-
-.panel-sprs a {
-    -ms-flex-item-align: center;
-    align-self: center;
-    width: 100%;
-    height: 100%;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
+    margin-left: 8px;
+    margin-right: 8px;
 }
 
 .panel-sprs img {
-    /* object-fit: contain; */
-    /* align-self: center; */
-    /* height: 100%; */
-    width: 100%;
+    margin: 3px;
+    width: 110px;
 }
 
 /*--------------- Nav bar ---------------*/

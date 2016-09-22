@@ -76,7 +76,7 @@ $blog = get_latest_blog();
                   </div>
                   <div id="ann-panel" class="panel-body" >
                     <?php
-                    foreach ( get_announcements( 5 ) as $ann )
+                    foreach ( get_announcements( 4 ) as $ann )
                     {
                         my_setup_postdata( $ann ); 
                         echo '<div class="announce side-margins"><div class="announce-title">';
