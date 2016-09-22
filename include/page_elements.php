@@ -8,7 +8,7 @@ function page_head( $title, $includeRSS=false, $extraCSS=NULL )
 {
     echo <<<EOL
   <head>
-    <meta content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="/images/liger.ico"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" />
