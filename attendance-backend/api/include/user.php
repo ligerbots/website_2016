@@ -77,11 +77,11 @@ class User {
 		}
 		
 		// make sure we have a pin
-		if($wp_user->attendance_pin == "") {
+		if($wp_user->attendance_pin == "" || strlen($wp_user->attendance_pin) < 4) {
 			// guess not; time to create a pin
 			$pin = false;
 			while(!$pin) {
-				$pin = mt_rand(1, 9999);
+				$pin = mt_rand(1000, 9999);
 				// check if a user already has that pin
 				try {
 					new User($pin, USER_SELECTOR_PIN);
