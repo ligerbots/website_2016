@@ -30,6 +30,24 @@
     <style>
       .suspended { color: red; }
       .modified { color: blue; }
+      
+      .attendance-info td {
+        padding: 0 0.5em;
+      }
+      
+      .attendance-meetings td, .attendance-meetings th {
+        padding: 0 1em;
+      }
+      
+      .attendance-meetings, .attendance-meetings tr, .attendance-meetings td, .attendance-meetings th {
+        border: 1px solid rgb(208,78,29);
+        border-collapse: collapse;
+      }
+      
+      .attendance-info, .attendance-meetings {
+        margin-left: auto;
+        margin-right: auto;
+      }
     </style>
     <div id="header-ghost" ></div>
     <div class="container-fluid no-side-padding">
@@ -44,20 +62,40 @@
           <div class="col-md-12 col-md-offset-0 col-sm-10 col-sm-offset-1 col-xs-12">
             <div class="row top-spacer"> </div>
             <div class="row side-margins row-margins bottom-margin">
-              <h2>Attendance</h2>
+              <center><div class="notindex-title">MY ATTENDANCE</div></center>
               
-              <p><b>PIN: </b> <?=$attendanceInfo['pin']?></p>
-              <p><b>RFID tag: </b> <?=$attendanceInfo['rfid']==""?"Not set":$attendanceInfo['rfid']?></p>
+              <?php 
+                $evts = getUsersEvents($attendanceUser);
+              ?>
               
-              <p>
-                <b>Hours: </b> <?= $hours = floor(floatval($attendanceInfo["time"]) / 3600); ?>/50<br/>
-                <progress id="hours-tracker" max="50" value="<?= $hours; ?>"></progress>
-              </p>
+              <table class="attendance-info">
+                <tr>
+                  <th>PIN:</th>
+                  <td><?=$attendanceInfo['pin']?></td>
+                </tr>
+                <tr>
+                  <th>RFID Tag:</th>
+                  <td><?=$attendanceInfo['rfid']==""?"Not set":$attendanceInfo['rfid']?></td>
+                </tr>
+                <tr>
+                  <th>Total Hours:</th>
+                  <td><?= floor(floatval($attendanceInfo["time"]) / 3600); ?></td>
+                </tr>
+                <tr>
+                  <th>Total Heetings:</th>
+                  <td><?= sizeof($evts); ?></td>
+                </tr>
+              </table>
               
-              <p>Meetings attended:</p>
-              <ul>
+              <div class="level4-heading"><a name="meeting"></a>Meetings attended</div>
+              <table class="attendance-meetings">
+                  <tr>
+                    <th>Date/Time</th>
+                    <th>Hours</th>
+                    <th>Additional info</th>
+                  </tr>
                   <?php 
-                    $evts = getUsersEvents($attendanceUser);
+                    
                     foreach($evts as $i=>$evt) {
                         $elClass = "";
                         if($evt['meta'] & CALENDAR_MODIFIED || $evt['meta'] & CALENDAR_GIVEN) {
@@ -67,28 +105,33 @@
                           $elClass = "suspended";
                         }
                         
-                        ?> <li class="<?=$elClass;?>"> <?php
+                        ?>
+                        <tr class="<?=$elClass;?>">
+                        <?php
                         if($evt['isopen']) {
                           $start = date("d/m/y h:i a", $evt['start']);
-                          ?><b><?=$start;?></b>: ongoing<?php
+                          ?> <td><?=$start;?></td> <td>ongoing</td> <?php
                         } else {
                           $start = date("d/m/y h:i a", $evt['start']);
                           $hours = ($evt['end'] - $evt['start']) / 3600.0;
-                          ?><b><?=$start;?></b>: <?php printf("%.1f", $hours); ?> hour(s)<?php
+                          ?> <td><?=$start;?></td> <td><?php printf("%.1f", $hours); ?> hour<?=$hours==1?"":"s"?></td> <?php
                         }
+                        ?> <td> <?php
                         if($evt['meta'] & CALENDAR_MODIFIED || $evt['meta'] & CALENDAR_GIVEN) {
                           ?> (modified)<?php
                         }
                         if($evt['meta'] & CALENDAR_SUSPENDED) {
                           ?> (suspended)<?php
                         }
-                        ?> </li> <?php
+                        ?>
+                          </td>
+                        </tr> <?php
                     }
                     if(sizeof($evts) == 0) {
                         ?> <li>None</li> <?php
                     }
                   ?>
-              </ul>
+              </table>
             </div>
 
             <?php output_footer(); ?>
