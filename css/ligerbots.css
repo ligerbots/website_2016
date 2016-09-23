@@ -133,8 +133,9 @@ body{
     text-shadow: 4px 4px 5px rgba(0,0,0,0.25);
     border-radius: 0px;
     text-align: center;
-    height: 34.5pt;
+    /*height: 34.5pt;*/
     padding-top: 6pt;
+    padding-bottom: 8pt;
 }
 
 .panel-orange > .panel-body {
@@ -529,9 +530,10 @@ body{
 {
     float:left;
     width: 150px; 
-    height:266px;
+    height:280px;
     margin-right: 30px;
-    font-size: small;
+    font-size: 10.5pt;
+    line-height: 16pt;
 }
 .facebook-entry img {
     width: 150px;
@@ -541,6 +543,7 @@ body{
 .facebook-entry .name
 {
     float: left;
+    width: 70%;
 }
 .facebook-entry .exec
 {
@@ -550,11 +553,15 @@ body{
 {
     float: right;
     color: rgb(208,78,29);
+    width: 30%;
+    text-align: right;
 }
 .facebook-entry .south
 {
     float: right;
     color: rgb(0,102,179);
+    width: 30%;
+    text-align: right;
 }
 
 /*--------------- Default page elements ---------------*/
