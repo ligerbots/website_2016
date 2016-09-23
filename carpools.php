@@ -37,7 +37,7 @@ if ( isset( $_POST[ 'delcarpool' ] ) ) {
         <div class="row page-body">
           <div class="col-md-12 col-md-offset-0 col-sm-10 col-sm-offset-1 col-xs-12">
             <div class="row top-spacer"> </div>
-            <div class="row side-margins">
+            <div class="row side-margins bottom-margin">
               <div class="col-xs-12">
                 <center><div class="notindex-title">Team Carpools</div></center>
                 <br/>
@@ -82,7 +82,6 @@ if ( isset( $_POST[ 'delcarpool' ] ) ) {
                 ?>
               </div>
             </div>
-            <br/>
             
             <?php output_footer(); ?>
           </div>

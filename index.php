@@ -41,7 +41,7 @@ $blog = get_latest_blog();
                     <div class="blog-image-box">
                       <?php echo find_first_image( $blog ); ?>
                     </div>
-                    <div class="side-margins">
+                    <div class="text-margins">
                       <?php
                       my_setup_postdata( $blog );
                       my_the_excerpt( FALSE );
@@ -79,7 +79,7 @@ $blog = get_latest_blog();
                     foreach ( get_announcements( 4 ) as $ann )
                     {
                         my_setup_postdata( $ann ); 
-                        echo '<div class="announce side-margins"><div class="announce-title">';
+                        echo '<div class="announce text-margins"><div class="announce-title">';
                         echo '<a href="' . get_permalink( $ann ) . '">';
                         the_title();
                         echo "</a></div>\n";

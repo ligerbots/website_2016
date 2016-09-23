@@ -382,6 +382,11 @@ body{
     font-size: 17px;
 }
 
+.text-margins {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
 @media (min-width: 768px) {
     .side-margins {
         margin-left: 20px;
@@ -564,8 +569,8 @@ body{
     font-size: 20pt;
     letter-spacing: 0.1em;
     text-align: center;
-    padding-left: 4em;
-    padding-right: 4em;
+    padding-left: 2em;
+    padding-right: 2em;
     padding-top: 0.5em;
     padding-bottom: 0.5em;
     color: white;
@@ -649,11 +654,30 @@ body{
     float: none;
 }
 
-.blue-rule {
-    margin-top: 40px;
-    margin-bottom: 0;
-    margin-left: -2em;
-    margin-right: -2em;
-    border-top: 5px solid rgb(0,102,179);
+@media (min-width: 768px) {
+    .blue-rule {
+        margin-top: 40px;
+        margin-bottom: 0;
+        margin-left: -2em;
+        margin-right: -2em;
+        border-top: 5px solid rgb(0,102,179);
+    }
+}
+@media (max-width: 767px) {
+    .blue-rule {
+        margin-top: 40px;
+        margin-bottom: 0;
+        border-top: 5px solid rgb(0,102,179);
+    }
 }
 
+@media (min-width: 768px) {
+    .spr-width135 {
+        width: 135%;
+        margin-left: -17.5%;
+    }
+    .spr-width120 {
+        width: 120%;
+        margin-left: -10%;
+    }
+}
