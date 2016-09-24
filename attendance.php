@@ -109,10 +109,10 @@
                         <tr class="<?=$elClass;?>">
                         <?php
                         if($evt['isopen']) {
-                          $start = date("d/m/y h:i a", $evt['start']);
+                          $start = date("m/d/y h:i a", $evt['start']);
                           ?> <td><?=$start;?></td> <td>ongoing</td> <?php
                         } else {
-                          $start = date("d/m/y h:i a", $evt['start']);
+                          $start = date("m/d/y h:i a", $evt['start']);
                           $hours = ($evt['end'] - $evt['start']) / 3600.0;
                           ?> <td><?=$start;?></td> <td><?php printf("%.1f", $hours); ?> hour<?=$hours==1?"":"s"?></td> <?php
                         }

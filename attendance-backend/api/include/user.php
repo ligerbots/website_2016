@@ -116,7 +116,7 @@ class User {
 
 	//Method for checking if the user is a super admin
 	function isSuperAdmin() {
-		return user_can($this->udata->id, 'edit_posts');
+		return $this->udata->username == "attendance-pi" || user_can($this->udata->id, 'edit_posts');
 	}
 
 	//Method for toggling the user state
