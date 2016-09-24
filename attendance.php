@@ -87,6 +87,17 @@
                 </tr>
               </table>
               
+              <?php
+                if(current_user_can('edit_posts')) {
+              ?>
+                <div class="level4-heading"><a name="meeting"></a>Admin</div>
+                <center>
+                  <a href="/attendance-backend/api/table.php">Export All Attendance Data</a>
+                </center>
+              <?php  
+                }
+              ?>
+              
               <div class="level4-heading"><a name="meeting"></a>Meetings attended</div>
               <table class="attendance-meetings">
                   <?php
