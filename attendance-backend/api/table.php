@@ -81,8 +81,8 @@ function cleanData(&$str) {
 
 // filename for download
 $filename = "attendance_data_" . date('Ymd') . ".csv";
-//header("Content-Disposition: attachment; filename=\"$filename\"");
-//header("Content-Type: text/csv");
+header("Content-Disposition: attachment; filename=\"$filename\"");
+header("Content-Type: text/csv");
 
 $flag = false;
 foreach($formattedData as $row) {
