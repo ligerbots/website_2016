@@ -70,9 +70,9 @@ foreach($students as $student) {
     );
     foreach($allEvents as $eventTs) {
         if(isset($student[$eventTs])) {
-            $row[date("m/d/y h:i a", $eventTs)] = floor(($student[$eventTs])/360)/10;
+            $row[date("m/d/y", $eventTs)] = floor(($student[$eventTs])/360)/10;
         } else {
-            $row[date("m/d/y h:i a", $eventTs)] = "";
+            $row[date("m/d/y", $eventTs)] = "";
         }
     }
     $formattedData[] = $row;
