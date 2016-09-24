@@ -10,6 +10,9 @@ $users = get_users();
 $students = array();
 $allEvents = array();
 foreach($users as $user) {
+  if(!is_array($user->team_role)) {
+    continue;
+  }
   if(in_array("Student", $user->team_role)) {
     $database = attendanceGetDatabase();
     $id = $user->id;
