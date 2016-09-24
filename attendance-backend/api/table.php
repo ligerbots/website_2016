@@ -45,7 +45,8 @@ foreach($users as $user) {
     
     $data = array(
         "name" => $user->first_name . " " . $user->last_name,
-        "total_hours" => $totalTime
+        "total_hours" => $totalTime,
+        "total_meetings" => sizeof($qresult)
     );
     foreach($qresult as $i=>$row) {
         $start = intval($row['start']);
@@ -62,7 +63,11 @@ foreach($users as $user) {
 $formattedData = array();
 sort($allEvents);
 foreach($students as $student) {
-    $row = array("name" => $student['name'], "total_hours" => floor(($student["total_hours"])/360)/10);
+    $row = array(
+        "name" => $student['name'],
+        "total_meetings" => $student['total_meetings'],
+        "total_hours" => floor(($student["total_hours"])/360)/10
+    );
     foreach($allEvents as $eventTs) {
         if(isset($student[$eventTs])) {
             $row[date("m/d/y h:i a", $eventTs)] = floor(($student[$eventTs])/360)/10;
