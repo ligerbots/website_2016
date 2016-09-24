@@ -89,12 +89,18 @@
               
               <div class="level4-heading"><a name="meeting"></a>Meetings attended</div>
               <table class="attendance-meetings">
+                  <?php
+                    if(sizeof($evts) == 0) {
+                      ?> <tr><td>No meetings</td></tr> <?php
+                    } else {
+                  ?>
                   <tr>
                     <th>Date/Time</th>
                     <th>Hours</th>
                     <th>Additional info</th>
                   </tr>
-                  <?php 
+                  <?php
+                    }
                     
                     foreach($evts as $i=>$evt) {
                         $elClass = "";
@@ -126,9 +132,6 @@
                         ?>
                           </td>
                         </tr> <?php
-                    }
-                    if(sizeof($evts) == 0) {
-                        ?> <li>None</li> <?php
                     }
                   ?>
               </table>
