@@ -52,6 +52,9 @@ foreach($users as $user) {
         "total_meetings" => sizeof($qresult)
     );
     foreach($qresult as $i=>$row) {
+        if($row['meta'] & CALENDAR_SUSPENDED) {
+            continue;
+        }
         $start = intval($row['start']);
         $length = intval($row['end']) - $start;
         if(!in_array($start, $allEvents)) {
