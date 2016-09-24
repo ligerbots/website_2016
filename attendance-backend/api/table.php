@@ -69,10 +69,16 @@ foreach($students as $student) {
         "total_hours" => floor(($student["total_hours"])/360)/10
     );
     foreach($allEvents as $eventTs) {
+        $columnHeader = date("m/d/y", $eventTs);
         if(isset($student[$eventTs])) {
-            $row[date("m/d/y", $eventTs)] = floor(($student[$eventTs])/360)/10;
-        } else {
-            $row[date("m/d/y", $eventTs)] = "";
+            $hours = floor(($student[$eventTs])/360)/10;
+            if(isset($row[$columnHeader])) {
+                $row[$columnHeader] += $hours;
+            } else {
+                $row[$columnHeader] = $hours;
+            }
+        } else if(!isset($row[$columnHeader])) {
+            $row[$columnHeader] = "";
         }
     }
     $formattedData[] = $row;
