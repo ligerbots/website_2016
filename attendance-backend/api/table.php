@@ -88,10 +88,10 @@ $flag = false;
 foreach($formattedData as $row) {
     if(!$flag) {
         // display field/column names as first row
-        echo implode("\t", array_keys($row)) . "\r\n";
+        echo implode(",", array_keys($row)) . "\r\n";
         $flag = true;
     }
     array_walk($row, __NAMESPACE__ . '\cleanData');
-    echo implode("\t", array_values($row)) . "\r\n";
+    echo implode(",", array_values($row)) . "\r\n";
 }
 ?>
