@@ -131,7 +131,7 @@
                         } else {
                           $start = date("m/d/y h:i a", $evt['start']);
                           $hours = ($evt['end'] - $evt['start']) / 3600.0;
-                          ?> <td><?=$start;?></td> <td><?php printf("%.1f", $hours); ?> hour<?=$hours==1?"":"s"?></td> <?php
+                          ?> <td><?=$start;?></td> <td><?php printf("%.1f", $hours); ?></td> <?php
                         }
                         ?> <td> <?php
                         if($evt['meta'] & CALENDAR_MODIFIED || $evt['meta'] & CALENDAR_GIVEN) {
