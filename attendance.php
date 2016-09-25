@@ -48,6 +48,10 @@
         margin-left: auto;
         margin-right: auto;
       }
+      
+      .notindex-title {
+        margin-bottom: 3rem;
+      }
     </style>
     <div id="header-ghost" ></div>
     <div class="container-fluid no-side-padding">
