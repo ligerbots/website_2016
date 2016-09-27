@@ -166,6 +166,8 @@ body{
     margin-top: auto;
     margin-bottom: auto;
     height: 390px;
+    -o-object-fit: contain;
+    object-fit: contain;
 }
 .index-blog-text {
     height: 10em;
@@ -507,6 +509,17 @@ body{
 .blog-older{
     font-size: 130%;
     float: right;
+}
+
+
+.blog-content figure {
+    max-width: 100%;
+}
+.blog-content img {
+    max-width: 100%;
+}
+.blog-content figcaption {
+    margin-bottom: 1.5em;
 }
 
 /*--------------- Carpool page ---------------*/
