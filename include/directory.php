@@ -83,7 +83,10 @@ function facebookUpload( $filelist )
 
 function download_userlist( $userlist )
 {
-    $filename = "users.csv";
+    date_default_timezone_set( "America/New_York" ); 
+
+    $today = date( "Ymd" );
+    $filename = "users_$today.csv";
     
     header( 'Content-Description: File Transfer', true, 200 );
     header( 'Content-Type: text/csv' );
@@ -94,7 +97,7 @@ function download_userlist( $userlist )
     $f = fopen( 'php://output', 'w' );
 
     $row = array( 'Firstname', 'Lastname', 'Email', 'Groups', 'School', 'Graduation_Year', 'Phone', 'Parents',
-                  'Parent_Email', 'Emergency_Phone', 'Children', 'Address', 'City', 'State', 'PostalCode' );
+                  'Parent_Email', 'Emergency_Phone', 'Children', 'Address', 'City', 'State', 'Zipcode' );
     fputcsv( $f, $row );
 
     foreach ( $userlist as $user )
