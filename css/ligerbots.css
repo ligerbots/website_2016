@@ -177,6 +177,17 @@ body{
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 5;
 }    
+
+/* for iPhone */
+#cal-panel-div {
+    overflow-y: auto;
+    -webkit-overflow-scrolling:touch !important;
+}
+#cal-panel-div iframe {
+    min-width: 100%;
+    width: 100px;
+}
+
 .panel-brag {
     border-color: rgb(0,102,179);
     z-index: 1;
