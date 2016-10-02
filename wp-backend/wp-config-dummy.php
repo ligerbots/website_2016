@@ -8,6 +8,7 @@ define('DB_USER', 'c9');
 define('DB_PASSWORD', 'c9');
 define('DB_HOST', 'localhost');
 define('DB_ATTENDANCE_NAME', 'c9');
+define('FLICKR_API_KEY', getenv('FLICKR_API_KEY'));
 
 define('AUTH_KEY',         'btC($=U2v=|x;8>M)|6|Tu|>hIr|Nl%zK:P;vGL^qCEbq6aFJq(Bu*(+SioF#[?A');
 define('SECURE_AUTH_KEY',  'p^-6VQMp)%@w)LZj40nV:!jY)}V(lUid958:5e7+UY ?eCnUN%3/Cg;DpT%_%,nq');

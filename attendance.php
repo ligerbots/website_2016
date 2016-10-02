@@ -1,6 +1,7 @@
 <?php
   require_once( "include/page_elements.php" );
   require_once( "include/utils.php" );
+  http_response_code(200); // no wordpress, this isn't an error
   
   require_once( "attendance-backend/api/functions.php" );
   

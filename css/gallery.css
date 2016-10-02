@@ -1,0 +1,121 @@
+#gallery-browse {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    border: 4px solid rgb(208,78,29);
+    box-shadow: 3.182pt 3.182pt 5pt rgba(0,0,0,0.25);
+}
+
+#gallery-items {
+    width: 100%;
+}
+
+#gallery-sidebar {
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+}
+
+#gallery-album-select {
+    white-space: nowrap;
+    overflow-y: auto;
+    overflow-x: hidden;
+    width: 400px;
+    flex: 1;
+}
+
+.gallery-album-select-item {
+    padding: .5rem;
+    cursor: default;
+    transition: all 0.3s;
+    background: transparent;
+    display: block;
+    border: 0;
+    width: 100%;
+    text-align: left;
+}
+.gallery-album-select-item:hover {
+    background: rgba(0,102,179, 0.3);
+}
+.gallery-album-select-item.selected {
+    background: rgb(0,102,179);
+    color: white;
+}
+
+#gallery-year-select select {
+    width: 100%;
+}
+
+#gallery-items {
+    background: black;
+    display: flex;
+    flex-direction: column;
+}
+
+#gallery-items.loading:after {
+    color: gray;
+    font-size: 3rem;
+    text-align: center;
+    margin-top: 3rem;
+    content: "Loading...";
+    content: url(/images/ajax-loader.gif);
+    display: block;
+}
+
+#gallery-items.error:after {
+    color: gray;
+    font-size: 3rem;
+    text-align: center;
+    margin-top: 3rem;
+    content: "Error loading photos";
+    display: block;
+}
+
+#gallery-items.loading .list,
+#gallery-items.loading .current,
+#gallery-items.error .list,
+#gallery-items.error .current {
+    display: none;
+}
+
+#gallery-items .list {
+    border-top: 1px solid gray;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+}
+
+#gallery-items .list .list-inner {
+    width: 0;
+}
+
+#gallery-items .current {
+    position: relative;
+    width: 100%;
+    flex: 1;
+}
+
+#gallery-items .list .list-item {
+    width: 46px;
+    height: 46px;
+    margin: 2px;
+    object-fit: contain;
+    border: 1px solid gray;
+}
+
+#gallery-items .list .list-item.selected {
+    border-color: rgb(0,102,179);
+}
+
+#gallery-items .current .current-image {
+    width: 100%;
+    height: 100%;
+    max-height: 430px;
+    object-fit: contain;
+}
+
+img.loading {
+    background-image: url(/images/ajax-loader.gif);
+    background-repeat: no-repeat;
+    background-position: center;
+}
