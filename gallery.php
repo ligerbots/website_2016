@@ -19,58 +19,19 @@
         $f->enableCache("fs", "/var/tmp");
     }
     
+    syslog(LOG_INFO, "sample text");
+    
     if(isset($_GET['album_id'])) {
         $id = $_GET['album_id'];
-        $res = $f->photosets_getPhotos($id, "127608154@N06");
+        // the phpFlickr call photosets_getPhotos doesn't include the user_id parameter, so do it manually
+        $res = $f->call('flickr.photosets.getPhotos', array('photoset_id' => $id, 'user_id' => "127608154@N06", 'extras' => "url_sq,url_m"));
         if(!$res) {
             error_log("Flickr error on photosets_getPhotos: " . $f->error_msg);
             http_response_code(500);
         } else {
             header("Content-Type: application/json");
+
             echo json_encode($res);
-        }
-        die();
-    } else if(isset($_GET['photo_id'])) {
-        $cacheFile = "f_" . $_GET['photo_id'];
-        if(isset($_GET['thumb'])) {
-            $cacheFile .= "_thumb";
-        }
-        
-        header("Content-Type: image/jpeg");
-        
-        if(CACHE_ALLOWED && file_exists("/tmp/" . $cacheFile) && exif_imagetype("/tmp/" . $cacheFile)) {
-            header("Content-Length: " . filesize("/tmp/" . $cacheFile));
-            echo file_get_contents("/tmp/" . $cacheFile);
-            die();
-        }
-        $res = $f->photos_getSizes($_GET['photo_id']);
-        if(!$res) {
-            error_log("Flickr error on photosets_getPhotos: " . $f->error_msg);
-            http_response_code(500);
-        } else {
-            $thumb;
-            $original;
-            foreach($res as $resolution) {
-                if($resolution['label'] == "Square") {
-                    $thumb = $resolution;
-                }
-                if($resolution['label'] == "Large") {
-                    $original = $resolution;
-                }
-            }
-            $source;
-            if(isset($_GET['thumb'])) {
-                $source = $thumb['source'];
-            } else {
-                $source = $original['source'];
-            }
-            
-            $contents = file_get_contents($source);
-            header("Content-Length: " . strlen($contents));
-            if(CACHE_ALLOWED) {
-                file_put_contents("/tmp/" . $cacheFile, $contents);
-            }
-            echo $contents;
         }
         die();
     }

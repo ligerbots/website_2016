@@ -1,15 +1,38 @@
 var selectedYear = $("#gallery-year-select select").val();
+var req = null;
 
 function selectPhoto(img) {
   $("#gallery-items .list .list-item.selected").removeClass("selected");
   img.addClass("selected");
   
-  $("#gallery-items .current").html(`<img class="current-image loading" data-src="gallery.php?photo_id=${img.attr("data-id")}" />`);
-  $("#gallery-items .current .current-image").unveil();
+  var placeholder = $(`<img class="current-image" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" />`);
+  $("#gallery-items .current").html('').append(placeholder);
+  
+  var src = img.attr("data-large");
+  
+  var actual = new Image();
+  
+  var timeout = setTimeout(function(){
+    placeholder.addClass("loading");
+  }, 500);
+  
+  actual.classList.add("current-image");
+  actual.classList.add("fade-in");
+  actual.onload = function() {
+    clearTimeout(timeout);
+    $("#gallery-items .current").html('').append(actual);
+  };
+  actual.onerror = function() {
+    $("#gallery-items .list-inner, #gallery-items .selected").html("");
+    $("#gallery-items").addClass("error");
+  };
+  actual.src = src;
 }
 
 function selectAlbum(albumButton) {
   if(!albumButton) return;
+  if(req) req.abort();
+  
   var id = albumButton.attr("data-id");
   $(".gallery-album-select-item.selected").removeClass("selected");
   albumButton.addClass("selected");
@@ -17,16 +40,18 @@ function selectAlbum(albumButton) {
   $("#gallery-items").addClass("loading");
   $("#gallery-items").removeClass("error");
   $("#gallery-items .list-inner, #gallery-items .selected").html("");
-  $.get("gallery.php", {album_id: id}).done(function(data){
+  
+  req = $.get("gallery.php", {album_id: id}).done(function(data){
+    console.log(data);
     $("#gallery-items").removeClass("loading");
     
     for(var photo of data.photoset.photo) {
-      $("#gallery-items .list-inner").append(`<img class="list-item loading" data-id="${photo.id}" data-src="gallery.php?photo_id=${photo.id}&thumb" />`);
+      $("#gallery-items .list-inner").append(`<img class="list-item loading" data-large="${photo.url_m}" data-src="${photo.url_sq}" />`);
     }
     
     $("#gallery-items .list .list-item").click(function(){
       selectPhoto($(this));
-    }).unveil();
+    }).unveil(); // lazy-load thumbnails as necessary
     
     selectPhoto($($("#gallery-items .list .list-item").get(0)));
   }).fail(function(){
