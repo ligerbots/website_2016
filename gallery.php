@@ -35,7 +35,11 @@
         if(isset($_GET['thumb'])) {
             $cacheFile .= "_thumb";
         }
+        
+        header("Content-Type: image/jpeg");
+        
         if(CACHE_ALLOWED && file_exists("/tmp/" . $cacheFile) && exif_imagetype("/tmp/" . $cacheFile)) {
+            header("Content-Length: " . filesize("/tmp/" . $cacheFile));
             echo file_get_contents("/tmp/" . $cacheFile);
             die();
         }
@@ -61,13 +65,8 @@
                 $source = $original['source'];
             }
             
-            if(endswith($source, ".jpg") || endswith($source, ".jpeg")) {
-                header("Content-Type: image/jpeg");
-            } else {
-                header("Content-Type: image/png"); // idk, we probably don't have any non-jpegs
-            }
-            
             $contents = file_get_contents($source);
+            header("Content-Length: " . strlen($contents));
             if(CACHE_ALLOWED) {
                 file_put_contents("/tmp/" . $cacheFile, $contents);
             }
