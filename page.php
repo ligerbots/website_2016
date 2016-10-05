@@ -8,6 +8,11 @@ require('wp-backend/wp-blog-header.php');
 $url = $_SERVER[ "REQUEST_URI" ];
 $postid = url_to_postid( $url );
 
+if($postid == 0) { // does not exist
+  require("404.php");
+  die();
+}
+
 $post = get_post( $postid );
 $isPage = is_page( $post );
 $includeFooter = ! ( $isPage && get_page_uri( $postid ) == "current-sponsors" );
