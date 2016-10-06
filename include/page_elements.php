@@ -132,7 +132,7 @@ function output_navbar()
     if ( $loggedIn ) {
         echo '<li><a href="/directory.php">Directory</a></li>';
         echo '<li><a href="/facebook.php">Facebook</a></li>';
-        echo '<li><a href="/google-drive">Google Drive</a></li>';
+        echo '<li><a href="/links">Team Links</a></li>';
     }        
     echo "   </ul>\n";
     echo "   </li>\n";
