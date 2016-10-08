@@ -43,7 +43,7 @@ if($_REQUEST['action'] == "send") {
     $content = str_replace('${name}', htmlspecialchars($_PRESANITIZE_REQUEST['name-first'][$i]), $content);
     $content .= $imgTag;
     
-    $mail = new NonWpMailer\PHPMailer;
+    $mail = new PHPMailer;
 
     //header("Content-Type: text/plain");
     //$mail->SMTPDebug = 3;
