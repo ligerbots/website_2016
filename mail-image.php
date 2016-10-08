@@ -1,6 +1,6 @@
 <?php
 define('WP_USE_THEMES', false);
-require_once('../wp-backend/wp-blog-header.php');
+require_once('wp-backend/wp-blog-header.php');
 http_response_code(200);
 
 $uri = $_SERVER['REQUEST_URI'];

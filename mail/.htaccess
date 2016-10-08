@@ -2,4 +2,4 @@ RewriteEngine On
 RewriteBase /mail
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . image.php [L]
+RewriteRule . ../mail-image.php [L]

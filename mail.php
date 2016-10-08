@@ -4,14 +4,15 @@
 // this assignment copies the array
 $_PRESANITIZE_REQUEST = $_REQUEST;
 
-require_once( '../include/page_elements.php' );
-require_once 'RandomStringGenerator.php';
+require_once( 'include/page_elements.php' );
+require_once 'include/RandomStringGenerator.php';
 $rnd = new RandomStringGenerator();
 
-require_once 'phpmailer/class.phpmailer.php';
-require_once 'phpmailer/class.smtp.php';
-
 $hostname = $_SERVER['HTTP_HOST'];
+$protocol = "https";
+if(strpos($hostname, "dev2016") !== FALSE) {
+  $protocol = "http";
+}
 
 if(!current_user_can('edit_posts')) {
   header("Location: /");
@@ -37,7 +38,7 @@ if($_REQUEST['action'] == "send") {
       $_PRESANITIZE_REQUEST['email'][$i]);
     $wpdb->query($q);
     
-    $imgTag = "<img src='https://$hostname/mail/$tracking_id.gif' />";
+    $imgTag = "<img src='$protocol://$hostname/mail/$tracking_id.gif' />";
     $content = $_PRESANITIZE_REQUEST['content-html'];
     $content = str_replace('${name}', htmlspecialchars($_PRESANITIZE_REQUEST['name-first'][$i]), $content);
     $content .= $imgTag;
@@ -113,7 +114,7 @@ if($_REQUEST['action'] == "send") {
                   $q = $wpdb->prepare("SELECT * FROM `email-tracking` WHERE `email-id`=%s", $_REQUEST['id']);
                   $people = $wpdb->get_results($q, ARRAY_A);
                 ?>
-                <a href="index.php">Create email</a><br/>
+                <a href="mail.php">Create email</a><br/>
                 <?php 
                   $q = $wpdb->prepare("SELECT `subject` FROM `email-tracking-emails` WHERE `id`=%s", $_REQUEST['id']);
                   $email = $wpdb->get_results($q, ARRAY_A);
@@ -138,7 +139,7 @@ if($_REQUEST['action'] == "send") {
                 <?php
                 } else { ?>
                 Create email:<br/>
-                <form action="index.php" method="POST">
+                <form action="mail.php" method="POST">
                   <input type="hidden" name="action" value="send" style="display: none" />
                   <textarea name="content-html" style="display: none"></textarea>
                   <input type="text" name="subject" placeholder="Subject" /><br/>
@@ -160,7 +161,7 @@ if($_REQUEST['action'] == "send") {
                  $emailList = $wpdb->get_results("SELECT `id`, `subject` FROM `email-tracking-emails` ORDER BY `id` DESC", ARRAY_A);
                  foreach($emailList as $row) {
                    ?>
-                   <a href="index.php?action=status&id=<?=$row['id'];?>"><?=$row['subject'];?></a><br/>
+                   <a href="mail.php?action=status&id=<?=$row['id'];?>"><?=$row['subject'];?></a><br/>
                    <?php
                  }
                 ?>
