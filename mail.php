@@ -29,14 +29,6 @@ if($_REQUEST['action'] == "send") {
   
   for($i = 0; $i < sizeof($_PRESANITIZE_REQUEST['name-first']); $i++) {
     $tracking_id = $rnd->generate(32);
-    $q = $wpdb->prepare(
-      "INSERT INTO `email-tracking` (`id`, `email-id`, `name-first`, `name-last`, `email`) VALUES(%s, %s, %s, %s, %s)",
-      $tracking_id,
-      $id,
-      $_PRESANITIZE_REQUEST['name-first'][$i],
-      $_PRESANITIZE_REQUEST['name-last'][$i],
-      $_PRESANITIZE_REQUEST['email'][$i]);
-    $wpdb->query($q);
     
     $imgTag = "<img src='$protocol://$hostname/mail/$tracking_id.gif' />";
     $content = $_PRESANITIZE_REQUEST['content-html'];
@@ -67,7 +59,14 @@ if($_REQUEST['action'] == "send") {
     if(!$mail->send()) {
       $action_message .= "Error sending to: " . $_POST['email'][$i] . "\n" . $mail->ErrorInfo . "\n\n";
     } else {
-      echo "Email sent to " . $_PRESANITIZE_REQUEST['email'][$i] . "\n";
+      $q = $wpdb->prepare(
+        "INSERT INTO `email-tracking` (`id`, `email-id`, `name-first`, `name-last`, `email`) VALUES(%s, %s, %s, %s, %s)",
+        $tracking_id,
+        $id,
+        $_PRESANITIZE_REQUEST['name-first'][$i],
+        $_PRESANITIZE_REQUEST['name-last'][$i],
+        $_PRESANITIZE_REQUEST['email'][$i]);
+      $wpdb->query($q);
     }
   }
 }
