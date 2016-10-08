@@ -1,4 +1,5 @@
 <?php
+namespace NonWpMailer;
 /**
  * PHPMailer - PHP email creation and transport class.
  * PHP Version 5
@@ -3952,7 +3953,7 @@ class PHPMailer
  * PHPMailer exception handler
  * @package PHPMailer
  */
-class phpmailerException extends Exception
+class phpmailerException extends \Exception
 {
     /**
      * Prettify error message output

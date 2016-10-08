@@ -11,6 +11,8 @@ $rnd = new RandomStringGenerator();
 require_once 'phpmailer/class.phpmailer.php';
 require_once 'phpmailer/class.smtp.php';
 
+$hostname = $_SERVER['HTTP_HOST'];
+
 if(!current_user_can('edit_posts')) {
   header("Location: /");
   die();
@@ -35,12 +37,12 @@ if($_REQUEST['action'] == "send") {
       $_PRESANITIZE_REQUEST['email'][$i]);
     $wpdb->query($q);
     
-    $imgTag = "<img src='https://ligerbots.org/mail/$tracking_id.gif' />";
+    $imgTag = "<img src='https://$hostname/mail/$tracking_id.gif' />";
     $content = $_PRESANITIZE_REQUEST['content-html'];
     $content = str_replace('${name}', htmlspecialchars($_PRESANITIZE_REQUEST['name-first'][$i]), $content);
     $content .= $imgTag;
     
-    $mail = new PHPMailer;
+    $mail = new NonWpMailer\PHPMailer;
 
     //header("Content-Type: text/plain");
     //$mail->SMTPDebug = 3;
