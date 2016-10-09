@@ -100,13 +100,41 @@ if($_REQUEST['action'] == "send") {
     <style>
       #message-editable {
         background: white;
-        border: 1px solid black;
+        font-size: initial;
+        font-family: initial;
+        line-height: initial;
+        color: initial;
+        font-weight: initial;
+        letter-spacing: initial;
+        height: initial;
+        min-height: 100px;
+      }
+      #message-editable.untouched::after {
+        content: "Paste from Google docs";
+        color: gray;
       }
       #email-status, #email-status tr, #email-status td, #email-status th,
       #group-preview-table, #group-preview-table tr, #group-preview-table td, #group-preview-table th {
         border: 1px solid black;
         border-collapse: collapse;
         padding: 0.5rem;
+      }
+      #group-preview-table {
+        width: 100%;
+      }
+      
+      hr.dark {
+        border-top-color: gray;
+      }
+      .email-groups-list {
+        list-style-type: none;
+      }
+      .email-groups-list.top-level {
+        padding-left: 0;
+      }
+      .required:after {
+        content: "*";
+        color: red;
       }
     </style>
     <div id="header-ghost" ></div>
@@ -161,38 +189,40 @@ if($_REQUEST['action'] == "send") {
                 </table>
                 <?php
                 } else { ?>
-                Create email:<br/>
+                <h2>Create email</h2>
                 <form action="mail.php" method="POST">
                   <input type="hidden" name="action" value="send" style="display: none" />
                   <input type="hidden" name="to-groups" style="display: none" />
                   <textarea name="content-html" style="display: none"></textarea>
-                  <input type="text" name="subject" placeholder="Subject" /><br/>
-                  <input type="text" name="from-name" placeholder="From name" /><br/>
-                  <input type="text" name="from-email" placeholder="From email" /><br/>
-                  <input type="password" name="smtp-password" placeholder="Password" /><br/>
-                  Email content (<code>${name}</code> turns into name):<br/>
-                  <div contenteditable="true" id="message-editable"></div><br/>
                   
-                  <div id="to-group">
-                    <ul>
+                  <div class="form-group">
+                    <label class="required">Subject</label>
+                    <input type="text" class="form-control" name="subject" placeholder="Subject line" required />
+                  </div>
+                    
+                  <div class="form-group">
+                    <label class="required">Send from</label>
+                    <input type="text" class="form-control" name="from-name" placeholder="Your name" required /><br/>
+                    <input type="email" class="form-control" name="from-email" placeholder="Email" required /><br/>
+                    <input type="password" class="form-control" name="smtp-password" placeholder="Password" required />
+                  </div>
+                  
+                  <div class="form-group">
+                    <label class="required">Email content (<code>${name}</code> turns into name)</label>
+                    <div class="form-control untouched" contenteditable="true" id="message-editable"></div>
+                  </div>
+                  
+                  <label class="required">To</label>
+                  <div id="to-group" class="checkbox">
+                    <ul class="email-groups-list top-level">
                       <li id="team-groups">
                         <label><input type="checkbox" class="team-select" /> team@ligerbots.com</label>
-                        <ul>
+                        <ul class="email-groups-list">
                           <li><label><input type="checkbox" class="group-select" data-group="parents_south" /> parents_south@ligerbots.com</label></li>
-                        </ul>
-                        <ul>
                           <li><label><input type="checkbox" class="group-select" data-group="parents_north" /> parents_north@ligerbots.com</label></li>
-                        </ul>
-                        <ul>
                           <li><label><input type="checkbox" class="group-select" data-group="coaches" /> coaches@ligerbots.com</label></li>
-                        </ul>
-                        <ul>
                           <li><label><input type="checkbox" class="group-select" data-group="mentors_other" /> mentors_other@ligerbots.com</label></li>
-                        </ul>
-                        <ul>
                           <li><label><input type="checkbox" class="group-select" data-group="students_south" /> students_south@ligerbots.com</label></li>
-                        </ul>
-                        <ul>
                           <li><label><input type="checkbox" class="group-select" data-group="students_north" /> students_north@ligerbots.com</label></li>
                         </ul>
                       </li>
@@ -201,17 +231,18 @@ if($_REQUEST['action'] == "send") {
                       </li>
                     </ul>
                   </div>
-                  <button id="email-submit" type="submit">Send</button><br/><br/>
+                  <button type="submit" id="email-submit" class="btn btn-default" disabled>Submit</button>
                   <div id="group-preview">
+                    <h3>Email list</h3>
                     <table id="group-preview-table">
                       <tr><th>Value of ${name}</th><th>First name</th><th>Last name</th><th>Email</th></tr>
                     </table>
                   </div>
                 </form>
                 <?php } ?>
-                <hr />
+                <hr class="dark" />
                 
-                Previous emails:<br/>
+                <h2>Previous emails</h2>
                 <?php
                  $emailList = $wpdb->get_results("SELECT `id`, `subject` FROM `email-tracking-emails` ORDER BY `id` DESC", ARRAY_A);
                  foreach($emailList as $row) {
@@ -240,22 +271,27 @@ if($_REQUEST['action'] == "send") {
       function loadGroups() {
         submit.prop('disabled', true);
         if(loadReq) loadReq.abort();
+        $("#group-preview").html("<h3>Loading...</h3>");
         var querystring = [];
         $(".group-select").each(function(){
           if($(this).prop("checked")) querystring.push($(this).attr("data-group"));
         });
         
         loadReq = $.get("/mail/groups-get.php?" + querystring.join("&"), function(data) {
-          $("#group-preview").html('<table id="group-preview-table"><tr><th>Value of ${name}</th><th>First name</th><th>Last name</th><th>Email</th></tr></table>');
+          $("#group-preview").html('<h3>Email list</h3><table id="group-preview-table"><tr><th>Value of ${name}</th><th>First name</th><th>Last name</th><th>Email</th></tr></table>');
+          var length = 0;
           for(var email in data) {
+            length++;
             var member = data[email];
             var overrideName = member['name-override'] || member['name-first'] || "";
             $("#group-preview-table").append("<tr><td>" + overrideName + "</td><td>" + (member['name-first'] || "") + "</td><td>" + (member['name-last'] || "") + "</td><td>" + member['email'] + "</td></tr>");
           }
           $("[name=to-groups]").val(JSON.stringify(data));
-          submit.prop('disabled', false);
+          if(length > 0) {
+            submit.prop('disabled', false);
+          }
         }).fail(function(){
-          $("#group-preview").html("Error loading members");
+          $("#group-preview").html("<h3>Error loading members</h3>");
         });
       }
     
@@ -278,6 +314,19 @@ if($_REQUEST['action'] == "send") {
       $(".group-select[data-group=incoming]").change(function(){
         loadGroups();
       });
+      
+      var targetNodes = $("#message-editable");
+      var MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
+      var myObserver = new MutationObserver(function(){
+          targetNodes.removeClass("untouched");
+          var contentHtml = $("form").find("#message-editable").html();
+          $("form").find("[name=content-html]").val(contentHtml);
+      });
+      var obsConfig = { childList: true, characterData: true, attributes: true, subtree: true };
+      targetNodes.each(function(){
+          myObserver.observe (this, obsConfig);
+      });
+      
       
       $("form").submit(function(){
         var contentHtml = $(this).find("#message-editable").html();
