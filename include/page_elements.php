@@ -2,7 +2,7 @@
 
 /* Short and sweet */
 define('WP_USE_THEMES', false);
-require_once('wp-backend/wp-blog-header.php');
+require_once(dirname(__FILE__) . '/../wp-backend/wp-blog-header.php');
 
 function page_head( $title, $includeRSS=false, $extraCSS=NULL )
 {
@@ -132,7 +132,7 @@ function output_navbar()
     if ( $loggedIn ) {
         echo '<li><a href="/directory.php">Directory</a></li>';
         echo '<li><a href="/facebook.php">Facebook</a></li>';
-        echo '<li><a href="/google-drive">Google Drive</a></li>';
+        echo '<li><a href="/links">Team Links</a></li>';
     }        
     echo "   </ul>\n";
     echo "   </li>\n";
@@ -149,6 +149,7 @@ function output_navbar()
         <li><a href="/attendance.php">My Attendance</a></li>';
         if ( current_user_can( 'edit_posts' ) ) {
             echo '<li><a href="/wp-backend/wp-admin/edit.php">Edit Posts</a></li>';
+            echo '<li><a href="/mail.php">Email Tracking</a></li>';
         }
         echo '<li><a href="/wp-backend/wp-admin/profile.php">My Profile</a></li>
         <li><a href="/login.php?logout">Logout</a></li>
@@ -171,7 +172,7 @@ function output_footer( $home_page=false )
     echo $page->post_content;
     echo '    </div>';
     echo '    <div style="text-align: center;">';
-    echo '      <p class="label-orange">Thank you to our sponsors!</p>';
+    echo '      <a href="/current-sponsors"><p class="label-orange">Thank you to our sponsors!</p></a>';
     echo '    </div>';
     echo '  </div>';
     echo '</div>';

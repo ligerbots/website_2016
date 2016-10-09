@@ -522,11 +522,11 @@ body{
     float: right;
 }
 
-
 .blog-content figure {
     max-width: 100%;
 }
 .blog-content img {
+    height: auto !important; 
     max-width: 100%;
 }
 .blog-content iframe {
