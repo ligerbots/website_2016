@@ -71,7 +71,7 @@ function user_cmp( $a, $b ) {
                 ?>
                 
                 <center>
-                  <div class="notindex-title">LigerBots Facebook</div>
+                  <div class="notindex-title">LIGERBOTS FACEBOOK</div>
                   <br/><br/>
                   The information on this page is confidential - It is only available to registered and approved users.
                   <br/>

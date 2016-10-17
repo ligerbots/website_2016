@@ -39,7 +39,7 @@ if ( isset( $_POST[ 'delcarpool' ] ) ) {
             <div class="row top-spacer"> </div>
             <div class="row side-margins bottom-margin">
               <div class="col-xs-12">
-                <center><div class="notindex-title">Team Carpools</div></center>
+                <center><div class="notindex-title">TEAM CARPOOLS</div></center>
                 <br/>
                 <center>
                   Monday at South, Room 9170, 6:30-8:30 PM<br>

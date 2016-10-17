@@ -60,7 +60,7 @@ if ( current_user_can( 'edit_posts' ) && isset( $_POST[ 'download_users' ] ) ) {
               <div class="col-xs-12">
 
                 <center>
-                  <div class="notindex-title">LigerBots Directory</div>
+                  <div class="notindex-title">LIGERBOTS DIRECTORY</div>
                   <br/><br/>
                   The information on this page is confidential - It is only available to registered and approved users.
                   <br/>
