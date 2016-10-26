@@ -33,7 +33,19 @@ EOL;
 
     if ( $includeRSS ) echo '    <link rel="alternate" type="application/rss+xml" href="/?feed=rss" title="LigerBots Blog Feed">' . "\n";
 
-    echo "    <title>$title</title>\n</head>\n";
+    echo "    <title>$title</title>\n";
+
+    /* Google Analytics tracking code */
+    echo "    <script>\n";
+    echo "      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){\n";
+    echo "        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),\n";
+    echo "                             m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)\n";
+    echo "      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');\n";
+    echo "      ga('create', 'UA-71672666-1', 'auto');\n";
+    echo "      ga('send', 'pageview');\n";
+    echo "    </script>\n";
+
+    echo "</head>\n";
 }
 
 function page_foot()
@@ -128,11 +140,11 @@ function output_navbar()
                 <li class="dropdown">
                   <a class="dropdown-toggle" data-toggle="dropdown" href="#">Resources<span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    <li><a href="/carpools.php">Carpools</a></li>';
+                    <li><a href="/carpools.php">Carpools</a></li>
+                    <li><a href="/links">Team Links</a></li>';
     if ( $loggedIn ) {
         echo '<li><a href="/directory.php">Directory</a></li>';
         echo '<li><a href="/facebook.php">Facebook</a></li>';
-        echo '<li><a href="/links">Team Links</a></li>';
     }        
     echo "   </ul>\n";
     echo "   </li>\n";
