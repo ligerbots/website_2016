@@ -184,7 +184,7 @@ function output_footer( $home_page=false )
     echo $page->post_content;
     echo '    </div>';
     echo '    <div style="text-align: center;">';
-    echo '      <a href="/current-sponsors"><p class="label-orange">Thank you to our sponsors!</p></a>';
+    echo '      <p class="label-orange"><a href="/current-sponsors">Thank you to ALL our Sponsors (click here)!</a></p>';
     echo '    </div>';
     echo '  </div>';
     echo '</div>';

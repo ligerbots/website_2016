@@ -222,6 +222,13 @@ body{
     background-color: rgb(208,78,29);
 }
 
+.label-orange a {
+    color: white;
+}
+.label-blue a {
+    color: white;
+}
+
 /*--------------- Sponsor bar ---------------*/
 
 /* WARNING: order of the vendor-extensions matter. 
