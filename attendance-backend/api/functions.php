@@ -92,4 +92,21 @@ function getUsersEvents($user) {
     
     return $qresult;
 }
+
+function updateEvent($eventId, $startTs, $endTs, $suspended, $modified, $given) {
+  $database = attendanceGetDatabase();
+  $meta = 0;
+  if($suspended) $meta |= CALENDAR_SUSPENDED;
+  if($modified) $meta |= CALENDAR_MODIFIED;
+  if($given) $meta |= CALENDAR_GIVEN;
+  
+  $stmt = $database->prepare("UPDATE calendar SET `start`=?, `end`=?, `meta`=? WHERE `id`=?");
+  //Bind parameters
+  $stmt->bind_param("iiii", $startTs, $endTs, $meta, $eventId);
+  //Execute the query
+  if($stmt->execute() === false) {
+  	error("Internal Error","SQL returned " . $stmt->error);
+  }
+}
+
 ?>

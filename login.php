@@ -4,10 +4,14 @@ require_once( "include/page_elements.php" );
 /* Short and sweet */
 define('WP_USE_THEMES', false);
 require_once('wp-backend/wp-blog-header.php');
+http_response_code(200); // override wp
 
 // Form submitted
 
 $referrer = $_SERVER[ 'HTTP_REFERER' ];
+if(isset($_REQUEST['r'])) {
+  $referrer = $_REQUEST['r'];
+}
 
 if ( isset( $_GET['logout'] ) ) {
     wp_logout();

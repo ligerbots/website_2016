@@ -4,6 +4,7 @@ require_once( 'include/page_elements.php' );
 /* Short and sweet */
 define('WP_USE_THEMES', false);
 require_once( 'wp-backend/wp-blog-header.php' );
+http_response_code(200); // override wp
 ?>
 
 <!DOCTYPE html>

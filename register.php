@@ -5,6 +5,7 @@ require_once( "include/registration.php" );
 /* Short and sweet */
 define('WP_USE_THEMES', false);
 require('wp-backend/wp-blog-header.php');
+http_response_code(200); // override wp
 
 // Form submitted
 

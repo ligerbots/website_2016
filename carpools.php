@@ -1,6 +1,7 @@
 <?php
 require_once( "include/page_elements.php" );
 require_once( "include/utils.php" );
+http_response_code(200); // override wp
 
 // Form submitted
 

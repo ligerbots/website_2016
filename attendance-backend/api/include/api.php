@@ -10,7 +10,7 @@ include("user.php");
 //Define calendar meta values
 define("CALENDAR_SUSPENDED", 0b00000001);	// Events that are suspended will not count towards total time
 define("CALENDAR_MODIFIED",	 0b00000010);	// Events that were changed from their original values
-define("CALENDAR_GIVEN",	 0b00000100);	// Events that were manually created to give a user credit
+define("CALENDAR_GIVEN",     0b00000100);	// Events that were manually created to give a user credit
 
 if(!defined('ATTENDANCE_API_INCLUDE')) {
 	define('ATTENDANCE_API_INCLUDE', false);

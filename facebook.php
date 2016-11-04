@@ -5,11 +5,12 @@ require_once( "include/directory.php" );
 /* Short and sweet */
 define('WP_USE_THEMES', false);
 require_once('wp-backend/wp-blog-header.php');
+http_response_code(200); // override wp
 
 // must be logged in
 if ( ! is_user_logged_in() )
 {
-    header('Location: /login.php');
+    header('Location: /login.php?r=%2ffacebook.php');
     die();
 }
 
