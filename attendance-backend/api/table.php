@@ -2,6 +2,7 @@
 include("../../wp-backend/wp-config.php");
 //Include the API
 include("include/api.php");
+date_default_timezone_set("America/New_York");
 
 //Required permission
 setAccess("users.getinfo");
