@@ -72,9 +72,10 @@ sort($allEvents);
 foreach($students as $student) {
     $row = array(
         "name" => $student['name'],
-        "total_meetings" => $student['total_meetings'],
+        "total_meetings" => 0,
         "total_hours" => floor(($student["total_hours"])/360)/10
     );
+    $totalMeetings = 0;
     foreach($allEvents as $eventTs) {
         $columnHeader = date("m/d/y", $eventTs);
         if(isset($student[$eventTs])) {
@@ -83,11 +84,13 @@ foreach($students as $student) {
                 $row[$columnHeader] += $hours;
             } else {
                 $row[$columnHeader] = $hours;
+                $totalMeetings++;
             }
         } else if(!isset($row[$columnHeader])) {
             $row[$columnHeader] = "";
         }
     }
+    $row["total_meetings"] = $totalMeetings;
     $formattedData[] = $row;
 }
 
