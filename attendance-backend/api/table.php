@@ -75,24 +75,31 @@ foreach($students as $student) {
         "total_meetings" => 0,
         "total_hours" => floor(($student["total_hours"])/360)/10
     );
-    $allDates = array();
+    
     foreach($allEvents as $eventTs) {
         $columnHeader = date("m/d/y", $eventTs);
-        if(!in_array($columnHeader, $allDates)) {
-          $allDates[] = $columnHeader;
-        }
         if(isset($student[$eventTs])) {
-            $hours = floor(($student[$eventTs])/360)/10;
             if(isset($row[$columnHeader])) {
-                $row[$columnHeader] += $hours;
+                $row[$columnHeader] += $student[$eventTs];
             } else {
-                $row[$columnHeader] = $hours;
+                $row[$columnHeader] = $student[$eventTs];
             }
         } else if(!isset($row[$columnHeader])) {
-            $row[$columnHeader] = "";
+            $row[$columnHeader] = 0;
         }
     }
-    $row["total_meetings"] = sizeof($allDates);
+    $totalMeetings = 0;
+    foreach($row as $key=>$cell) {
+      if($key == "name" || $key == "total_meetings" || $key == "total_hours")
+        continue;
+      if($row[$key] == 0) {
+        $row[$key] = "";
+      } else {
+        $totalMeetings++;
+        $row[$key] = floor($row[$key] / 360) / 10;
+      }
+    }
+    $row["total_meetings"] = $totalMeetings;
     $formattedData[] = $row;
 }
 
