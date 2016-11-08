@@ -177,7 +177,7 @@
                   <td><?= floor(floatval($attendanceInfo["time"]) / 360) / 10; ?></td>
                 </tr>
                 <tr>
-                  <th>Total Heetings:</th>
+                  <th>Total Meetings:</th>
                   <td><?php
                     $allDates = array();
                     foreach($evts as $evt) {
