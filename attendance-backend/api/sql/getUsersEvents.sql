@@ -9,3 +9,4 @@ SELECT
 	IF(calendar.end = 0, 1, 0) AS 'isopen'
 FROM calendar
 WHERE user=?
+ORDER BY calendar.start ASC

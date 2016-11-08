@@ -174,11 +174,21 @@
                 </tr>
                 <tr>
                   <th>Total Hours:</th>
-                  <td><?= round(floatval($attendanceInfo["time"]) / 3600); ?></td>
+                  <td><?= floor(floatval($attendanceInfo["time"]) / 360) / 10; ?></td>
                 </tr>
                 <tr>
                   <th>Total Heetings:</th>
-                  <td><?= sizeof($evts); ?></td>
+                  <td><?php
+                    $allDates = array();
+                    foreach($evts as $evt) {
+                      $eventTs = $evt['start'];
+                      $day = date("m/d/y", $eventTs);
+                      if(!in_array($day, $allDates)) {
+                        $allDates[] = $day;
+                      }
+                    }
+                    echo sizeof($allDates);
+                  ?></td>
                 </tr>
               </table>
               
