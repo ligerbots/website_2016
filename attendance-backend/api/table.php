@@ -79,7 +79,7 @@ foreach($students as $student) {
     foreach($allEvents as $eventTs) {
         $columnHeader = date("m/d/y", $eventTs);
         if(!in_array($columnHeader, $allDates)) {
-          $allDates[] = $day;
+          $allDates[] = $columnHeader;
         }
         if(isset($student[$eventTs])) {
             $hours = floor(($student[$eventTs])/360)/10;
