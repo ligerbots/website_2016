@@ -25,7 +25,8 @@
                     <div id="gallery-2015" style="z-index: 2;">
                         <div id="gallery-2015-buildseason" style="z-index: 3;">
                             <img src=//c6.staticflickr.com/8/7396/16384591885_5c14c19192_c.jpg style="z-index: 4;">
-                            <div id="gallery-2015-buildseason-caption" style="psition: relative; z-index:4;">
+                            <div id="gallery-2015-buildseason-caption" style="psition: absolute; bottom: 0; z-index: 4;">
+								<p style="align: center;">This is a test caption</p>					
                            	</div>
                         </div>
                     </div>
