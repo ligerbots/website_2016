@@ -34,7 +34,7 @@ if ( isset( $_POST[ 'login' ] ) ) {
     else
     {
         $dest = $_POST[ 'redirect_to' ];
-        if ( empty( $dest ) ) $dest = '/';
+        if ( empty( $dest ) || preg_match( '/login/', $dest ) ) $dest = '/';
         header( "Location: $dest" );
         exit();
     }
