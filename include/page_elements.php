@@ -145,6 +145,7 @@ function output_navbar()
     if ( $loggedIn ) {
         echo '<li><a href="/directory.php">Directory</a></li>';
         echo '<li><a href="/facebook.php">Facebook</a></li>';
+        echo '<li><a href="/preseason-resources/">Preseason Resources</li>';
     }        
     echo "   </ul>\n";
     echo "   </li>\n";
