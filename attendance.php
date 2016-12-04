@@ -6,9 +6,11 @@
   date_default_timezone_set("America/New_York");
   
   require_once( "attendance-backend/api/functions.php" );
+
+  $is_admin = current_user_can("manage_options");
   
   if(isset($_REQUEST['action'])) {
-    if(!current_user_can("edit_posts")) {
+    if(!$is_admin) {
       http_response_code(403);
       die("Access denied :(");
     }
@@ -44,7 +46,7 @@
     if(isset($_GET['view_for']) && trim($_GET['view_for']) == "") {
       unset($_GET['view_for']);
     }
-    if(current_user_can('edit_posts') && isset($_GET['view_for'])) {
+    if($is_admin && isset($_GET['view_for'])) {
       $args= array(
         'search' => $_GET['view_for'],
         'search_fields' => array('user_login','user_nicename','display_name')
@@ -117,7 +119,7 @@
               <center><div class="notindex-title">MY ATTENDANCE</div></center>
               
               <?php
-                if(current_user_can('edit_posts')) {
+                if($is_admin) {
               ?>
                 <div class="level4-heading" style="margin-top:0">Management</div>
                 <center>
@@ -134,7 +136,7 @@
               <?php  
                 }
                 
-                if(current_user_can('edit_posts') && isset($_GET['view_for']) && !$viewing_other) {
+                if($is_admin && isset($_GET['view_for']) && !$viewing_other) {
               ?>
               <p>
                 <center>User <?=$_GET['view_for'];?> not found</center>
@@ -148,7 +150,7 @@
               ?>
               
               <?php
-                if(current_user_can('edit_posts')) {
+                if($is_admin) {
               ?>
               <div class="level4-heading">
               <?php
@@ -201,13 +203,13 @@
                   ?>
                   <tr>
                     <th>Date/Time</th>
-                    <th><?=current_user_can("edit_posts")?"End date/time":"Hours";?></th>
+                    <th><?=$is_admin?"End date/time":"Hours";?></th>
                     <th>Additional info</th>
                   </tr>
                   <?php
                     }
                     
-                    if(current_user_can('edit_posts')) {
+                    if($is_admin) {
                       foreach($evts as $i=>$evt) {
                         ?>
                         <tr>
@@ -283,7 +285,7 @@
               </table>
               
               <?php
-                  if(current_user_can('edit_posts')) {
+                  if($is_admin) {
               ?>
               <p><center>
               Add event: 
