@@ -49,6 +49,7 @@ foreach($users as $user) {
     
     $data = array(
         "name" => $user->first_name . " " . $user->last_name,
+        "user_registered" => $user->user_registered,
         "total_hours" => $totalTime,
         "total_meetings" => sizeof($qresult)
     );
@@ -72,6 +73,7 @@ sort($allEvents);
 foreach($students as $student) {
     $row = array(
         "name" => $student['name'],
+        "user_registered" => $student['user_registered'],
         "total_meetings" => 0,
         "total_hours" => floor(($student["total_hours"])/360)/10
     );
@@ -90,7 +92,7 @@ foreach($students as $student) {
     }
     $totalMeetings = 0;
     foreach($row as $key=>$cell) {
-      if($key == "name" || $key == "total_meetings" || $key == "total_hours")
+      if($key == "name" || $key == "total_meetings" || $key == "user_registered" || $key == "total_hours")
         continue;
       if($row[$key] == 0) {
         $row[$key] = "";
@@ -113,6 +115,7 @@ function cleanData(&$str) {
 $filename = "attendance_data_" . date('Ymd') . ".csv";
 header("Content-Disposition: attachment; filename=\"$filename\"");
 header("Content-Type: text/csv");
+//header("Content-Type: text/plain");
 
 $flag = false;
 foreach($formattedData as $row) {
