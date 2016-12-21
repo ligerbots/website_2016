@@ -63,6 +63,7 @@ foreach($users as $user) {
             $allEvents[] = $start;
         }
         $data[$start] = $length;
+        
     }
     $students[] = $data;
   }
@@ -75,7 +76,8 @@ foreach($students as $student) {
         "name" => $student['name'],
         "user_registered" => $student['user_registered'],
         "total_meetings" => 0,
-        "total_hours" => floor(($student["total_hours"])/360)/10
+        "total_hours" => floor(($student["total_hours"])/360)/10,
+        "last_meeting" => "N/A"
     );
     
     foreach($allEvents as $eventTs) {
@@ -86,13 +88,14 @@ foreach($students as $student) {
             } else {
                 $row[$columnHeader] = $student[$eventTs];
             }
+            $row["last_meeting"] = $columnHeader;
         } else if(!isset($row[$columnHeader])) {
             $row[$columnHeader] = 0;
         }
     }
     $totalMeetings = 0;
     foreach($row as $key=>$cell) {
-      if($key == "name" || $key == "total_meetings" || $key == "user_registered" || $key == "total_hours")
+      if($key == "name" || $key == "total_meetings" || $key == "user_registered" || $key == "total_hours" || $key == "last_meeting")
         continue;
       if($row[$key] == 0) {
         $row[$key] = "";
