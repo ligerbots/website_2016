@@ -108,6 +108,20 @@ foreach($students as $student) {
     $formattedData[] = $row;
 }
 
+function last_name_cmp($a, $b) {
+    $a = explode(" ", $a['name']);
+    $a = sizeof($a) > 1 ? $a[1] : $a[0];
+    $b = explode(" ", $b['name']);
+    $b = sizeof($b) > 1 ? $b[1] : $b[0];
+
+    if ($a == $b) {
+        return 0;
+    }
+    return ($a < $b) ? -1 : 1;
+}
+
+usort($formattedData, "last_name_cmp");
+
 function cleanData(&$str) {
     $str = preg_replace("/\t/", "\\t", $str);
     $str = preg_replace("/\r?\n/", "\\n", $str);
