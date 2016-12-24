@@ -2,9 +2,9 @@
 Contributors: naa986
 Donate link: https://wphowto.net/
 Tags: smtp, gmail, mail, mailer, phpmailer, wp_mail, email, oauth2
-Requires at least: 4.3
-Tested up to: 4.6
-Stable tag: 1.0.6
+Requires at least: 4.7
+Tested up to: 4.7
+Stable tag: 1.0.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -101,6 +101,13 @@ For screenshots please visit the [Gmail SMTP](https://wphowto.net/gmail-smtp-plu
 none
 
 == Changelog ==
+
+= 1.0.8 =
+* Gmail SMTP now supports the "wp_mail_failed" hook which fires after a phpmailerException is caught.
+
+= 1.0.7 =
+* Added more requirements to the Server Info tab to help with troubleshooting.
+* Compatible with WooCommerce email in HTML format.
 
 = 1.0.6 =
 * Added a new option to bypass this error on some servers where the SSL certificate is not properly configured - Warning: stream_socket_enable_crypto(): SSL operation failed with code 1.
