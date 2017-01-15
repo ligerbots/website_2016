@@ -21,7 +21,7 @@ foreach($users as $user) {
     // get total time signed in
     $stmt = $database->prepare(file_get_contents(dirname(__FILE__) . "/sql/getUserInfo.sql"));
     //Bind the parameters
-    $stmt->bind_param("iii", $id, $id, $id);
+    $stmt->bind_param("iiii", $id, $id, $id, $id);
     //Execute the statement
     if($stmt->execute() === false) {
     	error("Internal Error","SQL returned " . $stmt->error);
@@ -35,6 +35,7 @@ foreach($users as $user) {
     
     $object = $qresult[0];
     $totalTime = $object['time'];
+    $buildTime = $object['buildtime'];
     
     // get all events for user
     $stmt = $database->prepare(file_get_contents(dirname(__FILE__) . "/sql/getUsersEvents.sql"));
@@ -51,20 +52,27 @@ foreach($users as $user) {
         "name" => $user->first_name . " " . $user->last_name,
         "user_registered" => $user->user_registered,
         "total_hours" => $totalTime,
-        "total_meetings" => sizeof($qresult)
+        "total_meetings" => sizeof($qresult),
+        "preseason_meetings" => 0,
+        "build_hours" => $buildTime
     );
+    $preDates = [];
     foreach($qresult as $i=>$row) {
         if($row['meta'] & CALENDAR_SUSPENDED) {
             continue;
         }
         $start = intval($row['start']);
+        $day = date("m/d/y", $start);
         $length = intval($row['end']) - $start;
         if(!in_array($start, $allEvents)) {
             $allEvents[] = $start;
         }
+        if($start < 1483765200 && !in_array($day, $preDates)) {
+          $preDates[] = $day;
+        }
         $data[$start] = $length;
-        
     }
+    $data['preseason_meetings'] = sizeof($preDates);
     $students[] = $data;
   }
 }
@@ -77,6 +85,8 @@ foreach($students as $student) {
         "user_registered" => $student['user_registered'],
         "total_meetings" => 0,
         "total_hours" => floor(($student["total_hours"])/360)/10,
+        "preseason_meetings" => $student['preseason_meetings'],
+        "build_hours" => floor(($student["build_hours"])/360)/10,
         "last_meeting" => "N/A"
     );
     
@@ -95,8 +105,12 @@ foreach($students as $student) {
     }
     $totalMeetings = 0;
     foreach($row as $key=>$cell) {
-      if($key == "name" || $key == "total_meetings" || $key == "user_registered" || $key == "total_hours" || $key == "last_meeting")
+      if($key == "name" || $key == "total_meetings"
+            || $key == "user_registered" || $key == "total_hours"
+            || $key == "last_meeting" || $key == "preseason_meetings"
+            || $key == "build_hours") {
         continue;
+      }
       if($row[$key] == 0) {
         $row[$key] = "";
       } else {
