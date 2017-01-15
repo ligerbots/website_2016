@@ -182,14 +182,33 @@
                   <th>Total Meetings:</th>
                   <td><?php
                     $allDates = array();
+                    $preDates = array();
                     foreach($evts as $evt) {
+                      if($evt['meta'] & CALENDAR_SUSPENDED) {
+                        continue;
+                      }
                       $eventTs = $evt['start'];
                       $day = date("m/d/y", $eventTs);
                       if(!in_array($day, $allDates)) {
                         $allDates[] = $day;
                       }
+                      if($eventTs < 1483765200 && !in_array($day, $preDates)) {
+                        $preDates[] = $day;
+                      }
                     }
                     echo sizeof($allDates);
+                  ?></td>
+                </tr>
+                <tr>
+                  <th>Preseason Meetings:</th>
+                  <td><?= sizeof($preDates); ?>/5</td>
+                </tr>
+                <tr>
+                  <th>Build Season Hours:</th>
+                  <td><?= floor(floatval($attendanceInfo["buildtime"]) / 360) / 10; ?>/<?php
+                    $addonHours = 5 * (5 - sizeof($preDates));
+                    if($addonHours > 0) echo "(50 + " . $addonHours . ")";
+                    else echo "50";
                   ?></td>
                 </tr>
               </table>

@@ -36,7 +36,7 @@ function getUserInfo($user) {
     //Create the statement
     $stmt = $database->prepare(file_get_contents(dirname(__FILE__) . "/sql/getUserInfo.sql"));
     //Bind the parameters
-    $stmt->bind_param("iii", $user->udata->id, $user->udata->id, $user->udata->id);
+    $stmt->bind_param("iiii", $user->udata->id, $user->udata->id, $user->udata->id, $user->udata->id);
     //Execute the statement
     if($stmt->execute() === false) {
     	error("Internal Error","SQL returned " . $stmt->error);
@@ -61,6 +61,7 @@ function getUserInfo($user) {
     	"username" => $user->udata->username,
     	"permissions" => $user->udata->permissions,
     	"time" => $object['time'],
+    	"buildtime" => $object['buildtime'],
     	"abstime" => $object['abstime'],
     	"signedin" => $object['signedin']
     );

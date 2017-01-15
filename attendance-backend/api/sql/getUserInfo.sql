@@ -18,6 +18,26 @@ SELECT
 			-- In the event the above statement is 'NULL', this sets the value to use instead
 			,0)
 	) AS 'time',
+	-- This gets the total time the user has been signed in
+	(
+		-- This replaces 'NULL' with '0' in the case the user has never signed in
+		SELECT
+			IFNULL
+			(
+				(
+					-- This calculates the total time the user has been signed in
+					SELECT
+						SUM(calendar.end - calendar.start)
+					FROM calendar
+					WHERE
+						calendar.end <> 0 AND
+						NOT calendar.meta & b'00000001' AND -- This excludes events that are marked as "suspended"
+						calendar.user = ? AND
+						calendar.start > 1483765200 -- TODO: This hardcodes the 2017 kickoff date
+				)
+			-- In the event the above statement is 'NULL', this sets the value to use instead
+			,0)
+	) AS 'buildtime',
 	-- This gets the total time the user has been present, including that which has been marked as suspended
 	(
 		-- This replaces 'NULL' with '0' in the case the user has never signed in

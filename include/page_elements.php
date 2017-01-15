@@ -146,6 +146,7 @@ function output_navbar()
         echo '<li><a href="/directory.php">Directory</a></li>';
         echo '<li><a href="/facebook.php">Facebook</a></li>';
         echo '<li><a href="/preseason-resources/">Preseason Resources</a></li>';
+        echo '<li><a href="http://team.ligerbots.com">Team Internal Site</a></li>';
     }        
     echo "   </ul>\n";
     echo "   </li>\n";
