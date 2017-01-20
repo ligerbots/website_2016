@@ -69,7 +69,14 @@
     header("Location: /login.php?r=%2fattendance.php");
   }
   
+try {
   $attendanceInfo = getUserInfo($attendanceUser);
+} catch(Exception $e) {
+  // uh oh
+  error_log("Exception: " . $e->getMessage());
+  die("Oh no, there was a database error :( " . $e->getMessage());
+}
+
 ?>
 
 <!DOCTYPE html>

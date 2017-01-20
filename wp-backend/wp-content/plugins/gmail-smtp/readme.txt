@@ -4,7 +4,7 @@ Donate link: https://wphowto.net/
 Tags: smtp, gmail, mail, mailer, phpmailer, wp_mail, email, oauth2
 Requires at least: 4.7
 Tested up to: 4.7
-Stable tag: 1.0.8
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -101,6 +101,12 @@ For screenshots please visit the [Gmail SMTP](https://wphowto.net/gmail-smtp-plu
 none
 
 == Changelog ==
+
+= 1.1.0 =
+* Updated the PHPMailer library to version 5.2.21. This release contains a critical security update for CVE-2016-10045 that was fixed in PHPMailer 5.2.20.
+
+= 1.0.9 =
+* Updated the PHPMailer library to the latest version (5.2.19). This release also contains a critical security update for CVE-2016-10033 that was fixed in PHPMailer 5.2.18.
 
 = 1.0.8 =
 * Gmail SMTP now supports the "wp_mail_failed" hook which fires after a phpmailerException is caught.

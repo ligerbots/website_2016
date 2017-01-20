@@ -45,7 +45,7 @@ function getUserInfo($user) {
     $qresult = _mysqli_get_result($stmt);
     //Check for error
     if(sizeof($qresult) == 0) {
-    	error("Invalid User", "No user found with that ID");
+    	error("Invalid User: " . $database->error, "No user found with that ID");
     }
     
     $object = $qresult[0];
