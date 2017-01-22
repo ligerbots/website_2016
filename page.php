@@ -30,6 +30,7 @@ $includeFooter = ! ( $isPage && get_page_uri( $postid ) == "current-sponsors" );
       preg_match( '/<img[^>]+src=[\'"](?P<src>.+?)[\'"][^>]*>/i', $html, $result );
       $imageURL = $result['src'];
       $extraHTML = "<meta property=\"og:image\" content=\"$imageURL\"/>\n";
+      setup_postdata( $post );
       $extraHTML .= '<meta property="og:description" content="' . htmlspecialchars(get_the_excerpt($post)) . '"/>';
       page_head( "LigerBots Blog - " . $post->post_title, true, NULL, $extraHTML );
   }
@@ -55,8 +56,7 @@ $includeFooter = ! ( $isPage && get_page_uri( $postid ) == "current-sponsors" );
                     $title = strtoupper( get_the_title() );
                     echo '<center><div class="notindex-title">' . $title . "</div></center>\n";
                     echo $post->post_content;
-                } else {
-                    setup_postdata( $post ); 
+                } else { 
                     echo '<div class="level4-heading">';
                     the_title();
                     echo "</div>\n";
