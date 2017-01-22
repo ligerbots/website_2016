@@ -4,7 +4,7 @@
 define('WP_USE_THEMES', false);
 require_once(dirname(__FILE__) . '/../wp-backend/wp-blog-header.php');
 
-function page_head( $title, $includeRSS=false, $extraCSS=NULL )
+function page_head( $title, $includeRSS=false, $extraCSS=NULL, $extraHTML="" )
 {
     echo <<<EOL
   <head>
@@ -45,6 +45,7 @@ EOL;
     echo "      ga('send', 'pageview');\n";
     echo "    </script>\n";
 
+    echo $extraHTML;
     echo "</head>\n";
 }
 
