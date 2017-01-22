@@ -28,7 +28,8 @@ $includeFooter = ! ( $isPage && get_page_uri( $postid ) == "current-sponsors" );
       $html = $post->post_content;
       preg_match( '/<img[^>]+src=[\'"](?P<src>.+?)[\'"][^>]*>/i', $html, $result );
       $imageURL = $result['src'];
-      $extraHTML = "<meta property=\"og:image\" content=\"$imageURL\"/>";
+      $extraHTML = "<meta property=\"og:image\" content=\"$imageURL\"/>\n";
+      $extraHTML .= '<meta property="og:description" content="' . htmlspecialchars(get_the_excerpt($post)) . '"/>';
       page_head( "LigerBots Blog - " . $post->post_title, true, NULL, $extraHTML );
   }
   ?>
