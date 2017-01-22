@@ -1,5 +1,6 @@
 <?php
 require_once( "include/page_elements.php" );
+require_once( "include/utils.php" );
 
 /* Short and sweet */
 define('WP_USE_THEMES', false);
