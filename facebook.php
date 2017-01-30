@@ -14,7 +14,11 @@ if ( ! is_user_logged_in() )
     die();
 }
 
-if ( isset($_FILES['upload'] ) )
+// TEMP?
+//if ( isset( $_GET['clean'] ) ) {
+//    $message = cleanFacebook( $_GET['clean'] );
+//} else 
+if ( isset( $_FILES['upload'] ) )
 {
     $message = facebookUpload( $_FILES['upload'] );
 }

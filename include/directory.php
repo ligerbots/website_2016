@@ -15,7 +15,7 @@ function facebookUpload( $filelist )
         $tmpName = $filelist['tmp_name'][$i];
         if ( ! is_uploaded_file( $filelist['tmp_name'][$i] ) )
         {
-            $msg .= "Error: $fname is not an uploaded file.<br>\n";
+            $msg .= "Error: $fname is not an uploaded file.<br/>\n";
             continue;
         }
 
@@ -29,7 +29,7 @@ function facebookUpload( $filelist )
 
         $n = $filelist[ 'name' ][$i];
         if ( ! preg_match( '/^(.*)[ _]+(.*)\.([a-z]+)$/i', $n, $parts ) ) {
-            $msg .= "Error: $fname does not match name pattern.<br>\n";
+            $msg .= "Error: $fname does not match name pattern.<br/>\n";
             continue;
         }
 
@@ -37,7 +37,7 @@ function facebookUpload( $filelist )
         $ln = $parts[2];
         $ext = $parts[3];
         
-        $msg .= "Received photo $fname for $fn $ln.<br>\n";
+        $msg .= "Received photo $fname for $fn $ln.<br/>\n";
         $users = get_users(
             array(
                 'meta_query' => array(
@@ -55,11 +55,11 @@ function facebookUpload( $filelist )
             )
         );
         if ( count( $users ) > 1 ) {
-            $msg .= 'Found ' . count( $users ) . " WP users.<br>\n";
+            $msg .= 'Found ' . count( $users ) . " WP users.<br/>\n";
             continue;
         }
         if ( count( $users ) == 0 ) {
-            $msg .= "Could not find user $fn $ln.<br>\n";
+            $msg .= "Could not find user $fn $ln.<br/>\n";
             continue;
         }
         $user_id = $users[0]->ID;
@@ -67,15 +67,23 @@ function facebookUpload( $filelist )
         $md5 = md5_file( $tmpName );
         $newFile = "$md5.$ext";
         $newLoc = "images/facebook/$newFile";
+
+        $oldFile = $users[0]->get( 'facebook_image' );
+        if ( strlen( $oldFile ) > 0 )
+        {
+            unlink( "images/facebook/$oldFile" );
+            $msg .= "Deleted old file $oldFile<br/>\n";
+        }
+        
         if ( ! rename( $tmpName, $newLoc ) ) {
-            $msg .= "Rename to $newLoc failed<br>\n";
+            $msg .= "Rename to $newLoc failed<br/>\n";
         } else {
             if ( ! chmod( $newLoc, 0644) )
-                $msg .= "Chmod of $newLoc failed<br>\n";
+                $msg .= "Chmod of $newLoc failed<br/>\n";
         } 
 
         update_user_meta( $user_id, 'facebook_image', $newFile );
-        $msg .= "Set picture for $fn $ln to $newFile.<br>\n";
+        $msg .= "Set picture for $fn $ln to $newFile.<br/>\n";
     }
     
     return $msg;
@@ -132,4 +140,46 @@ function download_userlist( $userlist )
     fclose( $f );
 }
 
+// Not normally needed!
+function cleanFacebook( $doIt )
+{
+    $msg = "";
+
+    $dir = "images/facebook";
+
+    foreach ( scandir( $dir ) as $fn )
+    {
+        if ( ! preg_match( '/^[0-9a-f]+\.[a-z]+$/i', $fn ) )
+        {
+            $msg .= "$fn skipping<br/>\n";
+            continue;
+        }
+        
+        $users = get_users(
+            array(
+                'meta_query' => array(
+                    array(
+                        'key' => 'facebook_image',
+                        'value' => $fn,
+                        'compare' => '=='
+                    )
+                )
+            )
+        );
+        if ( count( $users ) > 1 ) {
+            $msg .= "$fn ERROR: Found " . count( $users ) . " WP users.<br>\n";
+        }
+        else if ( count( $users ) == 0 ) {
+            if ( $doIt )
+            {
+                unlink( 'images/facebook/' . $fn );
+                $msg .= "$fn DELETED<br/>\n";
+            }
+            else
+                $msg .= "$fn TO DELETE<br/>\n";
+        }
+    }
+
+    return $msg;
+}
 ?>
