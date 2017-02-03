@@ -68,12 +68,8 @@ function facebookUpload( $filelist )
         $newFile = "$md5.$ext";
         $newLoc = "images/facebook/$newFile";
 
+        // remember old file name so we can clean up
         $oldFile = $users[0]->get( 'facebook_image' );
-        if ( strlen( $oldFile ) > 0 )
-        {
-            unlink( "images/facebook/$oldFile" );
-            $msg .= "Deleted old file $oldFile<br/>\n";
-        }
         
         if ( ! rename( $tmpName, $newLoc ) ) {
             $msg .= "Rename to $newLoc failed<br/>\n";
@@ -84,6 +80,29 @@ function facebookUpload( $filelist )
 
         update_user_meta( $user_id, 'facebook_image', $newFile );
         $msg .= "Set picture for $fn $ln to $newFile.<br/>\n";
+
+        if ( strlen( $oldFile ) > 0 )
+        {
+            // Clean up old image. However, first test if it is no longer referenced in the DB.
+            // Image could be in DB twice if picture was loaded for wrong person.
+            $users = get_users(
+                array(
+                    'meta_query' => array(
+                        array(
+                            'key' => 'facebook_image',
+                            'value' => $oldFile,
+                            'compare' => '=='
+                        )
+                    )
+                )
+            );
+            if ( count( $users ) == 0 )
+            {
+                unlink( "images/facebook/$oldFile" );
+                $msg .= "Deleted images/facebook/$oldFile<br/>\n";
+            }
+        }
+
     }
     
     return $msg;
