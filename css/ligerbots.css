@@ -276,6 +276,7 @@ body{
 .panel-sprs img {
     margin: 3px;
     width: 110px;
+    margin-top: 10px;
 }
 
 /*--------------- Nav bar ---------------*/
@@ -689,10 +690,12 @@ body{
     text-align: center;
 }
 
+/* the negative margin seems to be important */
 .vcenter {
     display: inline-block;
     vertical-align: middle;
     float: none;
+    margin-right: -4px;
 }
 
 @media (min-width: 768px) {
@@ -720,5 +723,11 @@ body{
     .spr-width120 {
         width: 120%;
         margin-left: -10%;
+    }
+    .spr-width90 {
+        width: 90%;
+    }
+    .spr-width80 {
+        width: 80%;
     }
 }
