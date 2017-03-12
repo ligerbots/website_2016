@@ -92,5 +92,28 @@ if ( isset( $_POST[ 'delcarpool' ] ) ) {
       </div>
     </div>    
     <?php page_foot(); ?>
+    <script type="text/javascript">
+     var idleTime = 0;
+     $(document).ready(function () {
+         // Increment the idle time counter every minute
+         var idleInterval = setInterval(idleIncrement, 60000); // 1 minute
+         
+         // Zero the idle timer on mouse movement or key press
+         $(this).mousemove(function (e) {
+             idleTime = 0;
+         });
+         $(this).keypress(function (e) {
+             idleTime = 0;
+         });
+     });
+     
+     function idleIncrement() {
+         idleTime = idleTime + 1;
+         if ( idleTime >= 10 ) { // minutes
+             // refresh the whole page. That way, removed carpools will go away.
+             window.location.reload();
+         }
+     }
+    </script>   
   </body>
 </html>
