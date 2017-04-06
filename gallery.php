@@ -30,42 +30,50 @@ $flickr = createFlickr();
               <div class="col-xs-12">
                 <center><div class="notindex-title">PHOTOS</div></center>
                 <br/>
-                <center>
-                  LigerBots Flickr: <a href="https://www.flickr.com/photos/ligerbots/">flickr.com/photos/ligerbots/</a><br/>
-                  LigerBots Videos: <a href="https://www.youtube.com/channel/UCgNgdmtDs7d58dVR-80DCGA">youtube.com/channel/UCgNgdmtDs7d58dVR-80DCGA</a>
-                </center>
-                <br/>
                 
                 <?php
                 //the url has no album display specification; show the year view
                 if ( ! isset( $_GET["album"] ) ) {
-                    $albumList = getAlbumTree($flickr);
-
+                    echo "<center>\n";
+                    echo 'LigerBots Flickr: <a href="https://www.flickr.com/photos/ligerbots/">flickr.com/photos/ligerbots/</a><br/>' . "\n";
+                    echo 'LigerBots Videos: <a href="https://www.youtube.com/channel/UCgNgdmtDs7d58dVR-80DCGA">youtube.com/channel/UCgNgdmtDs7d58dVR-80DCGA</a>' . "\n";
+                    echo "</center>\n";
+                    echo "<br/>\n";
+                    
+                    $albumList = getAlbums($flickr);
                     $count = 0;
-                    foreach ($albumList as $year) {
+                    foreach ( $albumList as $year )
+                    {
                         echo '<div class="row row-margins">' . "\n";
-                        //the year header
-                        echo '  <div class="level4-heading">'.$year["title"]."</div>\n";
-                        //create each album box
-                        foreach ($year["set"] as $album) {
-                            $albumPhotoUrl = getPrimaryPhoto($flickr, $album["id"]);
+                        // the year header
+                        echo '  <div class="level4-heading">' . $year["title"] . "</div>\n";
+                        // create each album box
+                        foreach ( $year[ 'albums' ] as $album )
+                        {
                             echo '<a href="gallery.php?album=' . $album["id"] . '">' . "\n";
-                            echo '  <div class="gallery-thumbnail" style="background: url(' . $albumPhotoUrl . ') 50% 50% no-repeat; background-size: cover;">' . "\n";
+                            echo '  <div class="gallery-thumbnail" style="background: url(' . $album["thumb"] . ') 50% 50% no-repeat; background-size: cover;">' . "\n";
                             echo '    <div class="gallery-caption">' . $album["title"] . "</div>\n";
                             echo "  </div>\n";
                             echo "</a>\n";
                             $count += 1;
-                            if ( $count >= 4 ) break;
+                            //if ( $count >= 4 ) break;
                         }
                         echo "</div>\n";
 
-                        break;
+                        //break;
                     }
                 } else {
                     echo '<div class="row row-margins">' . "\n";
                     // there is an album to display; show as a list of photos
+                    $albumId = $_GET["album"];
+                    echo '  <div class="level4-heading">' . getAlbumTitle( $flickr, $albumId ) . "</div>\n";
+
+                    echo '  <center>See the full album on Flickr: <a href="https://www.flickr.com/photos/ligerbots/albums/' . $albumId . '">';
+                    echo 'https://www.flickr.com/photos/ligerbots/albums/' . $albumId . "</a></center>\n";
+                    echo "<br/>\n";
+                    
                     // a list of urls for each photo in the album
-                    $photoInfoList = getPhotoList( $flickr, $_GET["album"] );
+                    $photoInfoList = getPhotoList( $flickr, $albumId );
                     foreach ( $photoInfoList as $photoInfo ) {
                         echo '<a data-fancybox="gallery" href="' . $photoInfo["large"] .'">' . "\n";
                         echo '  <div class="gallery-thumbnail" style="background: url(' . $photoInfo["small"] . 

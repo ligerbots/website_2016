@@ -15,6 +15,7 @@ if ( ! defined( 'FLICKR_API_KEY' ) )
 }
 
 require_once( "phpflickr/phpFlickr.php" );
+
 // our user id
 define( 'FLICKR_USERID', '127608154@N06' );
 
@@ -22,7 +23,7 @@ define( 'FLICKR_USERID', '127608154@N06' );
 // Will eventually include a bit more setup, like caching.
 function createFlickr()
 {
-    $flickr = new phpFlickr(FLICKR_API_KEY);
+    $flickr = new phpFlickr( FLICKR_API_KEY );
     /* if(CACHE_ALLOWED) {
      *     $f->enableCache("fs", "/var/tmp");
      * }
@@ -31,21 +32,35 @@ function createFlickr()
 }
 
 // Query for the list of collections and albums in each collection
-function getAlbumTree( $flickr )
+function getAlbums( $flickr )
 {
-    // print "Calling gettree\n";
-    $albumList = $flickr->collections_getTree( NULL, FLICKR_USERID );
-    // print $flickr->getErrorCode() ."\n";
-    // print $flickr->getErrorMsg() ."\n";
+    // get a list of all LigerBots albums
+    $albumInfo = $flickr->photosets_getList( FLICKR_USERID );
+    $albumKeyPairs = array();
+    $index = 0;
+    foreach ( $albumInfo["photoset"] as $album ) {
+        $albumKeyPairs[ $album["id"] ] = $index;
+        $index++;
+    }
     
-    // Strip off some unneeded layers in the structure
-    return $albumList['collections']['collection'];
-}
+    $tree = $flickr->collections_gettree( NULL, FLICKR_USERID );
+    $albumList = array();
+    foreach ( $tree["collections"]["collection"] as $year )
+    {
+        $yearSet = array( "title" => $year["title"],
+                          "albums" => array() );
+        foreach ( $year["set"] as $album )
+        {
+            $albumKey = $albumKeyPairs[ $album["id"] ];
+            $aInfo = array( 'id' => $album[ 'id' ],
+                            'title' => $album["title"],
+                            'thumb' => getPhotoUrl( $albumInfo["photoset"][$albumKey], 'primary', 'n' ) );
+            $yearSet[ 'albums' ][] = $aInfo;  // append
+        }
+        $albumList[] = $yearSet;
+    }
 
-function getPrimaryPhoto( $flickr, $albumID ) {
-    $albumInfo = $flickr->photosets_getInfo( $albumID, FLICKR_USERID );
-    $photoURL = getPhotoUrl( $albumInfo, "primary", "n" );   //n gives image with longest side = 320px
-    return $photoURL;
+    return $albumList;
 }
 
 function getPhotoUrl( $info, $photoIndex, $sizeLetter ) {
@@ -53,10 +68,17 @@ function getPhotoUrl( $info, $photoIndex, $sizeLetter ) {
     return $photoUrl;
 }
 
-// Return results is a list of dictionares.
-function getPhotoList( $flickr, $albumID ) {
-    $albumInfo = $flickr->photosets_getPhotos( $albumID, 'tags' );
+function getAlbumTitle( $flickr, $albumID )
+{
+    $info = $flickr->photosets_getInfo( $albumID, FLICKR_USERID );
+    return $info[ 'title' ][ '_content' ];
+}
 
+// Return results is a list of dictionares.
+function getPhotoList( $flickr, $albumID )
+{
+    $albumInfo = $flickr->photosets_getPhotos( $albumID, 'tags' );
+    
     $taggedPhotos = array();
     $randomPhotos = array();
 
@@ -78,15 +100,17 @@ function getPhotoList( $flickr, $albumID ) {
         }
     }
 
-    // no photos have tags; pick 10 random ones
     if ( count( $taggedPhotos ) > 0 )
-        return $taggedPhotos;
+        return $taggedPhotos; 
+    // no photos have tags; return the random ones
     return $randomPhotos;
 }
 
-// Testing code!!!!
+//Testing code!!!!
 //$flickr = createFlickr();
-//$albumList = getAlbumTree( $flickr );
+//$albumList = getAlbums( $flickr );
+//$t = getAlbumTitle( $flickr, "72157679107727475" );
+//echo "title is $t\n";
 // pretty print the data structure
-//print_r( $albumList );
+//print_r( $albumInfo );
 ?>
