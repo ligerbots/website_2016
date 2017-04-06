@@ -24,10 +24,9 @@ define( 'FLICKR_USERID', '127608154@N06' );
 function createFlickr()
 {
     $flickr = new phpFlickr( FLICKR_API_KEY );
-    /* if(CACHE_ALLOWED) {
-     *     $f->enableCache("fs", "/var/tmp");
-     * }
-     */
+    if(CACHE_ALLOWED) {
+        $f->enableCache("fs", "/var/tmp");
+    }
     return $flickr;
 }
 
@@ -105,12 +104,3 @@ function getPhotoList( $flickr, $albumID )
     // no photos have tags; return the random ones
     return $randomPhotos;
 }
-
-//Testing code!!!!
-//$flickr = createFlickr();
-//$albumList = getAlbums( $flickr );
-//$t = getAlbumTitle( $flickr, "72157679107727475" );
-//echo "title is $t\n";
-// pretty print the data structure
-//print_r( $albumInfo );
-?>
