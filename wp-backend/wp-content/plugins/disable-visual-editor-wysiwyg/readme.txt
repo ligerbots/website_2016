@@ -1,6 +1,6 @@
 ﻿=== Plugin Name ===
 Contributors: stanxp
-Donate link: http://wordpress-themes.pro/
+Donate link: http://stanxp.com/
 Tags: disable,visual,editor,wysiwyg,admin,tinymce
 Requires at least: 3.0.0
 Tested up to: 4.1
@@ -28,6 +28,9 @@ Go to admin section where you add/edit new page/post and you will see small pane
 1. Here you can see the panel where you can disable the visual editor.
 
 == Changelog ==
+
+= 1.7.1 =
+* Small changes in the documentation
 
 = 1.7 =
 * Fixed visual bug for version 4.1
@@ -66,6 +69,9 @@ Go to admin section where you add/edit new page/post and you will see small pane
 
 
 == Upgrade Notice ==
+
+= 1.7.1 =
+* Small changes in the documentation
 
 = 1.7 =
 * Fixed visual bug for version 4.1

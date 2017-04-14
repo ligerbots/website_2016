@@ -3,7 +3,7 @@ require_once( "include/page_elements.php" );
 http_response_code(200); // override wp
 
 require_once("include/gallery-utils.php");
-$flickr = createFlickr();
+//$flickr = createFlickr();
 ?>
 
 
@@ -32,11 +32,12 @@ $flickr = createFlickr();
                 <br/>
                 
                 <?php
+                $flickr = createFlickr();
                 //the url has no album display specification; show the year view
                 if ( ! isset( $_GET["album"] ) ) {
                     echo "<center>\n";
-                    echo 'LigerBots Flickr: <a href="https://www.flickr.com/photos/ligerbots/">flickr.com/photos/ligerbots/</a><br/>' . "\n";
-                    echo 'LigerBots Videos: <a href="https://www.youtube.com/channel/UCgNgdmtDs7d58dVR-80DCGA">youtube.com/channel/UCgNgdmtDs7d58dVR-80DCGA</a>' . "\n";
+                    echo 'LigerBots Flickr: <a href="https://www.flickr.com/photos/ligerbots/" target="_blank">flickr.com/photos/ligerbots/</a><br/>' . "\n";
+                    echo 'LigerBots Videos: <a href="https://www.youtube.com/channel/UCgNgdmtDs7d58dVR-80DCGA" target="_blank">youtube.com/channel/UCgNgdmtDs7d58dVR-80DCGA</a>' . "\n";
                     echo "</center>\n";
                     echo "<br/>\n";
                     
@@ -68,7 +69,7 @@ $flickr = createFlickr();
                     $albumId = $_GET["album"];
                     echo '  <div class="level4-heading">' . getAlbumTitle( $flickr, $albumId ) . "</div>\n";
 
-                    echo '  <center>See the full album on Flickr: <a href="https://www.flickr.com/photos/ligerbots/albums/' . $albumId . '">';
+                    echo '  <center>See the full album on Flickr: <a href="https://www.flickr.com/photos/ligerbots/albums/' . $albumId . '" target="_blank">';
                     echo 'https://www.flickr.com/photos/ligerbots/albums/' . $albumId . "</a></center>\n";
                     echo "<br/>\n";
                     
