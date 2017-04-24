@@ -43,9 +43,9 @@ if ( isset( $_POST[ 'delcarpool' ] ) ) {
                 <center><div class="notindex-title">TEAM CARPOOLS</div></center>
                 <br/>
                 <center>
-                  Monday at South, Room 9170, 6:30-8:30 PM<br/>
+                  Monday at South, Room 9170, 6-9 PM<br/>
                   <!-- Thursday at North, Engineering Room, 6:30-8:30 PM<br/> -->
-                  Thursday at South, Room 9170, 6:30-8:30 PM<br/>
+                  Thursday at South, Room 9170, 6-9 PM<br/>
                   
                   <!-- Mondays-Thursdays: 6-9 PM<br/>
                   Fridays: 3-9 PM<br/>
