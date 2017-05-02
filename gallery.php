@@ -3,7 +3,20 @@ require_once( "include/page_elements.php" );
 http_response_code(200); // override wp
 
 require_once("include/gallery-utils.php");
-//$flickr = createFlickr();
+$flickr = createFlickr();
+
+// a list of urls for each photo in the album
+if ( isset( $_GET[ "album" ] ) )
+    $albumPhotos = getPhotoList( $flickr, $_GET["album"] );
+else
+{
+    if ( isset( $_GET[ "year" ] ) )
+        $year = $_GET[ "year" ];
+    else
+        $year = 0;
+
+    $albumList = getAlbums( $flickr );
+}
 ?>
 
 
@@ -28,63 +41,57 @@ require_once("include/gallery-utils.php");
             <div class="row top-spacer"> </div>
             <div class="row side-margins bottom-margin">
               <div class="col-xs-12">
-                <center><div class="notindex-title">PHOTOS</div></center>
-                <br/>
+		<div class="title-bar">
+		  <div class="notindex-title">
+		    <a href="/" class="breadcrumbs-link">
+		      <img src="/images/home_icon.svg" class="breadcrumbs-link breadcrumbs-home" style="filter: drop-shadow(1.5pt 1.5pt 1pt rgba(0,0,0,0.25))"> <!-- svg takes a different shadow format than text !-->
+		    </a>
+		    <span class="glyphicon glyphicon-chevron-left breadcrumbs-chevron-1"></span>
+		    <span class="glyphicon glyphicon-chevron-left breadcrumbs-chevron-2"></span>
+		    <?php
+		    if ( isset( $albumPhotos ) ) //currently viewing photos in an album
+		    {
+			echo "<a href=\"gallery.php?year=" . $albumPhotos['yearIndex'] . "\" class=\"breadcrumbs-link\">\n";
+			echo strtoupper( $albumPhotos[ "yearTitle" ] ) . "\n";
+			echo "</a> \n";
+			echo "<span class=\"glyphicon glyphicon-chevron-left breadcrumbs-chevron-1\"></span>\n";
+			echo "<span class=\"glyphicon glyphicon-chevron-left breadcrumbs-chevron-2\"></span>\n";
+			echo strtoupper( $albumPhotos[ "title" ] ) . "\n";
+		    } else { // viewing a year's album list
+			echo "PHOTOS\n";
+		    }
+		    ?>
+		  </div>
+		</div>
                 
+		<?php
+                // if in the album list, show the links to Flickr and youTube
+		if ( !isset( $albumPhotos ) ) 
+		{
+		    echo "<center style=\"margin-bottom: 3em; word-wrap: break-word;\">"; //add proper margins & allow the youtube url to be wrapped on mobile
+		    echo "<h5 class=\"gallery-link\">To see all LigerBots photos:";
+		    echo "<a href=\"https://www.flickr.com/photos/ligerbots/\">flickr.com/photos/ligerbots/</a>";
+		    echo "</h5>";
+		    echo "<h5 class=\"gallery-link\">To see all LigerBots videos:";
+		    echo "<a href=\"https://www.youtube.com/channel/UCgNgdmtDs7d58dVR-80DCGA\">youtube.com/channel/UCgNgdmtDs7d58dVR-80DCGA</a>";
+		    echo "</h5>";
+		    echo "</center>";
+		}
+		?>
+
+		<div class="gallery-container">
                 <?php
-                $flickr = createFlickr();
                 //the url has no album display specification; show the year view
-                if ( ! isset( $_GET["album"] ) ) {
-                    echo "<center>\n";
-                    echo 'LigerBots Flickr: <a href="https://www.flickr.com/photos/ligerbots/" target="_blank">flickr.com/photos/ligerbots/</a><br/>' . "\n";
-                    echo 'LigerBots Videos: <a href="https://www.youtube.com/channel/UCgNgdmtDs7d58dVR-80DCGA" target="_blank">youtube.com/channel/UCgNgdmtDs7d58dVR-80DCGA</a>' . "\n";
-                    echo "</center>\n";
-                    echo "<br/>\n";
-                    
-                    $albumList = getAlbums($flickr);
-                    $count = 0;
-                    foreach ( $albumList as $year )
-                    {
-                        echo '<div class="row row-margins">' . "\n";
-                        // the year header
-                        echo '  <div class="level4-heading">' . $year["title"] . "</div>\n";
-                        // create each album box
-                        foreach ( $year[ 'albums' ] as $album )
-                        {
-                            echo '<a href="gallery.php?album=' . $album["id"] . '">' . "\n";
-                            echo '  <div class="gallery-thumbnail" style="background: url(' . $album["thumb"] . ') 50% 50% no-repeat; background-size: cover;">' . "\n";
-                            echo '    <div class="gallery-caption">' . $album["title"] . "</div>\n";
-                            echo "  </div>\n";
-                            echo "</a>\n";
-                            $count += 1;
-                            //if ( $count >= 4 ) break;
-                        }
-                        echo "</div>\n";
-
-                        //break;
-                    }
-                } else {
-                    echo '<div class="row row-margins">' . "\n";
-                    // there is an album to display; show as a list of photos
-                    $albumId = $_GET["album"];
-                    echo '  <div class="level4-heading">' . getAlbumTitle( $flickr, $albumId ) . "</div>\n";
-
-                    echo '  <center>See the full album on Flickr: <a href="https://www.flickr.com/photos/ligerbots/albums/' . $albumId . '" target="_blank">';
-                    echo 'https://www.flickr.com/photos/ligerbots/albums/' . $albumId . "</a></center>\n";
-                    echo "<br/>\n";
-                    
-                    // a list of urls for each photo in the album
-                    $photoInfoList = getPhotoList( $flickr, $albumId );
-                    foreach ( $photoInfoList as $photoInfo ) {
-                        echo '<a data-fancybox="gallery" href="' . $photoInfo["large"] .'">' . "\n";
-                        echo '  <div class="gallery-thumbnail" style="background: url(' . $photoInfo["small"] . 
-                             ') 50% 50% no-repeat; background-size: cover;"></div>' . "\n";
-                        echo "</a>\n";
-                    }
-                    echo "</div>\n";                    
+                if ( ! isset( $_GET[ "album" ] ) )
+                {
+                    albumListDisplay( $albumList, $year );
                 }
-                ?>
-                
+                else
+                {
+                    albumDisplay( $albumPhotos );
+		}
+		?>
+                </div>
               </div>
               
               <?php output_footer(); ?>
@@ -99,6 +106,20 @@ require_once("include/gallery-utils.php");
       <script type="text/javascript">
        $.fancybox.defaults.slideShow = false;
        $.fancybox.defaults.fullScreen = false;
+       
+       function sizeImage( image ) {
+	   var aspectRatio = image.naturalHeight / image.naturalWidth;
+	   if (aspectRatio <= 1)
+	   {
+	       $(image).addClass('gallery-photo-wide');
+	       $(image).closest('div').addClass('gallery-photo-wide');
+	       $(image).closest('div').removeClass('gallery-photo-loading');
+	   } else {
+	       $(image).addClass('gallery-photo-tall');
+	       $(image).closest('div').addClass('gallery-photo-tall');
+	       $(image).closest('div').removeClass('gallery-photo-loading');
+	   }
+       }
       </script>
   </body>
 </html>
