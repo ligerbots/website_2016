@@ -39,7 +39,7 @@ else
         <div class="row page-body">
           <div class="col-md-12 col-md-offset-0 col-sm-10 col-sm-offset-1 col-xs-12">
             <div class="row top-spacer"> </div>
-            <div class="row side-margins bottom-margin">
+            <div class="row">
 	      <div class="title-bar">
 		<div class="notindex-title">
 		  <a href="/" class="breadcrumbs-link">
@@ -91,7 +91,7 @@ else
 		}
 		?>
               </div>
-            </div><
+            </div>
             
             <?php output_footer(); ?>
           </div>
