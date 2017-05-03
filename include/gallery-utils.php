@@ -223,7 +223,7 @@ function addButton( $name, $ref, $left, $top )
     echo "</div>\n";
 }
 
-function addDropdown($itemList, $itemIndex, $isYear)
+function addDropdown( $itemList, $itemIndex, $isYear )
 {
     echo "<div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-6\">\n";
     echo "  <div class=\"gallery-dropdown\">\n";
@@ -283,8 +283,6 @@ function albumListDisplay( $albumList, $year )
     else
         $nextLink = null;
     
-    echo "<div>\n";
-
     ////////////////////
     //BUTTONS & HEADER//
     ////////////////////
@@ -338,9 +336,9 @@ function albumDisplay( $albumPhotos )
     echo "</div>\n";
 
     echo "<div class=\"gallery-album-description\">\n";
-    echo '<p>' . $albumPhotos[ "desc" ] . "</p>\n";
-    echo '<p>See the full album on Flickr:';
-    echo '<a href="https://www.flickr.com/photos/ligerbots/albums/' . $albumPhotos[ 'albumId' ] . '">';
+    if ( strlen( $albumPhotos[ "desc" ] ) > 0 ) echo '<p>' . $albumPhotos[ "desc" ] . "</p>\n";
+    echo '<p>See the full album on Flickr: ';
+    echo '<a href="https://www.flickr.com/photos/ligerbots/albums/' . $albumPhotos[ 'albumId' ] . '" target="_blank">';
     echo 'flickr.com/photos/ligerbots/albums/' . $albumPhotos[ 'albumId' ] . "</a></p>\n";
     echo "</div>\n";
 
@@ -348,12 +346,13 @@ function albumDisplay( $albumPhotos )
     $index = 0;
     $colBreak = ceil( count( $albumPhotos[ "photos" ] ) / 2 ); 
 
+    echo "<div class=\"row\">\n";
     echo "<div class=\"gallery-photo-column col-xs-12 col-sm-6 col-md-6 col-lg-6\">\n";
     foreach ( $albumPhotos["photos"] as $photo )
     {
         echo "<a data-fancybox=\"gallery\" href=\"" . $photo["url_stub"] . "_c.jpg\">\n";
         echo "  <div class=\"gallery-photo-container gallery-photo-loading\">\n";
-        echo "    <img onload=\"sizeImage(this);\" src=\"" . $photo["url_stub"] . "_c.jpg\">\n";
+        echo "    <img src=\"" . $photo["url_stub"] . "_c.jpg\">\n";
         echo "    <div class=\"gallery-photo-desc\">" . $photo["caption"] . "</div>\n";
         echo "  </div>\n";
         echo "</a>\n";
@@ -366,6 +365,7 @@ function albumDisplay( $albumPhotos )
 	    echo "<div class=\"gallery-photo-column col-xs-12 col-sm-6 col-md-6 col-lg-6\">\n";
         }                            
     }
+    echo "</div>\n";
     echo "</div>\n";
 
     // Bottom nav buttons

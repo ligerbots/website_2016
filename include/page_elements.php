@@ -8,9 +8,9 @@ function page_head( $title, $includeRSS=false, $extraCSS=NULL, $extraHTML="" )
 {
     echo <<<EOL
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" href="/images/liger.ico"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:700" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:700" />
@@ -31,7 +31,7 @@ EOL;
         }
     }
 
-    if ( $includeRSS ) echo '    <link rel="alternate" type="application/rss+xml" href="/?feed=rss" title="LigerBots Blog Feed">' . "\n";
+    if ( $includeRSS ) echo '    <link rel="alternate" type="application/rss+xml" href="/?feed=rss" title="LigerBots Blog Feed" />' . "\n";
 
     echo "    <title>$title</title>\n";
 
@@ -45,16 +45,16 @@ EOL;
     echo "      ga('send', 'pageview');\n";
     echo "    </script>\n";
 
-    echo "<meta property=\"og:title\" content=\"$title\"/>";
+    echo "    <meta property=\"og:title\" content=\"$title\" />";
     echo $extraHTML;
-    echo "</head>\n";
+    echo "\n  </head>\n";
 }
 
 function page_foot()
 {
     echo <<<EOL
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script  type="text/javascript"src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 EOL;
 }
 
