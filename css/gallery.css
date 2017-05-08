@@ -1,223 +1,222 @@
 .top-spacer { /*space between title bar & nav bar*/
-    margin-bottom: 3em; /*modified b/c Diane doesn't like the current default of 35px*/
+	margin-bottom: 3em; /*modified b/c Diane doesn't like the current default of 35px*/
 }
 
 .title-bar { /*the orange block at the top of the page to indicate where you are*/
-    margin-bottom: 28pt; /*was 14 pt*/
-    text-align: center;
+	margin-bottom: 28pt;
+	text-align: center;
 }
 
 .notindex-title { /*inner element for title-bar*/
-    border-radius: 6pt;
-    font-size: 12pt;
-    letter-spacing: 0.1em;
-    padding: 0 2em;
-    line-height: 2.5em;
-    text-shadow: 1.5pt 1.5pt 1pt rgba(0,0,0,0.25); /*Default shadow is too far away*/
+	border-radius: 6pt;
+	font-size: 12pt;
+	letter-spacing: 0.1em;
+	padding: 0 2em;
+	line-height: 2.5em;
+	text-shadow: 1.5pt 1.5pt 1pt rgba(0,0,0,0.25); /*Default shadow is too far away*/
 }
 
 .gallery-link { /*For the ligerbots flickr and youtube links.*/
-    font-weight: inherit; /*semibold*/
-    font-style: italic;
-    font-size: 11.5pt;
-    line-height: 24pt;
-    padding: 0;
+	font-weight: inherit; /*semibold*/
+	font-style: italic;
+	font-size: 11.5pt;
+	line-height: 24pt;
+	padding: 0;
 }
 
 .gallery-year-container { /*Styling that will apply to the entire page's content*/
-    margin: 0;
-    margin-bottom: 3em;
-    text-align: center;
+	margin: 0;
+	margin-bottom: 3em;
+	text-align: center;
 }
 
 .gallery-thumbnail { /*the thumbnail box for an album*/
-    padding: 0;
-    border-radius: 0;
-    margin: 7.71pt;
-    border: 2pt solid rgb(0,102,179);
-    display: inline-block;
-    width: 189.75pt;
-    height: 189.75pt;
-    position: relative;
-    transition: 0.3s;
+	padding: 0;
+	border-radius: 0;
+	margin: 7.71pt;
+	border: 2pt solid rgb(0,102,179);
+	display: inline-block;
+	width: 189.75pt;
+	height: 189.75pt;
+	position: relative;
+	transition: 0.3s;
 }
 
 .gallery-thumbnail:hover {
-    opacity: 0.7;
+	opacity: 0.7;
 }
 
 .gallery-caption { /*the caption for an album's thumbnail*/
-    z-index: 1;
-    background: rgb(0,102,179);
-    width: 100%;
-    position: absolute;
-    bottom: 0;
-    text-align: center;
-    padding: 0 1em;
-    color: white !important;
+	z-index: 1;
+	background: rgb(0,102,179);
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	text-align: center;
+	padding: 0 1em;
+	color: white !important;
 }
 
 .gallery-buttons-bar-container-top { /*contains the L/R nav buttons and the dropdown*/
-    margin: auto;
-    margin-bottom: 14pt; /*was 3em then 20pt*/
-    max-width: 64em;
-    text-align: center;
+	margin: auto;
+	margin-bottom: 14pt;
+	max-width: 64em;
+	text-align: center;
 }
 
 .gallery-buttons-bar-container-bottom { /*equivelant for the buttons at the bottom of the page*/
-    margin: auto;
-    margin-top: 14.5pt;
-    margin-bottom: 46pt;
-    max-width: 64em;
-    text-align: center;
+	margin: auto;
+	margin-top: 14.5pt;
+	margin-bottom: 46pt;
+	max-width: 64em;
+	text-align: center;
 }
 
 .gallery-nav-button { /*the next/prev buttons*/
-    position: relative;
-    margin-top: 3pt; /*align bottom with dropdown menu*/
-    text-decoration: none;
-    color: rgb(208,78,29);
-    transition: 0.1s;
+	position: relative;
+	margin-top: 3pt; /*align bottom with dropdown menu*/
+	text-decoration: none;
+	color: rgb(208,78,29);
+	transition: 0.1s;
 }
 
 .gallery-nav-button-disabled, .gallery-nav-button-disabled:hover {
-				  position: relative;
-				  margin-top: 3pt;
-				  text-decoration: none;
-				  color: rgba(208,78,29,0.5);
-				  cursor: not-allowed;
-			      }
+	position: relative;
+	margin-top: 3pt;
+	text-decoration: none;
+	color: rgba(208,78,29,0.5);
+	cursor: not-allowed;
+}
 
 .gallery-nav-button:hover {
-    color: black;
-    text-decoration: none; /*override default from <a> tags*/
+	color: black;
+	text-decoration: none; /*override default from <a> tags*/
 }
 
 .gallery-photo-container { /*contains a photo and its caption*/
-    padding: 0;
-    border-radius: 0;
-    margin: auto;
-    display: table;
-    transition: 0.1s;
+	padding: 0;
+	border-radius: 0;
+	margin: auto;
+	display: table;
+	transition: 0.1s;
 }
 
 .gallery-photo-loading { /*image that hasn't yet triggered the JavaScript resizing*/
-    display: none; /*prevents broken looking page while images are loading*/
+	display: none; /*prevents broken looking page while images are loading*/
 }
 
 .gallery-photo-wide { /*constraints specific to landscape photos*/
-    max-width: 100%;
-    max-height: 23em;
-    border: 2pt solid #0066B3
+	max-width: 100%;
+	max-height: 23em;
+	border: 2pt solid #0066B3
 }
 
 .gallery-photo-tall { /*constraints specific to portrait photos*/
-    max-width: 100%;
-    max-height: 34.5em;
-    border: 2pt solid #0066B3
+	max-width: 100%;
+	max-height: 34.5em;
+	border: 2pt solid #0066B3
 }
 
 .gallery-photo-desc { /*the caption for a single photo*/
-    display: table-caption;
-    caption-side: bottom;
-    text-align: center;
-    font-style: italic;
-    color: black;
-    margin-top: 6pt;
-    margin-bottom: 22pt;
-    text-decoration: none;
+	display: table-caption;
+	caption-side: bottom;
+	text-align: center;
+	font-style: italic;
+	color: black;
+	margin-top: 6pt;
+	margin-bottom: 22pt;
+	text-decoration: none;
 }
 
 .gallery-photo-column { /*the two vertical columns photos are divided into*/
-    padding: 0 8.625pt;
+	padding: 0 8.625pt;
 }
 
 .gallery-content { /*a div around an added year*/
-    display: inline-block;
+	display: inline-block;
 }
 
 .gallery-dropdown-button, .gallery-dropdown-button:focus { /*the dropdown menu button*/
-			      background-color: transparent;
-			      border: none;
-			      padding: 0;
-			      margin: 0;
-			      top: -5pt; /*fix text spacing; button is taller than text*/
-			      color: rgb(0,102,179);
-			      font-weight: bold;
-			      font-size: 18pt;
-			      letter-spacing: 0.04em;
-			      white-space: normal; /*enable word wrapping for mobile*/
-			      transition: 0.1s;
-			  }
+	background-color: transparent;
+	border: none;
+	padding: 0;
+	margin: 0;
+	top: -5pt; /*fix text spacing; button is taller than text*/
+	color: rgb(0,102,179);
+	font-weight: bold;
+	font-size: 18pt;
+	letter-spacing: 0.04em;
+	white-space: normal; /*enable word wrapping for mobile*/
+	transition: 0.1s;
+}
 
 .gallery-dropdown-button:hover, .gallery-dropdown-button:active { /*tweaks to the dropdown menu button under other actions*/
-				    background-color: transparent !important;
-				    color: black !important; /*important needed to override preset button specs*/
-			        }
+	background-color: transparent !important;
+	color: black !important; /*important needed to override preset button specs*/
+}
 
 .gallery-dropdown { /*a container for the dropdown menu and its items*/
-    display: inline-block; /*fix positioning of the menu relative to the button*/
+	display: inline-block; /*fix positioning of the menu relative to the button*/
 }
 
 .gallery-dropdown-content { /*the box that appears when the dropdown is opened*/
-    width: 100%;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-    animation: fade-in 0.2s ease-in-out 0s forwards;
+	width: 100%;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+	animation: fade-in 0.2s ease-in-out 0s forwards;
 }
 
 .gallery-dropdown-item { /*an item in the dropdown list*/
-    color: black !important; /*needed to override bootstrap dropdown properties*/
+	color: black !important; /*needed to override bootstrap dropdown properties*/
 }
 
 .gallery-dropdown-itme-active { /*active item in the dropdown menu*/
-    color: white !important;
-    background-color: rgb(0,102,179) !important;
+	color: white !important;
+	background-color: rgb(0,102,179) !important;
 }
 
 .gallery-album-description { /*Description text for an album that shows when viewing it's photos*/
-    max-width: 64em;
-    margin-bottom: 15pt; /*was 2em*/
-    margin-left: auto;
-    margin-right: auto;
-    text-align: left;
+	max-width: 64em;
+	margin-bottom: 15pt;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: left;
 }
 
 .glyphicon-triangle-bottom { /*the triangle for the dropdown menu*/
-    color: rgb(208,78,29);
-    font-size: 14pt;
-    top: 1pt; /*align to the top of a small s*/
+	color: rgb(208,78,29);
+	font-size: 14pt;
+	top: 1pt; /*align to the top of a small s*/
 }
 
 .glyphicon-chevron-left, .glyphicon-chevron-right { /*specs for chevrons*/
-    top: 0;
-    font-size: 8pt;
-    letter-spacing: -0.3em;
-    
+	top: 0;
+	font-size: 8pt;
+	letter-spacing: -0.3em;   
 }
 
 .breadcrumbs-home { /*home icon in the breadcrumbs bar*/
-    cursor: pointer;
-    filter: drop-shadow(1.5pt 1.5pt 1pt rgba(0,0,0,0.25)); /*svg element needs different shadow technique*/
-    margin-top: -2pt; /*line up the bottom with the text*/
+	cursor: pointer;
+	size: 12pt;
+	filter: drop-shadow(1.5pt 1.5pt 1pt rgba(0,0,0,0.25)); /*svg element needs different shadow technique*/
+	margin-top: -2pt; /*line up the bottom with the text*/
 }
 
 .breadcrumbs-chevron-1 { /*override properties of nav-button chevrons for the breadcrumbs chevrons*/
-    color: #FFCC00;
-    letter-spacing: -0.8em;
+	color: #FFCC00;
+	letter-spacing: -0.8em;
 }
 
 .breadcrumbs-chevron-2 {
-    color: #FFCC00;
-    letter-spacing: -0.1em; /*make the text to the right of the >> not overlap it*/
+	color: #FFCC00;
+	letter-spacing: -0.1em; /*make the text to the right of the >> not overlap it*/
 }
 
 .breadcrumbs-link, .breadcrumbs-link:hover {
-		       color: #FFCC00;
-		       text-decoration: none;
-		       block-size: 12pt; /*size of the home icon*/
-		   }
+	color: #FFCC00;
+	text-decoration: none;
+}
 
 .gallery-container { /*contains the top and bottom buttons and the dynamic content in between them*/
-    padding: 0 26.79pt;
+	padding: 0 26.79pt;
 }
