@@ -56,7 +56,7 @@
 							<div class="title-bar">
 								<div class="notindex-title">
 									<a href="/" class="breadcrumbs-link">
-										<img src="images/home_icon.svg" class="breadcrumbs-link breadcrumbs-home" style="filter: drop-shadow(1.5pt 1.5pt 1pt rgba(0,0,0,0.25))"> <!-- svg takes a different shadow format than text !-->
+										<img src="images/home_icon.svg" class="breadcrumbs-link breadcrumbs-home">
 									</a>
 									<span class="glyphicon glyphicon-chevron-left breadcrumbs-chevron-1"></span>
 									<span class="glyphicon glyphicon-chevron-left breadcrumbs-chevron-2"></span>
