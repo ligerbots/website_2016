@@ -56,17 +56,17 @@
 							<div class="title-bar">
 								<div class="notindex-title">
 									<a href="/" class="breadcrumbs-link">
-										<img src="images/home_icon.svg" class="breadcrumbs-link breadcrumbs-home">
+										<img src="/images/home_icon.svg" class="breadcrumbs-link breadcrumbs-home">
 									</a>
 									<span class="glyphicon glyphicon-chevron-left breadcrumbs-chevron-1"></span>
 									<span class="glyphicon glyphicon-chevron-left breadcrumbs-chevron-2"></span>
-									<a href="gallery.php?year=0" class="breadcrumbs-link">
+									<a href="/gallery.php?year=0" class="breadcrumbs-link">
 										PHOTOS
 									</a>
 									<?php
 										if ( isset( $albumPhotos ) ) //currently viewing photos in an album
 										{
-											echo "<a href=\"gallery.php?year=" . $albumPhotos['yearIndex'] . "\" class=\"breadcrumbs-link\">\n";
+											echo "<a href=\"/gallery.php?year=" . $albumPhotos['yearIndex'] . "\" class=\"breadcrumbs-link\">\n";
 											echo	strtoupper( $albumPhotos[ "yearTitle" ] ) . "\n";
 											echo "</a> \n";
 											echo "<span class=\"glyphicon glyphicon-chevron-left breadcrumbs-chevron-1\"></span>\n";

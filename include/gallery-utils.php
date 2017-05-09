@@ -203,12 +203,12 @@ function addButton( $name, $ref, $left, $top )
 	{
 		if ( $left )
 		{
-			echo "<a style=\"float: left;\" class=\"gallery-nav-button\" href=gallery.php?$ref>\n";
+			echo "<a style=\"float: left;\" class=\"gallery-nav-button\" href=\"/gallery.php?$ref\">\n";
 			echo "<span class=\"glyphicon glyphicon-chevron-left\"></span>";
 			echo "<span class=\"glyphicon glyphicon-chevron-left\"></span>";
 			echo " $name"; // added space to account for decreased spacing on chevrons
 		} else { // right side
-			echo "<a style=\"float: right;\" class=\"gallery-nav-button\" href=gallery.php?$ref>\n";
+			echo "<a style=\"float: right;\" class=\"gallery-nav-button\" href=\"/gallery.php?$ref\">\n";
 			echo $name; //no space needed, text spacing is right-forward, not center-outward
 			echo "<span class=\"glyphicon glyphicon-chevron-right\"></span>";
 			echo "<span class=\"glyphicon glyphicon-chevron-right\"></span>";
@@ -257,7 +257,7 @@ function addDropdown( $itemList, $itemIndex, $isYear )
 		{
 			if ( $currentItem != $itemIndex ) //normal DD item
 			{
-				echo "<li><a href=gallery.php?year=$currentItem class=\"gallery-dropdown-item\">\n";
+				echo "<li><a href=\"/gallery.php?year=$currentItem\" class=\"gallery-dropdown-item\">\n";
 			} else { //make item 'selected' to indicate the current position
 				echo "<li><a class=\"gallery-dropdown-item-active active\">\n";
 			}
@@ -272,7 +272,7 @@ function addDropdown( $itemList, $itemIndex, $isYear )
 		{
 			if ( $currentItem != $itemIndex )
 			{
-				echo "<li><a href=gallery.php?album={$item["id"]} class=\"gallery-dropdown-item\">\n";
+				echo "<li><a href=\"/gallery.php?album={$item["id"]}\" class=\"gallery-dropdown-item\">\n";
 			} else {
 				echo "<li><a class=\"gallery-dropdown-item-active active\">\n";
 			}
@@ -318,7 +318,7 @@ function albumListDisplay( $albumList, $year )
 	echo "<div class=\"gallery-content\">\n";
 	foreach ( $albumList[ $year ][ "albums" ] as $currentAlbum )
 	{
-		echo "<a href=\"gallery.php?album={$currentAlbum["id"]}\" style=\"text-decoration: none;\">\n";
+		echo "<a href=\"/gallery.php?album={$currentAlbum["id"]}\" style=\"text-decoration: none;\">\n";
 		echo "  <div class=\"gallery-thumbnail\" style=\"background: url({$currentAlbum["thumb"]}_c.jpg) 0% 0% no-repeat; background-size: cover;\">\n";
 		echo "      <div class=\"gallery-caption\">\n";
 		echo            $currentAlbum["title"]."\n";
