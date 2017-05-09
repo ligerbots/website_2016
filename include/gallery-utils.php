@@ -1,7 +1,7 @@
 <?php
 // Routines to query Flickr for the LigerBots gallery page
-define( "CACHE_ALLOWED", false );
-//define( "CACHE_ALLOWED", true );
+//define( "CACHE_ALLOWED", false );
+define( "CACHE_ALLOWED", true );
 // TEMPORARY: for testing
 // FLICKR_API_KEY will be set from config when running on the server
 if ( !defined('FLICKR_API_KEY') )
