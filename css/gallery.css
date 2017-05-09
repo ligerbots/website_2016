@@ -197,7 +197,7 @@
 
 .breadcrumbs-home { /*home icon in the breadcrumbs bar*/
 	cursor: pointer;
-	size: 12pt;
+	block-size: 12pt;
 	filter: drop-shadow(1.5pt 1.5pt 1pt rgba(0,0,0,0.25)); /*svg element needs different shadow technique*/
 	margin-top: -2pt; /*line up the bottom with the text*/
 }
