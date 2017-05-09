@@ -59,7 +59,7 @@
 
 .gallery-buttons-bar-container-top { /*contains the L/R nav buttons and the dropdown*/
 	margin: auto;
-	margin-bottom: 14pt;
+	margin-bottom: 14pt; /*was 3em then 20pt*/
 	max-width: 64em;
 	text-align: center;
 }
