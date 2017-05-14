@@ -134,6 +134,7 @@
 
 .gallery-content { /*a div around an added year*/
 	display: inline-block;
+	text-align: center; /*aligns items L/R, not just text*/
 }
 
 .gallery-dropdown-button, .gallery-dropdown-button:focus { /*the dropdown menu button*/
