@@ -66,18 +66,18 @@
 									<span class="glyphicon glyphicon-chevron-left breadcrumbs-chevron-1"></span>
 									<span class="glyphicon glyphicon-chevron-left breadcrumbs-chevron-2"></span>
 									<?php
-										if ( isset( $albumPhotos ) ) //currently viewing photos in an album
+										if ( isset($albumPhotos) ) //currently viewing photos in an album
 										{
-											echo "<a href=\"/gallery.php?year=" . $albumPhotos['yearIndex'] . "\" class=\"breadcrumbs-link\">\n";
-											echo	strtoupper( $albumPhotos[ "yearTitle" ] ) . "\n";
+											echo "<a href=\"gallery.php?year=" . $albumPhotos['yearIndex'] . "\" class=\"breadcrumbs-link\">\n";
+											echo	strtoupper( $albumPhotos["yearTitle"] ) . "\n";
 											echo "</a> \n";
 											echo "<span class=\"glyphicon glyphicon-chevron-left breadcrumbs-chevron-1\"></span>\n";
 											echo "<span class=\"glyphicon glyphicon-chevron-left breadcrumbs-chevron-2\"></span>\n";
-											echo strtoupper( $albumPhotos["title"]) . "\n";
+											echo strtoupper( $albumPhotos["title"] ) . "\n";
 										}
 										else //viewing a year's list of albums
 										{
-											echo strtoupper($albumList[$year]["title"]);
+											echo strtoupper( $albumList[$year]["title"] );
 										}
 									?>
 								</div>
@@ -103,11 +103,11 @@
 									//the url has no album display specification; show the year view
 									if ( !isset($_GET["album"]) )
 									{
-										albumListDisplay( $albumList, $year );
+										albumListDisplay($albumList, $year);
 									}
 									else
 									{
-										albumDisplay( $albumPhotos );
+										albumDisplay($albumPhotos);
 									}
 								?>
 							</div>
@@ -125,8 +125,8 @@
 		<script type="text/javascript">
 			$.fancybox.defaults.slideShow = false;
 			$.fancybox.defaults.fullScreen = false;
-			function sizeImage( imageDiv ) {
-				var image = $(imageDiv).find( "img" );
+			function sizeImage(imageDiv) {
+				var image = $(imageDiv).find("img");
 				var aspectRatio = image.naturalHeight / image.naturalWidth;
 				if (aspectRatio <= 1)
 				{
