@@ -63,6 +63,8 @@
 									<a href="/gallery.php?year=0" class="breadcrumbs-link">
 										PHOTOS
 									</a>
+									<span class="glyphicon glyphicon-chevron-left breadcrumbs-chevron-1"></span>
+									<span class="glyphicon glyphicon-chevron-left breadcrumbs-chevron-2"></span>
 									<?php
 										if ( isset( $albumPhotos ) ) //currently viewing photos in an album
 										{
