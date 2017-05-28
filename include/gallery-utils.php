@@ -194,7 +194,7 @@ function addButton( $name, $ref, $left, $top )
 {
 	if ( $top ) // buttons at the top should take the full width
 	{
-		echo "<div class=\"col-xs-12 col-sm-3 col-md-3 col-lg-3\">\n";
+		echo "<div class=\"col-xs-12 col-sm-3 col-md-3 col-lg-2\">\n";
 	} else { // buttons at the bottom won't because the spacer disappears (no col-xs- class)
 		echo "<div class=\"col-xs-6 col-sm-3 col-md-3 col-lg-3\">\n";
 	}
@@ -241,7 +241,7 @@ function addButton( $name, $ref, $left, $top )
 
 function addDropdown( $itemList, $itemIndex, $isYear )
 {
-	echo "<div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-6\">\n";
+	echo "<div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-8\">\n";
 	echo "  <div class=\"gallery-dropdown\">\n";
 	echo "    <button class=\"btn btn-primary dropdown-toggle gallery-dropdown-button\" type=\"button\" data-toggle=\"dropdown\">\n";
 	echo $itemList[$itemIndex]["title"]."  \n";
@@ -369,7 +369,7 @@ function albumDisplay( $albumPhotos )
 	// Output the photos in two columns
 	$index = 0;
 	$colBreak = ceil( count( $albumPhotos[ "photos" ] ) / 2 ); 
-	echo "<div class=\"row\">\n";
+	echo "<div>\n"; //used to have class="row", removed because of negative margins
 	echo "<div class=\"gallery-photo-column col-xs-12 col-sm-6 col-md-6 col-lg-6\">\n";
 	foreach ( $albumPhotos["photos"] as $photo )
 	{
