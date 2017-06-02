@@ -54,23 +54,21 @@
 	position: absolute;
 	bottom: 0;
 	text-align: center;
-	padding: 0 1em;
+	padding: 3pt 1em;
 	color: white !important;
 }
 
 .gallery-buttons-bar-container-top { /*contains the L/R nav buttons and the dropdown*/
 	margin: auto;
-	margin-bottom: 14pt; /*was 3em then 20pt*/
-	max-width: 64em;
+	margin-bottom: 14pt;
 	text-align: center;
 }
 
 .gallery-buttons-bar-container-bottom { /*equivelant for the buttons at the bottom of the page*/
-	margin: auto;
+	display: inline-block; /*fix for floating above page content*/
+	margin: 0;
 	margin-top: 14.5pt;
 	margin-bottom: 46pt;
-	max-width: 64em;
-	text-align: center;
 }
 
 .gallery-nav-button { /*the next/prev buttons*/
@@ -182,7 +180,7 @@
 	margin-bottom: 15pt;
 	margin-left: auto;
 	margin-right: auto;
-	text-align: left;
+	text-align: center;
 }
 
 .glyphicon-triangle-bottom { /*the triangle for the dropdown menu*/

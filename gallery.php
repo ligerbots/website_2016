@@ -56,7 +56,7 @@
 							<div class="title-bar">
 								<div class="notindex-title">
 									<a href="/" class="breadcrumbs-link">
-										<img src="/images/home_icon.svg" class="breadcrumbs-link breadcrumbs-home">
+										<span class="breadcrumbs-link glyphicon glyphicon-home" style="font-size: 12pt; top: 1.5pt;"></span>
 									</a>
 									<span class="glyphicon glyphicon-chevron-left breadcrumbs-chevron-1"></span>
 									<span class="glyphicon glyphicon-chevron-left breadcrumbs-chevron-2"></span>
