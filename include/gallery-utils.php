@@ -369,7 +369,8 @@ function albumDisplay( $albumPhotos )
 	// Output the photos in two columns
 	$index = 0;
 	$colBreak = ceil( count( $albumPhotos[ "photos" ] ) / 2 ); 
-	echo "<div class=\"row row-margins\" >\n"; //used to have class="row", removed because of negative margins
+        // need row class to keep bottom-nav-bar from wrapping into blank space below last photo
+        echo "<div class=\"row row-margins\" >\n";
 	echo "<div class=\"gallery-photo-column col-xs-12 col-sm-6 col-md-6 col-lg-6\">\n";
 	foreach ( $albumPhotos["photos"] as $photo )
 	{
