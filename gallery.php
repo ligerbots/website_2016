@@ -131,13 +131,13 @@
 				if (aspectRatio <= 1)
 				{
 					$(image).addClass('gallery-photo-wide');
-					$(imageDiv).addClass('gallery-photo-wide');
+					//$(imageDiv).addClass('gallery-photo-wide'); Removed b/c of double border
 					$(imageDiv).removeClass('gallery-photo-loading');
 				}
 				else
 				{
 					$(image).addClass('gallery-photo-tall');
-					$(imageDiv).addClass('gallery-photo-tall');
+					//$(imageDiv).addClass('gallery-photo-tall');
 					$(imageDiv).removeClass('gallery-photo-loading');
 				}
 			}
