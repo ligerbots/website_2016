@@ -192,10 +192,14 @@ function getPhotoList( $flickr, $albumID )
 // Page layout functions
 function addButton( $name, $ref, $left, $top )
 {
-	if ( $top ) // buttons at the top should take the full width
+	if ($top) // buttons at the top
 	{
-		echo "<div class=\"col-xs-12 col-sm-3 col-md-3 col-lg-2\">\n";
-	} else { // buttons at the bottom won't because the spacer disappears (no col-xs- class)
+		if ($left) {
+			echo "<div class=\"col-xs-6 col-sm-3 col-md-3 col-lg-2\">\n";
+		} else { //button on the right needs to move based on viewport width, whether or not the dropdown gets it's own line
+			echo "<div class=\"col-xs-6 col-sm-3 col-md-3 col-lg-2 col-sm-push-6 col-md-push-6 col-lg-push-8\">\n";
+		}
+	} else { // buttons at the bottom
 		echo "<div class=\"col-xs-6 col-sm-3 col-md-3 col-lg-3\">\n";
 	}
 	
@@ -241,7 +245,7 @@ function addButton( $name, $ref, $left, $top )
 
 function addDropdown( $itemList, $itemIndex, $isYear )
 {
-	echo "<div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-8\">\n";
+	echo "<div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-8 col-sm-pull-3 col-md-pull-3 col-lg-pull-2\">\n"; //dropdown needs to move based on viewport, whether or not it gets it's own line
 	echo "  <div class=\"gallery-dropdown\">\n";
 	echo "    <button class=\"btn btn-primary dropdown-toggle gallery-dropdown-button\" type=\"button\" data-toggle=\"dropdown\">\n";
 	echo $itemList[$itemIndex]["title"]."  \n";
@@ -310,8 +314,8 @@ function albumListDisplay( $albumList, $year )
 	//buttons and header
 	echo "<div class=\"row gallery-buttons-bar-container-top\">\n";
 	addButton( "Previous year", $prevLink, true, true );
-	addDropdown( $albumList, $year, 1 );
 	addButton( "Next year", $nextLink, false, true);
+	addDropdown( $albumList, $year, 1 ); //dropdown needs to come after; shifts to the middle on larger screens
 	echo "</div>\n";
 	
 	// create each album box
@@ -356,8 +360,8 @@ function albumDisplay( $albumPhotos )
 	// Top buttons and header
 	echo "<div class=\"row gallery-buttons-bar-container-top\">\n";
 	addButton( "Previous album", $prevLink, true, true );
-	addDropdown( $albumPhotos[ "albums" ], $albumPhotos[ "albumIndex" ], 0 );
 	addButton( "Next album", $nextLink, false, true );
+	addDropdown( $albumPhotos[ "albums" ], $albumPhotos[ "albumIndex" ], 0 );
 	echo "</div>\n";
 	echo "<div class=\"gallery-album-description\">\n";
 	if ( strlen( $albumPhotos[ "desc" ] ) > 0 ) echo '<p>' . $albumPhotos[ "desc" ] . "</p>\n";
@@ -370,7 +374,7 @@ function albumDisplay( $albumPhotos )
 	$index = 0;
 	$colBreak = ceil( count( $albumPhotos[ "photos" ] ) / 2 ); 
         // need row class to keep bottom-nav-bar from wrapping into blank space below last photo
-        echo "<div class=\"row row-margins\" >\n";
+        echo "<div class=\"row row-margins\" style=\"margin-left: 0; margin-right: 0; \">\n"; //row-margins doesn't seem to be reverting the negative margins, temporary manual override
 	echo "<div class=\"gallery-photo-column col-xs-12 col-sm-6 col-md-6 col-lg-6\">\n";
 	foreach ( $albumPhotos["photos"] as $photo )
 	{
