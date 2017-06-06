@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Gmail SMTP
-Version: 1.1.1
+Version: 1.1.2
 Plugin URI: http://wphowto.net/
 Author: naa986
 Author URI: http://wphowto.net/
@@ -16,7 +16,7 @@ if (!defined('ABSPATH')){
 
 class GMAIL_SMTP {
     
-    var $plugin_version = '1.1.1';
+    var $plugin_version = '1.1.2';
     var $phpmailer_version = '5.2.22';
     var $plugin_url;
     var $plugin_path;
@@ -374,24 +374,7 @@ class GMAIL_SMTP {
         if(!isset($options['disable_ssl_verification'])){
             $options['disable_ssl_verification'] = '';
         }
-        
-        $url = "https://www.google.com/accounts/Logout?continue=https://console.developers.google.com/start/api?id=gmail";
-        $link_text = sprintf(wp_kses(__('Create a new <a target="_blank" href="%s">web application</a> and set its Authorized Redirect URL to the one shown on this page.', 'gmail-smtp'), array('a' => array('href' => array(), 'target' => array()))), esc_url($url));
         ?>
-
-        <div class="update-nag">
-            <h3><?php _e('Basic Setup Instructions', 'gmail-smtp');?></li></h3>
-            <ol>
-                <li><?php echo $link_text;?></li>
-                <li><?php _e('Once the application is created it will generate a client ID and client secret. Copy them into the fields here.', 'gmail-smtp');?></li>
-                <li><?php _e('Enter your OAuth Email, From Email and From name.', 'gmail-smtp');?></li>
-                <li><?php _e('Select an encryption.', 'gmail-smtp');?></li>
-                <li><?php _e('Enter a port number.', 'gmail-smtp');?></li>
-                <li><?php _e('Save the settings.', 'gmail-smtp');?></li>
-                <li><?php _e('Now you can authorize your app to access the Gmail API by clicking on the Grant Permission button.', 'gmail-smtp');?></li>
-            </ol>    
-        </div>
-
         <form method="post" action="<?php echo $_SERVER["REQUEST_URI"]; ?>">
             <?php wp_nonce_field('gmail_smtp_general_settings'); ?>
 

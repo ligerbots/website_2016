@@ -4,7 +4,7 @@ Donate link: https://wphowto.net/
 Tags: smtp, gmail, mail, mailer, phpmailer, wp_mail, email, oauth2
 Requires at least: 4.7
 Tested up to: 4.7
-Stable tag: 1.1.1
+Stable tag: 1.1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -37,10 +37,16 @@ Most shared hosting servers have restrictions when it comes to email. Usually em
 
 = Gmail SMTP Basic Setup =
 
+* Create a new project in Google Developers Console.
+* Enable Gmail API in it.
+* Create credentials (OAuth client ID) to access this API.
+* Configure the consent screen for the web application.
+* Enter a **Product Name** and a **Privacy policy URL**.
+* Once the consent screen is configured, create a web application.
 * Go to the plugin settings (`Settings->Gmail SMTP`).
-* Create a new web application using the link.
 * Set the **Authorized Redirect URL** of the application as the one shown in the settings.
-* Copy the **Client ID** and **Client secret** and paste into the settings area.
+* Finish creating the web app.
+* Copy the newly created **Client ID** and **Client secret** and paste into the settings area.
 * Enter your OAuth Email, From Email and From name.
 * Select an encryption.
 * Enter a port number.
@@ -101,6 +107,9 @@ For screenshots please visit the [Gmail SMTP](https://wphowto.net/gmail-smtp-plu
 none
 
 == Changelog ==
+
+= 1.1.2 =
+* Removed the "Basic Setup Instructions" section from the settings page. Full setup instructions are now available on the documentation page.
 
 = 1.1.1 =
 * Updated the PHPMailer library to version 5.2.22. This release contains a critical security fix for CVE-2017-5223.
