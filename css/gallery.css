@@ -11,9 +11,9 @@
 	border-radius: 6pt;
 	font-size: 12pt;
 	letter-spacing: 0.1em;
-	padding: 0 2em;
+	padding: 6pt 2em;
 	margin: 0 15pt;
-	line-height: 2.5em;
+	line-height: 18pt;
 	text-shadow: 1.5pt 1.5pt 1pt rgba(0,0,0,0.25); /*Default shadow is too far away*/
 }
 
@@ -22,7 +22,7 @@
 	font-style: italic;
 	font-size: 11.5pt;
 	line-height: 24pt;
-	padding: 0;
+	margin: 0;
 }
 
 .gallery-year-container { /*Styling that will apply to the entire page's content*/

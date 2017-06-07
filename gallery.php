@@ -87,7 +87,7 @@
 								// if in the album list, show the links to Flickr and youTube
 								if ( !isset($albumPhotos) )
 								{
-									echo "<center style=\"margin-bottom: 3em; word-wrap: break-word;\">\n"; //add proper margins & allow the youtube url to be wrapped on mobile
+									echo "<center style=\"margin-bottom: 2.25em; word-wrap: break-word;\">\n"; //add proper margins & allow the youtube url to be wrapped on mobile
 									echo "	<h5 class=\"gallery-link\">To see all LigerBots photos: ";
 									echo "		<a href=\"https://www.flickr.com/photos/ligerbots/\" target=\"_blank\">flickr.com/photos/ligerbots/</a>";
 									echo "	</h5>\n";

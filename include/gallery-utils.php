@@ -1,7 +1,10 @@
 <?php
+
 // Routines to query Flickr for the LigerBots gallery page
+
 //define( "CACHE_ALLOWED", false );
 define( "CACHE_ALLOWED", true );
+
 // TEMPORARY: for testing
 // FLICKR_API_KEY will be set from config when running on the server
 if ( !defined('FLICKR_API_KEY') )
@@ -13,9 +16,12 @@ if ( !defined('FLICKR_API_KEY') ) //make sure it worked
 	print "ERROR: FLICKR_API_KEY is not defined\n";
 	throw new Exception( 'FLICKR_API_KEY is not defined. Set an environment variable?' );
 }
+
 require_once("phpflickr/phpFlickr.php");
+
 // our user id
 define('FLICKR_USERID', '127608154@N06');
+
 // Create a Flickr API handler. Do this here to keep everything in one file.
 // Will eventually include a bit more setup, like caching.
 function createFlickr()
@@ -24,7 +30,7 @@ function createFlickr()
 	if ( CACHE_ALLOWED )
 	{
 		$dbURI = 'mysql://' . DB_USER . ':' . DB_PASSWORD . '@' . DB_HOST . '/' . DB_NAME;
-		$flickr->enableCache( 'db', $dbURI, 3600 );
+		$flickr->enableCache( 'db', $dbURI, 14400 );  // 4 hours
 	}
 	return $flickr;
 }
@@ -33,7 +39,6 @@ function createFlickr()
 //////////////
 //GET ALBUMS//
 //////////////
-
 
 // Query for the list of collections and albums in each collection
 function getAlbums($flickr)
@@ -78,6 +83,8 @@ function getPhotoUrlStub($info, $photoIndex)
 	//stub doesn't include ending like c.jpg or s.jpg
 	return "https://farm".$info["farm"].".staticflickr.com/".$info["server"]."/".$info[$photoIndex]."_".$info["secret"]; 
 }
+
+/* Not used - comment out to limit confusion
 function getAlbumInfo($flickr, $albumID)
 {
 	$info = $flickr->photosets_getInfo( $albumID, FLICKR_USERID );
@@ -85,6 +92,8 @@ function getAlbumInfo($flickr, $albumID)
 	              'description' => $info['description']['_content'] );
 	return $res;
 }
+ */
+
 function getPhotoDescription( $flickr, $photoID, $secret )
 {
 	$info = $flickr->photos_getInfo( $photoID, $secret );
@@ -123,7 +132,7 @@ function getPhotoList( $flickr, $albumID )
 					'albumIndex' => $albumIndex );
 				break 2; //we have all the info. We're done here.
 			}
-		$albumIndex++;
+		        $albumIndex++;
 		}
 		
 		$yearIndex++;
@@ -302,12 +311,12 @@ function albumListDisplay( $albumList, $year )
 	//note: albums are ordered most recent (index 0) to oldest
 	if ( $year < count($albumList) - 1 )
 		//set buttons to the proper reference
-		{ $nextLink = "year=" . ($year + 1 ); }
+		{ $prevLink = "year=" . ($year + 1 ); }
 	else
 		//no more albums in this direction
 		{ $nextLink = null; }
 	if ( $year > 0 )
-		{ $prevLink = "year=" . ( $year - 1 ); }
+		{ $nextLink = "year=" . ( $year - 1 ); }
 	else
 		{ $prevLink = null; }
 	
