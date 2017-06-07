@@ -302,14 +302,14 @@ function albumListDisplay( $albumList, $year )
 	//note: albums are ordered most recent (index 0) to oldest
 	if ( $year < count($albumList) - 1 )
 		//set buttons to the proper reference
-		{ $prevLink = "year=" . ($year + 1 ); }
+		{ $nextLink = "year=" . ($year + 1 ); }
 	else
 		//no more albums in this direction
-		{ $prevLink = null; }
-	if ( $year > 0 )
-		{ $nextLink = "year=" . ( $year - 1 ); }
-	else
 		{ $nextLink = null; }
+	if ( $year > 0 )
+		{ $prevLink = "year=" . ( $year - 1 ); }
+	else
+		{ $prevLink = null; }
 	
 	//buttons and header
 	echo "<div class=\"row gallery-buttons-bar-container-top\">\n";
@@ -323,7 +323,7 @@ function albumListDisplay( $albumList, $year )
 	foreach ( $albumList[ $year ][ "albums" ] as $currentAlbum )
 	{
 		echo "<a href=\"/gallery.php?album={$currentAlbum["id"]}\" style=\"text-decoration: none;\">\n";
-		echo "  <div class=\"gallery-thumbnail\" style=\"background: url({$currentAlbum["thumb"]}_c.jpg) 0% 0% no-repeat; background-size: cover;\">\n";
+		echo "  <div class=\"gallery-thumbnail\" style=\"background: url({$currentAlbum["thumb"]}_z.jpg) 50% 50% no-repeat; background-size: cover;\">\n";
 		echo "      <div class=\"gallery-caption\">\n";
 		echo            $currentAlbum["title"]."\n";
 		echo "      </div>\n";
@@ -349,13 +349,13 @@ function albumListDisplay( $albumList, $year )
 function albumDisplay( $albumPhotos )
 {
 	if ( $albumPhotos["albumIndex"] > 0 )
-		{ $prevLink = "album=" . $albumPhotos["albums"][ $albumPhotos["albumIndex"] - 1 ]["id"]; }
-	else
-		{ $prevLink = null; }
-	if ( $albumPhotos["albumIndex"] < count( $albumPhotos["albums"] ) - 1 )
-		{ $nextLink = "album=" . $albumPhotos["albums"][ $albumPhotos["albumIndex"] + 1 ]["id"]; }
+		{ $nextink = "album=" . $albumPhotos["albums"][ $albumPhotos["albumIndex"] - 1 ]["id"]; }
 	else
 		{ $nextLink = null; }
+	if ( $albumPhotos["albumIndex"] < count( $albumPhotos["albums"] ) - 1 )
+		{ $prevLink = "album=" . $albumPhotos["albums"][ $albumPhotos["albumIndex"] + 1 ]["id"]; }
+	else
+		{ $prevLink = null; }
 	
 	// Top buttons and header
 	echo "<div class=\"row gallery-buttons-bar-container-top\">\n";
@@ -378,9 +378,9 @@ function albumDisplay( $albumPhotos )
 	echo "<div class=\"gallery-photo-column col-xs-12 col-sm-6 col-md-6 col-lg-6\">\n";
 	foreach ( $albumPhotos["photos"] as $photo )
 	{
-		echo "<a data-fancybox=\"gallery\" href=\"" . $photo["url_stub"] . "_c.jpg\">\n";
+		echo "<a data-fancybox=\"gallery\" href=\"" . $photo["url_stub"] . "_b.jpg\">\n";
 		echo "  <div class=\"gallery-photo-container gallery-photo-loading\">\n";
-		echo "    <img src=\"" . $photo["url_stub"] . "_c.jpg\">\n";
+		echo "    <img src=\"" . $photo["url_stub"] . "_z.jpg\">\n";
 		echo "    <div class=\"gallery-photo-desc\">" . $photo["caption"] . "</div>\n";
 		echo "  </div>\n";
 		echo "</a>\n";
@@ -402,7 +402,4 @@ function albumDisplay( $albumPhotos )
 	addButton( "Next album", $nextLink, false, false );
 	echo "</div>\n";
 }
-#$flickr = createFlickr();
-#$photos = getPhotoList( $flickr, '72157681956375875' );
-#print_r( $photos );
 ?>
