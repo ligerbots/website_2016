@@ -314,11 +314,11 @@ function albumListDisplay( $albumList, $year )
 		{ $prevLink = "year=" . ($year + 1 ); }
 	else
 		//no more albums in this direction
-		{ $nextLink = null; }
+		{ $prevLink = null; }
 	if ( $year > 0 )
 		{ $nextLink = "year=" . ( $year - 1 ); }
 	else
-		{ $prevLink = null; }
+		{ $nextLink = null; }
 	
 	//buttons and header
 	echo "<div class=\"row gallery-buttons-bar-container-top\">\n";
