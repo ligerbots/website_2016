@@ -349,7 +349,7 @@ function albumListDisplay( $albumList, $year )
 function albumDisplay( $albumPhotos )
 {
 	if ( $albumPhotos["albumIndex"] > 0 )
-		{ $nextink = "album=" . $albumPhotos["albums"][ $albumPhotos["albumIndex"] - 1 ]["id"]; }
+		{ $nextLink = "album=" . $albumPhotos["albums"][ $albumPhotos["albumIndex"] - 1 ]["id"]; }
 	else
 		{ $nextLink = null; }
 	if ( $albumPhotos["albumIndex"] < count( $albumPhotos["albums"] ) - 1 )
