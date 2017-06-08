@@ -41,6 +41,8 @@
 	height: 189.75pt;
 	position: relative;
 	transition: 0.3s;
+        background-size: cover;
+        background-position: center;
 }
 
 .gallery-thumbnail:hover {

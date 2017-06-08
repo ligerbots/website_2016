@@ -332,7 +332,7 @@ function albumListDisplay( $albumList, $year )
 	foreach ( $albumList[ $year ][ "albums" ] as $currentAlbum )
 	{
 		echo "<a href=\"/gallery.php?album={$currentAlbum["id"]}\" style=\"text-decoration: none;\">\n";
-		echo "  <div class=\"gallery-thumbnail\" style=\"background: url({$currentAlbum["thumb"]}_z.jpg) 50% 50% no-repeat; background-size: cover;\">\n";
+		echo "  <div class=\"gallery-thumbnail\" style=\"background-image: url({$currentAlbum["thumb"]}_z.jpg);\">\n";
 		echo "      <div class=\"gallery-caption\">\n";
 		echo            $currentAlbum["title"]."\n";
 		echo "      </div>\n";
