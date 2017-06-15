@@ -153,7 +153,7 @@ function getPhotoList( $flickr, $albumID )
 	
 	$albumInfo = $flickr->photosets_getPhotos( $albumID, 'tags' );
 	$photosRemaining = count( $albumInfo['photoset']['photo'] );
-	$photosNeeded = 10; //how many photos to show
+	$photosNeeded = 6; //how many photos to show
 	$photosPicked = array(); //all the photos we've picked
 	$areTaggedPhotos = false;
 	
@@ -374,7 +374,7 @@ function albumDisplay( $albumPhotos )
 	echo "</div>\n";
 	echo "<div class=\"gallery-album-description\">\n";
 	if ( strlen( $albumPhotos[ "desc" ] ) > 0 ) echo '<p>' . $albumPhotos[ "desc" ] . "</p>\n";
-	echo '<p>See the full album on Flickr: ';
+	echo '<p style=\"font-style: italic;\">See the full album on Flickr: ';
 	echo '<a href="https://www.flickr.com/photos/ligerbots/albums/' . $albumPhotos[ 'albumId' ] . '" target="_blank">';
 	echo 'flickr.com/photos/ligerbots/albums/' . $albumPhotos[ 'albumId' ] . "</a></p>\n";
 	echo "</div>\n";
