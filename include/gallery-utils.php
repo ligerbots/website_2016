@@ -374,7 +374,7 @@ function albumDisplay( $albumPhotos )
 	echo "</div>\n";
 	echo "<div class=\"gallery-album-description\">\n";
 	if ( strlen( $albumPhotos[ "desc" ] ) > 0 ) echo '<p>' . $albumPhotos[ "desc" ] . "</p>\n";
-	echo '<p style=\"font-style: italic;\">See the full album on Flickr: ';
+	echo '<p style="font-style: italic;">See the full album on Flickr: ';
 	echo '<a href="https://www.flickr.com/photos/ligerbots/albums/' . $albumPhotos[ 'albumId' ] . '" target="_blank">';
 	echo 'flickr.com/photos/ligerbots/albums/' . $albumPhotos[ 'albumId' ] . "</a></p>\n";
 	echo "</div>\n";
