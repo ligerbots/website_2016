@@ -97,10 +97,22 @@ function getAlbumInfo($flickr, $albumID)
 function getPhotoDescription( $flickr, $photoID, $secret )
 {
 	$info = $flickr->photos_getInfo( $photoID, $secret );
-	return $info[ 'photo' ][ 'description' ][ '_content' ];
+    return $info[ 'photo' ][ 'description' ][ '_content' ];
 }
 
-
+function getGoodTitle( $title )
+{
+    if ( strlen( $title ) <= 8
+         || ! preg_match( '/ /', $title )
+         || ! preg_match( '/[a-zA-Z]/', $title )
+         || preg_match( '/ - [0-9]+$/', $title )
+         || preg_match( '/\([0-9]+\)$/', $title )
+         || preg_match( '/ [0-9]+ of [0-9]+$/', $title )
+         || preg_match( '/screen ?shot/i', $title ) )
+        return '';
+    return $title;
+}
+    
 //////////////////
 //GET PHOTO LIST//
 //////////////////
@@ -184,7 +196,8 @@ function getPhotoList( $flickr, $albumID )
 	{
 		$photoList[] = array(
 			'url_stub' => getPhotoUrlStub( $photo, 'id' ),
-			'caption' => getPhotoDescription( $flickr, $photo['id'], $photo['secret'] )
+			#'caption' => getPhotoDescription( $flickr, $photo['id'], $photo['secret'] )
+            'caption' => getGoodTitle( $photo['title'] )
 		);
 	}
 	$finalData[ 'photos' ] = $photoList;
