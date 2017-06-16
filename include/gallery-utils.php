@@ -165,7 +165,7 @@ function getPhotoList( $flickr, $albumID )
 	
 	$albumInfo = $flickr->photosets_getPhotos( $albumID, 'tags' );
 	$photosRemaining = count( $albumInfo['photoset']['photo'] );
-	$photosNeeded = 6; //how many photos to show
+	$photosNeeded = 8; //how many photos to show
 	$photosPicked = array(); //all the photos we've picked
 	$areTaggedPhotos = false;
 	
