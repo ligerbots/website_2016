@@ -134,9 +134,9 @@ function output_navbar()
                 <li><a href="/calendar.php">Calendar</a></li> 
                 <li><a href="/fll">FLL</a></li> 
                 <li class="dropdown">
-                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">Gallery<span class="caret"></span></a>
+                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">Media<span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    <li><a href="/gallery2016">2016</a></li>
+                    <li><a href="/gallery.php">Photos</a></li>
                   </ul>
                 </li>
                 <li class="dropdown">
