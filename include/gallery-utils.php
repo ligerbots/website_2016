@@ -177,7 +177,7 @@ function getPhotoList( $flickr, $albumID )
 		{
 			if (!$areTaggedPhotos) //we found the first tagged photo
 			{
-				$photosUsed = array(); //clear out any randomly selected photos
+				$photosPicked = array(); //clear out any randomly selected photos
 			}
 			$photosPicked[] = $photo; //add it to the list of used photos so we don't pick it again
 			$areTaggedPhotos = true; //there are now tagged photos; don't pick ones randomly or clear the list
