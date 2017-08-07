@@ -21,7 +21,7 @@
 /** 
   File containing secret items, so these do not get checked into Git 
  **/
-if(file_exists( '/home/frc2877/private/wp-secrets.php' )) include( '/home/frc2877/private/wp-secrets.php' );
+if ( file_exists( '/etc/private/wp-secrets.php' ) ) include( '/etc/private/wp-secrets.php' );
 else include( 'wp-config-dummy.php' ); // assume we're not in production
 
 /** Database Charset to use in creating database tables. */
