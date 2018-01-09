@@ -72,7 +72,7 @@ function output_header()
               </a>
             </li>
             <li>
-              <a class="header-link" target="_blank" href="https://www.youtube.com/channel/UCgNgdmtDs7d58dVR-80DCGA">
+              <a class="header-link" target="_blank" href="https://www.youtube.com/ligerbots">
                 <img src="/images/youtube.png"/>
               </a>
             </li>
