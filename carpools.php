@@ -54,7 +54,7 @@ if ( isset( $_POST[ 'delcarpool' ] ) ) {
                 </center>
                 <div class="level4-heading">Student Carpool Permission form can be downloaded
                   <a href="https://drive.google.com/open?id=0B-X2pQSmn_-zSHNmQUtrU1JMMHM" style="text-decoration:underline;" target="_blank"><b>here</b></a>.<br/>
-                  Driver CORI/SORI forms can be found here: 
+                  CORI/SORI forms must be submitted <b>in person</b> at a school office: 
                   <a href="https://drive.google.com/open?id=0B8rfh_l5qtZ5Wkx3ZFR6a19OM3c" style="text-decoration:underline;" target="_blank"><b>CORI</b></a>
                   <a href="https://drive.google.com/open?id=0B8rfh_l5qtZ5S3A1ZngwUjVvRkU" style="text-decoration:underline;" target="_blank"><b>SORI</b></a>.
                 </div>
