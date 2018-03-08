@@ -16,8 +16,8 @@ if($postid == 0) { // does not exist
 
 $post = get_post( $postid );
 $isPage = is_page( $post );
-$includeFooter = ! ( $isPage && get_page_uri( $postid ) == "current-sponsors" );
-
+$includeFooter = ! ( $isPage && ( get_page_uri( $postid ) == "current-sponsors" ||
+	       	     	     	  get_page_uri( $postid ) == "test-sponsors" ) );
 ?>
 
 <!DOCTYPE html>

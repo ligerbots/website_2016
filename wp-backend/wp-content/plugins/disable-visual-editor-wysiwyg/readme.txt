@@ -3,7 +3,7 @@ Contributors: stanxp
 Donate link: http://stanxp.com/
 Tags: disable,visual,editor,wysiwyg,admin,tinymce
 Requires at least: 3.0.0
-Tested up to: 4.1
+Tested up to: 4.9.4
 Stable tag: trunk
 
 This plugin will disable the visual editor for selected page/post..
