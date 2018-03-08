@@ -29,7 +29,8 @@ function acct_type( $user ) {
     // careful of the comparison operator!
     if ( array_search( 'Student', $r ) !== FALSE  ) return 0;
     if ( array_search( 'Coach', $r ) !== FALSE || array_search( 'Mentor', $r ) !== FALSE ) return 1;
-    return 2;
+    if ( array_search( 'Alum', $r ) !== FALSE ) return 2;
+    return 3;
 }
 
 function user_cmp( $a, $b ) {
@@ -108,9 +109,15 @@ function user_cmp( $a, $b ) {
                         if ( $type == 0 )
                             echo "<h2>Students</h2>\n";
                         else if ( $type == 1 )
-                        echo "<h2>Coaches and Mentors</h2>\n";
+                            echo "<h2>Coaches and Mentors</h2>\n";
+                        else if ( $type == 2 )
+                            echo "<h2>Alumni</h2>\n";
                         else
-                            echo "<h2>Parents</h2>\n";
+			{
+			    // Don't have any Parent pictures, so skip for now.
+			    break;
+			    // echo "<h2>Parents</h2>\n";
+			}
                     }
 
                     echo '<div class="facebook-entry">';
