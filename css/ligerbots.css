@@ -670,22 +670,30 @@ body{
     width: 100%;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 1em;
+    margin-bottom: 1em;
     display: block;
 }
 
-.spr-margin-bottom {
-    margin-bottom: 16pt;
+.spr-section-heading {
+    margin-top: 2em;
+    margin-bottom: 1.5em;
 }
-.spr-margin-top {
-    margin-top: 23pt;
+.spr-first-section {
+    margin-top: 3em;
+    margin-bottom: 1.5em;
+}
+.spr-text-section {
+    margin-top: 2em;
+    margin-bottom: 2.5em;
 }
 
 .donor-name {
     list-style: none;
     font-family: 'Open Sans Condensed', sans-serif;
     font-weight: 700;
-    font-size: 16pt;
-    line-height: 28pt;
+    font-size: 14pt;
+    line-height: 26pt;
     letter-spacing: 0.06em;
     text-align: center;
 }
@@ -698,20 +706,39 @@ body{
     margin-right: -4px;
 }
 
-@media (min-width: 768px) {
-    .blue-rule {
-        margin-top: 40px;
-        margin-bottom: 0;
-        margin-left: -2em;
-        margin-right: -2em;
-        border-top: 5px solid rgb(0,102,179);
-    }
+.spr-grey-rule {
+    line-height: 0.5;
+    text-align: center;
+    overflow: hidden;
+    margin-bottom: 1em;
 }
-@media (max-width: 767px) {
-    .blue-rule {
-        margin-top: 40px;
-        margin-bottom: 0;
-        border-top: 5px solid rgb(0,102,179);
+.spr-grey-rule div {
+    display: inline-block;
+    position: relative;
+}
+.spr-grey-rule div:before,
+.spr-grey-rule div:after {
+    content: "";
+    position: absolute;
+    height: 0;
+    border-bottom: 0.5pt solid rgb(147,149,152);
+    border-top: 0.5pt solid rgb(147,149,152);
+    top: 50%;
+    width: 500px;
+}
+.spr-grey-rule div:before {
+    right: 100%;
+    margin-right: 15px;
+}
+.spr-grey-rule div:after {
+    left: 100%;
+    margin-left: 15px;
+}
+
+@media (min-width: 768px) {
+    .spr-wide-row {
+	margin-left: -2em;
+	margin-right: -2em;
     }
 }
 
@@ -720,14 +747,59 @@ body{
         width: 135%;
         margin-left: -17.5%;
     }
+    .spr-width135_m30 {
+        width: 135%;
+        margin-left: -30%;
+    }
     .spr-width120 {
         width: 120%;
         margin-left: -10%;
+    }
+    .spr-width110 {
+        width: 110%;
+        margin-left: -5%;
     }
     .spr-width90 {
         width: 90%;
     }
     .spr-width80 {
         width: 80%;
+    }
+    .spr-width75 {
+        width: 75%;
+    }
+
+    .spr-col-2-10 {
+	width: 20%;
+    }
+    .spr-margin-0 {
+	margin-left: 0;
+    }
+    .spr-margin-p5 {
+	margin-left: 5px;
+    }
+    .spr-margin-m10 {
+	margin-left: -10px;
+    }
+    .spr-margin-p10 {
+	margin-left: 10px;
+    }
+    .spr-margin-wholefoods {
+	margin-right: unset;
+    }
+    .spr-margin-p20 {
+	margin-left: 20px;
+    }
+    .spr-margin-m20 {
+	margin-left: -20px;
+    }
+    .spr-margin-m30 {
+	margin-left: -30px;
+    }
+    .spr-margin-p_panther {
+	margin-left: 10px;
+    }
+    .spr-margin-m_panther {
+	margin-left: -40px;
     }
 }
