@@ -703,7 +703,7 @@ body{
     display: inline-block;
     vertical-align: middle;
     float: none;
-    margin-right: -4px;
+    margin-right: -6px;
 }
 
 .spr-grey-rule {
@@ -721,8 +721,9 @@ body{
     content: "";
     position: absolute;
     height: 0;
-    border-bottom: 0.5pt solid rgb(147,149,152);
-    border-top: 0.5pt solid rgb(147,149,152);
+    background: rgb(147,149,152);
+    border-bottom: 1pt solid rgb(147,149,152);
+    border-top: 1pt solid rgb(147,149,152);
     top: 50%;
     width: 500px;
 }
