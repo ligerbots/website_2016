@@ -544,6 +544,11 @@ body{
     margin-bottom: 1.5em;
 }
 
+.wp-caption-text {
+    font-weight: 400;
+    font-style: italic;
+}
+
 /*--------------- Carpool page ---------------*/
 
 .carpool-delete {
@@ -760,6 +765,9 @@ body{
         width: 110%;
         margin-left: -5%;
     }
+    .spr-width110_0 {
+        width: 110%;
+    }
     .spr-width90 {
         width: 90%;
     }
@@ -785,7 +793,11 @@ body{
     .spr-margin-p10 {
 	margin-left: 10px;
     }
+    /* remove later */
     .spr-margin-wholefoods {
+	margin-right: unset;
+    }
+    .spr-margin-right-unset {
 	margin-right: unset;
     }
     .spr-margin-p20 {
