@@ -24,7 +24,15 @@ $includeFooter = ! ( $isPage && ( get_page_uri( $postid ) == "current-sponsors" 
 <html>
   <?php
   if ( $isPage ) {
+      // if ( get_page_uri( $postid ) == "sponsor" )
+      // {
+      //    // HACK
+      //    $extraHTML = "<meta property=\"og:image\" content=\"https://ligerbots.org/images/cheering_photo_2018.jpg\"/>\n";
+      // 	 $extraHTML .= '<meta property="og:description" content="' . htmlspecialchars("Help send the LigerBots to the Detroit FRC World Championship! The team has only a few days to raise $15k for fees, transportation and lodging. Please share with friends, family, STEM supporters and companies who care about supporting STEM. Learn more and donate: https://ligerbots.org/sponsor") . '"/>';
+      //    page_head( "Help Send the LigerBots to Championships", false, NULL, $extraHTML );
+      // } else {
       page_head( $post->post_title );
+      //      }
   } else {
       $html = $post->post_content;
       preg_match( '/<img[^>]+src=[\'"](?P<src>.+?)[\'"][^>]*>/i', $html, $result );

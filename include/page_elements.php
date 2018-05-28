@@ -45,7 +45,7 @@ EOL;
     echo "      ga('send', 'pageview');\n";
     echo "    </script>\n";
 
-    echo "    <meta property=\"og:title\" content=\"$title\" />";
+    echo "    <meta property=\"og:title\" content=\"$title\" />\n";
     echo $extraHTML;
     echo "\n  </head>\n";
 }

@@ -112,10 +112,10 @@ $blog = get_latest_blog();
             <div class="row row-margins">
               <div class="col-xs-12">
                 <div class="panel panel-brag">
-                  <img src="/images/team_photo_2017.jpg"/>
+                  <img src="/images/team_photo_2018.jpg"/>
                 </div>
                 <div style="text-align:center;">
-                  <div class="label-blue">WPI Competition 2017</div>
+                  <div class="label-blue">Detroit World Championship 2018</div>
                 </div>
               </div>
             </div>
