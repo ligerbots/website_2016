@@ -177,9 +177,9 @@ function output_navbar()
     echo '</div> </div> </nav>';
 }
 
-function output_footer( $home_page=false )
+function output_footer( $sponsor_bar_name='home-sponsors' )
 {
-    $page = get_page_by_path( 'home-sponsors' );
+    $page = get_page_by_path( $sponsor_bar_name );
 
     echo '<div class="row row-margins">';
     echo '  <div class="col-xs-12">';

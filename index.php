@@ -120,7 +120,7 @@ $blog = get_latest_blog();
               </div>
             </div>
             
-            <?php output_footer( true ); ?>
+            <?php output_footer(); ?>
 
           </div>
         </div>
