@@ -4,7 +4,7 @@ Tags: admin, user, login, approve, user management, plugin
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=G65Y5CM3HVRNY
 Requires at least: 3.1
 Tested up to: 5.0
-Stable tag: 3
+Stable tag: 4
 
 Adds action links to user table to approve or unapprove user registrations.
 
@@ -72,6 +72,9 @@ Yes! Under Settings > Approve User, you can choose when to send an email and cus
 
 
 == Changelog ==
+
+= 4 =
+* For easier on-boarding, it now displays a notice if user registration is disabled.
 
 = 3 =
 * Maintenance release.

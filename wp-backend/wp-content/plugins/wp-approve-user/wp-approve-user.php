@@ -3,7 +3,7 @@
  * Plugin Name: WP Approve User
  * Plugin URI:  http://en.wp.obenland.it/wp-approve-user/#utm_source=wordpress&utm_medium=plugin&utm_campaign=wp-approve-user
  * Description: Adds action links to user table to approve or unapprove user registrations.
- * Version:     3
+ * Version:     4
  * Author:      Konstantin Obenland
  * Author URI:  http://en.wp.obenland.it/#utm_source=wordpress&utm_medium=plugin&utm_campaign=wp-approve-user
  * Text Domain: wp-approve-user
@@ -14,28 +14,7 @@
  */
 
 if ( ! get_option( 'users_can_register' ) ) {
-	/**
-	 * Whitelists all users.
-	 *
-	 * @author Konstantin Obenland
-	 * @since  2.2.0 - 30.03.2013
-	 *
-	 * @param bool $new New option value.
-	 */
-	function wpau_whitelist_users( $new ) {
-		if ( $new ) {
-			$user_ids = get_users( array(
-				'blog_id' => '',
-				'fields'  => 'ID',
-			) );
-
-			foreach ( $user_ids as $user_id ) {
-				update_user_meta( $user_id, 'wp-approve-user', true );
-				update_user_meta( $user_id, 'wp-approve-user-mail-sent', true );
-			}
-		}
-	}
-	add_filter( 'pre_update_option_users_can_register', 'wpau_whitelist_users' );
+	require_once 'noop.php';
 	return;
 }
 
