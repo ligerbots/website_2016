@@ -24,7 +24,8 @@
             <div class="row side-margins row-margins bottom-margin">
                 <center><div class="notindex-title" style="margin-bottom: 3rem;">PAGE NOT FOUND</div></center>
                 <p><center>
-                    This page does not exist.<br/>
+		    <img src="/images/dozer_uh_oh.png" style="max-width: 100%;" title="Dozer Uh Oh" /><br />
+                    The requested page does not exist.<br/>
                     <a href="/contact">Contact us</a><br/>
                     <a href="/">Return to home page</a>
                 </center></p>
