@@ -38,30 +38,23 @@ $('input[name=user-type][value=student]').on('click', function(){
         .prop('checked', false)
         .parent().addClass('hidden')
   
-  $('input[name=role-exec]')
-        .prop('disabled', false)
-        .parent().removeClass('hidden')
-  
-  $('.roles-group').addClass('active')
+  $('.roles-group').addClass('hidden')
 })
 $('input[name=user-type][value=adult]').on('click', function(){
-  setGroupActive('none')
-  $('input[name=role-exec]')
-        .prop('disabled', true)
-        .prop('checked', false)
-        .parent().addClass('hidden')
-  
+  // assume they are a parent, as a starting point
+  setGroupActive('parent')
   $('input[name=role-parent]')
         .prop('disabled', false)
+        .prop('checked', true)
         .parent().removeClass('hidden')
   $('input[name=role-mentor]')
         .prop('disabled', false)
-                .parent().removeClass('hidden')
+        .parent().removeClass('hidden')
   $('input[name=role-coach]')
         .prop('disabled', false)
         .parent().removeClass('hidden')
   
-  $('.roles-group').addClass('active')
+  $('.roles-group').addClass('active').removeClass('hidden')
 })
 
 $('input[name=role-parent]').on('change', function(e) {
@@ -142,13 +135,20 @@ $('input[type=number][maxlength]')
   .on('change', limit)
 
 function validate() {
-    var schoolNone = $('input[name=school][value=none]').prop('checked')
-    var isStudent = $('input[name=user-type][value=student]').prop('checked')
-    var isParent = $('input[name=role-parent]').prop('checked')
+    var schoolNone = $('input[name=school][value=none]').prop('checked');
+    var isStudent = $('input[name=user-type][value=student]').prop('checked');
+    var isParent = $('input[name=role-parent]').prop('checked');
     if ( ( isStudent || isParent ) && schoolNone )
     {
         alert( "Students and Parents must select either North or South as a school" );
         return false;
+    }
+    var isMentor = $('input[name=role-mentor]').prop('checked');
+    var isCoach = $('input[name=role-coach]').prop('checked');
+    if ( ! isStudent && ! ( isParent || isMentor || isCoach ) )
+    {
+	alert( "Adults must be a Parent, Mentor or Coach" );
+	return false;
     }
     
     var p1 = $("[name='password']").val();
