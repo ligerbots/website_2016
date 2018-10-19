@@ -116,7 +116,7 @@ if ( isset( $_POST[ 'register' ] ) ) {
                     </div>
                     
                     <div class="roles-group">
-                      <label>Additional roles</label>
+                      <label class="required">Adult roles</label>
                       <div class="checkbox lb-checkbox">
                         <label class="hidden">
                           <input type="checkbox" name="role-parent" disabled /> Parent/Guardian
@@ -126,9 +126,6 @@ if ( isset( $_POST[ 'register' ] ) ) {
                         </label>
                         <label class="hidden">
                           <input type="checkbox" name="role-coach" disabled /> Coach
-                        </label>
-                        <label class="hidden">
-                          <input type="checkbox" name="role-exec" disabled /> Executive
                         </label>
                       </div>
                     </div>
