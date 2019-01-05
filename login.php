@@ -85,7 +85,7 @@ if ( isset( $_POST[ 'login' ] ) ) {
               </form>
 
               <br/>
-              Team members may register <a href="/register.php">here.</a>
+              Team members (students, parents and mentors) may register <a href="/register.php">here.</a>
             </div>
           </div>
           

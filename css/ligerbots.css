@@ -550,9 +550,6 @@ body{
 }
 .blog-content figcaption {
     margin-bottom: 1.5em;
-}
-
-.wp-caption-text {
     font-weight: 400;
     font-style: italic;
 }
