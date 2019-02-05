@@ -43,15 +43,15 @@ if ( isset( $_POST[ 'delcarpool' ] ) ) {
                 <center><div class="notindex-title">TEAM CARPOOLS</div></center>
                 <br/>
                 <center>
-                  Mondays at North, Thursdays at South, 6:30-9 PM</br>
+		  Mondays, Wednesdays and Thursdays at South, 6-9 PM<br/>
+		  Tuesdays at North, 6-9 PM (mostly for Build Leaders)<br/>
+                  Fridays at South, 3-9 PM<br/>
+                  Saturdays at South, 9 AM - 2:30 PM<br/>
+		  <!-- Mondays at North, Thursdays at South, 6:30-9 PM</br> -->
 		  </br>
 		  North Meetings in the Engineering Room</br>
 		  South Meetings in the Wood Shop, Room 9170</br>
                   Scroll down for more carpools
- 		  <!-- <br/>
-		  Thursday at North, 6-9 PM (mostly for Build Leaders)<br/>
-                  Fridays at South, 3-9 PM<br/>
-                  Saturdays at South, 9 AM - 2:30 PM<br/> -->
                 </center>
                 <div class="level4-heading">Student Carpool Permission form can be downloaded
                   <a href="https://drive.google.com/open?id=0B-X2pQSmn_-zSHNmQUtrU1JMMHM" style="text-decoration:underline;" target="_blank"><b>here</b></a>.<br/>

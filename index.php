@@ -131,13 +131,6 @@ $blog = get_latest_blog();
     <script>
      function Resize( id1, id2 )
      {
-         /* var obj1 = $(id1); */
-         /* var h1 = obj1.height(); */
-         /* var obj2 = $(id2); */
-         /* var h2 = obj2.height(); */
-         /* if ( h1 < h2 ) obj1.css( 'height', h2 ); */
-         /* else obj2.css( 'height', h1 ); */
-         
          $(id2).css( 'height', $(id1).height() );
      }
      
@@ -151,6 +144,7 @@ $blog = get_latest_blog();
      }
 
      $(window).on('load resize', FixHeight);
+     $("#twitter-widget-0").on('load', FixHeight);
      FixHeight();
     </script>
   </body>
