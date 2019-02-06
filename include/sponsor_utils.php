@@ -50,10 +50,12 @@ function edit_columns()
             'md_width', 'md_extra_push', 'xs_columns', 'xs_offset', 'url', 'icon'];
 }
 
-$EDIT_SETS = ['sponsor', 'sponsor_page'];
+$EDIT_SETS = ['sponsor', 'sponsor_page', 'sponsor_bar'];
 $EDIT_SPONSOR_COLUMNS = ['id', 'sponsor_level', 'name', 'url', 'icon'];
 $EDIT_SPONSOR_PAGE_COLUMNS = ['id', 'sponsor_level', 'name', 'layout_row', 'layout_column', 'layout_order',
                               'md_width', 'md_extra_push', 'xs_columns', 'xs_offset'];
+$EDIT_SPONSOR_BAR_COLUMNS = ['id', 'name', 'sponsor_bar_column', 'sponsor_bar_row',
+                             'sponsor_bar_width', 'sponsor_bar_top_margin', 'sponsor_bar_left_margin'];
 
 function edit_sponsor_row($input)
 {
@@ -116,6 +118,18 @@ function sort_by_level_name($a, $b)
     $bi = $level_order[$b];
     if ($ai == $bi) return 0;
     return ($ai < $bi) ? -1 : 1;
+}
+
+function sort_sponsor_bar($a, $b)
+{
+    $ac = $a['sponsor_bar_column'];
+    $bc = $b['sponsor_bar_column'];
+    if ($ac != $bc)
+        return ($ac < $bc) ? -1 : 1;
+    $ac = $a['sponsor_bar_row'];
+    $bc = $b['sponsor_bar_row'];
+    if ($ac == $bc) return 0;
+    return ($ac < $bc) ? -1 : 1;
 }
 
 function set_pushpulls($all_rows)
@@ -270,6 +284,55 @@ function sponsor_text_rows($row_set)
         }
         echo "</div>\n";
     }
+}
+
+function sponsor_bar_rows($all_rows)
+{
+    $bar_sprs = [];
+    $i = 0;
+    foreach ($all_rows as $skey => $row_set)
+    {
+        foreach ($row_set as $rkey => $page_row)
+        {
+            foreach ($page_row as $spr)
+            {
+                if ( ! is_null($spr['sponsor_bar_column']) && $spr['sponsor_bar_column'] > 0 )
+                    array_push($bar_sprs, $spr);
+            }
+        }
+    }
+
+    uasort($bar_sprs, 'sort_sponsor_bar');
+
+    $curr_col = -1;
+    foreach ($bar_sprs as $spr)
+    {
+        if ($curr_col != $spr['sponsor_bar_column'])
+        {
+            if ($curr_col > 0) echo "\n</div>";
+            echo "\n" . '<div class="spr-column">' . "\n";
+            $curr_col =  $spr['sponsor_bar_column'];
+        }
+        else
+        {
+            echo "<br/>\n";
+        }
+
+        $style = '';
+        if (! is_null($spr['sponsor_bar_width']) && $spr['sponsor_bar_width'] > 0)
+            $style .= 'width:' . $spr['sponsor_bar_width'] . 'px; ';
+        if ($spr['sponsor_bar_top_margin'] > 0) 
+            $style .= 'margin-top:' . $spr['sponsor_bar_top_margin'] . 'px; ';
+        if ($spr['sponsor_bar_left_margin'] > 0) 
+            $style .= 'margin-left:' . $spr['sponsor_bar_left_margin'] . 'px; ';
+
+        echo '  <a href="' . $spr['url'] . '" target="_blank"><img src="/images/sponsor-logos/' . $spr['icon'];
+        echo '" alt="' . $spr['name'] . '" title="' . $spr['name'] . '"';
+        if (strlen($style) > 0 )
+            echo ' style="' . $style . '"';
+        echo '/></a>';
+    }
+    echo "\n</div>\n";
 }
 
 function copy_icon_set($current_set, $new_name)

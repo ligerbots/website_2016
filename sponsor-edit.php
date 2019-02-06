@@ -112,6 +112,8 @@ uksort($sponsor_set, 'sort_by_level_name');
 //$columns = edit_columns();
 if ($edit_set == 'sponsor_page')
     $columns = $EDIT_SPONSOR_PAGE_COLUMNS;
+else if ($edit_set == 'sponsor_bar')
+    $columns = $EDIT_SPONSOR_BAR_COLUMNS;
 else
     $columns = $EDIT_SPONSOR_COLUMNS;
 $ncolumns = count($columns);
