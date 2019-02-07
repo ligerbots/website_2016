@@ -44,16 +44,24 @@ function fetch_sponsor_icon_sets()
     return $res;
 }
 
-function edit_columns()
+function fetch_sponsor_bar_info($setname)
 {
-    return ['id', 'sponsor_level', 'name', 'layout_row', 'layout_column', 'layout_order',
-            'md_width', 'md_extra_push', 'xs_columns', 'xs_offset', 'url', 'icon'];
+    global $wpdb;
+
+    $sql = "SELECT * FROM sponsor_info WHERE icon_set='$setname' order by sponsor_bar_column, sponsor_bar_row, name";
+    
+    $res = [];
+    foreach ($wpdb->get_results($sql, ARRAY_N) as $row)
+    {
+        array_push($res, $row[0]);
+    }
+    return $res;
 }
 
 $EDIT_SETS = ['sponsor', 'sponsor_page', 'sponsor_bar'];
 $EDIT_SPONSOR_COLUMNS = ['id', 'sponsor_level', 'name', 'url', 'icon'];
 $EDIT_SPONSOR_PAGE_COLUMNS = ['id', 'sponsor_level', 'name', 'layout_row', 'layout_column', 'layout_order',
-                              'md_width', 'md_extra_push', 'xs_columns', 'xs_offset'];
+                              'md_width', 'md_extra_push', 'top_margin', 'xs_columns', 'xs_offset'];
 $EDIT_SPONSOR_BAR_COLUMNS = ['id', 'name', 'sponsor_bar_column', 'sponsor_bar_row',
                              'sponsor_bar_width', 'sponsor_bar_top_margin', 'sponsor_bar_left_margin'];
 
@@ -74,6 +82,9 @@ function edit_sponsor_row($input)
     unset($sqlinput['id']);
     
     if ($action == 'edit') {
+        if ($sqlinput['sponsor_bar_column'] <= 0)
+            $sqlinput['sponsor_bar_column'] = NULL;
+        
         // error_log("row edit id:" . print_r($where,TRUE) . " data=" . print_r($sqlinput,TRUE));
         $wpdb->update('sponsor_info', $sqlinput, $where);
     } else if ($action == 'delete') {
@@ -109,7 +120,7 @@ function sort_by_layout($a, $b)
 }
 
 // This sorts sponsor levels, not single rows
-$level_order = ['puma' => 1, 'panther' => 2, 'cheetah' => 3, 'lynx' => 4, 'new' => 5, 'retired' => 6];
+$level_order = ['puma' => 1, 'panther' => 2, 'cheetah' => 3, 'lynx' => 4, 'spr_bar_only' => 5, 'new' => 6, 'retired' => 7];
 function sort_by_level_name($a, $b)
 {
     global $level_order;
@@ -118,18 +129,6 @@ function sort_by_level_name($a, $b)
     $bi = $level_order[$b];
     if ($ai == $bi) return 0;
     return ($ai < $bi) ? -1 : 1;
-}
-
-function sort_sponsor_bar($a, $b)
-{
-    $ac = $a['sponsor_bar_column'];
-    $bc = $b['sponsor_bar_column'];
-    if ($ac != $bc)
-        return ($ac < $bc) ? -1 : 1;
-    $ac = $a['sponsor_bar_row'];
-    $bc = $b['sponsor_bar_row'];
-    if ($ac == $bc) return 0;
-    return ($ac < $bc) ? -1 : 1;
 }
 
 function set_pushpulls($all_rows)
@@ -180,6 +179,13 @@ function set_pushpulls($all_rows)
     return $all_rows;
 }
 
+function spr_col_name($width)
+{
+    $n = 'spr-col-p' . $width;
+    $n = str_replace('.', 'p', $n);
+    return $n;
+}
+
 function sponsor_page_css($all_rows)
 {
     $done = [];
@@ -191,7 +197,7 @@ function sponsor_page_css($all_rows)
             foreach ($row as $spr)
             {
                 $w = $spr['md_width'];
-                $s = "spr-col-p$w";
+                $s = spr_col_name($w);
                 if (! array_key_exists($s, $done))
                 {
                     $res .= " .$s { width: $w%; margin-left: 0; }\n";
@@ -250,7 +256,7 @@ function sponsor_logo_rows($row_set)
             $style = '';
             if ($spr['top_margin'] != 0) $style=' style="margin-top: ' . $spr['top_margin'] . 'px;"';
             
-            echo '  <div class="spr-col-p' . $spr['md_width'] . $pushpull . ' col-xs-' . $spr['xs_columns'] . ' col-xs-offset-' . $spr['xs_offset'] . ' vcenter">' . "\n";
+            echo '  <div class="' . spr_col_name($spr['md_width']) . $pushpull . ' col-xs-' . $spr['xs_columns'] . ' col-xs-offset-' . $spr['xs_offset'] . ' vcenter">' . "\n";
             if ($spr['url'] != '') echo '    <a href="' . $spr['url'] . '" target="_blank">';
             echo '<img class="' . $cls . '"' . $style . ' src="/images/sponsor-logos/' . $spr['icon'] . '" alt="' . $spr['name'] . '" title="' . $spr['name'] .'" />';
             if ($spr['url'] != '') echo '</a>';
@@ -286,23 +292,55 @@ function sponsor_text_rows($row_set)
     }
 }
 
-function sponsor_bar_rows($all_rows)
+function sort_sponsor_bar($a, $b)
+{
+    $ac = $a['sponsor_bar_column'];
+    if (is_null($ac)) $ac = 1000000;
+    $bc = $b['sponsor_bar_column'];
+    if (is_null($bc)) $bc = 1000000;
+    if ($ac != $bc)
+        return ($ac < $bc) ? -1 : 1;
+
+    $ac = $a['sponsor_bar_row'];
+    if (is_null($ac)) $ac = 1000000;
+    $bc = $b['sponsor_bar_row'];
+    if (is_null($bc)) $bc = 1000000;
+    if ($ac != $bc)
+        return ($ac < $bc) ? -1 : 1;
+
+    $ac = $a['sponsor_level'];
+    $bc = $b['sponsor_level'];
+    if ($ac != $bc)
+        return ($ac < $bc) ? -1 : 1;
+
+    $ac = $a['name'];
+    $bc = $b['name'];
+    if ($ac == $bc) return 0;
+    return ($ac < $bc) ? -1 : 1;
+}
+
+function sponsor_bar_rows($row_sets, $filter)
 {
     $bar_sprs = [];
-    $i = 0;
-    foreach ($all_rows as $skey => $row_set)
+    foreach ($row_sets as $skey => $row_set)
     {
         foreach ($row_set as $rkey => $page_row)
         {
             foreach ($page_row as $spr)
             {
-                if ( ! is_null($spr['sponsor_bar_column']) && $spr['sponsor_bar_column'] > 0 )
+                if ( ! $filter || (! is_null($spr['sponsor_bar_column']) && $spr['sponsor_bar_column'] > 0))
                     array_push($bar_sprs, $spr);
             }
         }
     }
 
     uasort($bar_sprs, 'sort_sponsor_bar');
+    return $bar_sprs;
+}
+
+function sponsor_bar_html($all_rows)
+{
+    $bar_sprs = sponsor_bar_rows($all_rows, true);
 
     $curr_col = -1;
     foreach ($bar_sprs as $spr)
@@ -340,8 +378,11 @@ function copy_icon_set($current_set, $new_name)
     global $wpdb;
 
     if (strlen($new_name) == 0) return '';
+
     $cols = ['icon_set', 'sponsor_level', 'name', 'layout_row', 'layout_column', 'layout_order',
-             'md_width', 'md_extra_push', 'xs_columns', 'xs_offset', 'url', 'icon'];
+             'md_width', 'md_extra_push', 'xs_columns', 'xs_offset', 'url', 'icon',
+             'sponsor_bar_column', 'sponsor_bar_row',
+             'sponsor_bar_width', 'sponsor_bar_top_margin', 'sponsor_bar_left_margin'];
     
     $sql = 'INSERT INTO sponsor_info (' . implode(',', $cols) . ") SELECT '$new_name',". implode(',', array_slice($cols, 1));
     $sql .= " FROM sponsor_info WHERE icon_set='$current_set';";

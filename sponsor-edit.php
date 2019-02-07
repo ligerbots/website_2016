@@ -106,10 +106,6 @@ if ( $is_editable && isset( $_POST[ 'set_as_production' ] ) )
     }
 }
 
-$sponsor_set = fetch_sponsor_info($icon_set_name);
-uksort($sponsor_set, 'sort_by_level_name');
-
-//$columns = edit_columns();
 if ($edit_set == 'sponsor_page')
     $columns = $EDIT_SPONSOR_PAGE_COLUMNS;
 else if ($edit_set == 'sponsor_bar')
@@ -117,6 +113,9 @@ else if ($edit_set == 'sponsor_bar')
 else
     $columns = $EDIT_SPONSOR_COLUMNS;
 $ncolumns = count($columns);
+
+$sponsor_set = fetch_sponsor_info($icon_set_name);
+
 ?>
 
 <!DOCTYPE html>
@@ -215,41 +214,60 @@ $ncolumns = count($columns);
                       echo "<th $cls>$t</th>\n";
                   }
                   echo "</tr>\n";
-
-                  uksort($sponsor_set, 'sort_by_level_name');
                   echo "<br/>\n";
-                  foreach ($sponsor_set as $skey => $row_set)
+
+                  if ($edit_set == 'sponsor_bar')
                   {
-                      if (! $in_head) { echo "</tbody><thead>\n"; $in_head = True; }
-                      echo "<tr id=\"$skey\"><th style=\"display:none\"/><th colspan=\"$ncolumns-1\">" . ucwords($skey) . "</th></tr>\n";
-                      
-                      ksort($row_set);
-                      $curr_row = 0;
-                      foreach ($row_set as $rk => $row)
+                      if ($in_head) { echo "</thead><tbody>\n"; $in_head = False; }
+                      $rows = sponsor_bar_rows($sponsor_set, false);
+
+                      foreach ($rows as $spr)
                       {
-                          uasort($row, 'sort_by_column');
-                          foreach ($row as $spr)
+                          foreach ($columns as $c)
                           {
-                              if ($spr['layout_row'] != $curr_row)
+                              $cls = '';
+                              if ($c == 'id') $cls = 'style="display:none"';
+                              echo "<td $cls>" . $spr[$c] . "</td>\n";
+                          }
+                          echo "</tr>\n";                          
+                      }
+                  }
+                  else
+                  {
+                      uksort($sponsor_set, 'sort_by_level_name');
+                      foreach ($sponsor_set as $skey => $row_set)
+                      {
+                          if (! $in_head) { echo "</tbody><thead>\n"; $in_head = True; }
+                          echo "<tr id=\"$skey\"><th style=\"display:none\"/><th colspan=\"$ncolumns-1\">" . ucwords($skey) . "</th></tr>\n";
+                          
+                          ksort($row_set);
+                          $curr_row = 0;
+                          foreach ($row_set as $rk => $row)
+                          {
+                              uasort($row, 'sort_by_column');
+                              foreach ($row as $spr)
                               {
-                                  if ($curr_row > 0)
+                                  if ($spr['layout_row'] != $curr_row)
                                   {
-                                      // emphasize the layout row change
-                                      if (! $in_head) { echo "</tbody><thead>\n"; $in_head = True; }
-                                      echo "<tr style='font-size: 1px;'><td style=\"display:none\"/><td colspan='$ncolumns-1'>&nbsp;</td></tr>\n";
+                                      if ($curr_row > 0)
+                                      {
+                                          // emphasize the layout row change
+                                          if (! $in_head) { echo "</tbody><thead>\n"; $in_head = True; }
+                                          echo "<tr style='font-size: 1px;'><td style=\"display:none\"/><td colspan='$ncolumns-1'>&nbsp;</td></tr>\n";
+                                      }
+                                      $curr_row = $spr['layout_row'];
                                   }
-                                  $curr_row = $spr['layout_row'];
+                                  
+                                  if ($in_head) { echo "</thead><tbody>\n"; $in_head = False; }
+                                  echo "<tr>\n";
+                                  foreach ($columns as $c)
+                                  {
+                                      $cls = '';
+                                      if ($c == 'id') $cls = 'style="display:none"';
+                                      echo "<td $cls>" . $spr[$c] . "</td>\n";
+                                  }
+                                  echo "</tr>\n";
                               }
-                              
-                              if ($in_head) { echo "</thead><tbody>\n"; $in_head = False; }
-                              echo "<tr>\n";
-                              foreach ($columns as $c)
-                              {
-                                  $cls = '';
-                                  if ($c == 'id') $cls = 'style="display:none"';
-                                  echo "<td $cls>" . $spr[$c] . "</td>\n";
-                              }
-                              echo "</tr>\n";
                           }
                       }
                   }
