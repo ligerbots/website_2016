@@ -44,22 +44,22 @@ function fetch_sponsor_icon_sets()
     return $res;
 }
 
-function fetch_sponsor_bar_info($setname)
-{
-    global $wpdb;
-
-    $sql = "SELECT * FROM sponsor_info WHERE icon_set='$setname' order by sponsor_bar_column, sponsor_bar_row, name";
-    
-    $res = [];
-    foreach ($wpdb->get_results($sql, ARRAY_N) as $row)
-    {
-        array_push($res, $row[0]);
-    }
-    return $res;
-}
-
+/* function fetch_sponsor_bar_info($setname)
+ * {
+ *     global $wpdb;
+ * 
+ *     $sql = "SELECT * FROM sponsor_info WHERE icon_set='$setname' order by sponsor_bar_column, sponsor_bar_row, name";
+ *     
+ *     $res = [];
+ *     foreach ($wpdb->get_results($sql, ARRAY_N) as $row)
+ *     {
+ *         array_push($res, $row[0]);
+ *     }
+ *     return $res;
+ * }
+ * */
 $EDIT_SETS = ['sponsor', 'sponsor_page', 'sponsor_bar'];
-$EDIT_SPONSOR_COLUMNS = ['id', 'sponsor_level', 'name', 'url', 'icon'];
+$EDIT_SPONSOR_COLUMNS = ['id', 'sponsor_level', 'name', 'url', 'icon', 'sponsor_bar_icon'];
 $EDIT_SPONSOR_PAGE_COLUMNS = ['id', 'sponsor_level', 'name', 'layout_row', 'layout_column', 'layout_order',
                               'md_width', 'md_extra_push', 'top_margin', 'xs_columns', 'xs_offset'];
 $EDIT_SPONSOR_BAR_COLUMNS = ['id', 'name', 'sponsor_bar_column', 'sponsor_bar_row',
@@ -82,7 +82,7 @@ function edit_sponsor_row($input)
     unset($sqlinput['id']);
     
     if ($action == 'edit') {
-        if ($sqlinput['sponsor_bar_column'] <= 0)
+        if (array_key_exists('sponsor_bar_column', $sqlinput) && $sqlinput['sponsor_bar_column'] <= 0)
             $sqlinput['sponsor_bar_column'] = NULL;
         
         // error_log("row edit id:" . print_r($where,TRUE) . " data=" . print_r($sqlinput,TRUE));
@@ -120,7 +120,7 @@ function sort_by_layout($a, $b)
 }
 
 // This sorts sponsor levels, not single rows
-$level_order = ['puma' => 1, 'panther' => 2, 'cheetah' => 3, 'lynx' => 4, 'spr_bar_only' => 5, 'new' => 6, 'retired' => 7];
+$level_order = ['puma' => 1, 'panther' => 2, 'cheetah' => 3, 'lynx' => 4, 'new' => 5, 'retired' => 6];
 function sort_by_level_name($a, $b)
 {
     global $level_order;
@@ -363,12 +363,16 @@ function sponsor_bar_html($all_rows)
             $style .= 'margin-top:' . $spr['sponsor_bar_top_margin'] . 'px; ';
         if ($spr['sponsor_bar_left_margin'] > 0) 
             $style .= 'margin-left:' . $spr['sponsor_bar_left_margin'] . 'px; ';
+        if ($style != '') $style = ' style="' . $style . '"';
 
-        echo '  <a href="' . $spr['url'] . '" target="_blank"><img src="/images/sponsor-logos/' . $spr['icon'];
-        echo '" alt="' . $spr['name'] . '" title="' . $spr['name'] . '"';
-        if (strlen($style) > 0 )
-            echo ' style="' . $style . '"';
-        echo '/></a>';
+        $icon = $spr['icon'];
+        $l2 = $spr['sponsor_bar_icon'];
+        if ( ! is_null($l2) && strlen($l2) > 0) $icon = $l2;
+
+        if ($spr['url'] != '') echo '  <a href="' . $spr['url'] . '" target="_blank">';
+        echo '<img src="/images/sponsor-logos/' . $icon . '" alt="' . $spr['name'] . '" title="' . $spr['name'] . '"'
+           . $style . '/></a>';
+        if ($spr['url'] != '') echo '</a>';
     }
     echo "\n</div>\n";
 }
@@ -379,14 +383,16 @@ function copy_icon_set($current_set, $new_name)
 
     if (strlen($new_name) == 0) return '';
 
+    # TODO: pull this from the database
     $cols = ['icon_set', 'sponsor_level', 'name', 'layout_row', 'layout_column', 'layout_order',
-             'md_width', 'md_extra_push', 'xs_columns', 'xs_offset', 'url', 'icon',
+             'md_width', 'md_extra_push', 'xs_columns', 'xs_offset', 'url', 'icon', 'sponsor_bar_icon',
              'sponsor_bar_column', 'sponsor_bar_row',
              'sponsor_bar_width', 'sponsor_bar_top_margin', 'sponsor_bar_left_margin'];
     
     $sql = 'INSERT INTO sponsor_info (' . implode(',', $cols) . ") SELECT '$new_name',". implode(',', array_slice($cols, 1));
     $sql .= " FROM sponsor_info WHERE icon_set='$current_set';";
     $wpdb->query($sql);
+
     return '';
 }
 
@@ -397,7 +403,7 @@ function set_iconset_as_production($current_set)
     $oldname = 'production_' . strftime('%Y%m%d_%H%M%S');
     $wpdb->query('START TRANSACTION;');
     $res1 = $wpdb->query("UPDATE sponsor_info SET icon_set='$oldname' WHERE icon_set='production';");
-    $res2 = $wpdb->query("UPDATE sponsor_info SET icon_set='production' WHERE icon_set='$current_set';");
+    $res2 = $wpdb->query("UPDATE sponsor_info SET icon_set='production' WHERE icon_set='$current_set' and sponsor_level <> 'retired';");
     if ($res1 && $res2)
     {
         $wpdb->query('COMMIT;');
@@ -407,8 +413,6 @@ function set_iconset_as_production($current_set)
         $wpdp->query('ROLLBACK;');
     }
 
-    //return $sql;
-    //$wpdb->query($sql);
     return '';
 }
 ?>

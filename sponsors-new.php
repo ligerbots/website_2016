@@ -90,6 +90,7 @@ $css = sponsor_page_css($logo_set);
 
             <?php
             if ($show_sponsor_bar) {
+                echo '<div class="row top-spacer"> </div>' . "\n";
                 echo '<div class="row row-margins">' . "\n";
                 echo '  <div class="col-xs-12">' . "\n";
                 echo '    <div class="panel panel-sprs">' . "\n";
