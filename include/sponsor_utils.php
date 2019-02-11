@@ -44,20 +44,6 @@ function fetch_sponsor_icon_sets()
     return $res;
 }
 
-/* function fetch_sponsor_bar_info($setname)
- * {
- *     global $wpdb;
- * 
- *     $sql = "SELECT * FROM sponsor_info WHERE icon_set='$setname' order by sponsor_bar_column, sponsor_bar_row, name";
- *     
- *     $res = [];
- *     foreach ($wpdb->get_results($sql, ARRAY_N) as $row)
- *     {
- *         array_push($res, $row[0]);
- *     }
- *     return $res;
- * }
- * */
 $EDIT_SETS = ['sponsor', 'sponsor_page', 'sponsor_bar'];
 $EDIT_SPONSOR_COLUMNS = ['id', 'sponsor_level', 'name', 'url', 'icon', 'sponsor_bar_icon'];
 $EDIT_SPONSOR_PAGE_COLUMNS = ['id', 'sponsor_level', 'name', 'layout_row', 'layout_column', 'layout_order',
@@ -338,6 +324,12 @@ function sponsor_bar_rows($row_sets, $filter)
     return $bar_sprs;
 }
 
+function sponsor_bar()
+{
+    $logo_set = fetch_sponsor_info('production');
+    sponsor_bar_html($logo_set);
+}
+
 function sponsor_bar_html($all_rows)
 {
     $bar_sprs = sponsor_bar_rows($all_rows, true);
@@ -359,9 +351,9 @@ function sponsor_bar_html($all_rows)
         $style = '';
         if (! is_null($spr['sponsor_bar_width']) && $spr['sponsor_bar_width'] > 0)
             $style .= 'width:' . $spr['sponsor_bar_width'] . 'px; ';
-        if ($spr['sponsor_bar_top_margin'] > 0) 
+        if ($spr['sponsor_bar_top_margin'] != 0) 
             $style .= 'margin-top:' . $spr['sponsor_bar_top_margin'] . 'px; ';
-        if ($spr['sponsor_bar_left_margin'] > 0) 
+        if ($spr['sponsor_bar_left_margin'] != 0) 
             $style .= 'margin-left:' . $spr['sponsor_bar_left_margin'] . 'px; ';
         if ($style != '') $style = ' style="' . $style . '"';
 
@@ -380,19 +372,29 @@ function sponsor_bar_html($all_rows)
 function copy_icon_set($current_set, $new_name)
 {
     global $wpdb;
-
+    global $EDIT_SPONSOR_COLUMNS, $EDIT_SPONSOR_PAGE_COLUMNS, $EDIT_SPONSOR_BAR_COLUMNS;
+    
     if (strlen($new_name) == 0) return '';
 
-    # TODO: pull this from the database
-    $cols = ['icon_set', 'sponsor_level', 'name', 'layout_row', 'layout_column', 'layout_order',
-             'md_width', 'md_extra_push', 'xs_columns', 'xs_offset', 'url', 'icon', 'sponsor_bar_icon',
-             'sponsor_bar_column', 'sponsor_bar_row',
-             'sponsor_bar_width', 'sponsor_bar_top_margin', 'sponsor_bar_left_margin'];
+    // TODO: pull this from the database
+    $cols = ['icon_set', ];
+    foreach ($EDIT_SPONSOR_COLUMNS as $c)
+    {
+        if ($c != 'id' && ! in_array($c, $cols)) array_push($cols, $c);
+    }
+    foreach ($EDIT_SPONSOR_PAGE_COLUMNS as $c)
+    {
+        if ($c != 'id' && ! in_array($c, $cols)) array_push($cols, $c);
+    }
+    foreach ($EDIT_SPONSOR_BAR_COLUMNS as $c)
+    {
+        if ($c != 'id' && ! in_array($c, $cols)) array_push($cols, $c);
+    }
     
     $sql = 'INSERT INTO sponsor_info (' . implode(',', $cols) . ") SELECT '$new_name',". implode(',', array_slice($cols, 1));
     $sql .= " FROM sponsor_info WHERE icon_set='$current_set';";
     $wpdb->query($sql);
-
+    
     return '';
 }
 

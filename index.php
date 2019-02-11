@@ -145,7 +145,7 @@ $blog = get_latest_blog();
 
      $(window).on('load resize', FixHeight);
      $("#twitter-widget-0").on('load', FixHeight);
-     FixHeight();
+     setTimeout(function() { FixHeight(); }, 1000);
     </script>
   </body>
 </html>

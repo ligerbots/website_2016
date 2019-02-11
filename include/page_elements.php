@@ -127,7 +127,7 @@ function output_navbar()
                   <a class="dropdown-toggle" data-toggle="dropdown" href="#">Support<span class="caret"></span></a>
                   <ul class="dropdown-menu">
                     <li><a href="/sponsor">Become a Sponsor</a></li>
-                    <li><a href="/current-sponsors">Current Sponsors</a></li>
+                    <li><a href="/sponsors.php">Current Sponsors</a></li>
                   </ul>
                 </li>
                 <li><a href="/contact">Contact</a></li> 
@@ -177,21 +177,21 @@ function output_navbar()
     echo '</div> </div> </nav>';
 }
 
+require_once('sponsor_utils.php');
 function output_footer( $sponsor_bar_name='home-sponsors' )
 {
-    $page = get_page_by_path( $sponsor_bar_name );
-
-    echo '<div class="row row-margins">';
-    echo '  <div class="col-xs-12">';
-    echo '    <div class="panel panel-sprs">';
-    // don't apply the filters. Raw html.
-    echo $page->post_content;
-    echo '    </div>';
-    echo '    <div style="text-align: center;">';
-    echo '      <p class="label-orange"><a href="/current-sponsors">Thank you to ALL our Sponsors (click here)!</a></p>';
-    echo '    </div>';
-    echo '  </div>';
-    echo '</div>';
+    echo '<div class="row row-margins">' . "\n";
+    echo '  <div class="col-xs-12">' . "\n";
+    echo '    <div class="panel panel-sprs">' . "\n";
+    echo '      <div class="row spr-row">' . "\n";
+    sponsor_bar();
+    echo "      </div>\n";
+    echo "    </div>\n";
+    echo '    <div style="text-align: center;">' ."\n";
+    echo '      <p class="label-orange"><a href="/current-sponsors">Thank you to ALL our Sponsors (click here)!</a></p>' . "\n";
+    echo "    </div>\n";
+    echo "  </div>\n";
+    echo "</div>\n";
 }
 
 ?>

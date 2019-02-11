@@ -16,7 +16,7 @@ if ( ! is_user_logged_in() )
 
 // Higher security level?
 if ( ! current_user_can( 'edit_posts' ) ) {
-    header('Location: /sponsors-new.php');
+    header('Location: /sponsors.php');
     die();
 }
 
@@ -193,7 +193,7 @@ $sponsor_set = fetch_sponsor_info($icon_set_name);
                 {
                     echo '&nbsp;&nbsp;<button type="submit" name="set_as_production" class="btn btn-default">Set As Prod</button>' . "\n";
                 }
-                echo '&nbsp;&nbsp;<a href="/sponsors-new.php?icon_set=' . $icon_set_name . '" target="_blank">View Sponsor Page</a>' . "\n";
+                echo '&nbsp;&nbsp;<a href="/sponsors.php?icon_set=' . $icon_set_name . '" target="_blank">View Sponsor Page</a>' . "\n";
                 ?>
                   </form>
               </div>

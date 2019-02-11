@@ -95,7 +95,6 @@ $css = sponsor_page_css($logo_set);
                 echo '  <div class="col-xs-12">' . "\n";
                 echo '    <div class="panel panel-sprs">' . "\n";
                 echo '      <div class="row spr-row">' . "\n";
-
                 sponsor_bar_html($logo_set);
                 echo "      </div>\n";
                 echo "    </div>\n";
