@@ -210,7 +210,7 @@ class Obenland_Wp_Plugins_V4 {
 	public function feed_box() {
 
 		include_once ABSPATH . WPINC . '/feed.php';
-		$feed_url = 'http://en.wp.obenland.it/feed/';
+		$feed_url = 'https://konstantin.obenland.it/feed/';
 		$rss      = fetch_feed( $feed_url );
 
 		// Bail if feed doesn't work.
@@ -235,13 +235,13 @@ class Obenland_Wp_Plugins_V4 {
 				<ul>
 					<?php if ( ! $rss_items ) : ?>
 					<li><?php esc_html_e( 'No news items, feed might be broken...', 'obenland-wp' ); ?></li>
-					<?php
+						<?php
 					else :
 						foreach ( $rss_items as $item ) :
 							$url = preg_replace( '/#.*/', '#utm_source=WordPress&utm_medium=sidebannerpostbox&utm_term=rssitem&utm_campaign=' . $this->textdomain, $item->get_permalink() );
-					?>
+							?>
 						<li><a class="rsswidget" href="<?php echo esc_url( $url ); ?>"><?php echo esc_html( $item->get_title() ); ?></a></li>
-						<?php
+							<?php
 						endforeach;
 					endif;
 					?>

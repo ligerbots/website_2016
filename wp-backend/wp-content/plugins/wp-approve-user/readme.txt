@@ -2,9 +2,9 @@
 Contributors: obenland
 Tags: admin, user, login, approve, user management, plugin
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=G65Y5CM3HVRNY
-Requires at least: 3.1
-Tested up to: 5.0
-Stable tag: 5
+Requires at least: 4.3
+Tested up to: 5.1
+Stable tag: 6
 
 Adds action links to user table to approve or unapprove user registrations.
 
@@ -73,6 +73,11 @@ Yes! Under Settings > Approve User, you can choose when to send an email and cus
 
 == Changelog ==
 
+= 6 =
+* Improved approval flow, waiting with password email until after approval.
+* Fixed a bug where the approval email had some stray whitespace surrounding it.
+* Tested for WordPress 5.2.
+
 = 5 =
 * Fixed a bug where user registration couldn't be activated with the plugin active.
 
@@ -138,3 +143,5 @@ Yes! Under Settings > Approve User, you can choose when to send an email and cus
 
 
 == Upgrade Notice ==
+Updated registration flow, now sending out Core's password-creation email only after a registration was approved.
+With this change, the minimum required version is now WordPress 4.3.

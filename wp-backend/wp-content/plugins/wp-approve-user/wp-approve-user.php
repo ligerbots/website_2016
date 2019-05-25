@@ -3,7 +3,7 @@
  * Plugin Name: WP Approve User
  * Plugin URI:  http://en.wp.obenland.it/wp-approve-user/#utm_source=wordpress&utm_medium=plugin&utm_campaign=wp-approve-user
  * Description: Adds action links to user table to approve or unapprove user registrations.
- * Version:     5
+ * Version:     6
  * Author:      Konstantin Obenland
  * Author URI:  http://en.wp.obenland.it/#utm_source=wordpress&utm_medium=plugin&utm_campaign=wp-approve-user
  * Text Domain: wp-approve-user
@@ -68,8 +68,6 @@ class Obenland_Wp_Approve_User extends Obenland_Wp_Plugins_V4 {
 	 * @author Konstantin Obenland
 	 * @since  1.0 - 29.01.2012
 	 * @access public
-	 *
-	 * @return Obenland_Wp_Approve_User
 	 */
 	public function __construct() {
 		parent::__construct( array(
@@ -134,6 +132,8 @@ class Obenland_Wp_Approve_User extends Obenland_Wp_Plugins_V4 {
 		$this->hook( 'ms_user_row_actions', 'user_row_actions' );
 		$this->hook( 'wp_authenticate_user' );
 		$this->hook( 'user_register' );
+		$this->hook( 'register_new_user', 0 );
+		$this->hook( 'wp_login_errors' );
 		$this->hook( 'shake_error_codes' );
 		$this->hook( 'admin_menu' );
 		$this->hook( 'network_admin_menu', 'admin_menu' );
@@ -184,14 +184,10 @@ class Obenland_Wp_Approve_User extends Obenland_Wp_Plugins_V4 {
 			true
 		);
 
-		wp_localize_script(
-			$this->textdomain,
-			'wp_approve_user',
-			array(
-				'approve'   => __( 'Approve', 'wp-approve-user' ),
-				'unapprove' => __( 'Unapprove', 'wp-approve-user' ),
-			)
-		);
+		wp_localize_script( $this->textdomain, 'wp_approve_user', array(
+			'approve'   => __( 'Approve', 'wp-approve-user' ),
+			'unapprove' => __( 'Unapprove', 'wp-approve-user' ),
+		) );
 	}
 
 
@@ -352,6 +348,23 @@ class Obenland_Wp_Approve_User extends Obenland_Wp_Plugins_V4 {
 	 */
 	public function user_register( $id ) {
 		update_user_meta( $id, 'wp-approve-user', current_user_can( 'create_users' ) );
+		update_user_meta( $id, 'wp-approve-user-new-registration', true );
+	}
+
+	/**
+	 * Fires after a new user registration has been recorded.
+	 *
+	 * @author Konstantin Obenland
+	 * @since  6 - 04.03.2019
+	 * @access public
+	 *
+	 * @param int $user_id ID of the newly registered user.
+	 */
+	public function register_new_user( $user_id ) {
+		if ( ! get_user_meta( $user_id, 'wp-approve-user', true ) ) {
+			remove_action( 'register_new_user', 'wp_send_new_user_notifications' );
+			add_action( 'register_new_user', 'wp_new_user_notification' );
+		}
 	}
 
 	/**
@@ -449,6 +462,10 @@ class Obenland_Wp_Approve_User extends Obenland_Wp_Plugins_V4 {
 	 */
 	public function admin_action_wpau_update() {
 		// phpcs:disable WordPress.VIP.ValidatedSanitizedInput, WordPress.CSRF.NonceVerification.NoNonceVerification
+		if ( empty( $_REQUEST['update'] ) ) {
+			return;
+		}
+
 		$count = absint( $_REQUEST['count'] );
 
 		switch ( $_REQUEST['update'] ) {
@@ -481,6 +498,26 @@ class Obenland_Wp_Approve_User extends Obenland_Wp_Plugins_V4 {
 		$_REQUEST['action'] = -1;
 
 		// phpcs:enable WordPress.VIP.ValidatedSanitizedInput, WordPress.CSRF.NonceVerification.NoNonceVerification
+	}
+
+	/**
+	 * Filters the login page errors.
+	 *
+	 * @author Konstantin Obenland
+	 * @since  6 - 04.03.2019
+	 * @access public
+	 *
+	 * @param \WP_Error $errors WP Error object.
+	 * @return \WP_Error
+	 */
+	public function wp_login_errors( $errors ) {
+		if ( in_array( 'registered', $errors->get_error_codes(), true ) ) {
+			$message = __( 'Registration complete. You will receive an email once your registration was confirmed by an administrator.', 'wp-approve-user' );
+			$errors->remove( 'registered' );
+			$errors->add( 'registered', $message, 'message' );
+		}
+
+		return $errors;
 	}
 
 
@@ -710,9 +747,7 @@ class Obenland_Wp_Approve_User extends Obenland_Wp_Plugins_V4 {
 	public function textarea_cb( $option ) {
 		$option = (object) $option;
 		?>
-		<textarea id="<?php echo esc_attr( sanitize_title_with_dashes( $option->name ) ); ?>" class="large-text code" name="wp-approve-user[<?php echo esc_attr( $option->name ); ?>]" rows="10" cols="50" >
-			<?php echo esc_textarea( $this->options[ $option->name ] ); ?>
-		</textarea>
+		<textarea id="<?php echo esc_attr( sanitize_title_with_dashes( $option->name ) ); ?>" class="large-text code" name="wp-approve-user[<?php echo esc_attr( $option->name ); ?>]" rows="10" cols="50" ><?php echo esc_textarea( $this->options[ $option->name ] ); ?></textarea>
 		<?php
 	}
 
@@ -750,9 +785,13 @@ class Obenland_Wp_Approve_User extends Obenland_Wp_Plugins_V4 {
 	 * @return void
 	 */
 	public function wpau_approve( $user_id ) {
+		if ( get_user_meta( $user_id, 'wp-approve-user-new-registration', true ) ) {
+			wp_new_user_notification( $user_id, null, 'user' );
+			delete_user_meta( $user_id, 'wp-approve-user-new-registration' );
+		}
+
 		// Check user meta if mail has been sent already.
 		if ( $this->options['wpau-send-approve-email'] && ! get_user_meta( $user_id, 'wp-approve-user-mail-sent', true ) ) {
-
 			$user     = new WP_User( $user_id );
 			$blogname = wp_specialchars_decode( get_option( 'blogname' ), ENT_QUOTES );
 

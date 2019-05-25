@@ -18,6 +18,7 @@ $user_ids = get_users( array(
 foreach ( $user_ids as $user_id ) {
 	delete_user_meta( $user_id, 'wp-approve-user' );
 	delete_user_meta( $user_id, 'wp-approve-user-mail-sent' );
+	delete_user_meta( $user_id, 'wp-approve-user-new-registration' );
 }
 
 delete_option( 'wp-approve-user' );
