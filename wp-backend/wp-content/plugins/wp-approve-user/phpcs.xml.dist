@@ -11,33 +11,14 @@
 
 	<rule ref="WordPress">
 		<exclude name="WordPress.Files.FileName.InvalidClassFileName" />
-		<exclude name="WordPress.VIP.RestrictedFunctions.user_meta_get_user_meta" />
-		<exclude name="WordPress.VIP.RestrictedFunctions.user_meta_update_user_meta" />
-		<exclude name="WordPress.VIP.RestrictedFunctions.user_meta_delete_user_meta" />
-		<exclude name="WordPress.VIP.SlowDBQuery.slow_db_query_meta_key" />
-		<exclude name="WordPress.VIP.SlowDBQuery.slow_db_query_meta_value" />
-	<!--	<exclude name="WordPress.VIP.DirectDatabaseQuery.DirectQuery" /> -->
+		<exclude name="WordPress.DB.SlowDBQuery.slow_db_query_meta_key" />
+		<exclude name="WordPress.DB.SlowDBQuery.slow_db_query_meta_value" />
+		<exclude name="WordPress.Security.NonceVerification.Recommended" />
 		<exclude name="WordPress.WP.DeprecatedFunctions.screen_iconFound" />
+		<exclude name="PEAR.Functions.FunctionCallSignature.ContentAfterOpenBracket" />
+		<exclude name="PEAR.Functions.FunctionCallSignature.CloseBracketLine" />
+		<exclude name="PEAR.Functions.FunctionCallSignature.MultipleArguments" />
 	</rule>
+	<rule ref="WordPress-Core" />
 	<rule ref="WordPress-Docs" />
-
-	<rule ref="WordPress.VIP.SuperGlobalInputUsage.AccessDetected">
-		<exclude-pattern>wp-approve-user.php</exclude-pattern>
-	</rule>
-
-<!--
-	<rule ref="WordPress.NamingConventions.ValidFunctionName.FunctionNameInvalid">
-		<exclude-pattern>wp-display-header.php</exclude-pattern>
-	</rule>
-
-	<rule ref="WordPress.VIP.ValidatedSanitizedInput.MissingUnslash">
-		<exclude-pattern>wp-display-header.php</exclude-pattern>
-	</rule>
-	<rule ref="WordPress.VIP.ValidatedSanitizedInput.InputNotSanitized">
-		<exclude-pattern>wp-display-header.php</exclude-pattern>
-	</rule>
-	<rule ref="WordPress.VIP.ValidatedSanitizedInput.InputNotValidated">
-		<exclude-pattern>wp-display-header.php</exclude-pattern>
-	</rule>
-	-->
 </ruleset>

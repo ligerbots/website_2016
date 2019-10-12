@@ -3,8 +3,8 @@ Contributors: obenland
 Tags: admin, user, login, approve, user management, plugin
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=G65Y5CM3HVRNY
 Requires at least: 4.3
-Tested up to: 5.1
-Stable tag: 6
+Tested up to: 5.2
+Stable tag: 7
 
 Adds action links to user table to approve or unapprove user registrations.
 
@@ -62,6 +62,9 @@ Yes! Under Settings > Approve User, you can choose when to send an email and cus
 **wpau_update_message_handler** (*string*)
 > Allows to return custom update messages.
 
+**wpau_message_placeholders** (*array*)
+> Filters the placeholders in approve/unapprove emails.
+
 
 == Screenshots ==
 
@@ -72,6 +75,11 @@ Yes! Under Settings > Approve User, you can choose when to send an email and cus
 
 
 == Changelog ==
+
+= 7 =
+* Added a filter to manipulate placeholders and their replacement values. See https://wordpress.org/support/topic/customize-email-templates-2/
+* Only sends out rejection email if it's a new registration and the user is not approved. See https://wordpress.org/support/topic/deleting-user-generates-user-not-approved-email-possible-to-disable-feature/
+* Various multisite improvements and bug fixes. The unapproved filter works now! See https://wordpress.org/support/topic/multisite-issues-with-user-lists-and-unapproved-filter/
 
 = 6 =
 * Improved approval flow, waiting with password email until after approval.

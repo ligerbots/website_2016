@@ -42,13 +42,15 @@ function wpau_add_settings_error() {
 		return;
 	}
 
+	$url = is_multisite() ? network_admin_url( 'settings.php' ) : admin_url( 'options-general.php' );
+
 	add_settings_error(
 		'wp-approve-user',
 		'no-users-can-register',
 		sprintf(
 			/* translators: Link to options page. */
 			wp_kses_post( __( 'Please <a href="%s">enable user registrations</a> for WP Approve User to work.' ) ),
-			esc_url( network_admin_url( 'options-general.php' ) )
+			esc_url( $url )
 		),
 		'notice-info'
 	);

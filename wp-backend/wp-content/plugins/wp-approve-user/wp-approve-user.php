@@ -3,7 +3,7 @@
  * Plugin Name: WP Approve User
  * Plugin URI:  http://en.wp.obenland.it/wp-approve-user/#utm_source=wordpress&utm_medium=plugin&utm_campaign=wp-approve-user
  * Description: Adds action links to user table to approve or unapprove user registrations.
- * Version:     6
+ * Version:     7
  * Author:      Konstantin Obenland
  * Author URI:  http://en.wp.obenland.it/#utm_source=wordpress&utm_medium=plugin&utm_campaign=wp-approve-user
  * Text Domain: wp-approve-user
@@ -83,10 +83,16 @@ class Obenland_Wp_Approve_User extends Obenland_Wp_Plugins_V4 {
 		);
 
 		if ( is_admin() ) {
-			$this->unapproved_users = get_users( array(
+			$args = array(
 				'meta_key'   => 'wp-approve-user',
 				'meta_value' => false,
-			) );
+			);
+
+			if ( is_multisite() ) {
+				$args['blog_id'] = 0;
+			}
+
+			$this->unapproved_users = get_users( $args );
 		}
 
 		load_plugin_textdomain( 'wp-approve-user', false, 'wp-approve-user/lang' );
@@ -135,8 +141,6 @@ class Obenland_Wp_Approve_User extends Obenland_Wp_Plugins_V4 {
 		$this->hook( 'register_new_user', 0 );
 		$this->hook( 'wp_login_errors' );
 		$this->hook( 'shake_error_codes' );
-		$this->hook( 'admin_menu' );
-		$this->hook( 'network_admin_menu', 'admin_menu' );
 
 		$this->hook( 'admin_print_scripts-users.php' );
 		$this->hook( 'admin_print_scripts-site-users.php', 'admin_print_scripts_users_php' );
@@ -159,6 +163,12 @@ class Obenland_Wp_Approve_User extends Obenland_Wp_Plugins_V4 {
 			$this->hook( 'views_users-network', 'views_users' );
 			$this->hook( 'views_site-users-network', 'views_users' );
 			$this->hook( 'pre_user_query' );
+		}
+
+		if ( is_multisite() ) {
+			$this->hook( 'network_admin_menu', 'admin_menu' );
+		} else {
+			$this->hook( 'admin_menu' );
 		}
 	}
 
@@ -256,7 +266,7 @@ class Obenland_Wp_Approve_User extends Obenland_Wp_Plugins_V4 {
 	 * @return void
 	 */
 	public function pre_user_query( $query ) {
-		// phpcs:ignore WordPress.CSRF.NonceVerification.NoNonceVerification, WordPress.VIP.ValidatedSanitizedInput
+		// phpcs:ignore WordPress.CSRF.NonceVerification.NoNonceVerification, WordPress.Security.ValidatedSanitizedInput
 		$role = empty( $query->query_vars['role'] ) && isset( $_REQUEST['role'] ) ? $_REQUEST['role'] : $query->query_vars['role'];
 
 		if ( 'wpau_unapproved' === $role ) {
@@ -375,13 +385,13 @@ class Obenland_Wp_Approve_User extends Obenland_Wp_Plugins_V4 {
 	 * @access public
 	 */
 	public function map_action2() {
-		// phpcs:disable WordPress.CSRF.NonceVerification.NoNonceVerification, WordPress.VIP.ValidatedSanitizedInput
+		// phpcs:disable WordPress.CSRF.NonceVerification.NoNonceVerification, WordPress.Security.ValidatedSanitizedInput
 
 		if ( ! empty( $_REQUEST['action2'] ) && false !== stripos( $_REQUEST['action2'], 'wpau_' ) ) {
 			do_action( "admin_action_{$_REQUEST['action2']}" );
 		}
 
-		// phpcs:enable WordPress.CSRF.NonceVerification.NoNonceVerification, WordPress.VIP.ValidatedSanitizedInput
+		// phpcs:enable WordPress.CSRF.NonceVerification.NoNonceVerification, WordPress.Security.ValidatedSanitizedInput
 	}
 
 
@@ -461,7 +471,7 @@ class Obenland_Wp_Approve_User extends Obenland_Wp_Plugins_V4 {
 	 * @return void
 	 */
 	public function admin_action_wpau_update() {
-		// phpcs:disable WordPress.VIP.ValidatedSanitizedInput, WordPress.CSRF.NonceVerification.NoNonceVerification
+		// phpcs:disable WordPress.Security.ValidatedSanitizedInput, WordPress.CSRF.NonceVerification.NoNonceVerification
 		if ( empty( $_REQUEST['update'] ) ) {
 			return;
 		}
@@ -497,7 +507,7 @@ class Obenland_Wp_Approve_User extends Obenland_Wp_Plugins_V4 {
 		// Prevent other admin action handlers from trying to handle our action.
 		$_REQUEST['action'] = -1;
 
-		// phpcs:enable WordPress.VIP.ValidatedSanitizedInput, WordPress.CSRF.NonceVerification.NoNonceVerification
+		// phpcs:enable WordPress.Security.ValidatedSanitizedInput, WordPress.CSRF.NonceVerification.NoNonceVerification
 	}
 
 	/**
@@ -558,7 +568,7 @@ class Obenland_Wp_Approve_User extends Obenland_Wp_Plugins_V4 {
 					// No need for number formatting, count() always returns an integer.
 					$awaiting_mod = count( $this->unapproved_users );
 
-					// phpcs:ignore WordPress.Variables.GlobalVariables.OverrideProhibited
+					// phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 					$menu[ $key ][0] .= " <span class='update-plugins count-{$awaiting_mod}'><span class='plugin-count'>{$awaiting_mod}</span></span>";
 
 					break; // Bail on success.
@@ -566,7 +576,8 @@ class Obenland_Wp_Approve_User extends Obenland_Wp_Plugins_V4 {
 			}
 		}
 
-		add_options_page(
+		add_submenu_page(
+			is_multisite() ? 'settings.php' : 'options-general.php',
 			esc_html__( 'Approve User', 'wp-approve-user' ), // Page Title.
 			esc_html__( 'Approve User', 'wp-approve-user' ), // Menu Title.
 			'promote_users',                                 // Capability.
@@ -706,7 +717,7 @@ class Obenland_Wp_Approve_User extends Obenland_Wp_Plugins_V4 {
 		printf(
 			/* translators: Placeholders. */
 			esc_html_x( 'To take advantage of dynamic data, you can use the following placeholders: %s. Username will be the user login in most cases.', 'Placeholders', 'wp-approve-user' ),
-			sprintf( '<code>%s</code>', implode( '</code>, <code>', $tags ) ) // phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped
+			sprintf( '<code>%s</code>', implode( '</code>, <code>', $tags ) ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		);
 	}
 
@@ -822,7 +833,10 @@ class Obenland_Wp_Approve_User extends Obenland_Wp_Plugins_V4 {
 	 * @return void
 	 */
 	public function delete_user( $user_id ) {
-		if ( $this->options['wpau-send-unapprove-email'] ) {
+		$is_new_registration = get_user_meta( $user_id, 'wp-approve-user-new-registration', true );
+		$is_approved         = get_user_meta( $user_id, 'wp-approve-user', true );
+
+		if ( $is_new_registration && ! $is_approved && $this->options['wpau-send-unapprove-email'] ) {
 			$user     = new WP_User( $user_id );
 			$blogname = wp_specialchars_decode( get_option( 'blogname' ), ENT_QUOTES );
 
@@ -978,15 +992,31 @@ class Obenland_Wp_Approve_User extends Obenland_Wp_Plugins_V4 {
 	 * @return string
 	 */
 	protected function populate_message( $message, $user ) {
-		$title = wp_specialchars_decode( get_option( 'blogname' ), ENT_QUOTES );
-
-		$message = str_replace( 'BLOG_TITLE', $title, $message );
-		$message = str_replace( 'BLOG_URL', home_url(), $message );
-		$message = str_replace( 'LOGINLINK', wp_login_url(), $message );
-		$message = str_replace( 'USERNAME', $user->user_nicename, $message );
+		$placeholders = array(
+			'BLOG_TITLE' => wp_specialchars_decode( get_option( 'blogname' ), ENT_QUOTES ),
+			'BLOG_URL'   => home_url(),
+			'LOGINLINK'  => wp_login_url(),
+			'USERNAME'   => $user->user_nicename,
+		);
 
 		if ( is_multisite() ) {
-			$message = str_replace( 'SITE_NAME', $GLOBALS['current_site']->site_name, $message );
+			$placeholders['SITE_NAME'] = $GLOBALS['current_site']->site_name;
+		}
+
+		/**
+		 * Filters the placeholders in approve/unapprove emails.
+		 *
+		 * @since 7
+		 *
+		 * @param array   $placeholders Key => Value pair of placeholders and the value they're replaced with.
+		 * @param string  $message      Message that will have its placeholders replaced. Note: This will not change the message.
+		 *                              Use `option_wp-approve-user` to filter message bodies.
+		 * @param WP_User $user         WP_User object of the user being approved/unapproved.
+		 */
+		$placeholders = apply_filters( 'wpau_message_placeholders', $placeholders, $message, $user );
+
+		foreach ( $placeholders as $placeholder => $replacement ) {
+			$message = str_replace( $placeholder, $replacement, $message );
 		}
 
 		return $message;
@@ -1036,7 +1066,7 @@ Contact details',
 	 * @access protected
 	 */
 	protected function set_up_role_context() {
-		// phpcs:disable WordPress.CSRF.NonceVerification.NoNonceVerification, WordPress.VIP.ValidatedSanitizedInput
+		// phpcs:disable WordPress.CSRF.NonceVerification.NoNonceVerification, WordPress.Security.ValidatedSanitizedInput
 
 		if ( empty( $_REQUEST['role'] ) && ! empty( $_REQUEST['_wp_http_referer'] ) ) {
 			$referrer = parse_url( $_REQUEST['_wp_http_referer'] ); // phpcs:ignore WordPress.WP.AlternativeFunctions.parse_url_parse_url
@@ -1075,7 +1105,7 @@ Contact details',
 
 		return $role;
 
-		// phpcs:enable WordPress.CSRF.NonceVerification.NoNonceVerification, WordPress.VIP.ValidatedSanitizedInput
+		// phpcs:enable WordPress.CSRF.NonceVerification.NoNonceVerification, WordPress.Security.ValidatedSanitizedInput
 	}
 
 	/**
