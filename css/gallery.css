@@ -1,21 +1,21 @@
-.top-spacer { /*space between title bar & nav bar*/
-    margin-bottom: 3em; /*modified b/c Diane doesn't like the current default of 35px*/
-}
+/* .top-spacer { /\*space between title bar & nav bar*\/ */
+/*     margin-bottom: 3em; /\*modified b/c Diane doesn't like the current default of 35px*\/ */
+/* } */
 
-.title-bar { /*the orange block at the top of the page to indicate where you are*/
-    margin-bottom: 28pt;
-    text-align: center;
-}
+/* .title-bar { /\*the orange block at the top of the page to indicate where you are*\/ */
+/*     margin-bottom: 28pt; */
+/*     text-align: center; */
+/* } */
 
-.notindex-title { /*inner element for title-bar*/
-    border-radius: 6pt;
-    font-size: 12pt;
-    letter-spacing: 0.1em;
-    padding: 6pt 2em;
-    margin: 0 15pt;
-    line-height: 18pt;
-    text-shadow: 1.5pt 1.5pt 1pt rgba(0,0,0,0.25); /*Default shadow is too far away*/
-}
+/* .notindex-title { /\*inner element for title-bar*\/ */
+/*     border-radius: 6pt; */
+/*     font-size: 12pt; */
+/*     letter-spacing: 0.1em; */
+/*     padding: 6pt 2em; */
+/*     margin: 0 15pt; */
+/*     line-height: 18pt; */
+/*     text-shadow: 1.5pt 1.5pt 1pt rgba(0,0,0,0.25); /\*Default shadow is too far away*\/ */
+/* } */
 
 .gallery-link { /*For the ligerbots flickr and youtube links.*/
     font-weight: inherit; /*semibold*/

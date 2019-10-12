@@ -1,46 +1,40 @@
 <?php
 require_once( "include/page_elements.php" );
-http_response_code(200); //ovveride WordPress; this page *does* exist
-require_once("include/gallery-utils.php");
+require_once( "include/gallery-utils.php" );
+http_response_code(200); // overide WordPress; this page *does* exist
+
 $flickr = createFlickr();
 
 if ( isset($_GET["album"]) )
 {
-    //viewing an album; get its photos
+    // viewing an album; get its photos
     $albumPhotos = getPhotoList( $flickr, $_GET["album"] );
+    $subtitle = $albumPhotos["albums"][ $albumPhotos["albumIndex"] ]["title"];
 }
 else
 {
-    if ( isset($_GET["year"]) )
-    {
-        //viewing a specific year; use that
-        $year = $_GET[ "year" ];
-    }
-    else
-    {
-        //no specific year; default to most recent
-        $year = 0;
-    }
+    $year = 0;
+    if ( isset($_GET["year"]) ) $year = $_GET[ "year" ];
     $albumList = getAlbums( $flickr );
+    $subtitle = $albumList[$year]["title"];
 }
 ?>
-
 
 <!DOCTYPE html>
 <html>
   <?php
   page_head(
-      "LigerBots Gallery",
+      "LigerBots Photos - $subtitle",
       false,
       array(
-          "https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.0.47/jquery.fancybox.min.css",
+          "https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css",
           "/css/gallery.css"
       )
   );
   ?>
   
   <body>
-    <div id="header-ghost" ></div>
+    <div id="header-ghost"></div>
     <div class="container-fluid no-side-padding">
       <div class="col-xs-12 no-side-padding">
         
@@ -51,43 +45,30 @@ else
         
         <div class="row page-body">
           <div class="col-md-12 col-md-offset-0 col-sm-10 col-sm-offset-1 col-xs-12">
-            <div class="row top-spacer"> </div>
+            <div class="row top-spacer"></div>
             <div class="row">
               <div class="title-bar">
-                <div class="notindex-title">
-                  <a href="/" class="breadcrumbs-link">
-                    <span class="breadcrumbs-link glyphicon glyphicon-home" style="font-size: 12pt; top: 1.5pt;"></span>
-                  </a>
-                  <span class="glyphicon glyphicon-chevron-left breadcrumbs-chevron-1"></span>
-                  <span class="glyphicon glyphicon-chevron-left breadcrumbs-chevron-2"></span>
-                  <a href="/gallery.php?year=0" class="breadcrumbs-link">
-                    PHOTOS
-                  </a>
-                  <span class="glyphicon glyphicon-chevron-left breadcrumbs-chevron-1"></span>
-                  <span class="glyphicon glyphicon-chevron-left breadcrumbs-chevron-2"></span>
+                <center><div class="notindex-title">
                   <?php
-                  if ( isset($albumPhotos) ) //currently viewing photos in an album
+                  if ( isset($albumPhotos) ) // currently viewing photos in an album
                   {
-                      echo "<a href=\"gallery.php?year=" . $albumPhotos['yearIndex'] . "\" class=\"breadcrumbs-link\">\n";
+                      echo "<a href=\"gallery.php?year=" . $albumPhotos['yearIndex'] . "\" style=\"color: white;\">\n";
                       echo      strtoupper( $albumPhotos["yearTitle"] ) . "\n";
                       echo "</a> \n";
-                      echo "<span class=\"glyphicon glyphicon-chevron-left breadcrumbs-chevron-1\"></span>\n";
-                      echo "<span class=\"glyphicon glyphicon-chevron-left breadcrumbs-chevron-2\"></span>\n";
-                      echo strtoupper( $albumPhotos["title"] ) . "\n";
                   }
-                  else //viewing a year's list of albums
+                  else // viewing a year's list of albums
                   {
-                      echo strtoupper( $albumList[$year]["title"] );
+                      echo '<a href="/gallery.php" style="color: white;">PHOTOS</a>';
                   }
                   ?>
-                </div>
+                </div></center><br/>
               </div>
               
               <?php
               // if in the album list, show the links to Flickr and youTube
               if ( !isset($albumPhotos) )
               {
-                  echo "<center style=\"margin-bottom: 2.25em; word-wrap: break-word;\">\n"; //add proper margins & allow the youtube url to be wrapped on mobile
+                  echo "<center style=\"margin-bottom: 2.25em; word-wrap: break-word;\">\n"; // add proper margins & allow the youtube url to be wrapped on mobile
                   echo "        <h5 class=\"gallery-link\">To see all LigerBots photos: ";
                   echo "                <a href=\"https://www.flickr.com/photos/ligerbots/\" target=\"_blank\">flickr.com/photos/ligerbots/</a>";
                   echo "        </h5>\n";
@@ -100,7 +81,7 @@ else
               
               <div class="gallery-container">
                 <?php
-                //the url has no album display specification; show the year view
+                // the url has no album display specification; show the year view
                 if ( !isset($_GET["album"]) )
                 {
                     albumListDisplay($albumList, $year);
@@ -121,33 +102,24 @@ else
     <?php page_foot(); ?>
     
     <!-- add fancybox image zooming scripts -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.0.47/jquery.fancybox.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
     <script type="text/javascript">
      $.fancybox.defaults.slideShow = false;
      $.fancybox.defaults.fullScreen = false;
      function sizeImage(imageDiv) {
          var image = $(imageDiv).find("img");
          var aspectRatio = image.naturalHeight / image.naturalWidth;
-         if (aspectRatio <= 1)
-             {
-                 $(image).addClass('gallery-photo-wide');
-                 //$(imageDiv).addClass('gallery-photo-wide'); Removed b/c of double border
-                 $(imageDiv).removeClass('gallery-photo-loading');
-             }
-         else
-             {
-                 $(image).addClass('gallery-photo-tall');
-                 //$(imageDiv).addClass('gallery-photo-tall');
-                 $(imageDiv).removeClass('gallery-photo-loading');
-             }
+         if (aspectRatio <= 1) {
+             $(image).addClass('gallery-photo-wide');
+             $(imageDiv).removeClass('gallery-photo-loading');
+         } else {
+             $(image).addClass('gallery-photo-tall');
+             $(imageDiv).removeClass('gallery-photo-loading');
+         }
      }
      $(document).ready(
          function(){
-             $(".gallery-photo-loading").each(
-                 function(){
-                     sizeImage( $(this) ); 
-                 }
-             );
+             $(".gallery-photo-loading").each(function(){ sizeImage( $(this) ); } );
          }
      );
     </script>
