@@ -40,8 +40,8 @@ $posts = get_posts( $args );
         <div class="row page-body">
           <div class="col-md-12 col-md-offset-0 col-sm-10 col-sm-offset-1 col-xs-12">
             <div class="row top-spacer"> </div>
-            <div class="row bottom-margin notindex-margin text-background">
-              <div class="col-xs-12 no-side-padding">
+            <div class="row bottom-margin text-background">
+              <div class="col-md-10 col-md-offset-1 col-sm-12">
 
                 <?php
                 foreach ($posts as $post) 
