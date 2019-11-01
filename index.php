@@ -11,6 +11,7 @@ if ( isset( $_GET['page_id'] ) ) {
 }
 
 $blog = get_latest_blog();
+my_setup_postdata( $blog );
 ?>
 
 <!DOCTYPE html>
@@ -39,11 +40,10 @@ $blog = get_latest_blog();
                   </div>
                   <div id="blog-panel" class="panel-body">
                     <div class="blog-image-box">
-                      <?php echo find_first_image( $blog ); ?>
+                      <?php echo find_first_image(); ?>
                     </div>
                     <div class="text-margins">
                       <?php
-                      my_setup_postdata( $blog );
                       my_the_excerpt( FALSE );
                       ?>
                       <div class="read-more">

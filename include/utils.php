@@ -53,11 +53,16 @@ function get_latest_blog()
     return get_post( $recent_posts[0][ 'ID' ] );
 }
 
-function find_first_image( $myPost )
-{
-    $html = $myPost->post_content;
-    /*preg_match( '/<img[^>]+>/i', $html, $result );*/
+function fetch_the_content( $more_link_text = null, $strip_teaser = false ) {
+    $content = get_the_content( $more_link_text, $strip_teaser );
+    $content = apply_filters( 'the_content', $content );
+    $content = str_replace( ']]>', ']]&gt;', $content );
+    return $content;
+}
 
+function find_first_image()
+{
+    $html = fetch_the_content();
     preg_match( '/<img[^>]+src=[\'"](?P<src>.+?)[\'"][^>]*>/i', $html, $result );
     return '<img src="' . $result['src'] . '">';
 }

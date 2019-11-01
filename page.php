@@ -34,11 +34,11 @@ $includeFooter = ! ( $isPage && ( get_page_uri( $postid ) == "current-sponsors" 
       page_head( $post->post_title );
       //      }
   } else {
-      $html = $post->post_content;
-      preg_match( '/<img[^>]+src=[\'"](?P<src>.+?)[\'"][^>]*>/i', $html, $result );
+      setup_postdata( $post );
+      $htmlcontent = fetch_the_content();
+      preg_match( '/<img[^>]+src=[\'"](?P<src>.+?)[\'"][^>]*>/i', $htmlcontent, $result );
       $imageURL = $result['src'];
       $extraHTML = "<meta property=\"og:image\" content=\"$imageURL\"/>\n";
-      setup_postdata( $post );
       $extraHTML .= '<meta property="og:description" content="' . htmlspecialchars(get_the_excerpt($post)) . '"/>';
       page_head( "LigerBots Blog - " . $post->post_title, true, NULL, $extraHTML );
   }
@@ -71,9 +71,9 @@ $includeFooter = ! ( $isPage && ( get_page_uri( $postid ) == "current-sponsors" 
                     echo '<div class="announce-date">';
                     the_date();
                     echo "</div>\n";
-                    
+
                     echo '<div class="blog-content">';
-                    the_content();
+                    echo $htmlcontent;
                     echo "</div>\n";
                     
                     echo '<br clear="all" /><br>'. "\n";
