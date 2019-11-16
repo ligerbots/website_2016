@@ -43,8 +43,8 @@ if ( isset( $_POST[ 'delcarpool' ] ) ) {
                 <center><div class="notindex-title">TEAM CARPOOLS</div></center>
                 <br/>
                 <center>
-            <!-- Mondays, Wednesdays and Thursdays at South, 6-9 PM<br/>
-            Tuesdays at North, 6-9 PM (mostly for Build Leaders)<br/>
+                  <!-- Mondays, Wednesdays and Thursdays at South, 6-9 PM<br/>
+                 Tuesdays at North, 6-9 PM (mostly for Build Leaders)<br/>
             Fridays at South, 3-9 PM<br/>
             Saturdays at South, 9 AM - 2:30 PM<br/> -->
                  Mondays and Thursdays at South, 6:30-9 PM</br>
@@ -53,13 +53,13 @@ if ( isset( $_POST[ 'delcarpool' ] ) ) {
 		  North Meetings in the Engineering Room</br>
 		  South Meetings in the Wood Shop, Room 9170</br>
                   Scroll down for more carpools
+                  <br/><br/>
+                  <b>
+                    Student Carpool Permission forms and CORI/SORI forms can be found
+                    <a href="/links" style="text-decoration:underline;" target="_blank"><b>here</b></a>.<br/>
+                   CORI/SORI forms must be submitted <b>in person</b> at a school office.
+                  </b>
                 </center>
-                <div class="level4-heading">Student Carpool Permission form can be downloaded
-                  <a href="https://drive.google.com/open?id=0B-X2pQSmn_-zSHNmQUtrU1JMMHM" style="text-decoration:underline;" target="_blank"><b>here</b></a>.<br/>
-                  CORI/SORI forms must be submitted <b>in person</b> at a school office: 
-                  <a href="https://drive.google.com/open?id=0B8rfh_l5qtZ5Wkx3ZFR6a19OM3c" style="text-decoration:underline;" target="_blank"><b>CORI</b></a>
-                  <a href="https://drive.google.com/open?id=0B8rfh_l5qtZ5S3A1ZngwUjVvRkU" style="text-decoration:underline;" target="_blank"><b>SORI</b></a>.
-                </div>
 
                 <?php
                 // If the user is an editor, give them the option to add and delete carpools
