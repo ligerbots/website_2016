@@ -28,7 +28,7 @@ function facebookUpload( $filelist )
         }
 
         $n = $filelist[ 'name' ][$i];
-        if ( ! preg_match( '/^(.*)[ _]+(.*)\.([a-z]+)$/i', $n, $parts ) ) {
+        if ( ! preg_match( '/^(?U:(.*))[ _]+(.*)\.([a-z]+)$/i', $n, $parts ) ) {
             $msg .= "Error: $fname does not match name pattern.<br/>\n";
             continue;
         }
@@ -37,7 +37,7 @@ function facebookUpload( $filelist )
         $ln = $parts[2];
         $ext = $parts[3];
         
-        $msg .= "Received photo $fname for $fn $ln.<br/>\n";
+        $msg .= "Received photo $fname for first name \"$fn\", last name \"$ln\".<br/>\n";
         $users = get_users(
             array(
                 'meta_query' => array(
