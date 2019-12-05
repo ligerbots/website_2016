@@ -58,7 +58,12 @@ else
                   }
                   else // viewing a year's list of albums
                   {
+<<<<<<< Updated upstream
                       echo '<a href="/gallery.php" style="color: white;">PHOTOS</a>';
+=======
+                      echo '<a href="/gallery.php?year=0" style="color: white;">PHOTOS</a>';
+                      // echo strtoupper( $albumList[$year]["title"] );
+>>>>>>> Stashed changes
                   }
                   ?>
                 </div></center><br/>
