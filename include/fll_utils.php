@@ -16,7 +16,7 @@ function fllUploadTeams( $filelist )
     $teams = array();
     while ( ($column = fgetcsv($file, 1000, ",")) !== FALSE )
     {
-        if ( $column[0] == "Team" || $column[0] == "TeamNo" ) continue;
+        if ( $column[0] == "Team" || $column[0] == "TeamNumber" ) continue;
         array_push( $teams, intval($column[0]) );
     }
 
