@@ -32,10 +32,10 @@ http_response_code(200); // override wp
               <div class="col-sm-10 col-sm-offset-1 col-xs-12">
                 <div class="row spr-first-section">
                   <div class="big-sponsor">
-                    <img class="sponsor-image" src="/images/sponsor-logos/sponsor_page_full_2020.svg" />
+                    <embed class="sponsor-image" src="/images/sponsor-logos/sponsor_page_full_2020.svg" />
                   </div>
                   <div class="small-sponsor text-margins">
-                    <img class="sponsor-image" src="/images/sponsor-logos/sponsor_page_narrow_2020.svg" />
+                    <embed class="sponsor-image" src="/images/sponsor-logos/sponsor_page_narrow_2020.svg" />
                   </div>
                 <div>
               </div>
