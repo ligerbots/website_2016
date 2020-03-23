@@ -180,18 +180,23 @@ function output_navbar()
 require_once('sponsor_utils.php');
 function output_footer( $sponsor_bar_name='home-sponsors' )
 {
-    echo '<div class="row row-margins">' . "\n";
-    echo '  <div class="col-xs-12">' . "\n";
-    echo '    <div class="panel panel-sprs">' . "\n";
-    echo '      <div class="row spr-row">' . "\n";
-    sponsor_bar();
-    echo "      </div>\n";
-    echo "    </div>\n";
-    echo '    <div style="text-align: center;">' ."\n";
-    echo '      <p class="label-orange"><a href="/current-sponsors">Thank you to ALL our Sponsors (click here)!</a></p>' . "\n";
-    echo "    </div>\n";
-    echo "  </div>\n";
-    echo "</div>\n";
+    echo <<<FOOTER
+<div class="row row-margins">
+  <div class="col-xs-12">
+    <div class="panel panel-sprs">
+      <div class="big-sponsor">
+        <img class="sponsor-image" src="/images/sponsor-logos/sponsor_bar_full_2020.svg" />
+      </div>
+      <div class="small-sponsor">
+        <img class="sponsor-image" src="/images/sponsor-logos/sponsor_bar_narrow_2020.svg" />
+      </div>
+    </div>
+    <div style="text-align: center;">
+      <p class="label-orange"><a href="/current-sponsors">Thank you to ALL our Sponsors (click here)!</a></p>
+    </div>
+  </div>
+</div>
+FOOTER;
 }
 
 ?>
