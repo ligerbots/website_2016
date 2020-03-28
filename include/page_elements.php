@@ -177,7 +177,6 @@ function output_navbar()
     echo '</div> </div> </nav>';
 }
 
-require_once('sponsor_utils.php');
 function output_footer( $sponsor_bar_name='home-sponsors' )
 {
     echo <<<FOOTER

@@ -1,6 +1,5 @@
 <?php
 require_once( 'include/page_elements.php' );
-require_once( 'include/sponsor_utils.php' );
 
 /* Short and sweet */
 define('WP_USE_THEMES', false);
@@ -40,25 +39,6 @@ http_response_code(200); // override wp
                 <div>
               </div>
             </div>
-
-            <?php
-            if ($show_sponsor_bar) {
-                echo '<div class="row top-spacer"> </div>' . "\n";
-                echo '<div class="row row-margins">' . "\n";
-                echo '  <div class="col-xs-12">' . "\n";
-                echo '    <div class="panel panel-sprs">' . "\n";
-                echo '      <div class="row spr-row">' . "\n";
-                sponsor_bar_html($logo_set);
-                echo "      </div>\n";
-                echo "    </div>\n";
-                echo '    <div style="text-align: center;">' ."\n";
-                echo '      <p class="label-orange"><a href="/current-sponsors">Thank you to ALL our Sponsors (click here)!</a></p>' . "\n";
-                echo "    </div>\n";
-                echo "  </div>\n";
-                echo "</div>\n";
-            }
-            ?>
-            
           </div>
         </div>
       </div>

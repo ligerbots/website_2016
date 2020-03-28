@@ -231,27 +231,8 @@ body{
 }
 
 /*--------------- Sponsor bar and page 2020 ----- */
+/* do not use "sponsor". that can trip some ad blockers. */
 
-/* aagh. some ad blockers trigger on "sponsor" so get rid of that. */
-.sponsor-image {
-    width: 100%;
-}
-@media (min-width: 500px) {
-    .big-sponsor {
-	display: block;
-    }
-    .small-sponsor {
-	display: none;
-    }
-}
-@media (max-width: 499px) {
-    .big-sponsor {
-	display: none;
-    }
-    .small-sponsor {
-	display: block;
-    }
-}
 .sprs-image {
     width: 100%;
 }
@@ -272,7 +253,10 @@ body{
     }
 }
 
-/*--------------- Old? Sponsor bar ---------------*/
+.spr-first-section {
+    margin-top: 3em;
+    margin-bottom: 1.5em;
+}
 
 /* WARNING: order of the vendor-extensions matter. 
    Last one that matches wins. */
@@ -290,45 +274,6 @@ body{
     margin-bottom: 0;
     /*padding: 5px;*/
 }
-
-.panel-sprs .spr-row {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: row;
-    flex-direction: row;
-
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-
-    -ms-flex-line-pack: center;
-    align-content: center;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-}
-
-.panel-sprs .spr-column-10 {
-    margin-left: 10px;
-    margin-right: 10px;
-}
-.panel-sprs .spr-column-12 {
-    margin-left: 12px;
-    margin-right: 12px;
-}
-.panel-sprs .spr-column {
-    margin-left: 8px;
-    margin-right: 8px;
-}
-
-/* .panel-sprs img { */
-/*     margin: 3px; */
-/*     width: 125px; */
-/*     margin-top: 10px; */
-/* } */
 
 /*--------------- Nav bar ---------------*/
 
@@ -696,235 +641,10 @@ body{
     border-color: rgb(0,102,179);
 }
 
-/*--------------- Current sponsor page ---------------*/
-
-.spr-heading {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: bold;
-    font-size: 18pt;
-    line-height: 26pt;
-    letter-spacing: 0.04em;
-    color: rgb(0,102,179);
-    text-align: center;
-    margin-top: 10px;
-    margin-bottom: 25px;
-}
-
-/* cat icons */
-.spr-heading img {
-    object-fit: contain;
-    align-self: center;
-    height: auto;
-    margin-bottom: 11.5px;
-    margin-left: 2.5em;
-    margin-right: 2.5em;
-}
-
-.spr-logo {
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 1em;
-    margin-bottom: 1em;
-    display: block;
-}
-
-.spr-section-heading {
-    margin-top: 2em;
-    margin-bottom: 1.5em;
-}
-.spr-first-section {
-    margin-top: 3em;
-    margin-bottom: 1.5em;
-}
-.spr-text-section {
-    margin-top: 2em;
-    margin-bottom: 2.5em;
-}
-
-.donor-name {
-    list-style: none;
-    font-family: 'Open Sans Condensed', sans-serif;
-    font-weight: 700;
-    font-size: 14pt;
-    line-height: 26pt;
-    letter-spacing: 0.06em;
-    text-align: center;
-}
-
 /* the negative margin seems to be important */
 .vcenter {
     display: inline-block;
     vertical-align: middle;
     float: none;
     margin-right: -6px;
-}
-
-.spr-grey-rule {
-    line-height: 0.5;
-    text-align: center;
-    overflow: hidden;
-    margin-bottom: 1em;
-}
-.spr-grey-rule div {
-    display: inline-block;
-    position: relative;
-}
-.spr-grey-rule div:before,
-.spr-grey-rule div:after {
-    content: "";
-    position: absolute;
-    height: 0;
-    background: rgb(147,149,152);
-    border-bottom: 1pt solid rgb(147,149,152);
-    border-top: 1pt solid rgb(147,149,152);
-    top: 50%;
-    width: 500px;
-}
-.spr-grey-rule div:before {
-    right: 100%;
-    margin-right: 15px;
-}
-.spr-grey-rule div:after {
-    left: 100%;
-    margin-left: 15px;
-}
-
-@media (min-width: 768px) {
-    .spr-wide-row {
-	margin-left: -2em;
-	margin-right: -2em;
-    }
-
-    .spr-col-p9 { width: 9%; margin-left: 0; }
-    .spr-col-p13 { width: 13%; margin-left: 0; }
-    .spr-col-p14 { width: 14%; margin-left: 0; }
-    .spr-col-p15 { width: 15%; margin-left: 0; }
-    .spr-col-p16 { width: 16%; margin-left: 0; }
-    .spr-col-p17 { width: 17%; margin-left: 0; }
-    .spr-col-p18 { width: 18%; margin-left: 0; }
-    .spr-col-p19 { width: 19%; margin-left: 0; }
-    .spr-col-p22 { width: 22%; margin-left: 0; }
-    .spr-col-p23 { width: 23%; margin-left: 0; }
-    .spr-col-p24 { width: 24%; margin-left: 0; }
-    .spr-col-p25 { width: 25%; margin-left: 0; }
-    .spr-col-p27 { width: 27%; margin-left: 0; }
-    .spr-col-p28 { width: 28%; margin-left: 0; }
-    .spr-padleft-15 { padding-left: 15px; }
-    .spr-padright-15 { padding-right: 15px; }
-
-    .spr-push14 { left: 14%; }
-    .spr-pull67 { right: 67%; }
-    .spr-rmargin-0 { margin-right: 0; }
-    
-    .spr-width135 {
-        width: 135%;
-        margin-left: -17.5%;
-    }
-    .spr-width135_m30 {
-        width: 135%;
-        margin-left: -30%;
-    }
-    .spr-width120 {
-        width: 120%;
-        margin-left: -10%;
-    }
-    .spr-width110 {
-        width: 110%;
-        margin-left: -5%;
-    }
-    .spr-width110_0 {
-        width: 110%;
-    }
-    .spr-width90 {
-        width: 90%;
-    }
-    .spr-width80 {
-        width: 80%;
-    }
-    .spr-width75 {
-        width: 75%;
-    }
-
-    .spr-col-2-10 {
-	width: 20%;
-    }
-    .spr-col-2-7 {
-	width: 14.25%;
-    }
-    .spr-margin-0 {
-	margin-left: 0;
-    }
-    .spr-margin-p5 {
-	margin-left: 5px;
-    }
-    .spr-margin-m10 {
-	margin-left: -10px;
-    }
-    .spr-margin-p10 {
-	margin-left: 10px;
-    }
-    .spr-margin-p20 {
-	margin-left: 20px;
-    }
-    .spr-margin-m20 {
-	margin-left: -20px;
-    }
-    .spr-margin-m30 {
-	margin-left: -30px;
-    }
-    /* better names. remove others later */
-    .spr-lmargin-0 {
-	margin-left: 0;
-    }
-    .spr-lmargin-p5 {
-	margin-left: 5px;
-    }
-    .spr-lmargin-m10 {
-	margin-left: -10px;
-    }
-    .spr-lmargin-p10 {
-	margin-left: 10px;
-    }
-    .spr-lmargin-p20 {
-	margin-left: 20px;
-    }
-    .spr-lmargin-m20 {
-	margin-left: -20px;
-    }
-    .spr-lmargin-m30 {
-	margin-left: -30px;
-    }
-    .spr-rmargin-unset {
-	margin-right: unset;
-    }
-    .spr-lmargin-p_panther {
-	margin-left: 10px;
-    }
-    .spr-lmargin-m_panther {
-	margin-left: -40px;
-    }
-
-    /* remove later */
-    .spr-margin-wholefoods {
-	margin-right: unset;
-    }
-    .spr-margin-right-unset {
-	margin-right: unset;
-    }
-    .spr-margin-p20 {
-	margin-left: 20px;
-    }
-    .spr-margin-m20 {
-	margin-left: -20px;
-    }
-    .spr-margin-m30 {
-	margin-left: -30px;
-    }
-    .spr-margin-p_panther {
-	margin-left: 10px;
-    }
-    .spr-margin-m_panther {
-	margin-left: -40px;
-    }
 }
