@@ -232,6 +232,7 @@ body{
 
 /*--------------- Sponsor bar and page 2020 ----- */
 
+/* aagh. some ad blockers trigger on "sponsor" so get rid of that. */
 .sponsor-image {
     width: 100%;
 }
@@ -248,6 +249,25 @@ body{
 	display: none;
     }
     .small-sponsor {
+	display: block;
+    }
+}
+.sprs-image {
+    width: 100%;
+}
+@media (min-width: 500px) {
+    .big-sprs {
+	display: block;
+    }
+    .small-sprs {
+	display: none;
+    }
+}
+@media (max-width: 499px) {
+    .big-sprs {
+	display: none;
+    }
+    .small-sprs {
 	display: block;
     }
 }
