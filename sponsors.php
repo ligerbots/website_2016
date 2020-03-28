@@ -31,11 +31,11 @@ http_response_code(200); // override wp
 
               <div class="col-sm-10 col-sm-offset-1 col-xs-12">
                 <div class="row spr-first-section">
-                  <div class="big-sponsor">
-                    <embed class="sponsor-image" src="/images/sponsor-logos/sponsor_page_full_2020.svg" />
+                  <div class="big-sprs">
+                    <embed class="sprs-image" src="/images/sponsor-logos/sponsor_page_full_2020.svg" />
                   </div>
-                  <div class="small-sponsor text-margins">
-                    <embed class="sponsor-image" src="/images/sponsor-logos/sponsor_page_narrow_2020.svg" />
+                  <div class="small-sprs text-margins">
+                    <embed class="sprs-image" src="/images/sponsor-logos/sponsor_page_narrow_2020.svg" />
                   </div>
                 <div>
               </div>
