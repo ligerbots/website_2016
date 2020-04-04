@@ -1,41 +1,27 @@
-/* .top-spacer { /\*space between title bar & nav bar*\/ */
-/*     margin-bottom: 3em; /\*modified b/c Diane doesn't like the current default of 35px*\/ */
-/* } */
-
-/* .title-bar { /\*the orange block at the top of the page to indicate where you are*\/ */
-/*     margin-bottom: 28pt; */
-/*     text-align: center; */
-/* } */
-
-/* .notindex-title { /\*inner element for title-bar*\/ */
-/*     border-radius: 6pt; */
-/*     font-size: 12pt; */
-/*     letter-spacing: 0.1em; */
-/*     padding: 6pt 2em; */
-/*     margin: 0 15pt; */
-/*     line-height: 18pt; */
-/*     text-shadow: 1.5pt 1.5pt 1pt rgba(0,0,0,0.25); /\*Default shadow is too far away*\/ */
-/* } */
-
-.gallery-link { /*For the ligerbots flickr and youtube links.*/
-    font-weight: inherit; /*semibold*/
+/* For the ligerbots flickr and youtube links. */
+.gallery-link {
+    font-weight: inherit; /* semibold */
     font-style: italic;
     font-size: 11.5pt;
     line-height: 24pt;
     margin: 0;
 }
 
-.gallery-year-container { /*Styling that will apply to the entire page's content*/
+/* Styling that will apply to the entire page's content */
+.gallery-year-container {
     margin: 0;
     margin-bottom: 3em;
     text-align: center;
 }
 
-.gallery-thumbnail { /*the thumbnail box for an album*/
+/* the thumbnail box for an album */
+.gallery-thumbnail {
     padding: 0;
     border-radius: 0;
     margin: 7.71pt;
-    border: 2pt solid rgb(0,102,179);
+    border: thin;
+    border-color: rgb(147,149,152);
+    border-style: solid;
     display: inline-block;
     width: 189.75pt;
     height: 189.75pt;
@@ -49,7 +35,8 @@
     opacity: 0.7;
 }
 
-.gallery-caption { /*the caption for an album's thumbnail*/
+/* the caption for an album's thumbnail */
+.gallery-caption {
     z-index: 1;
     background: rgb(0,102,179);
     width: 100%;
@@ -60,22 +47,25 @@
     color: white !important;
 }
 
-.gallery-buttons-bar-container-top { /*contains the L/R nav buttons and the dropdown*/
+/* contains the L/R nav buttons and the dropdown */
+.gallery-buttons-bar-container-top { 
     margin: auto;
     margin-bottom: 14pt;
     text-align: center;
 }
 
-.gallery-buttons-bar-container-bottom { /*equivalant for the buttons at the bottom of the page*/
-    /*display: inline-block; /*fix for floating above page content*/
+/* equivalant for the buttons at the bottom of the page */
+.gallery-buttons-bar-container-bottom { 
+    /* display: inline-block; /* fix for floating above page content */
     margin: 0;
-    /*margin-top: 14.5pt;*/
+    /* margin-top: 14.5pt; */
     margin-bottom: 14.5pt;
 }
 
-.gallery-nav-button { /*the next/prev buttons*/
+/* the next/prev buttons */
+.gallery-nav-button { 
     position: relative;
-    margin-top: 3pt; /*align bottom with dropdown menu*/
+    margin-top: 3pt; /* align bottom with dropdown menu */
     text-decoration: none;
     color: rgb(208,78,29);
     transition: 0.1s;
@@ -91,10 +81,11 @@
 
 .gallery-nav-button:hover {
     color: black;
-    text-decoration: none; /*override default from <a> tags*/
+    text-decoration: none; /* override default from <a> tags */
 }
 
-.gallery-photo-container { /*contains a photo and its caption*/
+/* contains a photo and its caption */
+.gallery-photo-container { 
     padding: 0;
     border-radius: 0;
     margin: auto;
@@ -102,23 +93,33 @@
     transition: 0.1s;
 }
 
-.gallery-photo-loading { /*image that hasn't yet triggered the JavaScript resizing*/
-    display: none; /*prevents broken looking page while images are loading*/
+/* image that hasn't yet triggered the JavaScript resizing */
+.gallery-photo-loading { 
+    display: none; /* prevents broken looking page while images are loading */
 }
 
-.gallery-photo-wide { /*constraints specific to landscape photos*/
+/* constraints specific to landscape photos */
+/* note: put the border on the image, not on its container; this seems to fix
+    small gaps between image and border */
+.gallery-photo-wide { 
     max-width: 100%;
     max-height: 23em;
-    border: 2pt solid #0066B3
+    border: thin;
+    border-color: rgb(147,149,152);
+    border-style: solid;
 }
 
-.gallery-photo-tall { /*constraints specific to portrait photos*/
+/* constraints specific to portrait photos */
+.gallery-photo-tall { 
     max-width: 100%;
     max-height: 34.5em;
-    border: 2pt solid #0066B3
+    border: thin;
+    border-color: rgb(147,149,152);
+    border-style: solid;
 }
 
-.gallery-photo-desc { /*the caption for a single photo*/
+/* the caption for a single photo */
+.gallery-photo-desc { 
     display: table-caption;
     caption-side: bottom;
     text-align: center;
@@ -129,55 +130,64 @@
     text-decoration: none;
 }
 
-.gallery-photo-column { /*the two vertical columns photos are divided into*/
+/* the two vertical columns photos are divided into */
+.gallery-photo-column { 
     padding: 0 8.625pt;
 }
 
-.gallery-content { /*a div around an added year*/
+/* a div around an added year */
+.gallery-content { 
     display: inline-block;
-    text-align: center; /*aligns items L/R, not just text*/
+    text-align: center; /* aligns items L/R, not just text */
 }
 
-.gallery-dropdown-button, .gallery-dropdown-button:focus { /*the dropdown menu button*/
+/* the dropdown menu button */
+.gallery-dropdown-button, .gallery-dropdown-button:focus { 
     background-color: transparent;
     border: none;
     padding: 0;
     margin: 0;
-    top: -5pt; /*fix text spacing; button is taller than text*/
+    top: -5pt; /* fix text spacing; button is taller than text */
     color: rgb(0,102,179);
     font-weight: bold;
     font-size: 18pt;
     letter-spacing: 0.04em;
-    white-space: normal; /*enable word wrapping for mobile*/
+    white-space: normal; /* enable word wrapping for mobile */
     transition: 0.1s;
 }
 
-.gallery-dropdown-button:hover, .gallery-dropdown-button:active { /*tweaks to the dropdown menu button under other actions*/
+/* tweaks to the dropdown menu button under other actions */
+.gallery-dropdown-button:hover, .gallery-dropdown-button:active { 
     background-color: transparent !important;
-    color: black !important; /*important needed to override preset button specs*/
+    color: black !important; /* important needed to override preset button specs */
 }
 
-.gallery-dropdown { /*a container for the dropdown menu and its items*/
-    display: inline-block; /*fix positioning of the menu relative to the button*/
+/* a container for the dropdown menu and its items */
+.gallery-dropdown { 
+    display: inline-block; /* fix positioning of the menu relative to the button */
 }
 
-.gallery-dropdown-content { /*the box that appears when the dropdown is opened*/
+/* the box that appears when the dropdown is opened */
+.gallery-dropdown-content { 
     width: 100%;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
     animation: fade-in 0.2s ease-in-out 0s forwards;
 }
 
-.gallery-dropdown-item { /*an item in the dropdown list*/
-    color: black !important; /*needed to override bootstrap dropdown properties*/
+/* an item in the dropdown list */
+.gallery-dropdown-item { 
+    color: black !important; /* needed to override bootstrap dropdown properties */
 }
 
-.gallery-dropdown-itme-active { /*active item in the dropdown menu*/
+/* active item in the dropdown menu */
+.gallery-dropdown-itme-active { 
     color: white !important;
     background-color: rgb(0,102,179) !important;
 }
 
-.gallery-album-description { /*Description text for an album that shows when viewing it's photos*/
+/* Description text for an album that shows when viewing it's photos */
+.gallery-album-description { 
     max-width: 64em;
     margin-bottom: 15pt;
     margin-left: auto;
@@ -186,33 +196,37 @@
     word-wrap: break-word;
 }
 
-.glyphicon-triangle-bottom { /*the triangle for the dropdown menu*/
+/* the triangle for the dropdown menu */
+.glyphicon-triangle-bottom { 
     color: rgb(208,78,29);
     font-size: 14pt;
-    top: 1pt; /*align to the top of a small s*/
+    top: 1pt; /* align to the top of a small s */
 }
 
-.glyphicon-chevron-left, .glyphicon-chevron-right { /*specs for chevrons*/
+/* specs for chevrons */
+.glyphicon-chevron-left, .glyphicon-chevron-right { 
     top: 0;
     font-size: 8pt;
     letter-spacing: -0.3em;   
 }
 
-.breadcrumbs-home { /*home icon in the breadcrumbs bar*/
+/* home icon in the breadcrumbs bar */
+.breadcrumbs-home { 
     cursor: pointer;
     block-size: 12pt;
-    filter: drop-shadow(1.5pt 1.5pt 1pt rgba(0,0,0,0.25)); /*svg element needs different shadow technique*/
-    margin-top: -2pt; /*line up the bottom with the text*/
+    filter: drop-shadow(1.5pt 1.5pt 1pt rgba(0,0,0,0.25)); /* svg element needs different shadow technique */
+    margin-top: -2pt; /* line up the bottom with the text */
 }
 
-.breadcrumbs-chevron-1 { /*override properties of nav-button chevrons for the breadcrumbs chevrons*/
+/* override properties of nav-button chevrons for the breadcrumbs chevrons */
+.breadcrumbs-chevron-1 { 
     color: #FFCC00;
     letter-spacing: -0.8em;
 }
 
 .breadcrumbs-chevron-2 {
     color: #FFCC00;
-    letter-spacing: -0.1em; /*make the text to the right of the >> not overlap it*/
+    letter-spacing: -0.1em; /* make the text to the right of the >> not overlap it */
 }
 
 .breadcrumbs-link, .breadcrumbs-link:hover {
@@ -220,6 +234,7 @@
     text-decoration: none;
 }
 
-.gallery-container { /*contains the top and bottom buttons and the dynamic content in between them*/
+/* contains the top and bottom buttons and the dynamic content in between them */
+.gallery-container { 
     padding: 0 26.79pt;
 }

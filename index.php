@@ -28,7 +28,7 @@ my_setup_postdata( $blog );
         output_navbar();
         ?>
 
-        <div class="row page-body">
+        <div class="row page-body home-page-body">
           <div class="col-md-12 col-md-offset-0 col-sm-10 col-sm-offset-1 col-xs-12">
             <div class="row top-spacer"> </div>
             <div class="row bottom-margin row-margins">
@@ -112,10 +112,10 @@ my_setup_postdata( $blog );
             <div class="row row-margins">
               <div class="col-xs-12">
                 <div class="panel panel-brag">
-                  <img src="/images/team_photo_2018.jpg"/>
+                  <img src="/images/team_photo_2020.jpg"/>
                 </div>
                 <div style="text-align:center;">
-                  <div class="label-blue">Detroit World Championship 2018</div>
+                                                                                                                                                                                                                                                                                  <div class="label-blue"><a href="https://www.flickr.com/photos/ligerbots/albums/72157712218381043" target="_blank">The LigerBots</a></div>
                 </div>
               </div>
             </div>
