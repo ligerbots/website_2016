@@ -191,7 +191,7 @@ function output_footer( $sponsor_bar_name='home-sponsors' )
       </div>
     </div>
     <div style="text-align: center;">
-      <p class="label-orange"><a href="/current-sponsors">Thank you to ALL our Sponsors (click here)!</a></p>
+      <p class="label-blue"><a href="/current-sponsors">Thank you to ALL our Sponsors (click here)!</a></p>
     </div>
   </div>
 </div>

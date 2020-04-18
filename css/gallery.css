@@ -210,29 +210,29 @@
     letter-spacing: -0.3em;   
 }
 
-/* home icon in the breadcrumbs bar */
-.breadcrumbs-home { 
-    cursor: pointer;
-    block-size: 12pt;
-    filter: drop-shadow(1.5pt 1.5pt 1pt rgba(0,0,0,0.25)); /* svg element needs different shadow technique */
-    margin-top: -2pt; /* line up the bottom with the text */
-}
+/* /\* home icon in the breadcrumbs bar *\/ */
+/* .breadcrumbs-home {  */
+/*     cursor: pointer; */
+/*     block-size: 12pt; */
+/*     filter: drop-shadow(1.5pt 1.5pt 1pt rgba(0,0,0,0.25)); /\* svg element needs different shadow technique *\/ */
+/*     margin-top: -2pt; /\* line up the bottom with the text *\/ */
+/* } */
 
-/* override properties of nav-button chevrons for the breadcrumbs chevrons */
-.breadcrumbs-chevron-1 { 
-    color: #FFCC00;
-    letter-spacing: -0.8em;
-}
+/* /\* override properties of nav-button chevrons for the breadcrumbs chevrons *\/ */
+/* .breadcrumbs-chevron-1 {  */
+/*     color: #FFCC00; */
+/*     letter-spacing: -0.8em; */
+/* } */
 
-.breadcrumbs-chevron-2 {
-    color: #FFCC00;
-    letter-spacing: -0.1em; /* make the text to the right of the >> not overlap it */
-}
+/* .breadcrumbs-chevron-2 { */
+/*     color: #FFCC00; */
+/*     letter-spacing: -0.1em; /\* make the text to the right of the >> not overlap it *\/ */
+/* } */
 
-.breadcrumbs-link, .breadcrumbs-link:hover {
-    color: #FFCC00;
-    text-decoration: none;
-}
+/* .breadcrumbs-link, .breadcrumbs-link:hover { */
+/*     color: #FFCC00; */
+/*     text-decoration: none; */
+/* } */
 
 /* contains the top and bottom buttons and the dynamic content in between them */
 .gallery-container { 

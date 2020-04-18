@@ -33,7 +33,7 @@ my_setup_postdata( $blog );
             <div class="row top-spacer"> </div>
             <div class="row bottom-margin row-margins">
               <div class="col-md-6 col-sm-12">
-                <div class="panel panel-orange">
+                <div class="panel panel-blue">
                   <div class="panel-heading index-heading">
                     <!-- CSS cannot seem to set the color so do it here -->
                     <a style="color:white;" href="/blog_list.php">LIGERBOTS BLOG</a>
@@ -97,7 +97,7 @@ my_setup_postdata( $blog );
                 </div>
               </div>
               <div class="col-md-6 col-sm-12">
-                <div class="panel panel-orange">
+                <div class="panel panel-blue">
                   <div class="panel-heading index-heading">
                     <a style="color:white;" target="_blank" href="https://twitter.com/search?q=ligerbots&src=typd">TWITTER</a>
                   </div>
