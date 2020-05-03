@@ -1,3 +1,9 @@
+/* Define some variables which are used throughout */
+:root {
+    --box-radius: 4px;
+    --team-blue: rgb(147,149,152);
+}
+
 html{
     width: 100%;
 }
@@ -107,12 +113,15 @@ body{
 /*--------------- Index page panels ---------------*/
 
 .panel-blue,.panel-brag,.panel-sprs,.label-blue {
-    border-radius: 0px;
     border-style: solid;
     border-width: thin;
-    border-color: rgb(147,149,152);
+    border-color: var(--team-blue);
     box-shadow: 3.182pt 3.182pt 5pt rgba(0,0,0,0.25);
     background-color: white;
+}
+
+.panel-blue {
+    border-radius: var(--box-radius);
 }
 
 .panel-blue > .panel-heading {
@@ -130,7 +139,8 @@ body{
     letter-spacing: 0.13em;
     font-size: 17pt;
     color: white;
-    border-radius: 0px;
+    border-top-left-radius: var(--box-radius);
+    border-top-right-radius: var(--box-radius);
     text-align: center;
     padding-top: 8pt;
     padding-bottom: 8pt;
@@ -138,6 +148,8 @@ body{
 
 .panel-blue > .panel-body {
     padding: 0;
+    border-bottom-left-radius: var(--box-radius);
+    border-bottom-right-radius: var(--box-radius);    
 }
 
 .panel-body iframe {
@@ -145,6 +157,8 @@ body{
     border-width: 0;
     padding: none;
     width: 100%;
+    border-bottom-left-radius: var(--box-radius);
+    border-bottom-right-radius: var(--box-radius);    
 }
 
 .blog-image-box {
@@ -182,6 +196,7 @@ body{
 }
 
 .panel-brag {
+    border-radius: var(--box-radius);
     z-index: 1;
     position: relative;
     margin-bottom: 0;
@@ -193,9 +208,11 @@ body{
     margin-right: auto;
     margin-top: auto;
     margin-bottom: auto;
+    border-radius: var(--box-radius);
 }
 
 .label-blue {
+    border-radius: 0 0 var(--box-radius) var(--box-radius);
     font-style: italic;
     display: inline-block;
     padding-left: 1.5em;
@@ -236,7 +253,7 @@ body{
 /* WARNING: order of the vendor-extensions matter. 
    Last one that matches wins. */
 .panel-sprs {
-    border-radius: 0px;
+    border-radius: var(--box-radius);
     border-style: solid;
     border-width: thin;
     box-shadow: 3.182pt 3.182pt 5pt rgba(0,0,0,0.25);
@@ -251,7 +268,7 @@ body{
 
 .navbar-ligerbots {
     background-color: rgb(0,102,179);
-    border-radius: 0px;
+    border-radius: var(--box-radius) var(--box-radius) 0 0;
     margin-bottom: 0px;
     min-height: 32px !important;
     box-shadow: 5px 5px 7px rgba(0,0,0,0.25);
@@ -274,6 +291,10 @@ body{
 }
 .dropdown.open .dropdown-menu {
     animation: fade-in 0.2s ease-in-out 0s forwards;
+}
+
+.dropdown-menu {
+    border-radius: 0 0 var(--box-radius) var(--box-radius);
 }
 
 .navbar-toggle-ligerbots {
@@ -567,6 +588,7 @@ body{
     color: white;
     background-color: rgb(208,78,29);
     display: inline-block;
+    border-radius: var(--box-radius);
 }
 
 .level4-heading {
@@ -582,12 +604,12 @@ body{
 }
 
 .image-border-blue img {
-    border-radius: 0px;
+    border-radius: var(--box-radius);
     border-style: solid;
     border-width: thin;
     box-shadow: 3.182pt 3.182pt 5pt rgba(0,0,0,0.25);
     background-color: transparent;
-    border-color: rgb(147,149,152);
+    border-color: var(--team-blue);
 }
 
 /* the negative margin seems to be important */

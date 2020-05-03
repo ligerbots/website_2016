@@ -1,3 +1,10 @@
+/* Define some variables which are used throughout */
+/* These should be the same as in ligerbots.css */
+:root {
+    --box-radius: 4px;
+    --team-blue: rgb(147,149,152);
+}
+
 /* For the ligerbots flickr and youtube links. */
 .gallery-link {
     font-weight: inherit; /* semibold */
@@ -17,10 +24,10 @@
 /* the thumbnail box for an album */
 .gallery-thumbnail {
     padding: 0;
-    border-radius: 0;
+    border-radius: var(--box-radius);
     margin: 7.71pt;
     border: thin;
-    border-color: rgb(147,149,152);
+    border-color: var(--team-blue);
     border-style: solid;
     display: inline-block;
     width: 189.75pt;
@@ -39,6 +46,7 @@
 .gallery-caption {
     z-index: 1;
     background: rgb(0,102,179);
+    border-radius: 0 0 var(--box-radius) var(--box-radius);
     width: 100%;
     position: absolute;
     bottom: 0;
@@ -87,10 +95,14 @@
 /* contains a photo and its caption */
 .gallery-photo-container { 
     padding: 0;
-    border-radius: 0;
+    border-radius: var(--box-radius);
     margin: auto;
     display: table;
     transition: 0.1s;
+}
+
+.gallery-photo-container > img { 
+    border-radius: var(--box-radius);
 }
 
 /* image that hasn't yet triggered the JavaScript resizing */
@@ -105,7 +117,7 @@
     max-width: 100%;
     max-height: 23em;
     border: thin;
-    border-color: rgb(147,149,152);
+    border-color: var(--team-blue);
     border-style: solid;
 }
 
@@ -114,7 +126,7 @@
     max-width: 100%;
     max-height: 34.5em;
     border: thin;
-    border-color: rgb(147,149,152);
+    border-color: var(--team-blue);
     border-style: solid;
 }
 
@@ -170,8 +182,7 @@
 /* the box that appears when the dropdown is opened */
 .gallery-dropdown-content { 
     width: 100%;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
+    border-radius: var(--box-radius);
     animation: fade-in 0.2s ease-in-out 0s forwards;
 }
 
@@ -209,30 +220,6 @@
     font-size: 8pt;
     letter-spacing: -0.3em;   
 }
-
-/* /\* home icon in the breadcrumbs bar *\/ */
-/* .breadcrumbs-home {  */
-/*     cursor: pointer; */
-/*     block-size: 12pt; */
-/*     filter: drop-shadow(1.5pt 1.5pt 1pt rgba(0,0,0,0.25)); /\* svg element needs different shadow technique *\/ */
-/*     margin-top: -2pt; /\* line up the bottom with the text *\/ */
-/* } */
-
-/* /\* override properties of nav-button chevrons for the breadcrumbs chevrons *\/ */
-/* .breadcrumbs-chevron-1 {  */
-/*     color: #FFCC00; */
-/*     letter-spacing: -0.8em; */
-/* } */
-
-/* .breadcrumbs-chevron-2 { */
-/*     color: #FFCC00; */
-/*     letter-spacing: -0.1em; /\* make the text to the right of the >> not overlap it *\/ */
-/* } */
-
-/* .breadcrumbs-link, .breadcrumbs-link:hover { */
-/*     color: #FFCC00; */
-/*     text-decoration: none; */
-/* } */
 
 /* contains the top and bottom buttons and the dynamic content in between them */
 .gallery-container { 
