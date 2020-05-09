@@ -77,22 +77,11 @@ function getAlbums($flickr)
 //DATA INTERPRETERS//
 /////////////////////
 
-
 function getPhotoUrlStub($info, $photoIndex)
 {
     //stub doesn't include ending like c.jpg or s.jpg
     return "https://farm".$info["farm"].".staticflickr.com/".$info["server"]."/".$info[$photoIndex]."_".$info["secret"]; 
 }
-
-/* Not used - comment out to limit confusion
-   function getAlbumInfo($flickr, $albumID)
-   {
-   $info = $flickr->photosets_getInfo( $albumID, FLICKR_USERID );
-   $res = array( 'title' => $info['title']['_content'],
-   'description' => $info['description']['_content'] );
-   return $res;
-   }
- */
 
 function getPhotoDescription( $flickr, $photoID, $secret )
 {
@@ -102,21 +91,20 @@ function getPhotoDescription( $flickr, $photoID, $secret )
 
 function getGoodTitle( $title )
 {
-    if ( strlen( $title ) <= 8
-                          || ! preg_match( '/ /', $title )
-                          || ! preg_match( '/[a-zA-Z]/', $title )
-                          || preg_match( '/ - [0-9]+$/', $title )
-                          || preg_match( '/\([0-9]+\)$/', $title )
-                          || preg_match( '/ [0-9]+ of [0-9]+$/', $title )
-                          || preg_match( '/screen ?shot/i', $title ) )
-    return '';
+    if ( strlen( $title ) <= 8 || ! preg_match( '/ /', $title )
+         || ! preg_match( '/[a-zA-Z]/', $title )
+         || preg_match( '/ - [0-9]+$/', $title )
+         || preg_match( '/\([0-9]+\)$/', $title )
+         || preg_match( '/ [0-9]+ of [0-9]+$/', $title )
+         || preg_match( '/screen ?shot/i', $title ) )
+        return '';
     return $title;
 }
+
 
 //////////////////
 //GET PHOTO LIST//
 //////////////////
-
 
 // Return results is a list of dictionares.
 function getPhotoList( $flickr, $albumID )
@@ -190,6 +178,7 @@ function getPhotoList( $flickr, $albumID )
         }
         $photosRemaining--; //not sure why we are decrementing both this and photosNeeded
     }
+    
     // Need to call to Flickr to get the photo descriptions. Bad API ;-(
     $photoList = array();
     foreach( $photosPicked as $photo )
@@ -201,6 +190,7 @@ function getPhotoList( $flickr, $albumID )
         );
     }
     $finalData[ 'photos' ] = $photoList;
+
     return $finalData;
 }
 
@@ -209,52 +199,26 @@ function getPhotoList( $flickr, $albumID )
 //ADD BUTTON//
 //////////////
 
-
 // ---------------------------------
 // Page layout functions
 function addButton( $name, $ref, $left, $top )
 {
     if ($top) // buttons at the top
     {
-        if ($left) {
-            echo "<div class=\"col-xs-6 col-sm-3 col-md-3 col-lg-2\">\n";
-        } else { //button on the right needs to move based on viewport width, whether or not the dropdown gets it's own line
-            echo "<div class=\"col-xs-6 col-sm-3 col-md-3 col-lg-2 col-sm-push-6 col-md-push-6 col-lg-push-8\">\n";
-        }
+        $pushes = $left ? '' : 'col-sm-push-6 col-md-push-6 col-lg-push-8';
+        echo "<div class=\"col-xs-6 col-sm-3 col-md-3 col-lg-2 $pushes\">\n";
     } else { // buttons at the bottom
         echo "<div class=\"col-xs-6 col-sm-3 col-md-3 col-lg-3\">\n";
     }
     
-    if ( !is_null($ref) ) //button goes somewhere
-    {
-        if ( $left )
-        {
-            echo "<a style=\"float: left;\" class=\"gallery-nav-button\" href=\"/gallery.php?$ref\">\n";
-            echo "<span class=\"glyphicon glyphicon-chevron-left\"></span>";
-            echo "<span class=\"glyphicon glyphicon-chevron-left\"></span>";
-            echo " $name"; // added space to account for decreased spacing on chevrons
-        } else { // right side
-            echo "<a style=\"float: right;\" class=\"gallery-nav-button\" href=\"/gallery.php?$ref\">\n";
-            echo $name; //no space needed, text spacing is right-forward, not center-outward
-            echo "<span class=\"glyphicon glyphicon-chevron-right\"></span>";
-            echo "<span class=\"glyphicon glyphicon-chevron-right\"></span>";
-        }
-    }
-    else //button is disabled
-    {
-        if ( $left )
-        {
-            echo "<a style=\"float: left;\" class=\"gallery-nav-button-disabled\">\n";
-            echo "<span class=\"glyphicon glyphicon-chevron-left\"></span>";
-            echo "<span class=\"glyphicon glyphicon-chevron-left\"></span>";
-            echo " $name";
-        } else {
-            echo "<a style=\"float: right;\" class=\"gallery-nav-button-disabled\">\n";
-            echo $name;
-            echo "<span class=\"glyphicon glyphicon-chevron-right\"></span>";
-            echo "<span class=\"glyphicon glyphicon-chevron-right\"></span>";
-        }
-    }
+    $side = $left ? 'left' : 'right';
+    $button_class = is_null($ref) ? 'gallery-nav-button-disabled' : 'gallery-nav-button';
+    
+    echo "<a style=\"float: $side;\" class=\"$button_class\" href=\"/gallery.php?$ref\">\n";
+    if ( ! $left ) echo $name; //no space needed, text spacing is right-forward, not center-outward
+    echo "<span class=\"glyphicon glyphicon-chevron-$side\"></span>";
+    echo "<span class=\"glyphicon glyphicon-chevron-$side\"></span>";
+    if ( $left ) echo " $name"; // added space to account for decreased spacing on chevrons
     echo "  </a>\n";
     echo "</div>\n";
 }
@@ -264,10 +228,10 @@ function addButton( $name, $ref, $left, $top )
 //ADD DROPDOWN//
 ////////////////
 
-
 function addDropdown( $itemList, $itemIndex, $isYear )
 {
-    echo "<div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-8 col-sm-pull-3 col-md-pull-3 col-lg-pull-2\">\n"; //dropdown needs to move based on viewport, whether or not it gets it's own line
+    //dropdown needs to move based on viewport, whether or not it gets it's own line
+    echo "<div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-8 col-sm-pull-3 col-md-pull-3 col-lg-pull-2\">\n";
     echo "  <div class=\"gallery-dropdown\">\n";
     echo "    <button class=\"btn btn-primary dropdown-toggle gallery-dropdown-button\" type=\"button\" data-toggle=\"dropdown\">\n";
     echo $itemList[$itemIndex]["title"]."  \n";
@@ -277,35 +241,20 @@ function addDropdown( $itemList, $itemIndex, $isYear )
     echo "    <ul class=\"dropdown-menu gallery-dropdown-content\">\n";
     
     $currentItem = 0;
-    if ( $isYear ) //data sources for year and album are stored differently
+    foreach ( $itemList as $item )
     {
-        foreach ( $itemList as $item )
+        if ( $currentItem == $itemIndex )
         {
-            if ( $currentItem != $itemIndex ) //normal DD item
-            {
+            echo "<li><a class=\"gallery-dropdown-item-active active\">\n";
+        } else {
+            if ( $isYear )
                 echo "<li><a href=\"/gallery.php?year=$currentItem\" class=\"gallery-dropdown-item\">\n";
-            } else { //make item 'selected' to indicate the current position
-                echo "<li><a class=\"gallery-dropdown-item-active active\">\n";
-            }
-            echo $item["title"]."\n";
-            echo "</a></li>\n";
-            $currentItem++;
-        }
-    }
-    else
-    {
-        foreach ( $itemList as $item )
-        {
-            if ( $currentItem != $itemIndex )
-            {
+            else
                 echo "<li><a href=\"/gallery.php?album={$item["id"]}\" class=\"gallery-dropdown-item\">\n";
-            } else {
-                echo "<li><a class=\"gallery-dropdown-item-active active\">\n";
-            }
-            echo $item["title"] . "\n";
-            echo "</a></li>\n";
-            $currentItem++;
         }
+        echo $item["title"] . "\n";
+        echo "</a></li>\n";
+        $currentItem++;
     }
     
     echo "    </ul>\n";
@@ -318,22 +267,14 @@ function addDropdown( $itemList, $itemIndex, $isYear )
 //ALBUM LIST DISPLAY//
 //////////////////////
 
-
 function albumListDisplay( $albumList, $year )
 {
-    //note: albums are ordered most recent (index 0) to oldest
-    if ( $year < count($albumList) - 1 )
-        //set buttons to the proper reference
-    { $prevLink = "year=" . ($year + 1 ); }
-    else
-        //no more albums in this direction
-    { $prevLink = null; }
-    if ( $year > 0 )
-    { $nextLink = "year=" . ( $year - 1 ); }
-    else
-    { $nextLink = null; }
+    // note: albums are ordered most recent (index 0) to oldest
+    // set buttons to the proper reference
+    $prevLink = $year < count($albumList) - 1 ? $prevLink = "year=" . ($year + 1 ) : null;
+    $nextLink = $year > 0 ? "year=" . ( $year - 1 ) : null;
     
-    //buttons and header
+    // buttons and header
     echo "<div class=\"row gallery-buttons-bar-container-top\">\n";
     addButton( "Previous year", $prevLink, true, true );
     addButton( "Next year", $nextLink, false, true);
@@ -367,17 +308,17 @@ function albumListDisplay( $albumList, $year )
 //ALBUM DISPLAY//
 /////////////////
 
-
 function albumDisplay( $albumPhotos )
 {
     if ( $albumPhotos["albumIndex"] > 0 )
-    { $nextLink = "album=" . $albumPhotos["albums"][ $albumPhotos["albumIndex"] - 1 ]["id"]; }
+        $nextLink = "album=" . $albumPhotos["albums"][ $albumPhotos["albumIndex"] - 1 ]["id"];
     else
-    { $nextLink = null; }
+        $nextLink = null;
+    
     if ( $albumPhotos["albumIndex"] < count( $albumPhotos["albums"] ) - 1 )
-    { $prevLink = "album=" . $albumPhotos["albums"][ $albumPhotos["albumIndex"] + 1 ]["id"]; }
+        $prevLink = "album=" . $albumPhotos["albums"][ $albumPhotos["albumIndex"] + 1 ]["id"];
     else
-    { $prevLink = null; }
+        $prevLink = null;
     
     // Top buttons and header
     echo "<div class=\"row gallery-buttons-bar-container-top\">\n";
@@ -385,8 +326,10 @@ function albumDisplay( $albumPhotos )
     addButton( "Next album", $nextLink, false, true );
     addDropdown( $albumPhotos[ "albums" ], $albumPhotos[ "albumIndex" ], 0 );
     echo "</div>\n";
+    
     echo "<div class=\"gallery-album-description\">\n";
-    if ( strlen( $albumPhotos[ "desc" ] ) > 0 ) echo '<p>' . $albumPhotos[ "desc" ] . "</p>\n";
+    if ( strlen( $albumPhotos[ "desc" ] ) > 0 )
+        echo '<p>' . $albumPhotos[ "desc" ] . "</p>\n";
     echo '<p style="font-style: italic;">See the full album on Flickr: ';
     echo '<a href="https://www.flickr.com/photos/ligerbots/albums/' . $albumPhotos[ 'albumId' ] . '" target="_blank">';
     echo 'flickr.com/photos/ligerbots/albums/' . $albumPhotos[ 'albumId' ] . "</a></p>\n";
@@ -396,7 +339,9 @@ function albumDisplay( $albumPhotos )
     $index = 0;
     $colBreak = ceil( count( $albumPhotos[ "photos" ] ) / 2 ); 
     // need row class to keep bottom-nav-bar from wrapping into blank space below last photo
-    echo "<div class=\"row row-margins\" style=\"margin-left: 0; margin-right: 0; \">\n"; //row-margins doesn't seem to be reverting the negative margins, temporary manual override
+    //row-margins doesn't seem to be reverting the negative margins, temporary manual override
+    echo "<div class=\"row row-margins\" style=\"margin-left: 0; margin-right: 0; \">\n";
+
     echo "<div class=\"gallery-photo-column col-xs-12 col-sm-6 col-md-6 col-lg-6\">\n";
     foreach ( $albumPhotos["photos"] as $photo )
     {
