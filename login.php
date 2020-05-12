@@ -59,7 +59,7 @@ if ( isset( $_POST[ 'login' ] ) ) {
         <div class="page-body">
           <div class="row side-margins bottom-margin"> </div>
           <div class="row side-margins bottom-margin">
-            <div class="col-sm-4 col-sm-offset-4 col-xs-10 col-xs-offset-1">
+            <div class="col-sm-4 offset-sm-4 col-xs-10 offset-xs-1">
             
               <?php
               if ( ! empty( $message ) )

@@ -15,7 +15,7 @@ http_response_code(200); // override wp
   <body>
     <div id="header-ghost" ></div>
     <div class="container-fluid no-side-padding">
-      <div class="col-xs-12 no-side-padding">
+      <div class="col no-side-padding">
 
         <?php 
         output_header(); 
@@ -23,21 +23,23 @@ http_response_code(200); // override wp
         ?>
 
         <div class="row page-body">
-          <div class="col-md-12 col-md-offset-0 col-sm-10 col-sm-offset-1 col-xs-12">
+          <div class="col-md-12 offset-md-0 col-sm-10 offset-sm-1 col-xs-12">
             <div class="row top-spacer"> </div>
             <div class="row bottom-margin">
-              <center><div class="notindex-title">CURRENT SPONSORS</div></center>
+              <div class="col">
+                <center><div class="notindex-title">CURRENT SPONSORS</div></center>
 
-              <div class="col-sm-10 col-sm-offset-1 col-xs-12">
-                <div class="row spr-first-section">
-                  <div class="big-sprs">
-                    <embed class="sprs-image" src="/images/sponsor-logos/sponsor_page_full_2020.svg" />
-                  </div>
-                  <div class="small-sprs text-margins">
-                    <embed class="sprs-image" src="/images/sponsor-logos/sponsor_page_narrow_2020.svg" />
-                  </div>
+                <div class="col-sm-10 offset-sm-1 col-xs-12">
+                  <div class="row spr-first-section">
+                    <div class="col big-sprs">
+                      <embed class="sprs-image" src="/images/sponsor-logos/sponsor_page_full_2020.svg" />
+                    </div>
+                    <div class="col small-sprs text-margins">
+                      <embed class="sprs-image" src="/images/sponsor-logos/sponsor_page_narrow_2020.svg" />
+                    </div>
                 <div>
               </div>
+            </div>
             </div>
           </div>
         </div>
