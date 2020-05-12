@@ -10,7 +10,7 @@ function page_head( $title, $includeRSS=false, $extraCSS=NULL, $extraHTML="" )
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" href="/images/liger.ico"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:700" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:700" />
@@ -54,7 +54,7 @@ function page_foot()
 {
     echo <<<EOL
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <script  type="text/javascript"src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script  type="text/javascript"src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
 EOL;
 }
 
@@ -110,10 +110,10 @@ function output_navbar()
 {
     $loggedIn = is_user_logged_in();
 
-    echo '<nav class="navbar navbar-ligerbots">
+    echo '<nav class="navbar navbar-expand-lg navbar-ligerbots">
           <div class="container-fluid">
             <div class="navbar-header">
-              <button type="button" class="navbar-toggle navbar-toggle-ligerbots" data-toggle="collapse" data-target="#myNavbar">
+              <button type="button" class="navbar-toggler navbar-toggle-ligerbots" data-toggle="collapse" data-target="#myNavbar">
                 <span class="icon-bar icon-bar-ligerbots"></span>
                 <span class="icon-bar icon-bar-ligerbots"></span>
                 <span class="icon-bar icon-bar-ligerbots"></span> 
@@ -126,8 +126,8 @@ function output_navbar()
                 <li class="dropdown">
                   <a class="dropdown-toggle" data-toggle="dropdown" href="#">Support<span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    <li><a href="/sponsor">Become a Sponsor</a></li>
-                    <li><a href="/sponsors.php">Current Sponsors</a></li>
+                    <li><a class="dropdown-item" href="/sponsor">Become a Sponsor</a></li>
+                    <li><a class="dropdown-item" href="/sponsors.php">Current Sponsors</a></li>
                   </ul>
                 </li>
                 <li><a href="/contact">Contact</a></li> 
@@ -136,19 +136,19 @@ function output_navbar()
                 <li class="dropdown">
                   <a class="dropdown-toggle" data-toggle="dropdown" href="#">Media<span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    <li><a href="/gallery.php">Photos</a></li>
+                    <li><a class="dropdown-item" href="/gallery.php">Photos</a></li>
                   </ul>
                 </li>
                 <li class="dropdown">
                   <a class="dropdown-toggle" data-toggle="dropdown" href="#">Resources<span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    <li><a href="/carpools.php">Carpools</a></li>
-                    <li><a href="/links">Team Links</a></li>';
+                    <li><a class="dropdown-item" href="/carpools.php">Carpools</a></li>
+                    <li><a class="dropdown-item" href="/links">Team Links</a></li>';
     if ( $loggedIn ) {
-        echo '<li><a href="/directory.php">Directory</a></li>';
-        echo '<li><a href="/facebook.php">Facebook</a></li>';
-        echo '<li><a href="/preseason-resources/">Preseason Resources</a></li>';
-        echo '<li><a href="http://team.ligerbots.com">Team Internal Site</a></li>';
+        echo '<li><a class="dropdown-item" href="/directory.php">Directory</a></li>';
+        echo '<li><a class="dropdown-item" href="/facebook.php">Facebook</a></li>';
+        echo '<li><a class="dropdown-item" href="/preseason-resources/">Preseason Resources</a></li>';
+        echo '<li><a class="dropdown-item" href="http://team.ligerbots.com">Team Internal Site</a></li>';
     }        
     echo "   </ul>\n";
     echo "   </li>\n";
@@ -181,7 +181,7 @@ function output_footer( $sponsor_bar_name='home-sponsors' )
 {
     echo <<<FOOTER
 <div class="row row-margins">
-  <div class="col-xs-12">
+  <div class="col">
     <div class="panel panel-sprs">
       <div class="big-sprs">
         <embed class="sprs-image" src="/images/sponsor-logos/sponsor_bar_full_2020.svg" />
