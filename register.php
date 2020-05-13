@@ -142,7 +142,7 @@ if ( isset( $_POST[ 'register' ] ) ) {
                               <input type="text" class="form-control" placeholder="John" name="parent-first-name[]" data-required />
                               <input type="text" class="form-control" placeholder="Smith" name="parent-last-name[]" data-required />
                               <span class="input-group-btn">
-                                <button class="btn btn-default multi-input-remove" type="button">X</button>
+                                <button class="btn btn-outline-dark multi-input-remove" type="button">X</button>
                               </span>
                             </div>
                           </script>
@@ -180,7 +180,7 @@ if ( isset( $_POST[ 'register' ] ) ) {
                               <input type="text" class="form-control" placeholder="John" name="child-first-name[]" data-required />
                               <input type="text" class="form-control" placeholder="Smith" name="child-last-name[]" data-required />
                               <span class="input-group-btn">
-                                <button class="btn btn-default multi-input-remove" type="button">X</button>
+                                <button class="btn btn-outline-dark multi-input-remove" type="button">X</button>
                               </span>
                             </div>
                           </script>
@@ -208,7 +208,7 @@ if ( isset( $_POST[ 'register' ] ) ) {
                     <div class="help-block">
                       <label class="required"></label> required
                     </div>
-                    <button type="submit" name="register" class="btn btn-default">Submit</button>
+                    <button type="submit" name="register" class="btn btn-outline-dark">Submit</button>
                   </form>
                 <?php endif; ?>
               </div>

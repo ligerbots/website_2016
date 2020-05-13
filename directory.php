@@ -111,7 +111,7 @@ if ( current_user_can( 'edit_posts' ) && isset( $_POST[ 'download_users' ] ) ) {
                 <?php
                 if ( current_user_can( 'edit_posts' ) ) {
                     echo '<form class="form-inline" action="' . $_SERVER['PHP_SELF'] . '" method="post">';
-                    echo '<button type="submit" name="download_users" class="btn btn-default">Download Userlist</button>';
+                    echo '<button type="submit" name="download_users" class="btn btn-outline-dark">Download Userlist</button>';
                     echo "</form>\n";
                 }
                 ?>

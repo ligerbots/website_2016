@@ -39,7 +39,7 @@ if ( isset( $_POST[ 'delcarpool' ] ) ) {
           <div class="col-md-12 offset-md-0 col-sm-10 offset-sm-1 col-xs-12">
             <div class="row top-spacer"> </div>
             <div class="row side-margins bottom-margin">
-              <div class="col-xs-12">
+              <div class="col">
                 <center><div class="notindex-title">TEAM CARPOOLS</div></center>
                 <br/>
                 <center>
@@ -69,7 +69,7 @@ if ( isset( $_POST[ 'delcarpool' ] ) ) {
                     echo '<label for="carpoolid">Enter ID of carpool to add:</label>';
                     echo '<input type="text" class="form-control" id="carpoolid" name="carpoolid" placeholder="q0xim9">';
                     echo '</div>';
-                    echo '<button type="submit" name="addcarpool" class="btn btn-default">Add Carpool</button>';
+                    echo '<button type="submit" name="addcarpool" class="btn btn-outline-dark">Add Carpool</button>';
                     echo "</form>\n";
                 }
                 

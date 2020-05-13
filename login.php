@@ -80,12 +80,16 @@ if ( isset( $_POST[ 'login' ] ) ) {
                 <div class="checkbox">
                   <label><input name="rememberme" type="checkbox" id="rememberme" value="on" />Remember me</label>
                 </div>
-                <input type="submit" name="login" id="login" class="btn btn-default" value="Log In" />
+                <input type="submit" name="login" id="login" class="btn btn-outline-dark" value="Log In" />
                 <input type="hidden" name="redirect_to" value="<?php echo $referrer; ?>" />
               </form>
-
-              <br/>
-              Team members (students, parents and mentors) may register <a href="/register.php">here.</a>
+            </div>
+          </div>
+          <div class="row side-margins bottom-margin">
+            <div class="col">
+              <center>
+               Team members (students, parents and mentors) may register <a href="/register.php">here.</a>
+              </center>
             </div>
           </div>
           
