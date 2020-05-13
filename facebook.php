@@ -70,7 +70,7 @@ function user_cmp( $a, $b ) {
           <div class="col-md-12 offset-md-0 col-sm-10 offset-sm-1 col-xs-12">
             <div class="row top-spacer"> </div>
             <div class="row bottom-margin row-margins">
-              <div class="col-xs-12">
+              <div class="col">
 
                 <?php 
                 if ( ! empty( $message ) ) echo '<div class="alert">' . $message . '</div>' . "\n";
@@ -90,7 +90,7 @@ function user_cmp( $a, $b ) {
                     echo '<label for="upload">Select multiple pictures to upload:</label>';
                     echo '<input class="form-control" type="file" id="upload" name="upload[]" multiple>';
                     echo "</div>\n";
-                    echo '<button name="submit" type="submit" class="btn btn-default">Submit</button>';
+                    echo '<button name="submit" type="submit" class="btn btn-outline-dark">Submit</button>';
                     echo "</form>\n";
                 }
 

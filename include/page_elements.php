@@ -110,17 +110,12 @@ function output_navbar()
 {
     $loggedIn = is_user_logged_in();
 
-    echo '<nav class="navbar navbar-expand-lg navbar-ligerbots">
-          <div class="container-fluid">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggler navbar-toggle-ligerbots" data-toggle="collapse" data-target="#myNavbar">
-                <span class="icon-bar icon-bar-ligerbots"></span>
-                <span class="icon-bar icon-bar-ligerbots"></span>
-                <span class="icon-bar icon-bar-ligerbots"></span> 
-              </button>
-            </div>
+    echo '<nav class="navbar navbar-expand-lg navbar-dark navbar-ligerbots">
+            <button type="button" class="navbar-toggler ligerbots-toggler" data-toggle="collapse" data-target="#myNavbar">
+              <span class="navbar-toggler-icon"></span>
+            </button>
             <div class="collapse navbar-collapse" id="myNavbar">
-              <ul class="nav navbar-nav nav-stacked">
+              <ul class="navbar-nav nav nav-fill">
                 <li class="active"><a href="/">Home</a></li>
                 <li><a href="/about">About</a></li> 
                 <li class="dropdown">
@@ -162,19 +157,18 @@ function output_navbar()
         echo '<li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">My Account<span class="caret"></span></a>
         <ul class="dropdown-menu">
-        <li><a href="/attendance.php">My Attendance</a></li>';
+        <li><a class="dropdown-item" href="/attendance.php">My Attendance</a></li>';
         if ( current_user_can( 'edit_posts' ) ) {
-            echo '<li><a href="/wp-backend/wp-admin/edit.php">Edit Posts</a></li>';
-            echo '<li><a href="/mail.php">Email Tracking</a></li>';
+            echo '<li><a class="dropdown-item" href="/wp-backend/wp-admin/edit.php">Edit Posts</a></li>';
         }
-        echo '<li><a href="/wp-backend/wp-admin/profile.php">My Profile</a></li>
-        <li><a href="/login.php?logout">Logout</a></li>
+        echo '<li><a class="dropdown-item" href="/wp-backend/wp-admin/profile.php">My Profile</a></li>
+        <li><a class="dropdown-item" href="/login.php?logout">Logout</a></li>
         </ul>
         </li>';
     }
 
     echo '</ul>';
-    echo '</div> </div> </nav>';
+    echo '</div> </nav>';
 }
 
 function output_footer( $sponsor_bar_name='home-sponsors' )
