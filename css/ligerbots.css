@@ -75,7 +75,7 @@ body{
 .header ul{
     position: absolute;
     list-style-type: none;
-    bottom: 15%;
+    bottom: 12%;
     left: 20%;
 }
 .header li{
