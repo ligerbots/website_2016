@@ -23,7 +23,7 @@ http_response_code(200); // override wp
         ?>
 
         <div class="row page-body">
-          <div class="col-md-12 offset-md-0 col-sm-10 offset-sm-1 col-xs-12">
+          <div class="col-12">
             <div class="row top-spacer"> </div>
             <div class="row bottom-margin">
               <div class="col">

@@ -208,17 +208,17 @@
 }
 
 /* the triangle for the dropdown menu */
-.glyphicon-triangle-bottom { 
+.fa-triangle-bottom { 
     color: rgb(208,78,29);
     font-size: 14pt;
     top: 1pt; /* align to the top of a small s */
 }
 
 /* specs for chevrons */
-.glyphicon-chevron-left, .glyphicon-chevron-right { 
+.fa-chevron-left, .fa-chevron-right { 
     top: 0;
     font-size: 8pt;
-    letter-spacing: -0.3em;   
+    letter-spacing: -0.1em;
 }
 
 /* contains the top and bottom buttons and the dynamic content in between them */

@@ -28,6 +28,7 @@ else
       false,
       array(
           "https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css",
+          "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css",
           "/css/gallery.css"
       )
   );
@@ -36,7 +37,7 @@ else
   <body>
     <div id="header-ghost"></div>
     <div class="container-fluid no-side-padding">
-      <div class="col-xs-12 no-side-padding">
+      <div class="col-12 no-side-padding">
         
         <?php
         output_header(); 
@@ -44,10 +45,10 @@ else
         ?>
         
         <div class="row page-body">
-          <div class="col-md-12 offset-md-0 col-sm-10 offset-sm-1 col-xs-12">
+          <div class="col-12">
             <div class="row top-spacer"></div>
             <div class="row">
-              <div class="title-bar">
+              <div class="col-12 col-md-10 offset-md-1">
                 <center><div class="notindex-title">
                   <?php
                   if ( isset($albumPhotos) ) // currently viewing photos in an album
@@ -61,23 +62,24 @@ else
                       echo '<a href="/gallery.php" style="color: white;">PHOTOS</a>';
                   }
                   ?>
-                </div></center><br/>
-              </div>
+                </div></center>
+                <br/>
               
-              <?php
-              // if in the album list, show the links to Flickr and youTube
-              if ( !isset($albumPhotos) )
-              {
-                  echo "<center style=\"margin-bottom: 2.25em; word-wrap: break-word;\">\n"; // add proper margins & allow the youtube url to be wrapped on mobile
-                  echo "        <h5 class=\"gallery-link\">To see all LigerBots photos: ";
-                  echo "                <a href=\"https://www.flickr.com/photos/ligerbots/\" target=\"_blank\">flickr.com/photos/ligerbots/</a>";
-                  echo "        </h5>\n";
-                  echo "        <h5 class=\"gallery-link\">To see all LigerBots videos: ";
-                  echo "                <a href=\"https://www.youtube.com/channel/UCgNgdmtDs7d58dVR-80DCGA\" target=\"_blank\">youtube.com/channel/UCgNgdmtDs7d58dVR-80DCGA</a>";
-                  echo "        </h5>";
-                  echo "</center>\n";
-              }
-              ?>
+                <?php
+                // if in the album list, show the links to Flickr and youTube
+                if ( !isset($albumPhotos) )
+                {
+                    echo "<center style=\"margin-bottom: 2.25em; word-wrap: break-word;\">\n"; // add proper margins & allow the youtube url to be wrapped on mobile
+                    echo "        <h5 class=\"gallery-link\">To see all LigerBots photos: ";
+                    echo "                <a href=\"https://www.flickr.com/photos/ligerbots/\" target=\"_blank\">flickr.com/photos/ligerbots/</a>";
+                    echo "        </h5>\n";
+                    echo "        <h5 class=\"gallery-link\">To see all LigerBots videos: ";
+                    echo "                <a href=\"https://www.youtube.com/channel/UCgNgdmtDs7d58dVR-80DCGA\" target=\"_blank\">youtube.com/channel/UCgNgdmtDs7d58dVR-80DCGA</a>";
+                    echo "        </h5>";
+                    echo "</center>\n";
+                }
+                ?>
+              </div>
               
               <div class="gallery-container">
                 <?php

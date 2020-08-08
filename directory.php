@@ -46,7 +46,7 @@ if ( current_user_can( 'edit_posts' ) && isset( $_POST[ 'download_users' ] ) ) {
   <body>
     <div id="header-ghost" ></div>
     <div class="container-fluid no-side-padding">
-      <div class="col-xs-12 no-side-padding">
+      <div class="col-12 no-side-padding">
 
         <?php 
         output_header(); 
@@ -54,11 +54,11 @@ if ( current_user_can( 'edit_posts' ) && isset( $_POST[ 'download_users' ] ) ) {
         ?>
         
         <div class="row page-body">
-          <div class="col-md-12 offset-md-0 col-sm-10 offset-sm-1 col-xs-12">
+          <div class="col-12">
             <div class="row top-spacer"> </div>
 
             <div class="row bottom-margin row-margins">
-              <div class="col-xs-12">
+              <div class="col-12">
 
                 <center>
                   <div class="notindex-title">LIGERBOTS DIRECTORY</div>
