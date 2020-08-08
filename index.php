@@ -21,7 +21,7 @@ my_setup_postdata( $blog );
   <body>
     <div id="header-ghost" ></div>
     <div class="container-fluid no-side-padding">
-      <div class="col-xs-12 no-side-padding">
+      <div class="col-12 no-side-padding">
 
         <?php 
         output_header(); 
@@ -29,10 +29,10 @@ my_setup_postdata( $blog );
         ?>
 
         <div class="row page-body home-page-body">
-          <div class="col-md-12 offset-md-0 col-sm-10 offset-sm-1 col-xs-12">
+          <div class="col-12">
             <div class="row top-spacer"> </div>
             <div class="row bottom-margin row-margins">
-              <div class="col-md-6 col-sm-12">
+              <div class="col-12 col-md-6">
                 <div class="panel panel-blue">
                   <div class="panel-heading index-heading">
                     <!-- CSS cannot seem to set the color so do it here -->
@@ -54,7 +54,7 @@ my_setup_postdata( $blog );
                 </div>
               </div>
               
-              <div class="col-md-6 col-sm-12">
+              <div class="col-12 col-md-6">
                 <div class="panel panel-blue">
                   <div class="panel-heading index-heading">
                     <a style="color:white;" href="/calendar.php">UPCOMING EVENTS</a>
@@ -69,7 +69,7 @@ my_setup_postdata( $blog );
             </div>
             
             <div class="row bottom-margin row-margins">
-              <div class="col-md-6 col-sm-12">
+              <div class="col-12 col-md-6">
                 <div class="panel panel-blue">
                   <div class="panel-heading index-heading">
                     <a style="color:white;" href="/blog_list.php">ANNOUNCEMENTS</a>
@@ -96,7 +96,7 @@ my_setup_postdata( $blog );
                   </div>
                 </div>
               </div>
-              <div class="col-md-6 col-sm-12">
+              <div class="col-12 col-md-6">
                 <div class="panel panel-blue">
                   <div class="panel-heading index-heading">
                     <a style="color:white;" target="_blank" href="https://twitter.com/search?q=ligerbots&src=typd">TWITTER</a>

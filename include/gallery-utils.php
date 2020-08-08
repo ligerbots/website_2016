@@ -203,21 +203,26 @@ function getPhotoList( $flickr, $albumID )
 // Page layout functions
 function addButton( $name, $ref, $left, $top )
 {
-    if ($top) // buttons at the top
+    if ($left)
+        $pushes = '';
+    else
     {
-        $pushes = $left ? '' : 'col-sm-push-6 col-md-push-6 col-lg-push-8';
-        echo "<div class=\"col-xs-6 col-sm-3 col-md-3 col-lg-2 $pushes\">\n";
-    } else { // buttons at the bottom
-        echo "<div class=\"col-xs-6 col-sm-3 col-md-3 col-lg-3\">\n";
-    }
+        // at top, title fills the middle, but order changes
+        // at bottom, need blank space to fill the middle
+        if ($top) 
+            $pushes = 'order-2 order-md-3';
+        else
+            $pushes = 'offset-md-6 offset-lg-8';
+    }            
+    echo "<div class=\"col-6 col-md-3 col-lg-2 $pushes\">\n";
     
     $side = $left ? 'left' : 'right';
     $button_class = is_null($ref) ? 'gallery-nav-button-disabled' : 'gallery-nav-button';
     
     echo "<a style=\"float: $side;\" class=\"$button_class\" href=\"/gallery.php?$ref\">\n";
     if ( ! $left ) echo $name; //no space needed, text spacing is right-forward, not center-outward
-    echo "<span class=\"glyphicon glyphicon-chevron-$side\"></span>";
-    echo "<span class=\"glyphicon glyphicon-chevron-$side\"></span>";
+    echo "<span class=\"fa fa-chevron-$side\"></span>";
+    echo "<span class=\"fa fa-chevron-$side\"></span>";
     if ( $left ) echo " $name"; // added space to account for decreased spacing on chevrons
     echo "  </a>\n";
     echo "</div>\n";
@@ -231,12 +236,13 @@ function addButton( $name, $ref, $left, $top )
 function addDropdown( $itemList, $itemIndex, $isYear )
 {
     //dropdown needs to move based on viewport, whether or not it gets it's own line
-    echo "<div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-8 col-sm-pull-3 col-md-pull-3 col-lg-pull-2\">\n";
+    //echo "<div class=\"col-12 col-sm-6 col-md-6 col-lg-8 col-sm-pull-3 col-md-pull-3 col-lg-pull-2\">\n";
+    echo "<div class=\"col-12 col-md-6 col-lg-8 order-3 order-md-2\">\n";
     echo "  <div class=\"gallery-dropdown\">\n";
     echo "    <button class=\"btn btn-primary dropdown-toggle gallery-dropdown-button\" type=\"button\" data-toggle=\"dropdown\">\n";
     echo $itemList[$itemIndex]["title"]."  \n";
     echo "      <div style=\"width: 5pt; display: inline-block;\"></div>"; //spacer before triangle
-    echo "      <span class=\"glyphicon glyphicon-triangle-bottom\"></span>\n";
+    echo "      <span class=\"fa fa-triangle-bottom\"></span>\n";
     echo "    </button>\n";
     echo "    <ul class=\"dropdown-menu gallery-dropdown-content\">\n";
     
@@ -298,7 +304,6 @@ function albumListDisplay( $albumList, $year )
     //bottom nav buttons
     echo "<div class=\"row gallery-buttons-bar-container-bottom\">\n";
     addButton( "Previous year", $prevLink, true, false );
-    echo "<div class=\"col-sm-6 col-md-6 col-lg-6\"></div>\n";
     addButton( "Next year", $nextLink, false, false );
     echo "</div>\n";
 }
@@ -342,7 +347,7 @@ function albumDisplay( $albumPhotos )
     //row-margins doesn't seem to be reverting the negative margins, temporary manual override
     echo "<div class=\"row row-margins\" style=\"margin-left: 0; margin-right: 0; \">\n";
 
-    echo "<div class=\"gallery-photo-column col-xs-12 col-sm-6 col-md-6 col-lg-6\">\n";
+    echo "<div class=\"gallery-photo-column col-12 col-sm-6 col-md-6 col-lg-6\">\n";
     foreach ( $albumPhotos["photos"] as $photo )
     {
         echo "<a data-fancybox=\"gallery\" href=\"" . $photo["url_stub"] . "_b.jpg\">\n";
@@ -356,7 +361,7 @@ function albumDisplay( $albumPhotos )
         {
             // close the left column, start the right column
             echo "</div>\n";
-            echo "<div class=\"gallery-photo-column col-xs-12 col-sm-6 col-md-6 col-lg-6\">\n";
+            echo "<div class=\"gallery-photo-column col-12 col-sm-6 col-md-6 col-lg-6\">\n";
         }
     }
     echo "</div>\n";
@@ -365,7 +370,6 @@ function albumDisplay( $albumPhotos )
     // Bottom nav buttons
     echo "<div class=\"row gallery-buttons-bar-container-bottom\">\n";
     addButton( "Previous album", $prevLink, true, false );
-    echo "<div class=\"col-sm-6 col-md-6 col-lg-6\"></div>\n"; //spacer
     addButton( "Next album", $nextLink, false, false );
     echo "</div>\n";
 }

@@ -47,7 +47,7 @@ $includeFooter = ! ( $isPage && ( get_page_uri( $postid ) == "current-sponsors" 
   <body>
     <div id="header-ghost" ></div>
     <div class="container-fluid no-side-padding">
-      <div class="col-xs-12 no-side-padding">
+      <div class="col-12 no-side-padding">
         
         <?php 
         output_header(); 
@@ -55,10 +55,10 @@ $includeFooter = ! ( $isPage && ( get_page_uri( $postid ) == "current-sponsors" 
         ?>
         
         <div class="row page-body">
-          <div class="col-md-12 offset-md-0 col-sm-10 offset-sm-1 col-xs-12">
+          <div class="col-12">
             <div class="row top-spacer"> </div>
             <div class="row bottom-margin text-background">
-              <div class="col-md-10 offset-md-1 col-sm-12">
+              <div class="col-12 col-md-10 offset-md-1">
                 <?php
                 if ( $isPage ) {
                     $title = strtoupper( get_the_title() );
