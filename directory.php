@@ -45,8 +45,8 @@ if ( current_user_can( 'edit_posts' ) && isset( $_POST[ 'download_users' ] ) ) {
 
   <body>
     <div id="header-ghost" ></div>
-    <div class="container-fluid no-side-padding">
-      <div class="col-12 no-side-padding">
+    <div class="container-fluid px-0">
+      <div class="col-12 px-0">
 
         <?php 
         output_header(); 
@@ -67,7 +67,7 @@ if ( current_user_can( 'edit_posts' ) && isset( $_POST[ 'download_users' ] ) ) {
                   <br/>
                 </center>
 
-                <table class="table table-condensed table-striped">
+                <table class="table table-sm table-striped directory-table">
                   <thead>
                     <tr>
                       <th>First Name</th>

@@ -28,7 +28,6 @@ else
       false,
       array(
           "https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css",
-          "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css",
           "/css/gallery.css"
       )
   );
@@ -36,8 +35,8 @@ else
   
   <body>
     <div id="header-ghost"></div>
-    <div class="container-fluid no-side-padding">
-      <div class="col-12 no-side-padding">
+    <div class="container-fluid px-0">
+      <div class="col px-0">
         
         <?php
         output_header(); 
@@ -45,10 +44,10 @@ else
         ?>
         
         <div class="row page-body">
-          <div class="col-12">
+          <div class="col">
             <div class="row top-spacer"></div>
             <div class="row">
-              <div class="col-12 col-md-10 offset-md-1">
+              <div class="col">
                 <center><div class="notindex-title">
                   <?php
                   if ( isset($albumPhotos) ) // currently viewing photos in an album
@@ -79,21 +78,19 @@ else
                     echo "</center>\n";
                 }
                 ?>
-              </div>
               
-              <div class="gallery-container">
-                <?php
-                // the url has no album display specification; show the year view
-                if ( !isset($_GET["album"]) )
-                {
-                    albumListDisplay($albumList, $year);
-                }
-                else
-                {
-                    albumDisplay($albumPhotos);
-                }
-                ?>
-              </div>
+              <?php
+              // the url has no album display specification; show the year view
+              if ( !isset($_GET["album"]) )
+              {
+                  albumListDisplay($albumList, $year);
+              }
+              else
+              {
+                  albumDisplay($albumPhotos);
+              }
+              ?>
+            </div>
             </div>
             
             <?php output_footer(); ?>
@@ -101,6 +98,7 @@ else
         </div>
       </div>
     </div>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
     <?php page_foot(); ?>
     
     <!-- add fancybox image zooming scripts -->

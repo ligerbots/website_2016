@@ -46,8 +46,8 @@ $includeFooter = ! ( $isPage && ( get_page_uri( $postid ) == "current-sponsors" 
   
   <body>
     <div id="header-ghost" ></div>
-    <div class="container-fluid no-side-padding">
-      <div class="col-12 no-side-padding">
+    <div class="container-fluid px-0">
+      <div class="col-12 px-0">
         
         <?php 
         output_header(); 

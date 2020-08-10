@@ -14,8 +14,8 @@ http_response_code(200); // override wp
   ?>
   <body>
     <div id="header-ghost" ></div>
-    <div class="container-fluid no-side-padding">
-      <div class="col no-side-padding">
+    <div class="container-fluid px-0">
+      <div class="col px-0">
 
         <?php 
         output_header(); 
@@ -26,20 +26,18 @@ http_response_code(200); // override wp
           <div class="col-12">
             <div class="row top-spacer"> </div>
             <div class="row bottom-margin">
-              <div class="col">
+              <div class="col-sm-10 offset-sm-1 col-xs-12">
                 <center><div class="notindex-title">CURRENT SPONSORS</div></center>
 
-                <div class="col-sm-10 offset-sm-1 col-xs-12">
-                  <div class="row spr-first-section">
-                    <div class="col big-sprs">
-                      <embed class="sprs-image" src="/images/sponsor-logos/sponsor_page_full_2020.svg" />
-                    </div>
-                    <div class="col small-sprs text-margins">
-                      <embed class="sprs-image" src="/images/sponsor-logos/sponsor_page_narrow_2020.svg" />
-                    </div>
-                <div>
+                <div class="row spr-section">
+                  <div class="col px-0 big-sprs">
+                    <embed class="sprs-image" src="/images/sponsor-logos/sponsor_page_full_2020.svg" />
+                  </div>
+                  <div class="col px-0 small-sprs text-margins">
+                    <embed class="sprs-image" src="/images/sponsor-logos/sponsor_page_narrow_2020.svg" />
+                  </div>
+                </div>
               </div>
-            </div>
             </div>
           </div>
         </div>

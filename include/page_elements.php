@@ -14,6 +14,7 @@ function page_head( $title, $includeRSS=false, $extraCSS=NULL, $extraHTML="" )
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:700" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:700" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
     <link rel="stylesheet" href="/css/ligerbots.css" />
 
 EOL;
@@ -149,8 +150,7 @@ function output_navbar()
     echo "   </li>\n";
     if ( ! $loggedIn ) 
     {
-        // <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-        echo '<li><a href="/login.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>';
+        echo '<li><a href="/login.php"><span class="fa fa-sign-in"></span> Login</a></li>';
     }
     else
     {

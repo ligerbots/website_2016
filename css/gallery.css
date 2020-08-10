@@ -3,6 +3,7 @@
 :root {
     --box-radius: 4px;
     --team-blue: rgb(147,149,152);
+    --team-orange: rgb(208,78,29);
 }
 
 /* For the ligerbots flickr and youtube links. */
@@ -57,16 +58,12 @@
 
 /* contains the L/R nav buttons and the dropdown */
 .gallery-buttons-bar-container-top { 
-    margin: auto;
     margin-bottom: 14pt;
     text-align: center;
 }
 
 /* equivalant for the buttons at the bottom of the page */
 .gallery-buttons-bar-container-bottom { 
-    /* display: inline-block; /* fix for floating above page content */
-    margin: 0;
-    /* margin-top: 14.5pt; */
     margin-bottom: 14.5pt;
 }
 
@@ -75,7 +72,7 @@
     position: relative;
     margin-top: 3pt; /* align bottom with dropdown menu */
     text-decoration: none;
-    color: rgb(208,78,29);
+    color: var(--team-orange);
     transition: 0.1s;
 }
 
@@ -186,30 +183,25 @@
     animation: fade-in 0.2s ease-in-out 0s forwards;
 }
 
-/* an item in the dropdown list */
-.gallery-dropdown-item { 
-    color: black !important; /* needed to override bootstrap dropdown properties */
-}
-
 /* active item in the dropdown menu */
-.gallery-dropdown-itme-active { 
-    color: white !important;
-    background-color: rgb(0,102,179) !important;
+.dropdown-item.active {
+    color: white;
+    background-color: rgb(0,102,179);
 }
 
 /* Description text for an album that shows when viewing it's photos */
 .gallery-album-description { 
-    max-width: 64em;
     margin-bottom: 15pt;
+}
+.gallery-album-description p {
+    text-align: center;
     margin-left: auto;
     margin-right: auto;
-    text-align: center;
-    word-wrap: break-word;
 }
 
 /* the triangle for the dropdown menu */
 .fa-triangle-bottom { 
-    color: rgb(208,78,29);
+    color: var(--team-orange);
     font-size: 14pt;
     top: 1pt; /* align to the top of a small s */
 }
