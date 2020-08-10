@@ -26,8 +26,8 @@ if ( isset( $_POST[ 'register' ] ) ) {
   
   <body>
     <div id="header-ghost" ></div>
-    <div class="container-fluid no-side-padding">
-      <div class="col-xs-12 no-side-padding">
+    <div class="container-fluid px-0">
+      <div class="col-xs-12 px-0">
 
         <?php 
         output_header(); 
@@ -39,7 +39,7 @@ if ( isset( $_POST[ 'register' ] ) ) {
             <div class="row top-spacer"> </div>
 
             <div class="row side-margins bottom-margin">
-              <div class="col-lg-6 offset-lg-3 col-xs-12 no-side-padding bottom-margin">
+              <div class="col-lg-6 offset-lg-3 col-xs-12 px-0 bottom-margin">
 
                 <?php
                 if ( $wasPost )

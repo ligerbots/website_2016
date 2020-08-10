@@ -220,10 +220,10 @@ function addButton( $name, $ref, $left, $top )
     $button_class = is_null($ref) ? 'gallery-nav-button-disabled' : 'gallery-nav-button';
     
     echo "<a style=\"float: $side;\" class=\"$button_class\" href=\"/gallery.php?$ref\">\n";
-    if ( ! $left ) echo $name; //no space needed, text spacing is right-forward, not center-outward
+    if ( ! $left ) echo "$name ";
     echo "<span class=\"fa fa-chevron-$side\"></span>";
     echo "<span class=\"fa fa-chevron-$side\"></span>";
-    if ( $left ) echo " $name"; // added space to account for decreased spacing on chevrons
+    if ( $left ) echo " $name";
     echo "  </a>\n";
     echo "</div>\n";
 }
@@ -251,12 +251,12 @@ function addDropdown( $itemList, $itemIndex, $isYear )
     {
         if ( $currentItem == $itemIndex )
         {
-            echo "<li><a class=\"gallery-dropdown-item-active active\">\n";
+            echo "<li><a class=\"dropdown-item active\">\n";
         } else {
             if ( $isYear )
-                echo "<li><a href=\"/gallery.php?year=$currentItem\" class=\"gallery-dropdown-item\">\n";
+                echo "<li><a href=\"/gallery.php?year=$currentItem\" class=\"dropdown-item\">\n";
             else
-                echo "<li><a href=\"/gallery.php?album={$item["id"]}\" class=\"gallery-dropdown-item\">\n";
+                echo "<li><a href=\"/gallery.php?album={$item["id"]}\" class=\"dropdown-item\">\n";
         }
         echo $item["title"] . "\n";
         echo "</a></li>\n";
@@ -281,7 +281,7 @@ function albumListDisplay( $albumList, $year )
     $nextLink = $year > 0 ? "year=" . ( $year - 1 ) : null;
     
     // buttons and header
-    echo "<div class=\"row gallery-buttons-bar-container-top\">\n";
+    echo "<div class=\"row row-margins gallery-buttons-bar-container-top\">\n";
     addButton( "Previous year", $prevLink, true, true );
     addButton( "Next year", $nextLink, false, true);
     addDropdown( $albumList, $year, 1 ); //dropdown needs to come after; shifts to the middle on larger screens
@@ -301,8 +301,8 @@ function albumListDisplay( $albumList, $year )
     }
     echo "</div>\n";
     
-    //bottom nav buttons
-    echo "<div class=\"row gallery-buttons-bar-container-bottom\">\n";
+    // bottom nav buttons
+    echo "<div class=\"row row-margins gallery-buttons-bar-container-bottom\">\n";
     addButton( "Previous year", $prevLink, true, false );
     addButton( "Next year", $nextLink, false, false );
     echo "</div>\n";
@@ -325,19 +325,22 @@ function albumDisplay( $albumPhotos )
     else
         $prevLink = null;
     
+    //echo "<div class=\"col-12\">\n";
     // Top buttons and header
-    echo "<div class=\"row gallery-buttons-bar-container-top\">\n";
+    echo "<div class=\"row row-margins gallery-buttons-bar-container-top\">\n";
     addButton( "Previous album", $prevLink, true, true );
     addButton( "Next album", $nextLink, false, true );
     addDropdown( $albumPhotos[ "albums" ], $albumPhotos[ "albumIndex" ], 0 );
     echo "</div>\n";
     
-    echo "<div class=\"gallery-album-description\">\n";
+    echo "<div class=\"row row-margins gallery-album-description\">\n";
+    echo "<div class=\"col\">\n";
     if ( strlen( $albumPhotos[ "desc" ] ) > 0 )
         echo '<p>' . $albumPhotos[ "desc" ] . "</p>\n";
-    echo '<p style="font-style: italic;">See the full album on Flickr: ';
+    echo '<p style="font-style: italic; overflow-wrap: anywhere;">See the full album on Flickr: ';
     echo '<a href="https://www.flickr.com/photos/ligerbots/albums/' . $albumPhotos[ 'albumId' ] . '" target="_blank">';
     echo 'flickr.com/photos/ligerbots/albums/' . $albumPhotos[ 'albumId' ] . "</a></p>\n";
+    echo "</div>\n";
     echo "</div>\n";
     
     // Output the photos in two columns
@@ -345,7 +348,7 @@ function albumDisplay( $albumPhotos )
     $colBreak = ceil( count( $albumPhotos[ "photos" ] ) / 2 ); 
     // need row class to keep bottom-nav-bar from wrapping into blank space below last photo
     //row-margins doesn't seem to be reverting the negative margins, temporary manual override
-    echo "<div class=\"row row-margins\" style=\"margin-left: 0; margin-right: 0; \">\n";
+    echo "<div class=\"row row-margins\">\n";
 
     echo "<div class=\"gallery-photo-column col-12 col-sm-6 col-md-6 col-lg-6\">\n";
     foreach ( $albumPhotos["photos"] as $photo )
@@ -368,9 +371,10 @@ function albumDisplay( $albumPhotos )
     echo "</div>\n";
     
     // Bottom nav buttons
-    echo "<div class=\"row gallery-buttons-bar-container-bottom\">\n";
+    echo "<div class=\"row row-margins gallery-buttons-bar-container-bottom\">\n";
     addButton( "Previous album", $prevLink, true, false );
     addButton( "Next album", $nextLink, false, false );
     echo "</div>\n";
+    //echo "</div>\n";
 }
 ?>

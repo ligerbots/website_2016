@@ -111,8 +111,8 @@ try {
       }
     </style>
     <div id="header-ghost" ></div>
-    <div class="container-fluid no-side-padding">
-      <div class="col-xs-12 no-side-padding">
+    <div class="container-fluid px-0">
+      <div class="col-xs-12 px-0">
 
         <?php 
            output_header(); 

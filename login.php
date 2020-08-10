@@ -48,8 +48,8 @@ if ( isset( $_POST[ 'login' ] ) ) {
 
   <body>
     <div id="header-ghost" ></div>
-    <div class="container no-side-padding">
-      <div class="col-xs-12 no-side-padding">
+    <div class="container px-0">
+      <div class="col-xs-12 px-0">
 
         <?php 
            output_header(); 
