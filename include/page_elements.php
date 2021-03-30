@@ -132,7 +132,15 @@ function output_navbar()
                 </li>
                 <li><a href="/contact">Contact</a></li> 
                 <li><a href="/calendar.php">Calendar</a></li> 
-                <li><a href="/fll">FLL</a></li> 
+                <li class="dropdown">
+                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">Outreach<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="/outreach">Outreach</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="/amp">AMP</a></li>
+                    <li><a href="/fll">FLL</a></li>
+                  </ul>
+                </li>
                 <li class="dropdown">
                   <a class="dropdown-toggle" data-toggle="dropdown" href="#">Media<span class="caret"></span></a>
                   <ul class="dropdown-menu">
