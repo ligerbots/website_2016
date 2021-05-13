@@ -97,7 +97,7 @@ function output_header()
               </a>
             </li>
             <li>
-              <a class="header-link" href="/sponsor">
+              <a class="header-link" href="/sponsor-us">
                 <img style="width:10%" src="/images/donate.png">
               </a>
             </li>
@@ -126,8 +126,8 @@ function output_navbar()
                 <li class="dropdown">
                   <a class="dropdown-toggle" data-toggle="dropdown" href="#">Support<span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    <li><a href="/sponsor">Become a Sponsor</a></li>
-                    <li><a href="/sponsors.php">Current Sponsors</a></li>
+                    <li><a href="/sponsor-us">Become a Sponsor</a></li>
+                    <li><a href="/current-sponsors">Current Sponsors</a></li>
                   </ul>
                 </li>
                 <li><a href="/contact">Contact</a></li> 
