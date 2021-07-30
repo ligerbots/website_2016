@@ -3,7 +3,7 @@
  * Plugin Name: WP Approve User
  * Plugin URI:  http://en.wp.obenland.it/wp-approve-user/#utm_source=wordpress&utm_medium=plugin&utm_campaign=wp-approve-user
  * Description: Adds action links to user table to approve or unapprove user registrations.
- * Version:     7
+ * Version:     8
  * Author:      Konstantin Obenland
  * Author URI:  http://en.wp.obenland.it/#utm_source=wordpress&utm_medium=plugin&utm_campaign=wp-approve-user
  * Text Domain: wp-approve-user
@@ -89,7 +89,7 @@ class Obenland_Wp_Approve_User extends Obenland_Wp_Plugins_V4 {
 			);
 
 			if ( is_multisite() ) {
-				$args['blog_id'] = 0;
+				$args['blog_id'] = is_network_admin() ? 0 : get_current_blog_id();
 			}
 
 			$this->unapproved_users = get_users( $args );
@@ -118,8 +118,8 @@ class Obenland_Wp_Approve_User extends Obenland_Wp_Plugins_V4 {
 		) );
 
 		foreach ( $user_ids as $user_id ) {
-			update_user_meta( $user_id, 'wp-approve-user', true );
-			update_user_meta( $user_id, 'wp-approve-user-mail-sent', true );
+			add_user_meta( $user_id, 'wp-approve-user', true, true );
+			add_user_meta( $user_id, 'wp-approve-user-mail-sent', true, true );
 		}
 	}
 
