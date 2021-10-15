@@ -66,6 +66,7 @@ if ( isset( $_POST[ 'register' ] ) ) {
                     <div class="form-group">
                       <label class="required">Email</label>
                       <input type="email" class="form-control" placeholder="john.smith@example.com" name="email" required />
+ 		      <span id="emailHelp" class="help-block">Do not use an NPS student email; it cannot be used outside of NPS.</span>
                     </div>
                     
                     <div class="form-group">
