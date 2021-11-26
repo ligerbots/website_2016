@@ -1,4 +1,4 @@
-<?php
+g<?php
 
 /* Short and sweet */
 define('WP_USE_THEMES', false);
@@ -8,10 +8,10 @@ function facebookUpload( $filelist )
 {
     $c = count( $filelist['name'] );
     $msg = "";
-    
+
     for ( $i=0; $i<$c; $i++ )
     {
-        $fname = $filelist['name'][$i]; 
+        $fname = $filelist['name'][$i];
         $tmpName = $filelist['tmp_name'][$i];
         if ( ! is_uploaded_file( $filelist['tmp_name'][$i] ) )
         {
@@ -21,7 +21,7 @@ function facebookUpload( $filelist )
 
         $t = $filelist['type'][$i];
         if ( ! ( preg_match( '/^image\/p?jpeg$/i', $t ) or preg_match( '/^image\/gif$/i', $t )
-            or preg_match( '/^image\/(x-)?png$/i', $t ) ) )	
+            or preg_match( '/^image\/(x-)?png$/i', $t ) ) )
         {
             $msg .= "Error: $fname is not an image file.<br>\n";
             continue;
@@ -36,21 +36,13 @@ function facebookUpload( $filelist )
         $fn = $parts[1];
         $ln = $parts[2];
         $ext = $parts[3];
-        
-        $msg .= "Received photo $fname for first name \"$fn\", last name \"$ln\".<br/>\n";
+
+        $msg .= "Received photo $fname, trying first name \"$fn\", last name \"$ln\".<br/>\n";
         $users = get_users(
             array(
                 'meta_query' => array(
-                    array(
-                        'key' => 'first_name',
-                        'value' => $fn,
-                        'compare' => '=='
-                    ),
-                    array(
-                        'key' => 'last_name',
-                        'value' => $ln,
-                        'compare' => '=='
-                    )
+                    array( 'key' => 'first_name', 'value' => $fn, 'compare' => '==' ),
+                    array( 'key' => 'last_name', 'value' => $ln, 'compare' => '==' )
                 )
             )
         );
@@ -59,24 +51,51 @@ function facebookUpload( $filelist )
             continue;
         }
         if ( count( $users ) == 0 ) {
-            $msg .= "Could not find user $fn $ln.<br/>\n";
-            continue;
+            // Ugly, but for now, the simplest. Try a different pattern
+
+            if ( ! preg_match( '/^(.*)[ _]+(.*)\.([a-z]+)$/i', $n, $parts ) ) {
+                $msg .= "Error: $fname does not match name pattern.<br/>\n";
+                continue;
+            }
+
+            $fn = $parts[1];
+            $ln = $parts[2];
+            $ext = $parts[3];
+
+            $msg .= "Trying first name \"$fn\", last name \"$ln\".<br/>\n";
+            $users = get_users(
+                array(
+                    'meta_query' => array(
+                        array( 'key' => 'first_name', 'value' => $fn, 'compare' => '==' ),
+                        array( 'key' => 'last_name', 'value' => $ln, 'compare' => '==' )
+                    )
+                )
+            );
+            if ( count( $users ) > 1 ) {
+                $msg .= 'Found ' . count( $users ) . " WP users.<br/>\n";
+                continue;
+            }
+            if ( count( $users ) == 0 ) {
+                $msg .= "Could not find user for file $fname<br/>\n";
+                continue;
+            }
         }
+
         $user_id = $users[0]->ID;
-        
+
         $md5 = md5_file( $tmpName );
         $newFile = "$md5.$ext";
         $newLoc = "images/facebook/$newFile";
 
         // remember old file name so we can clean up
         $oldFile = $users[0]->get( 'facebook_image' );
-        
+
         if ( ! rename( $tmpName, $newLoc ) ) {
             $msg .= "Rename to $newLoc failed<br/>\n";
         } else {
             if ( ! chmod( $newLoc, 0644) )
                 $msg .= "Chmod of $newLoc failed<br/>\n";
-        } 
+        }
 
         update_user_meta( $user_id, 'facebook_image', $newFile );
         $msg .= "Set picture for $fn $ln to $newFile.<br/>\n";
@@ -104,17 +123,17 @@ function facebookUpload( $filelist )
         }
 
     }
-    
+
     return $msg;
 }
 
 function download_userlist( $userlist )
 {
-    date_default_timezone_set( "America/New_York" ); 
+    date_default_timezone_set( "America/New_York" );
 
     $today = date( "Ymd" );
     $filename = "users_$today.csv";
-    
+
     header( 'Content-Description: File Transfer', true, 200 );
     header( 'Content-Type: text/csv' );
     header( 'Content-Disposition: attachment; filename="' . $filename . '";' );
@@ -135,7 +154,7 @@ function download_userlist( $userlist )
 
         $school =  $user->get( 'school' );
         if ( strtoupper($school) == 'NONE' ) $school = '';
-        
+
         $row = array(
             htmlspecialchars_decode( $user->first_name ),
             htmlspecialchars_decode( $user->last_name ),
@@ -173,7 +192,7 @@ function cleanFacebook( $doIt )
             $msg .= "$fn skipping<br/>\n";
             continue;
         }
-        
+
         $users = get_users(
             array(
                 'meta_query' => array(
