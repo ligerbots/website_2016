@@ -9,9 +9,9 @@
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    enable-background="new 0 0 464 569.89"
-   height="569.89"
-   viewBox="0 0 464 569.89"
-   width="464"
+   height="579.70172"
+   viewBox="0 0 483.51807 579.70171"
+   width="483.51807"
    version="1.1"
    id="svg14445"
    sodipodi:docname="sponsor_bar_narrow_2021.svg"
@@ -44,162 +44,191 @@
      id="namedview14447"
      showgrid="false"
      inkscape:zoom="5.3115512"
-     inkscape:cx="174.95452"
-     inkscape:cy="284.94501"
+     inkscape:cx="125.27327"
+     inkscape:cy="290.1333"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer8" />
+     inkscape:current-layer="layer8"
+     fit-margin-top="5"
+     fit-margin-left="10"
+     fit-margin-right="10"
+     fit-margin-bottom="5" />
   <clipPath
      id="a">
     <path
-       d="m-24-43h504v648h-504z"
-       id="path13676" />
+       d="M -24,-43 H 480 V 605 H -24 Z"
+       id="path13676"
+       inkscape:connector-curvature="0" />
   </clipPath>
   <clipPath
      id="b">
     <path
-       d="m.75 4.04h210.03v61.59h-210.03z"
-       id="path13679" />
+       d="M 0.75,4.04 H 210.78 V 65.63 H 0.75 Z"
+       id="path13679"
+       inkscape:connector-curvature="0" />
   </clipPath>
   <clipPath
      id="c">
     <path
-       d="m-2.47-4.91h217.2v71.31h-217.2z"
-       id="path13682" />
+       d="m -2.47,-4.91 h 217.2 V 66.4 H -2.47 Z"
+       id="path13682"
+       inkscape:connector-curvature="0" />
   </clipPath>
   <clipPath
      id="d">
     <path
-       d="m.75 4.04h210.03v61.59h-210.03z"
-       id="path13685" />
+       d="M 0.75,4.04 H 210.78 V 65.63 H 0.75 Z"
+       id="path13685"
+       inkscape:connector-curvature="0" />
   </clipPath>
   <clipPath
      id="e">
     <path
-       d="m262.4 324.11h170.5v55.63h-170.5z"
-       id="path13688" />
+       d="m 262.4,324.11 h 170.5 v 55.63 H 262.4 Z"
+       id="path13688"
+       inkscape:connector-curvature="0" />
   </clipPath>
   <clipPath
      id="f">
     <path
-       d="m235.58 7.71h224.79v63.34h-224.79z"
-       id="path13691" />
+       d="M 235.58,7.71 H 460.37 V 71.05 H 235.58 Z"
+       id="path13691"
+       inkscape:connector-curvature="0" />
   </clipPath>
   <clipPath
      id="g">
     <path
-       d="m322.34 426.54h118.26v49.12h-118.26z"
-       id="path13694" />
+       d="M 322.34,426.54 H 440.6 v 49.12 H 322.34 Z"
+       id="path13694"
+       inkscape:connector-curvature="0" />
   </clipPath>
   <clipPath
      id="h">
     <path
-       d="m18.77 108.35h157.94v150.76h-157.94z"
-       id="path13697" />
+       d="M 18.77,108.35 H 176.71 V 259.11 H 18.77 Z"
+       id="path13697"
+       inkscape:connector-curvature="0" />
   </clipPath>
   <clipPath
      id="i">
     <path
-       d="m17.48 424.1h266.59v52.91h-266.59z"
-       id="path13700" />
+       d="m 17.48,424.1 h 266.59 v 52.91 H 17.48 Z"
+       id="path13700"
+       inkscape:connector-curvature="0" />
   </clipPath>
   <clipPath
      id="j">
     <path
-       d="m21.45 424.1h258.66v51.42h-258.66z"
-       id="path13703" />
+       d="m 21.45,424.1 h 258.66 v 51.42 H 21.45 Z"
+       id="path13703"
+       inkscape:connector-curvature="0" />
   </clipPath>
   <clipPath
      id="k">
     <path
-       d="m17.48 424.1h266.59v52.91h-266.59z"
-       id="path13706" />
+       d="m 17.48,424.1 h 266.59 v 52.91 H 17.48 Z"
+       id="path13706"
+       inkscape:connector-curvature="0" />
   </clipPath>
   <clipPath
      id="l">
     <path
-       d="m233.67 112.33h227.67v71.31h-227.67z"
-       id="path13709" />
+       d="m 233.67,112.33 h 227.67 v 71.31 H 233.67 Z"
+       id="path13709"
+       inkscape:connector-curvature="0" />
   </clipPath>
   <clipPath
      id="m">
     <path
-       d="m252.78 112.33c-10.55 0-19.11 8.82-19.11 19.7v28.74h38.22v-28.69c0-10.89-8.55-19.75-19.11-19.75z"
-       id="path13712" />
+       d="m 252.78,112.33 c -10.55,0 -19.11,8.82 -19.11,19.7 v 28.74 h 38.22 v -28.69 c 0,-10.89 -8.55,-19.75 -19.11,-19.75 z"
+       id="path13712"
+       inkscape:connector-curvature="0" />
   </clipPath>
   <clipPath
      id="n">
     <path
-       d="m233.67 112.33h227.67v71.31h-227.67z"
-       id="path13715" />
+       d="m 233.67,112.33 h 227.67 v 71.31 H 233.67 Z"
+       id="path13715"
+       inkscape:connector-curvature="0" />
   </clipPath>
   <clipPath
      id="o">
     <path
-       d="m11.48 316.64h210.77v74.87h-210.77z"
-       id="path13718" />
+       d="m 11.48,316.64 h 210.77 v 74.87 H 11.48 Z"
+       id="path13718"
+       inkscape:connector-curvature="0" />
   </clipPath>
   <clipPath
      id="p">
     <path
-       d="m11.48 317.32h48.82v69.83h-48.82z"
-       id="path13721" />
+       d="M 11.48,317.32 H 60.3 v 69.83 H 11.48 Z"
+       id="path13721"
+       inkscape:connector-curvature="0" />
   </clipPath>
   <clipPath
      id="q">
     <path
-       d="m11.48 317.32h48.82v69.83h-48.82z"
-       id="path13724" />
+       d="M 11.48,317.32 H 60.3 v 69.83 H 11.48 Z"
+       id="path13724"
+       inkscape:connector-curvature="0" />
   </clipPath>
   <clipPath
      id="r">
     <path
-       d="m11.48 316.64h210.77v74.87h-210.77z"
-       id="path13727" />
+       d="m 11.48,316.64 h 210.77 v 74.87 H 11.48 Z"
+       id="path13727"
+       inkscape:connector-curvature="0" />
   </clipPath>
   <clipPath
      id="s">
     <path
-       d="m108.8 505.72h259.26v64.17h-259.26z"
-       id="path13730" />
+       d="m 108.8,505.72 h 259.26 v 64.17 H 108.8 Z"
+       id="path13730"
+       inkscape:connector-curvature="0" />
   </clipPath>
   <clipPath
      id="clipPath13735">
     <path
-       d="m149.24 514.38c-.49 0-.84.21-1.17.42-1.04.67-2.34 2.83-2.98 3.99-.97 1.75-2.92 4.62-4.35 6.31-.48.56-.94 1.23-1.5 1.7-.88.74-1.99 1.73-3.13 2.2-.36.14-.8.19-1.17.33-.9.32-1.57.7-2.25 1.26-1.17.98-2.25 2.26-3.2 3.46-.3.38-.77 1.02-1.15 1.46-.56.24-1.14.48-1.74.72-.11.04-.21.09-.32.13v2.73h34.76c-.53-1.48-1.07-2.98-1.62-4.5-.99-2.73-1.86-5.55-2.83-8.3-1.05-2.99-2.15-5.85-3.62-8.39-.61-1.07-2.12-3.52-3.73-3.52z"
-       id="path13733" />
+       d="m 149.24,514.38 c -0.49,0 -0.84,0.21 -1.17,0.42 -1.04,0.67 -2.34,2.83 -2.98,3.99 -0.97,1.75 -2.92,4.62 -4.35,6.31 -0.48,0.56 -0.94,1.23 -1.5,1.7 -0.88,0.74 -1.99,1.73 -3.13,2.2 -0.36,0.14 -0.8,0.19 -1.17,0.33 -0.9,0.32 -1.57,0.7 -2.25,1.26 -1.17,0.98 -2.25,2.26 -3.2,3.46 -0.3,0.38 -0.77,1.02 -1.15,1.46 -0.56,0.24 -1.14,0.48 -1.74,0.72 -0.11,0.04 -0.21,0.09 -0.32,0.13 v 2.73 h 34.76 c -0.53,-1.48 -1.07,-2.98 -1.62,-4.5 -0.99,-2.73 -1.86,-5.55 -2.83,-8.3 -1.05,-2.99 -2.15,-5.85 -3.62,-8.39 -0.61,-1.07 -2.12,-3.52 -3.73,-3.52 z"
+       id="path13733"
+       inkscape:connector-curvature="0" />
   </clipPath>
   <clipPath
      id="clipPath13739">
     <path
-       d="m121.72 538.2c-3.12 1.25-6.33 2.53-9.06 3.66 4.48 3.15 9.2 6.55 11.63 8.3.02.01.05.02.08.02s.07-.01.11-.02c.3-.08.81-.43 1.04-.5.29-.09.57-.16.84-.21v-13.13c-1.49.61-3.05 1.24-4.64 1.88"
-       id="path13737" />
+       d="m 121.72,538.2 c -3.12,1.25 -6.33,2.53 -9.06,3.66 4.48,3.15 9.2,6.55 11.63,8.3 0.02,0.01 0.05,0.02 0.08,0.02 0.03,0 0.07,-0.01 0.11,-0.02 0.3,-0.08 0.81,-0.43 1.04,-0.5 0.29,-0.09 0.57,-0.16 0.84,-0.21 v -13.13 c -1.49,0.61 -3.05,1.24 -4.64,1.88"
+       id="path13737"
+       inkscape:connector-curvature="0" />
   </clipPath>
   <clipPath
      id="clipPath13743">
     <path
-       d="m126.27 539.01v10.46c.11-.02.22-.04.32-.05h.01c.01 0 .03 0 .04-.01h.02.02.03.01.04.01c.11-.01.23-.01.34-.01.37 0 .74.06 1.11.2 2.64 1.01 4.51 5.67 5.65 8.37.81 1.91 1.71 3.85 2.51 5.79 2.6-.58 4.36-1.85 6.09-3.31 1.86-1.57 3.53-3.67 5.1-5.54 1.1-1.3 2.3-2.78 3.62-4.03 2.18-2.07 4.65-3.52 7.37-2.49.17.07.35.14.53.23.75.38 1.62.86 2.24 1.36.96.77 1.76 1.51 2.6 2.32 1.58 1.34 2.19 2.19 3.42 2.91-1.06-2.29-1.88-4.37-2.8-6.7-.03-.08-.06-.16-.1-.24-.02-.05-.04-.1-.06-.15-.01-.02-.02-.05-.03-.07-1.17-2.96-2.26-5.97-3.36-9.03h-34.73z"
-       id="path13741" />
+       d="m 126.27,539.01 v 10.46 c 0.11,-0.02 0.22,-0.04 0.32,-0.05 h 0.01 c 0.01,0 0.03,0 0.04,-0.01 h 0.02 0.02 0.03 0.01 0.04 0.01 c 0.11,-0.01 0.23,-0.01 0.34,-0.01 0.37,0 0.74,0.06 1.11,0.2 2.64,1.01 4.51,5.67 5.65,8.37 0.81,1.91 1.71,3.85 2.51,5.79 2.6,-0.58 4.36,-1.85 6.09,-3.31 1.86,-1.57 3.53,-3.67 5.1,-5.54 1.1,-1.3 2.3,-2.78 3.62,-4.03 2.18,-2.07 4.65,-3.52 7.37,-2.49 0.17,0.07 0.35,0.14 0.53,0.23 0.75,0.38 1.62,0.86 2.24,1.36 0.96,0.77 1.76,1.51 2.6,2.32 1.58,1.34 2.19,2.19 3.42,2.91 -1.06,-2.29 -1.88,-4.37 -2.8,-6.7 -0.03,-0.08 -0.06,-0.16 -0.1,-0.24 -0.02,-0.05 -0.04,-0.1 -0.06,-0.15 -0.01,-0.02 -0.02,-0.05 -0.03,-0.07 -1.17,-2.96 -2.26,-5.97 -3.36,-9.03 h -34.73 z"
+       id="path13741"
+       inkscape:connector-curvature="0" />
   </clipPath>
   <clipPath
      id="t">
     <path
-       d="m108.8 505.72h259.26v64.17h-259.26z"
-       id="path13745" />
+       d="m 108.8,505.72 h 259.26 v 64.17 H 108.8 Z"
+       id="path13745"
+       inkscape:connector-curvature="0" />
   </clipPath>
   <clipPath
      id="u">
     <path
-       d="m207.92 227.32h252.45v42.23h-252.45z"
-       id="path13748" />
+       d="m 207.92,227.32 h 252.45 v 42.23 H 207.92 Z"
+       id="path13748"
+       inkscape:connector-curvature="0" />
   </clipPath>
   <g
      inkscape:groupmode="layer"
      id="layer7"
      inkscape:label="Logos"
      sodipodi:insensitive="true"
-     style="display:inline">
+     style="display:inline"
+     transform="translate(9.4351932,4.6234622)">
     <switch
        id="switch14443">
       <foreignObject
@@ -2164,7 +2193,8 @@
   <g
      inkscape:groupmode="layer"
      id="layer8"
-     inkscape:label="Links">
+     inkscape:label="Links"
+     transform="translate(9.4351932,4.6234622)">
     <a
        id="a14841"
        target="_blank"
