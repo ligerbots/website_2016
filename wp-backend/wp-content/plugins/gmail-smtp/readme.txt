@@ -2,10 +2,10 @@
 Contributors: naa986
 Donate link: https://wphowto.net/
 Tags: smtp, gmail, mail, email, oauth
-Requires at least: 5.7
-Tested up to: 5.8
+Requires at least: 5.9
+Tested up to: 5.9
 Requires PHP: 5.6
-Stable tag: 1.2.2
+Stable tag: 1.2.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -19,32 +19,26 @@ Most shared hosting servers have restrictions when it comes to email. Usually em
 
 https://www.youtube.com/watch?v=_MCxcvfoGj4&rel=0
 
-= Requirements =
-
-* PHP 5.6 or later
-* A Gmail Account
-* A self-hosted website running on [WordPress hosting](https://wphowto.net/best-cheap-wordpress-hosting-1689)
-
-= Gmail SMTP Benefits =
+=== Gmail SMTP Benefits ===
 
 * Gmail SMTP plugin is not like most SMTP plugins. It uses the OAuth 2.0 protocol to authorize access to the Gmail API - which means a more secure login system and users won't have to enter any username or password.
 * Gmail SMTP plugin uses PHPMailer - a very popular library used for sending email through PHP's mail function. This libary is also used in the core WordPress to send email.
 * Gmail SMTP plugin utilizes "wp_mail" (A function used by WordPress to send email) instead of completely overriding it. This way you still get all the benefits of the default mail function. 
 * You no longer need to enable **Allow less secure apps** on your gmail account to fix SMTP connection issue. This issue became prominent from December 2014, when Google started imposing XOAUTH2 authentication (based on OAuth2) to access their apps. This issue still affects almost all the SMTP plugins because they authenticate via username and password.
 
-= How OAuth 2.0 Authorization Works =
+=== How OAuth 2.0 Authorization Works ===
 
 * You register an application in the Google Developers Console.
 * The application is launched and it requests that you give it access to data in your Google account.
 * If you consent, the application receives credentials to access the Gmail API.
 
-= Gmail SMTP Features =
+=== Gmail SMTP Features ===
 
 * Configure your website to send email using Gmail SMTP server
 * Authenticate using OAuth 2.0 protocol
 * Authenticate with encryption when sending an email (TLS/SSL)
 
-= Gmail SMTP Basic Setup =
+=== Gmail SMTP Basic Setup ===
 
 * Create a new project in Google Developers Console.
 * Enable Gmail API in it.
@@ -63,7 +57,7 @@ https://www.youtube.com/watch?v=_MCxcvfoGj4&rel=0
 * Now you can authorize your application to access the Gmail API by clicking on the **Grant Permission** button.
 * Once the application has been authorized Gmail SMTP plugin will be able to take control of all outgoing email.
 
-= Gmail SMTP Settings =
+=== Gmail SMTP Settings ===
  
 * **Authorized Redirect URI**: Authorized redirect URL for your website. You need to copy this URL into your web application.
 * **Client ID**: The client ID of your web application.
@@ -75,7 +69,7 @@ https://www.youtube.com/watch?v=_MCxcvfoGj4&rel=0
 * **SMTP Port**: The port which will be used when sending an email. If you choose TLS it should be set to 587. For SSL use port 465 instead.
 * **Disable SSL Certificate Verification**: As of PHP 5.6 a warning/error will be displayed if the SSL certificate on the server is not properly configured. You can check this option to disable that default behaviour.
 
-= Gmail SMTP Test Email =
+=== Gmail SMTP Test Email ===
 
 Once you have configured the settings you can send a test email to check the functionality of the plugin.
  
@@ -126,6 +120,9 @@ For screenshots please visit the [Gmail SMTP](https://wphowto.net/gmail-smtp-plu
 none
 
 == Changelog ==
+
+= 1.2.3 =
+* Updated the mail function for WordPress 5.9.
 
 = 1.2.2 =
 * Updated for WordPress 5.8.
