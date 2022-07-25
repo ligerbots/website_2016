@@ -28,10 +28,10 @@ http_response_code(200); // override wp
               <div class="col-xs-12">
               
                 <?php if ( is_user_logged_in() ): ?>
-                  <iframe class="calendar" src="https://calendar.google.com/calendar/embed?src=ligerbots.com_1ql19t7fmu3lkcv5ru75qrlstk%40group.calendar.google.com&src=ligerbots.com_n95omorir7fj2bg2lu5q4ef8q0%40group.calendar.google.com&color=%23711616&ctz=America/New_York"></iframe>
+                   <iframe class="calendar" src="https://calendar.google.com/calendar/embed?src=c_pkpvt70caiufhsdcgjpr9anbng%40group.calendar.google.com&src=c_r2405nbigo9eqb06kbvnk51bcc%40group.calendar.google.com&color=%23711616&ctz=America/New_York"></iframe>
                 <?php else: ?>
-                  <iframe class="calendar" src="https://www.google.com/calendar/embed?src=ligerbots.com_n95omorir7fj2bg2lu5q4ef8q0%40group.calendar.google.com&ctz=America/New_York"></iframe>
-                <?php endif ?>
+		   <iframe class="calendar" src="https://calendar.google.com/calendar/embed?src=c_r2405nbigo9eqb06kbvnk51bcc%40group.calendar.google.com&ctz=America%2FNew_York"></iframe>
+                  <?php endif ?>
               </div>
             </div>
             
