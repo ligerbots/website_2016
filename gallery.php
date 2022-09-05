@@ -73,7 +73,7 @@ else
                   echo "                <a href=\"https://www.flickr.com/photos/ligerbots/\" target=\"_blank\">flickr.com/photos/ligerbots/</a>";
                   echo "        </h5>\n";
                   echo "        <h5 class=\"gallery-link\">To see all LigerBots videos: ";
-                  echo "                <a href=\"https://www.youtube.com/channel/UCgNgdmtDs7d58dVR-80DCGA\" target=\"_blank\">youtube.com/channel/UCgNgdmtDs7d58dVR-80DCGA</a>";
+                  echo "                <a href=\"https://www.youtube.com/c/ligerbots\" target=\"_blank\">youtube.com/c/ligerbots</a>";
                   echo "        </h5>";
                   echo "</center>\n";
               }
