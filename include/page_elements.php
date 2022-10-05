@@ -172,7 +172,6 @@ function output_navbar()
         <ul class="dropdown-menu">';
         if ( current_user_can( 'edit_posts' ) ) {
             echo '<li><a href="/wp-backend/wp-admin/edit.php">Edit Posts</a></li>';
-            echo '<li><a href="/mail.php">Email Tracking</a></li>';
         }
         echo '<li><a href="/wp-backend/wp-admin/profile.php">My Profile</a></li>
         <li><a href="/login.php?logout">Logout</a></li>

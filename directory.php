@@ -18,18 +18,18 @@ if ( ! is_user_logged_in() )
 function user_cmp($a, $b) {
     $a1 = $a->last_name;
     $b1 = $b->last_name;
-    if ( $a1 != $b1 )
-        return ( $a1 < $b1) ? -1 : 1;
-
+    $cc = strcoll($a1, $b1);
+    if ($cc != 0)
+        return $cc;
+    
     $a1 = $a->first_name;
     $b1 = $b->first_name;
-    if ( $a1 != $b1 )
-        return ( $a1 < $b1) ? -1 : 1;
-    return 0;
+    return strcoll($a1, $b1);
 }
 
 $userlist = get_users();
 // Sort it.
+setlocale(LC_ALL, 'en_US.UTF-8');
 uasort( $userlist, 'user_cmp' );
 
 if ( current_user_can( 'edit_posts' ) && isset( $_POST[ 'download_users' ] ) ) {
