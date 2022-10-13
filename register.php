@@ -168,8 +168,8 @@ if ( isset( $_POST[ 'register' ] ) ) {
                         </div>
                         
                         <div class="form-group">
-                          <label>Graduation year</label>
-                          <input type="number" class="form-control" name="graduation" min="2017" max="2035" />
+                          <label class="required">Graduation year</label>
+                          <input type="number" class="form-control" name="graduation" min="2020" max="2035" />
                         </div>
                       </div>
                       <div class="form-section parent">
