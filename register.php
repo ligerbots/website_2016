@@ -65,8 +65,9 @@ if ( isset( $_POST[ 'register' ] ) ) {
                     
                     <div class="form-group">
                       <label class="required">Email</label>
-                      <input type="email" class="form-control" placeholder="john.smith@example.com" name="email" required />
- 		      <span id="emailHelp" class="help-block">Do not use an NPS student email; it cannot be used outside of NPS.</span>
+                      <input type="email" class="form-control" placeholder="john.smith@gmail.com" name="email" required />
+ 		              <span id="emailHelp">Do <b>not</b> use an NPS student email; it cannot be used outside of NPS.<br />
+                        The LigerBots rely heavily on Google Drive, so an account with access to Google is preferable.</span>
                     </div>
                     
                     <div class="form-group">
