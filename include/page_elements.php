@@ -190,10 +190,10 @@ function output_footer( $sponsor_bar_name='home-sponsors' )
   <div class="col-xs-12">
     <div class="panel panel-sprs">
       <div class="big-sprs">
-        <embed class="sprs-image" src="/images/sponsor-logos/sponsor_bar_full_2022.svg" />
+        <embed class="sprs-image" src="/images/sponsor-logos/sponsor_bar_full_2022b.svg" />
       </div>
       <div class="small-sprs">
-        <embed class="sprs-image" src="/images/sponsor-logos/sponsor_bar_narrow_2022.svg" />
+        <embed class="sprs-image" src="/images/sponsor-logos/sponsor_bar_narrow_2022b.svg" />
       </div>
     </div>
     <div style="text-align: center;">
