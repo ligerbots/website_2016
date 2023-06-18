@@ -2,10 +2,10 @@
 Contributors: naa986
 Donate link: https://wphowto.net/
 Tags: smtp, gmail, mail, email, oauth
-Requires at least: 6.1
-Tested up to: 6.1
+Requires at least: 6.2
+Tested up to: 6.2
 Requires PHP: 5.6
-Stable tag: 1.2.3.5
+Stable tag: 1.2.3.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -125,6 +125,15 @@ For screenshots please visit the [Gmail SMTP](https://wphowto.net/gmail-smtp-plu
 none
 
 == Changelog ==
+
+= 1.2.3.8 =
+* Proper sanitization of the test email body.
+
+= 1.2.3.7 =
+* Removed slashes from test email subject and body.
+
+= 1.2.3.6 =
+* Compatibility update for WordPress 6.2.
 
 = 1.2.3.5 =
 * Added support for the Cc add-on.
