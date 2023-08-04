@@ -122,7 +122,14 @@ function output_navbar()
             <div class="collapse navbar-collapse" id="myNavbar">
               <ul class="nav navbar-nav nav-stacked">
                 <li class="active"><a href="/">Home</a></li>
-                <li><a href="/about">About</a></li> 
+                <li class="dropdown">
+                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">About<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="/join">Join the LigerBots</a></li>
+                    <li><a href="/about">About Us</a></li>
+                    <li><a href="/contact">Contact Us</a></li> 
+                  </ul>
+                </li>
                 <li class="dropdown">
                   <a class="dropdown-toggle" data-toggle="dropdown" href="#">Support<span class="caret"></span></a>
                   <ul class="dropdown-menu">
@@ -130,7 +137,6 @@ function output_navbar()
                     <li><a href="/current-sponsors">Current Sponsors</a></li>
                   </ul>
                 </li>
-                <li><a href="/contact">Contact</a></li> 
                 <li><a href="/calendar.php">Calendar</a></li> 
                 <li class="dropdown">
                   <a class="dropdown-toggle" data-toggle="dropdown" href="#">Outreach<span class="caret"></span></a>
