@@ -143,8 +143,9 @@ function output_navbar()
                   <ul class="dropdown-menu">
                     <li><a href="/outreach">Outreach</a></li>
                     <li role="separator" class="divider"></li>
-                    <li><a href="/amp">AMP</a></li>
                     <li><a href="/fll">FLL</a></li>
+                    <li><a href="/educational-resources">Educational Resources</a></li>
+                    <li><a href="/amp">AMP</a></li>
                   </ul>
                 </li>
                 <li class="dropdown">
