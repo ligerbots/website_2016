@@ -26,6 +26,8 @@ if ( isset( $_FILES['upload'] ) )
 // Comparison function
 function acct_type( $user ) {
     $r = $user->get( 'team_role' );
+    if (gettype($r) !== 'array') return 4;
+
     // careful of the comparison operator!
     if ( array_search( 'Student', $r ) !== FALSE  ) return 0;
     if ( array_search( 'Coach', $r ) !== FALSE || array_search( 'Mentor', $r ) !== FALSE ) return 1;
@@ -101,7 +103,7 @@ function user_cmp( $a, $b ) {
                 foreach ( $userlist as $user ) {
                     // Don't list users who have not been approved
                     if ( ! $user->get( 'wp-approve-user' ) ) continue;
-                    if ( $user->user_login == 'attendance-pi' ) continue;
+                    if ( $user->user_login === 'attendance-pi' ) continue;
                     
                     $type = acct_type( $user );
                     if ( $type != $prevType ) {
@@ -113,11 +115,11 @@ function user_cmp( $a, $b ) {
                         else if ( $type == 2 )
                             echo "<h2>Alumni</h2>\n";
                         else
-			{
-			    // Don't have any Parent pictures, so skip for now.
-			    break;
-			    // echo "<h2>Parents</h2>\n";
-			}
+                        {
+                            // Don't have any Parent pictures, so skip for now.
+                            break;
+                            // echo "<h2>Parents</h2>\n";
+                        }
                     }
 
                     echo '<div class="facebook-entry">';
