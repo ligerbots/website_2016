@@ -123,7 +123,9 @@ function user_cmp( $a, $b ) {
                     }
 
                     echo '<div class="facebook-entry">';
-                    echo '<img src="/images/facebook/' . $user->get( 'facebook_image' ) . '">';
+                    $fb_img = $user->get( 'facebook_image' );
+                    if ( strlen($fb_img) !== 0 ) $fb_img = "no_image.jpg";
+                    echo '<img src="/images/facebook/' . $fb_img . '">';
                     echo "<br>\n";
                     
                     echo '<div class="name';
