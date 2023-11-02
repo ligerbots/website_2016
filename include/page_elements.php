@@ -145,7 +145,6 @@ function output_navbar()
                     <li role="separator" class="divider"></li>
                     <li><a href="/fll">FLL</a></li>
                     <li><a href="/educational-resources">Educational Resources</a></li>
-                    <li><a href="/amp">AMP</a></li>
                   </ul>
                 </li>
                 <li class="dropdown">
@@ -197,10 +196,10 @@ function output_footer( $sponsor_bar_name='home-sponsors' )
   <div class="col-xs-12">
     <div class="panel panel-sprs">
       <div class="big-sprs">
-        <embed class="sprs-image" src="/images/sponsor-logos/sponsor_bar_full_2023.svg" />
+        <embed class="sprs-image" src="/images/sponsor-logos/sponsor_bar_full_2023b.svg" />
       </div>
       <div class="small-sprs">
-        <embed class="sprs-image" src="/images/sponsor-logos/sponsor_bar_narrow_2023.svg" />
+        <embed class="sprs-image" src="/images/sponsor-logos/sponsor_bar_narrow_2023b.svg" />
       </div>
     </div>
     <div style="text-align: center;">
