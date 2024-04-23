@@ -3,8 +3,8 @@ Contributors: obenland
 Tags: admin, user, login, approve, user management, plugin
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=G65Y5CM3HVRNY
 Requires at least: 4.3
-Tested up to: 6.1
-Stable tag: 10
+Tested up to: 6.4
+Stable tag: 11
 
 Adds action links to user table to approve or unapprove user registrations.
 
@@ -29,21 +29,6 @@ Currently available in:
 * Russian
 
 
-== Installation ==
-
-1. Download WP Approve User.
-2. Unzip the folder into the `/wp-content/plugins/` directory.
-3. Activate the plugin through the 'Plugins' menu in WordPress.
-4. Make sure user registrations is enabled in 'General Settings'.
-
-
-== Frequently Asked Questions ==
-
-= Once a new user has been approved, will the plugin send out an email to inform them they have been approved? =
-
-Yes! Under Settings > Approve User, you can choose when to send an email and customize the email content to your needs!
-
-
 = Plugin Hooks =
 
 == Actions ==
@@ -66,6 +51,21 @@ Yes! Under Settings > Approve User, you can choose when to send an email and cus
 > Filters the placeholders in approve/unapprove emails.
 
 
+== Installation ==
+
+1. Download WP Approve User.
+2. Unzip the folder into the `/wp-content/plugins/` directory.
+3. Activate the plugin through the 'Plugins' menu in WordPress.
+4. Make sure user registrations is enabled in 'General Settings'.
+
+
+== Frequently Asked Questions ==
+
+= Once a new user has been approved, will the plugin send out an email to inform them they have been approved? =
+
+Yes! Under Settings > Approve User, you can choose when to send an email and customize the email content to your needs!
+
+
 == Screenshots ==
 
 1. Error message when user is not yet approved.
@@ -75,6 +75,10 @@ Yes! Under Settings > Approve User, you can choose when to send an email and cus
 
 
 == Changelog ==
+
+= 11 =
+* Replaced image files with inline SVGs.
+* Fixes a race condition with registering sidebar boxes between plugins I authored.
 
 = 10 =
 * Fixes a bug with the activation hook creating class instances before it should. See https://wordpress.org/support/topic/fatal-error-4281/
