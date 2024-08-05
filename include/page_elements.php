@@ -36,13 +36,12 @@ EOL;
     echo "    <title>$title</title>\n";
 
     /* Google Analytics tracking code */
+    echo '    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZD4J3J1EZN"></script>\n';
     echo "    <script>\n";
-    echo "      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){\n";
-    echo "        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),\n";
-    echo "                             m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)\n";
-    echo "      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');\n";
-    echo "      ga('create', 'UA-71672666-1', 'auto');\n";
-    echo "      ga('send', 'pageview');\n";
+    echo "       window.dataLayer = window.dataLayer || [];\n";
+    echo "       function gtag(){dataLayer.push(arguments);}\n";
+    echo "       gtag('js', new Date());\n";
+    echo "       gtag('config', 'G-ZD4J3J1EZN');\n";
     echo "    </script>\n";
 
     echo "    <meta property=\"og:title\" content=\"$title\" />\n";
