@@ -37,10 +37,22 @@ if ( isset( $_POST[ 'register' ] ) ) {
         <div class="row page-body">
           <div class="col-md-12 col-md-offset-0 col-sm-10 col-sm-offset-1 col-xs-12">
             <div class="row top-spacer"> </div>
-
+            <center>
+              <div class="notindex-title">LIGERBOTS REGISTRATION</div>
+              <div class="row top-spacer"> </div>
+	      <div class="row">
+		<div class="col-lg-8 col-lg-offset-2 col-xs-12 no-side-padding">
+                  <b><p>LigerBots team registration is for students registered in the Newton Public Schools
+		      high schools and their parents/guardians, and for LigerBots Mentors and Coaches, only.
+                  </p></b>
+                  <p>Community members interested in FLL should refer to the <a href="/fll">FLL page</a>.</p>
+                  <p>Otherwise, you can find contact information on the <a href="/contact">Contact page</a>.</p>
+                  <br/>
+		</div>
+	      </div>
+            </center>
             <div class="row side-margins bottom-margin">
               <div class="col-lg-6 col-lg-offset-3 col-xs-12 no-side-padding bottom-margin">
-
                 <?php
                 if ( $wasPost )
                 {
