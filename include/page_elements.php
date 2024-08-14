@@ -36,7 +36,7 @@ EOL;
     echo "    <title>$title</title>\n";
 
     /* Google Analytics tracking code */
-    echo '    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZD4J3J1EZN"></script>\n';
+    echo "    <script async src='https://www.googletagmanager.com/gtag/js?id=G-ZD4J3J1EZN'></script>\n";
     echo "    <script>\n";
     echo "       window.dataLayer = window.dataLayer || [];\n";
     echo "       function gtag(){dataLayer.push(arguments);}\n";
