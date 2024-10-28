@@ -143,6 +143,8 @@ function output_navbar()
                     <li><a href="/outreach">Outreach</a></li>
                     <li role="separator" class="divider"></li>
                     <li><a href="/fll">FLL</a></li>
+                    <li><a href="/steam-expo">Exhibiting at the STEAM Expo</a></li>
+                    <li role="separator" class="divider"></li>
                     <li><a href="/educational-resources">Educational Resources</a></li>
                   </ul>
                 </li>
