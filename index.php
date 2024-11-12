@@ -99,11 +99,10 @@ my_setup_postdata( $blog );
               <div class="col-md-6 col-sm-12">
                 <div class="panel panel-blue">
                   <div class="panel-heading index-heading">
-                    <a style="color:white;" target="_blank" href="https://twitter.com/search?q=ligerbots&src=typd">TWITTER</a>
+                     <a style="color:white;" target="_blank" href="https://www.facebook.com/LigerBots/">FACEBOOK</a>
                   </div>
                   <div class="panel-body">
-                    <a class="twitter-timeline" width="100%" href="https://twitter.com/LigerBots" data-widget-id="728971894213447680" data-chrome="noheader nofooter noborders">Tweets by @LigerBots</a>
-                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+		    <iframe id="fb-panel" src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fligerbots&tabs=timeline&width=600&height=1000&small_header=true&adapt_container_width=true&hide_cover=true&show_facepile=false&appId" width="100%" height="100%" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>		    
                   </div>
                 </div>
               </div>
@@ -139,7 +138,7 @@ my_setup_postdata( $blog );
          var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
          if ( width > 990 ) {
              Resize( "#blog-panel", "#cal-panel" );
-             Resize( "#ann-panel", "#twitter-widget-0" );
+             Resize( "#ann-panel", "#fb-panel" );
          }
      }
 
