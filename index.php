@@ -111,10 +111,10 @@ my_setup_postdata( $blog );
             <div class="row row-margins">
               <div class="col-xs-12">
                 <div class="panel panel-brag">
-                  <img src="/images/team_photo_2022.jpg"/>
+                  <img style="width: 100%" src="/images/team_photo_2024.jpg"/>
                 </div>
                 <div style="text-align:center;">
-                                                                                                                                                                                                                                                                                  <div class="label-blue"><a href="https://www.flickr.com/photos/ligerbots/albums/72157712218381043" target="_blank">The LigerBots</a></div>
+                   <div class="label-blue"><a href="https://www.flickr.com/photos/ligerbots/albums/72177720322012243" target="_blank">The LigerBots</a></div>
                 </div>
               </div>
             </div>
