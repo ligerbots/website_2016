@@ -1,7 +1,7 @@
 <?php
 
 /* Short and sweet */
-define('WP_USE_THEMES', false);
+if (!defined('WP_USE_THEMES')) define('WP_USE_THEMES', false);
 require_once(dirname(__FILE__) . '/../wp-backend/wp-blog-header.php');
 
 function page_head( $title, $includeRSS=false, $extraCSS=NULL, $extraHTML="" )

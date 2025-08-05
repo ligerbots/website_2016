@@ -1,6 +1,6 @@
 <?php
 /* Short and sweet */
-define('WP_USE_THEMES', false);
+if (!defined('WP_USE_THEMES')) define('WP_USE_THEMES', false);
 require_once('wp-backend/wp-blog-header.php');
 
 /* Call the WP setup_postdata function, but also set global $post variable. */
