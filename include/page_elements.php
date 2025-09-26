@@ -142,6 +142,8 @@ function output_navbar()
                   <ul class="dropdown-menu">
                     <li><a href="/outreach">Outreach</a></li>
                     <li role="separator" class="divider"></li>
+                    <li><a href="https://frcroboconne.ligerbots.org/" target="_blank">FRC RoboCon NE</a></li>
+                    <li role="separator" class="divider"></li>
                     <li><a href="/fll">FLL</a></li>
                     <li><a href="/steam-expo">Exhibiting at the STEAM Expo</a></li>
                     <li role="separator" class="divider"></li>
