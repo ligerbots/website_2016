@@ -1,9 +1,9 @@
 <?php
 
-// This will be in a separate file
-define('REGISTRATION_KEY', 'secret');
-define('API_URL', 'http://example.com/api/signup');
-define('REDIRECT_URL', 'http://example.com/u/');
+// This will be in a separate file or on the server
+// define('REGISTRATION_KEY', 'secret');
+// define('API_URL', 'http://example.com/api/signup');
+// define('REDIRECT_URL', 'http://example.com/u/');
 
 // $id = 10002; # TODO figure this out
 $user = wp_get_current_user();
