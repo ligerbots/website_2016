@@ -11,11 +11,11 @@
  * @author Konstantin Obenland
  * @since  2.2.0 - 30.03.2013
  *
- * @param bool $new New option value.
+ * @param bool $new_value New option value.
  * @return bool New option value.
  */
-function wpau_whitelist_users( $new ) {
-	if ( $new ) {
+function wpau_whitelist_users( $new_value ) {
+	if ( $new_value ) {
 		$user_ids = get_users(
 			array(
 				'blog_id' => '',
@@ -24,12 +24,12 @@ function wpau_whitelist_users( $new ) {
 		);
 
 		foreach ( $user_ids as $user_id ) {
-			update_user_meta( $user_id, 'wp-approve-user', true );
+			update_user_meta( $user_id, 'wp-approve-user', 'approved' );
 			update_user_meta( $user_id, 'wp-approve-user-mail-sent', true );
 		}
 	}
 
-	return $new;
+	return $new_value;
 }
 add_filter( 'pre_update_option_users_can_register', 'wpau_whitelist_users' );
 
@@ -51,7 +51,7 @@ function wpau_add_settings_error() {
 		'no-users-can-register',
 		sprintf(
 			/* translators: Link to options page. */
-			wp_kses_post( __( 'Please <a href="%s">enable user registrations</a> for WP Approve User to work.' ) ),
+			wp_kses_post( __( 'Please <a href="%s">enable user registrations</a> for WP Approve User to work.', 'wp-approve-user' ) ),
 			esc_url( $url )
 		),
 		'notice-info'
