@@ -159,7 +159,7 @@ function output_navbar()
                 <li class="dropdown">
                   <a class="dropdown-toggle" data-toggle="dropdown" href="#">Resources<span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    <li><a href="/carpools.php">Carpools</a></li>
+                    <li><a href="/carpool_new.php">Carpools</a></li>
                     <li><a href="/links">Team Links</a></li>';
     if ( $loggedIn ) {
         echo '<li><a href="/directory.php">Directory</a></li>';
