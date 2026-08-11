@@ -1,8 +1,9 @@
 <?php
 /*
 Plugin Name: Gmail SMTP
-Version: 1.2.3.18
-Requires at least: 6.9
+Version: 1.2.3.21
+Requires at least: 7.0
+Requires PHP: 8.1
 Plugin URI: https://wphowto.net/gmail-smtp-plugin-for-wordpress-1341
 Author: naa986
 Author URI: https://wphowto.net/
@@ -17,9 +18,9 @@ if (!defined('ABSPATH')){
 
 class GMAIL_SMTP {
     
-    var $plugin_version = '1.2.3.18';
-    var $phpmailer_version = '7.0.0';
-    var $google_api_client_version = '2.2.0';
+    var $plugin_version = '1.2.3.21';
+    var $phpmailer_version = '7.0.2';
+    var $google_api_client_version = '2.19.4';
     var $plugin_url;
     var $plugin_path;
     
@@ -213,6 +214,10 @@ class GMAIL_SMTP {
     
     function test_email_settings(){
         if(isset($_POST['gmail_smtp_send_test_email'])){
+            $nonce = $_REQUEST['_wpnonce'];
+            if (!wp_verify_nonce($nonce, 'gmail_smtp_test_email')) {
+                wp_die('Error! Nonce Security Check Failed! please send the test email again.');
+            }
             $to = '';
             if(isset($_POST['gmail_smtp_to_email']) && !empty($_POST['gmail_smtp_to_email'])){
                 $to = sanitize_email($_POST['gmail_smtp_to_email']);
@@ -1076,7 +1081,8 @@ function gmail_smtp_pre_wp_mail($null, $atts)
                      * @since 6.9.0
                      *
                      * @param array $args {
-                     *     An array of arguments for `addEmbeddedImage()`.
+                     *     An array of arguments for PHPMailer's addEmbeddedImage() method.
+                     *
                      *     @type string $path        The path to the file.
                      *     @type string $cid         The Content-ID of the image. Default: The key in the embeds array.
                      *     @type string $name        The filename of the image.
@@ -1121,7 +1127,7 @@ function gmail_smtp_pre_wp_mail($null, $atts)
      */
     do_action_ref_array( 'phpmailer_init', array( &$phpmailer ) );
 
-    $mail_data = compact( 'to', 'subject', 'message', 'headers', 'attachments' );
+    $mail_data = compact( 'to', 'subject', 'message', 'headers', 'attachments', 'embeds' );
 
     // Send!
     try {
@@ -1137,7 +1143,7 @@ function gmail_smtp_pre_wp_mail($null, $atts)
              * @since 5.9.0
              *
              * @param array $mail_data {
-             *     An array containing the email recipient(s), subject, message, headers, and attachments.
+             *     An array containing the email recipient(s), subject, message, headers, attachments, and embeds.
              *
              *     @type string[] $to          Email addresses to send message.
              *     @type string   $subject     Email subject.
@@ -1154,12 +1160,12 @@ function gmail_smtp_pre_wp_mail($null, $atts)
             $mail_data['phpmailer_exception_code'] = $e->getCode();
 
             /**
-             * Fires after a PHPMailer\PHPMailer\Exception is caught.
+             * Fires after a PHPMailer exception is caught.
              *
              * @since 4.4.0
              *
              * @param WP_Error $error A WP_Error object with the PHPMailer\PHPMailer\Exception message, and an array
-             *                        containing the mail recipient, subject, message, headers, and attachments.
+             *                        containing the mail recipient, subject, message, headers, attachments, and embeds.
              */
             do_action( 'wp_mail_failed', new WP_Error( 'wp_mail_failed', $e->getMessage(), $mail_data ) );
 
