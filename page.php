@@ -3,7 +3,7 @@ require_once( "include/page_elements.php" );
 require_once( "include/utils.php" );
 
 /* Short and sweet */
-define('WP_USE_THEMES', false);
+if (!defined('WP_USE_THEMES')) define('WP_USE_THEMES', false);
 require('wp-backend/wp-blog-header.php');
 
 $url = $_SERVER[ "REQUEST_URI" ];

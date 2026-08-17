@@ -7,14 +7,28 @@ $flickr = createFlickr();
 
 if ( isset($_GET["album"]) )
 {
+    $albumId = filter_var($_GET["album"], FILTER_VALIDATE_INT);
+    if ($albumId === false) {
+        // bad input, maybe a hack
+        require("404.php");
+        die();
+    }
+
     // viewing an album; get its photos
-    $albumPhotos = getPhotoList( $flickr, $_GET["album"] );
+    $albumPhotos = getPhotoList($flickr, $albumId);
     $subtitle = $albumPhotos["albums"][ $albumPhotos["albumIndex"] ]["title"];
 }
 else
 {
     $year = 0;
-    if ( isset($_GET["year"]) ) $year = $_GET[ "year" ];
+    if ( isset($_GET["year"]) ) {
+        $year = filter_var($_GET["year"], FILTER_VALIDATE_INT);
+        if ($year === false) {
+            // bad input, maybe a hack
+            require("404.php");
+            die();
+        }
+    }
     $albumList = getAlbums( $flickr );
     $subtitle = $albumList[$year]["title"];
 }
