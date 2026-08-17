@@ -36,12 +36,13 @@ EOL;
     echo "    <title>$title</title>\n";
 
     /* Google Analytics tracking code */
-    echo "    <script async src='https://www.googletagmanager.com/gtag/js?id=G-ZD4J3J1EZN'></script>\n";
+    /* Tag was created in account paul.rensing@ligerbots.org Google account */
+    echo "    <script async src='https://www.googletagmanager.com/gtag/js?id=G-X4GRJ617H3'></script>\n";
     echo "    <script>\n";
-    echo "       window.dataLayer = window.dataLayer || [];\n";
-    echo "       function gtag(){dataLayer.push(arguments);}\n";
-    echo "       gtag('js', new Date());\n";
-    echo "       gtag('config', 'G-ZD4J3J1EZN');\n";
+    echo "      window.dataLayer = window.dataLayer || [];\n";
+    echo "      function gtag(){dataLayer.push(arguments);}\n";
+    echo "      gtag('js', new Date());\n";
+    echo "      gtag('config', 'G-X4GRJ617H3');\n";
     echo "    </script>\n";
 
     echo "    <meta property=\"og:title\" content=\"$title\" />\n";
